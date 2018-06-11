@@ -1,0 +1,667 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Jado绿能侠</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="stylesheet" type="text/css" href="../../css/mui.min.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/mui.picker.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/mui.poppicker.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/mui.yh.css" />
+        
+        
+        <style type="text/css">
+        .mui-input-row input[type='text'],.mui-input-row input[type='number']{float: left; width: 40% !important;}
+        .mui-input-row input[readonly]{background-color: #dedede;}
+        .mui-input-row label{float: left; width: 60% !important;}
+        .mui-btn-block{padding:8px 0px;margin-bottom: 0px;border-radius: 0px;}
+        .mui-input-group{padding-top: 4px;padding-bottom: 8px;}
+        .cell-view-3{float: left;width: 25%;}
+        .cell-view-4{float: left;width: 33.33%;}
+        .cell-view-6{float: left;width: 50%;}
+        .cell-view-12{float:left;width: 100%;}
+        .content-view{padding-left: 18px;}
+        .mui-radius{border-radius: 100px ;padding: 3px 10px;}
+        .box-check-group{float: left;width: 20%; font-size: 14px;line-height: 40px;}
+        .mui-bar-nav.mui-bar .mui-icon{color: #007aff;}
+        input[type="radio"]:checked:before {
+            font-family: Muiicons;
+            content: '\e472';
+            font-size: 26px;
+            font-weight: bold;
+            position: absolute;
+            top: -5px;
+            left: -4px;
+            width: 20px  !important;
+            height: 20px !important;
+            text-align: center;
+            color: #fff !important;
+        }
+
+        input[type="radio"]:checked {
+            background-color: #F59652 !important;
+            border-color: #F59652 !important;
+            color: #fff !important;
+        }
+        input[type="radio"] {
+            -webkit-appearance: none !important;
+            appearance: none !important;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            /*padding: 6px;*/
+            width: 20px  !important;
+            height: 20px !important;
+            display: inline-block;
+            vertical-align: middle;
+            position: relative;
+            cursor: pointer;
+            font-family: 'iconfonts';
+            color: #fff !important;
+            margin-right: 5px;
+            margin-top: -2px;
+        }
+        h5{padding: 6px 15px;}
+        .mui-card{margin: 8px 4px;padding: 0px 2px 5px 2px;}
+        .mui-input-row input{margin-top: 0px;}
+        .tab-btn-group .tab-btn.active {
+            color: #007aff;
+            border-bottom: 2px solid #007aff;
+        }
+        .mui-input-row label,.mui-input-row input {
+            font-size: 1em;
+            margin-top: 0px;
+        }
+        </style>
+        
+    </head>
+    <body>
+        <header class="mui-bar mui-bar-nav">
+            <a class="mui-action-home mui-icon mui-icon-home"></a>
+            <h1 class="mui-title">运营期发电预期收益表</h1>
+        </header>
+        <div class="mui-content">
+<!--             <div class="mui-header-eqinfo">
+                <div class="head-header">运营期发电预期收益表</div>
+                <div class="head-english">Income statement</div>
+            </div> -->
+        </div>
+        <div class="mui-after-content tab-btn-group">
+            <div class="tab-btn col-6 mui-btn-link-tab">全款</div>
+            <div class="tab-btn col-6 active">贷款</div>
+        </div>
+        <div class="mui-after-content">
+            <div class="mui-input-group">
+            <input type="hidden" name="touzi_type" id="touzi_type" value="loan">
+<!--                 <div class="mui-input-row">
+                    <label>朝南面积</label>
+                    <input type="number" name='ban_num' id='ban_num' class="mui-input-clear" placeholder="朝南面积">
+                </div>
+                <div class="mui-input-row">
+                    <label>变压器容量Kw</label>
+                    <input type="number" name='by_rongliang' id='by_rongliang' class="mui-input-clear" placeholder="Kw">
+                </div> -->
+                <div class="mui-input-row">
+                    <label>装机容量(MW)</label>
+                    <input type="number" name='rongliang' id='rongliang' placeholder="MW" >
+                </div>
+                <div class="mui-input-row">
+                    <label>发电比例</label>
+                    <input type="number" name='qy_year_time' id='qy_year_time' value="1150"  readonly>
+                </div>
+                <div class="mui-input-row">
+                    <label>年发电量</label>
+                    <input type="text" name='yearDian' id='yearDian' class="mui-input-clear" placeholder="年发电量KWH" readonly>
+                </div>
+                <div class="mui-input-row">
+                    <label>投资成本(元/W)</label>
+                    <input type="text" class="mui-input-clear" id="price" name="price" placeholder="投资成本" value="6">
+                </div>
+                <div class="mui-input-row">
+                    <label id="touziShebei_title">设备投资(元)</label>
+                    <input type="text" name='touziShebei_show' id='touziShebei_show' class="mui-input-clear" placeholder="设备投资" readonly>
+                    <input type="hidden" name='touziShebei' id='touziShebei' class="mui-input-clear" placeholder="设备投资" readonly>
+                </div>
+                <div class="mui-input-row">
+                    <label>免运维费用年期</label>
+                    <input type="number" name='yunwei_mianYear' id='yunwei_mianYear' class="mui-input-clear" placeholder="免运维费用年期" value="5">
+                </div>
+
+                <h5>投资概况</h5>
+                <div class="mui-input-row">
+                    <label>业主自投比例(%)</label>
+                    <input type="text" name='zitoubili' id='zitoubili' class="mui-input" value="30" placeholder="自投比例" readonly>
+                </div>
+                <div class="mui-input-row">
+                    <label id="zitouMoney_title">自投金额(元)</label>
+                    <input type="text" name='zitouMoney_show' id='zitouMoney_show' class="mui-input" value="" placeholder="自投金额" readonly>
+                    <input type="hidden" name='zitouMoney' id='zitouMoney' class="mui-input" value="" placeholder="自投金额" readonly>
+                </div>
+                <div class="mui-input-row">
+                    <label>银行融资比例(%)</label>
+                    <input type="number" name='rongzibili' id='rongzibili' placeholder="融资比例" value="70" readonly>
+                </div>
+                <div class="mui-input-row">
+                    <label id="rongziMoney_title">银行融资金额(元)</label>
+                    <input type="text" name='rongziMoney_show' id='rongziMoney_show' class="mui-input" value="" placeholder="银行融资金额" readonly>
+                    <input type="hidden" name='rongziMoney' id='rongziMoney' class="mui-input" value="" placeholder="银行融资金额" readonly>
+                </div>
+<!--                 <div class="mui-input-row">
+                    <label>贷款年限/年</label>
+                    <input type="number" name='loan_year' id='loan_year' placeholder="年" value="5">
+                </div> -->
+
+                <button id="loan_year_btn" name="loan_year_btn" class="mui-btn mui-btn-primary mui-btn-block" type='button'>贷款年限&nbsp;&nbsp;&nbsp;&nbsp;<i class="mui-icon mui-icon-arrowdown"></i></button>
+                <input type="hidden" name="loan_year" id="loan_year" value="">
+                <div class="mui-input-row">
+                    <label>贷款利息(%)</label>
+                    <input type="text" name='year_rate' id='year_rate' class="mui-input-clear" placeholder="贷款年利率" readonly>
+                </div>
+<!--                 <div class="mui-input-row">
+                    <label>贷款利息(%)</label>
+                    <input type="text" name='interest_rate_5' id='interest_rate_5' class="mui-input-clear" placeholder="贷款年利率" value="15" readonly>
+                </div> -->
+                <div class="mui-input-row">
+                    <label>贷款利息金额</label>
+                    <input type="text" name='loanMoney' id='loanMoney' class="mui-input" value="" placeholder="贷款利息金额" readonly>
+                </div>
+                <div class="mui-input-row">
+                    <label>增值税</label>
+                    <input type="text" name='zengzhi' id='zengzhi' class="mui-input" placeholder="" readonly>
+                </div>
+                <div class="mui-input-row">
+                    <label>业主净投资</label>
+                    <input type="text" name='touziJing' id='touziJing' class="mui-input-clear" placeholder="" readonly>
+                </div>
+
+                <h5>收益分析</h5>
+                <div class="mui-input-row">
+                    <label><b>预期投资总收益(25年)</b></label>
+                    <input type="text" name='touzi_shouyi' id='touzi_shouyi' class="mui-input-clear" placeholder="" readonly>
+                </div>
+                <div class="mui-input-row">
+                    <label><b>年投资回报率</b></label>
+                    <input type="text" name='touzi_rate' id='touzi_rate' class="mui-input-clear" placeholder="" readonly>
+                </div>
+<!--                 <div class="mui-input-row">
+                    <label>收回投资时间(年)</label>
+                    <input type="text" name='huibenyear' id='huibenyear' class="mui-input-clear" placeholder="" readonly>
+                </div> -->
+                <div class="mui-input-row">
+                    <label><b>综合净收入(元)</b></label>
+                    <input type="text" name='jingshou_all' id='jingshou_all' class="mui-input-clear" placeholder="" readonly>
+                </div>
+                <div class="mui-input-row">
+                    <label><b>度电收益(元)</b></label>
+                    <input type="text" name='shouyi_dudian' id='shouyi_dudian' class="mui-input-clear" placeholder="" readonly>
+                </div>
+                <div class="mui-input-row">
+                    <label><b>投资率</b></label>
+                    <input type="text" name='touziLv' id='touziLv' class="mui-input-clear" placeholder="" readonly>
+                </div>
+
+
+                <h5>电价详情</h5>
+                <div class="mui-input-row">
+                    <label style="width:100% !important;">自用比例：95%，￥1.26</label>
+                </div>
+                <div class="mui-input-row">
+                    <label style="width:100% !important;">上网比例：5%，￥0.76</label>
+                </div>
+                <div class="mui-input-row">
+                    <label style="width:100% !important;">国家补贴：￥0.37</label>
+                </div>
+                <div class="mui-input-row">
+                    <label>运营期/年</label>
+                    <input type="number" name='touzi_year' id='touzi_year' class="mui-input-clear" placeholder="年" value="25">
+                </div>
+                <button id="ok-view" name="ok-view" class="mui-btn mui-btn-primary mui-btn-block" type='button' s>查看收益明细&nbsp;&nbsp;&nbsp;&nbsp;<i class="mui-icon mui-icon-arrowdown"></i></button>
+            </div>
+            <!-- 收益明细 -->
+            <div class="mui-card-container">
+                <h5>暂无明细数据 请点击查看收益</h5>
+            </div>
+
+    </body>
+<script id="mui_card_first" type="text/template">
+
+    <div class="mui-card">
+        <div class="mui-card-content">
+            <div class="mui-card-content-inner">
+                <div class="cell-view-6">运营期</div>
+                <div class="cell-view-6 content-view"><span class="mui-radius mui-badge-primary">{num}</span></div>
+
+                <div class="cell-view-6">发电量(KWH)</div>
+                <div class="cell-view-6 content-view">{dian_kwh}</div>
+
+                <div class="cell-view-6">毛收(元)</div>
+                <div class="cell-view-6 content-view">{maoshou}</div>
+
+                <div class="cell-view-6">发电净收入(元)</div>
+                <div class="cell-view-6 content-view">{fadianJingshou}</div>
+
+                <div class="cell-view-6">即征即退50%税</div>
+                <div class="cell-view-6 content-view">{jizhengjitui}</div>
+
+                <div class="cell-view-6">电站进项税抵扣额(元)</div>
+                <div class="cell-view-6 content-view">{jinxiang}</div>
+
+                <div class="cell-view-6">运营费用进项税额</div>
+                <div class="cell-view-6 content-view">{yunying}</div>
+
+                <div class="cell-view-6">年运维费用(元)</div>
+                <div class="cell-view-6 content-view">{yunwei}</div>
+
+                <div class="cell-view-6">&nbsp;&nbsp;</div>
+                <div class="cell-view-6 content-view">￥0.02</div>
+
+                <div class="cell-view-6">增值税应交税金</div>
+                <div class="cell-view-6 content-view">{zengzhi}</div>
+
+<!--                 <div class="cell-view-6">融资额</div>
+                <div class="cell-view-6 content-view">{rongzi}</div> -->
+
+                <div class="cell-view-6">利息</div>
+                <div class="cell-view-6 content-view">{lixi}</div>
+
+            </div>
+        </div>
+    </div>
+</script>
+<script id="mui_card_after" type="text/template">
+    <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                        <span class="mui-radius mui-badge-primary">{num}</span>
+                    </div>
+                    <div class="cell-view-6">发电量(KWH)</div>
+                    <div class="cell-view-6 content-view">{dian_kwh}</div>
+
+                    <div class="cell-view-6">毛收(元)</div>
+                    <div class="cell-view-6 content-view">{maoshou}</div>
+
+                    <div class="cell-view-6">发电净收入(元)</div>
+                    <div class="cell-view-6 content-view">{fadianJingshou}</div>
+
+                    <div class="cell-view-6">即征即退50%税</div>
+                    <div class="cell-view-6 content-view">{jizhengjitui}</div>
+
+                    <div class="cell-view-6">电站进项税抵扣额(元)</div>
+                    <div class="cell-view-6 content-view">{jinxiang}</div>
+
+                    <div class="cell-view-6">运营费用进项税额</div>
+                    <div class="cell-view-6 content-view">{yunying}</div>
+
+                    <div class="cell-view-6">年运维费用(元)</div>
+                    <div class="cell-view-6 content-view">{yunwei}</div>
+
+                    <div class="cell-view-6">&nbsp;&nbsp;</div>
+                    <div class="cell-view-6 content-view">￥0.02</div>
+
+                    <div class="cell-view-6">增值税应交税金</div>
+                    <div class="cell-view-6 content-view">{zengzhi}</div>
+
+<!--                     <div class="cell-view-6">融资额</div>
+                    <div class="cell-view-6 content-view">{rongzi}</div> -->
+
+                    <div class="cell-view-6">利息</div>
+                    <div class="cell-view-6 content-view">{lixi}</div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+</script>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/zepto.js"></script>
+<script src="../../js/mui.picker.js"></script>
+<script src="../../js/mui.picker.min.js"></script>
+<script src="../../js/mui.poppicker.js"></script>
+<script src="../../js/mui.enterfocus.js"></script>
+<script src="../../js/template.min.js"></script>
+<script src="../../config.js"></script>
+<script src="../../js/app.js"></script>
+<script src="../../js/sign.js"></script>
+<script src="../../js/md5.js"></script>
+<script src="../../js/jquery.1.9.1.js"></script>
+<script type="text/javascript">
+    var jQuery = jQuery.noConflict();
+</script>
+<script>
+	var _json = {"qy_tz_price_all":{"text":"\u4f01\u4e1a\u5355\u4ef7","value":[{"qy_full_payment_price":"5.5","qy_loan_price":"6","roleId":null}]},"qy_full_payment_price":{"text":"\u4f01\u4e1a\u5168\u6b3e\u5355\u4ef7","value":"5.5"},"qy_loan_price":{"text":"\u4f01\u4e1a\u8d37\u6b3e\u5355\u4ef7","value":"6"},"qy_year_time":{"text":"\u4f01\u4e1a\u5e74\u53d1\u7535\u65f6\u95f4","value":"1150"},"qy_use_rate":{"text":"\u4f01\u4e1a\u81ea\u7528\u6bd4\u4f8b","value":"95"},"qy_use_rate_price":{"text":"\u4f01\u4e1a\u81ea\u7528\u4ef7\u683c","value":"1.26"},"qy_connect_rate":{"text":"\u4f01\u4e1a\u4e0a\u7f51\u6bd4\u4f8b","value":"5"},"qy_connect_rate_price":{"text":"\u4f01\u4e1a\u4e0a\u7f51\u4ef7\u683c","value":"0.76"},"qy_interest_rate_5":{"text":"5\u5e74\u8d37\u6b3e\u5229\u7387","value":"15"},"qy_business_touzi":{"text":"\u4e1a\u4e3b\u81ea\u6295\u6bd4\u4f8b","value":"30"},"qy_zengzhi":{"text":"\u4f01\u4e1a\u589e\u503c\u7a0e","value":"1,1.17,0.17"},"acreage_coefficient":{"text":"\u9762\u79ef\u7cfb\u6570","value":"0.1636363636363636363636"},"rongliang_coefficient":{"text":"\u53d8\u538b\u5668\u5bb9\u91cf\u7cfb\u6570","value":"0.8"},"qy_state_subsidies_rate":{"text":"\u4f01\u4e1a\u56fd\u5bb6\u8865\u8d34","value":"0.37"},"qy_interest_rate_1":{"text":"1\u5e74\u8d37\u6b3e\u5229\u7387","value":"3"},"qy_interest_rate_2":{"text":"2\u5e74\u8d37\u6b3e\u5229\u7387","value":"6"},"qy_interest_rate_3":{"text":"3\u5e74\u8d37\u6b3e\u5229\u7387","value":"9"},"qy_interest_rate_4":{"text":"4\u5e74\u8d37\u6b3e\u5229\u7387","value":"12"},"qy_yunying":{"text":"\u8fd0\u8425\u8fdb\u9879\u7a0e\u7387","value":"6"},"qy_chengjian":{"text":"\u5e94\u4ea4\u57ce\u5efa\u7a0e","value":"7"},"qy_jiaoyu":{"text":"\u6559\u80b2\u9644\u52a0\u7a0e","value":"5"},"qy_acreage_coefficient":{"text":"\u4f01\u4e1a\u9762\u79ef\u7cfb\u6570","value":"0.08"},"qy_bank_touzi":{"value":70}};
+	var sid = localStorage.getItem("sid");
+
+    mui.init();
+
+    mui.plusReady(function() {
+    	var waiting = plus.nativeUI.showWaiting();
+		var obj_comtzinfo = {};
+    	obj_comtzinfo["sid"] = sid;
+    	var sign = GetSign(obj_comtzinfo);
+    	var param = {
+	        queryData: {
+	          'method': config.apimethod.comtzinfo,
+	          'sign':sign,
+	          'sid':sid
+	        },
+	        method: 'POST'
+	    }
+    	$.dataRequest(param, function(rs) {
+    		waiting.close();
+    		console.log(JSON.stringify(rs));
+    		for(var item in rs.data)
+    		{
+    			var obj_item = {};
+    			obj_item["text"] = "";
+    			obj_item["value"] = rs.data[item];
+    			_json[item] = obj_item;
+    		}
+    		_json["qy_tz_price_all"] = {
+				"text": "单价",
+				"value": [{
+					"qy_full_payment_price": rs.data.qy_full_payment_price,
+					"qy_loan_price": rs.data.qy_loan_price,
+					"roleId": null
+				}]
+			};
+			
+			//ajax自动加载金额
+	        autoAjaxPrice();
+	
+	        //点击返回主页
+	        mui(document.body).on('tap','.mui-action-home',function(){
+	            clicked('_www/view/hyzx/hyzx.html');
+	        });
+	
+	        //标签切换页面内容
+	        mui(document.body).on('tap',".mui-btn-link-tab",function(){
+	            clicked('_www/view/tzsyb/comtzsyb.html');
+	        });
+	        
+	        //填写和修改装机容量(ps:现在这边是MW 1MW=1兆瓦=1000KW 1KW=1000W)
+	        jQuery('#rongliang').change(function(){
+	            //计算年发电量
+	            setDianYear();
+	            setMoney();
+	        })
+	
+	        //贷款时间选择
+	        var loanYearPicker = new mui.PopPicker();
+	        var loanYearData = [];
+	        for(var i=1;i<=5;i++){
+	            loanYearData.push({
+	                value: i,
+	                text: '贷款'+i+'年'
+	            });
+	        }
+	        loanYearPicker.setData(loanYearData);
+	        var loan_year_btn = document.getElementById('loan_year_btn');
+	        loan_year_btn.addEventListener('tap', function(event) {
+	            loanYearPicker.show(function(items) {
+	                var result = items[0];
+	                jQuery('#loan_year').val(result.value);
+	                var btnTz = jQuery('#loan_year_btn');
+	                btnTz.text(result.text);
+	
+	                //选择贷款后改变利率
+	                if(result.value > 0){
+	                  var key = 'qy_interest_rate_'+result.value;
+	                  var rate = _json[key].value;
+	                  jQuery('#year_rate').val(rate);
+	                  jQuery('#year_rate').change();
+	                }
+	            });
+	        }, false);
+	        //end
+	        //贷款后改变利率 触发容量机制改变数据
+	        jQuery('#year_rate').change(function(){
+	            jQuery('#rongliang').change();
+	        });
+	
+	        //改变单价的时候
+	        jQuery('#price').change(function(){
+	            setMoney();
+	        });
+	
+	        //改变变压器容量的时候
+	        jQuery('#by_rongliang').change(function(){
+	            setRongLiang();
+	            jQuery('#rongliang').change();
+	        });
+	
+	        //计算装机容量：单独的
+	        jQuery('#ban_num').change(function(){
+	            setRongLiang();
+	            jQuery('#rongliang').change();
+	        });
+	        //装机容量调整后
+	        // jQuery('#rongliang').change(function(){
+	        //     //计算年发电量
+	        //     setDianYear();
+	        //     setMoney();
+	        // });
+	
+	        jQuery('#touzi_year').change(function(){
+	            var year = parseInt(jQuery('#touzi_year').val());
+	            if(isNaN(year))jQuery('#touzi_year').val(25);
+	            if(year > 50) mui.alert('确定能运营那么久？');
+	        });
+	
+	        //请求php计算明细
+	        jQuery('#ok-view').click(function(){
+	            waiting = plus.nativeUI.showWaiting();
+	            var that = this;
+	            var key = ['touzi_type','rongliang','yearDian','touzi_year','loan_year','touziShebei','yunwei_mianYear'];
+	            var data = {};
+	            for(var kk in key){
+	                data[key[kk]] = jQuery('#'+key[kk]).val();
+	            }
+	            var data = {};
+	            data["sid"] = sid;
+	            for(var kk in key){
+	                data[key[kk]] = jQuery('#'+key[kk]).val();
+	            }
+	            console.log(JSON.stringify(data));
+	            sign = GetSign(data);
+	            var param1 = {
+			        queryData: {
+			          'method': config.apimethod.comtzdetail,
+			          'sign':sign,
+			          'sid':sid,
+			          'touzi_type':jQuery('#touzi_type').val(),
+			          'rongliang':jQuery('#rongliang').val(),
+			          'touzi_year':jQuery('#touzi_year').val(),
+			          'loan_year':jQuery('#loan_year').val(),
+			          'touziShebei':jQuery('#touziShebei').val(),
+			          'yearDian':jQuery('#yearDian').val(),
+			          'yunwei_mianYear':jQuery('#yunwei_mianYear').val()
+			        },
+			        method: 'POST'
+			    }
+	            $.dataRequest(param1, function(rs1) {
+	            	console.log(JSON.stringify(rs1));
+	            	waiting.close();
+	            	if(rs1.rsp=="succ")
+	            	{
+	            		if(rs1.data.status=="succ")
+	            		{
+		                    jQuery('#touzi_rate').val(rs1.data.shouyilv);//年投资回报
+		                    //jQuery('#huibenyear').val(dlist.huibenYear);//收回投资时间
+		                    jQuery('#touziJing').val(rs1.data.touziJing);//业主净投资
+		                    jQuery('#zengzhi').val(rs1.data.zengzhi);//增值税
+		                    jQuery('#shouyi_dudian').val(rs1.data.shouyi_dudian);
+		                    jQuery('#jingshou_all').val(rs1.data.jingshou_all);
+		                    jQuery('#touziLv').val(rs1.data.touziLv);
+		                    var allHtml = [];
+		                    for(var kl in rs1.data.view){
+		                        if(kl == 0 || rs1.data.view[kl].num == '合计'){
+		                            if(kl == 0){
+		                                rs1.data.view[kl].num = "第"+rs1.data.view[kl].num+"年";
+		                            }
+		                            var _html = substitute(jQuery('#mui_card_first').html(),rs1.data.view[kl]);
+		                            allHtml.push(_html);
+		                        }else{
+		                            rs1.data.view[kl].num = "第"+rs1.data.view[kl].num+"年";
+		                            var _html = substitute(jQuery('#mui_card_after').html(),rs1.data.view[kl]);
+		                            allHtml.push(_html);
+		                        }
+		                    }
+		                    jQuery('.mui-card-container').html(allHtml.join(''));
+	            		}
+	            	}else{
+	            		plus.nativeUI.toast("获取失败：" + rs1.res);
+						return;
+	            	}
+	            })
+	            /*jQuery.post(_url,data,function(dlist){
+	                if(dlist.status == 'succ'){
+	                    jQuery('#touzi_rate').val(dlist.shouyilv);
+	                    // jQuery('#huibenyear').val(dlist.huibenYear);
+	                    jQuery('#touziJing').val(dlist.touziJing);
+	                    jQuery('#zengzhi').val(dlist.zengzhi);
+	                    jQuery('#shouyi_dudian').val(dlist.shouyi_dudian);
+	                    jQuery('#jingshou_all').val(dlist.jingshou_all);
+	                    jQuery('#touziLv').val(dlist.touziLv);
+	                    var allHtml = [];
+	                    for(var kl in dlist.view){
+	                        if(kl == 0 || dlist.view[kl].num == '合计'){
+	                            if(kl == 0){
+	                                dlist.view[kl].num = "第"+dlist.view[kl].num+"年";
+	                            }
+	                            var _html = substitute(jQuery('#mui_card_first').html(),dlist.view[kl]);
+	                            allHtml.push(_html);
+	                        }else{
+	                            dlist.view[kl].num = "第"+dlist.view[kl].num+"年";
+	                            var _html = substitute(jQuery('#mui_card_after').html(),dlist.view[kl]);
+	                            allHtml.push(_html);
+	                        }
+	                    }
+	                    jQuery('.mui-card-container').html(allHtml.join(''));
+	
+	                }else{
+	                    if(!dlist.msg){
+	                        dlist['msg'] = '计算失败';
+	                    }
+	                    mui.alert(dlist.msg);
+	                }
+	
+	                setTimeout(function() {
+	                    mui(that).button('reset');
+	                }.bind(that), 50);
+	            },'json');*/
+	
+	        });
+	        
+	        //计算装机容量
+			function setRongLiang(){
+			    var userBan = parseFloat(jQuery('#ban_num').val())||0;
+			    var qy_acreage_coefficient = parseFloat(_json.qy_acreage_coefficient.value)||0;
+			    var rongliang_1 = toDecimal(userBan * qy_acreage_coefficient);
+			    var by_rongliang = parseFloat(jQuery('#by_rongliang').val())||0;
+			    var rongliang_coefficient = parseFloat(_json.rongliang_coefficient.value)||0;
+			    var rongliang_2 = toDecimal(by_rongliang * rongliang_coefficient);
+			    if(rongliang_1!=0 && rongliang_2!=0){
+			        var rongliang = Math.min(rongliang_1,rongliang_2);
+			    }else if(rongliang_1==0){
+			        var rongliang = rongliang_2;
+			    }else{
+			        var rongliang = rongliang_1;
+			    }
+			    //这边算出的是KW 转成 MW 1MW = 1000Kw
+			    jQuery('#rongliang').val(rongliang/1000);
+			}
+			function setMoney(){
+			    //计算设备投资 容量为WM=1000KW
+			    var Rongliang = parseFloat(jQuery('#rongliang').val())||0;
+			    var price = parseFloat(jQuery('#price').val())||0;
+			    if(price<5 || price>8){
+			        mui.alert('单价设置超出范围5-8元');
+			    }
+			    var Money = toDecimal(Rongliang*price*1000*1000);
+			    //优化 当自投金额大于万元，则显示单位为万元
+			    if (Money>10000) {
+			        var Money_shebei = toDecimalThree(Money/10000);
+			        jQuery('#touziShebei_title').text('设备投资(万元)');
+			    }else{
+			        var Money_shebei = Money;
+			    }
+			    jQuery('#touziShebei').val(Money);
+			    jQuery('#touziShebei_show').val(Money_shebei);
+			    //在进行计算业主自投金额
+			    var zitoubili = parseFloat(jQuery('#zitoubili').val())||0;
+			    var zitouMoney = toDecimal(Money*(zitoubili/100));
+			    if (zitouMoney>10000) {
+			        var Money_zitou = toDecimalThree(zitouMoney/10000);
+			        jQuery('#zitouMoney_title').text('自投金额(万元)');
+			    }else{
+			        var Money_zitou = zitouMoney;
+			    }
+			    jQuery('#zitouMoney').val(zitouMoney);//隐藏域
+			    jQuery('#zitouMoney_show').val(Money_zitou);//显示体
+			    //银行融资金额计算
+			    var rongzibili = parseFloat(jQuery('#rongzibili').val())||0;
+			    var rongziMoney = toDecimal(Money*(rongzibili/100));
+			     if (rongziMoney>10000) {
+			        var Money_Rongzi = toDecimalThree(rongziMoney/10000);
+			        jQuery('#rongziMoney_title').text('银行融资金额(万元)');
+			    }else{
+			        var Money_Rongzi = rongziMoney;
+			    }
+			    jQuery('#rongziMoney_show').val(Money_Rongzi);
+			    jQuery('#rongziMoney').val(rongziMoney);
+			    //贷款利息金额计算
+			    var year_rate = parseFloat(jQuery('#year_rate').val())||0;
+			    var loanMoney = toDecimal(rongziMoney*(year_rate/100));
+			    jQuery('#loanMoney').val(loanMoney);
+			}
+			//计算年发电量
+			function setDianYear(){
+			    //容量为1WM=1000KW
+			    var rongliang = parseFloat(jQuery('#rongliang').val())||0;
+			    var year_time = parseFloat(_json.qy_year_time.value)||0;
+			    var yearDian  = toDecimal(rongliang * year_time*1000);
+			    jQuery('#yearDian').val(yearDian);
+			}
+			
+			//保留两位小数
+			//功能：将浮点数四舍五入，取小数点后2位
+			function toDecimal(x) {
+			    var f = parseFloat(x);
+			    if (isNaN(f)) {
+			        return x;
+			    }
+			    f = Math.round(x*100)/100;
+			    return f;
+			}
+			//保留三位小数
+			function toDecimalThree(x) {
+			    var f = parseFloat(x);
+			    if (isNaN(f)) {
+			        return x;
+			    }
+			    f = Math.round(x*1000)/1000;
+			    return f;
+			}
+			function substitute(str,o,regexp){
+			
+			  return  str.replace(regexp || /\\?\{([^{}]+)\}/g, function (match, name) {
+			
+			    return (o[name] === undefined) ? '' : o[name];
+			
+			  });
+			
+			}
+			function autoAjaxPrice(){
+			    // var value = jQuery(this).val();
+			    var value = "loan";
+			    jQuery('#touzi_type').val(value);
+			}
+    	})
+    });
+
+</script>
+</html>

@@ -1,0 +1,36 @@
+{
+  "view/login.html": {
+    "refer": [
+      "view/hyzx/hyzx.html",
+      "view/register.html"
+    ],
+    "resources": []
+  },
+  "view/register.html": {
+    "refer": [
+      "view/login.html"
+    ],
+    "resources": []
+  },
+  "view/hyzx/hyzx.html": {
+    "refer": [
+      "view/tzsyb/grtzsyb.html",
+      "view/tzsyb/comtzsyb.html",
+      "view/memberReg/memberReg.html"
+    ],
+    "resources": []
+  },
+  "view/tzsyb/comtzsyb.html": {
+    "refer": [
+      "view/hyzx/hyzx.html",
+      "view/tzsyb/comtzsybdk.html"
+    ],
+    "resources": []
+  },
+  "view/tzsyb/comtzsybdk.html": {
+    "refer": [
+      "view/tzsyb/comtzsyb.html"
+    ],
+    "resources": []
+  }
+}

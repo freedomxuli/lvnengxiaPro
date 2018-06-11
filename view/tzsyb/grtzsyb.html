@@ -1,0 +1,413 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Jado绿能侠</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/mui.picker.css" />
+	    <link rel="stylesheet" type="text/css" href="../../css/mui.picker.min.css" />
+	    <link rel="stylesheet" type="text/css" href="../../css/mui.poppicker.css" />
+        
+        <style type="text/css">
+	        .mui-input-row input{float: left; width: 40% !important;}
+	        .mui-input-row input[readonly]{background-color: #dedede;}
+	        .mui-input-row label{float: left; width: 60% !important;}
+	        .mui-btn-block{padding:8px 0px;margin-bottom: 0px;border-radius: 0px;}
+	        .mui-input-group{padding-top: 4px;}
+	        .cell-view-3{float: left;width: 25%;}
+	        .cell-view-4{float: left;width: 33.33%;}
+	        .cell-view-6{float: left;width: 50%;}
+	        .cell-view-12{float:left;width: 100%;}
+	        .content-view{padding-left: 18px;}
+	        .mui-radius{border-radius: 100px ;padding: 3px 10px;}
+        </style>
+        
+    </head>
+    <body>
+        <header class="mui-bar mui-bar-nav">
+            <a class="mui-action-home mui-icon mui-icon-home"></a>
+            <h1 class="mui-title">运营期发电预期收益表</h1>
+        </header>
+        <div class="mui-content">
+            <div class="mui-input-group">
+                <button id='touzi_type_btn' name="touzi_type_btn" class="mui-btn mui-btn-primary mui-btn-block" type='button'>- 请选择投资模式 -</button>
+                <input type="hidden" name="touzi_type" id="touzi_type" value="">
+                <div class="mui-input-row">
+                    <label>单价(元)</label>
+                    <input type="text" class="mui-input-clear" id="price" name="price" placeholder="单价">
+                </div>
+                <div class="mui-input-row">
+                    <label>铺板数</label>
+                    <input type="number" name='ban_num' id='ban_num' class="mui-input-clear" placeholder="个数">
+                </div>
+                <div class="mui-input-row">
+                    <label>装机容量Kw</label>
+                    <input type="number" name='rongliang' id='rongliang' class="mui-input-clear" placeholder="Kw">
+                </div>
+                <div class="mui-input-row">
+                    <label>设备投资(元)</label>
+                    <input type="text" name='touziShebei' id='touziShebei' class="mui-input-clear" placeholder="设备投资" readonly>
+                </div>
+                <div class="mui-input-row">
+                    <label>年发电量/年1150时</label>
+                    <input type="text" name='yearDian' id='yearDian' class="mui-input-clear" placeholder="年发电量KWH" readonly>
+                </div>
+                <h5>贷款信息</h5>
+                <button id="loan_year_btn" name="loan_year_btn" class="mui-btn mui-btn-primary mui-btn-block" type='button'>- 贷款年限 -</button>
+                <input type="hidden" name="loan_year" id="loan_year" value="">
+                <div class="mui-input-row">
+                    <label>贷款年利率%</label>
+                    <input type="text" name='year_rate' id='year_rate' class="mui-input-clear" placeholder="贷款年利率" readonly>
+                </div>
+                <h5>补贴情况</h5>
+                <div class="mui-input-row">
+                    <label>国家:100%,0.37￥,年限</label>
+                    <input type="text" name='state_subsidies_time' id='state_subsidies_time' class="mui-input-clear" placeholder="补贴年限" value="20">
+                </div>
+                <div class="mui-input-row">
+                    <label>其他:100%,￥,年限</label>
+                    <input type="text" name='fund_subsidy_time' id='fund_subsidy_time' class="mui-input-clear" placeholder="补贴年限" value="5">
+                </div>
+                <h5>投资概况</h5>
+                <div class="mui-input-row">
+                    <label>投资收益率%</label>
+                    <input type="text" name='touzi_rate' id='touzi_rate' class="mui-input-clear" placeholder="" readonly>
+                </div>
+                <div class="mui-input-row">
+                    <label>回本年限</label>
+                    <input type="text" name='huibenyear' id='huibenyear' class="mui-input-clear" placeholder="" readonly>
+                </div>
+                <h5>收益分析</h5>
+                <div class="mui-input-row">
+                    <label style="width:100% !important;">自用比例：20%，￥0.55</label>
+                </div>
+                <div class="mui-input-row">
+                    <label style="width:100% !important;">上网比例：80%，￥0.391</label>
+                </div>
+                <div class="mui-input-row">
+                    <label>运营期/年</label>
+                    <input type="number" name='touzi_year' id='touzi_year' class="mui-input-clear" placeholder="年" value="25">
+                </div>
+                <button id="ok-view" name="ok-view" class="mui-btn mui-btn-primary mui-btn-block" type='button'>查看收益明细</button>
+            </div>
+            <!-- 收益明细 -->
+            <div class="mui-card-container">
+                <p>暂无明细数据 请点击查看收益</p>
+            </div>
+
+    </body>
+	<script id="mui_card_first" type="text/template">
+	
+	    <div class="mui-card">
+	        <div class="mui-card-content">
+	            <div class="mui-card-content-inner">
+	                <div class="cell-view-6">运营期</div>
+	                <div class="cell-view-6 content-view"><span class="mui-radius mui-badge-primary">{num}</span></div>
+	                <div class="cell-view-6">发电量(KWH)</div>
+	                <div class="cell-view-6 content-view">{dian_kwh}</div>
+	                <div class="cell-view-6">自用和余电上网(元)</div>
+	                <div class="cell-view-6 content-view">{user_self}</div>
+	                <div class="cell-view-6">发电补贴(元)</div>
+	                <div class="cell-view-6 content-view">{subsidies}</div>
+	                <div class="cell-view-6">预计总收益(元)</div>
+	                <div class="cell-view-6 content-view">{shouyiAll}</div>
+	                <div class="cell-view-6">等额本息(元)</div>
+	                <div class="cell-view-6 content-view">{interest}</div>
+	                <div class="cell-view-6">预计每年净收益(元)</div>
+	                <div class="cell-view-6 content-view">{shouyiJing}</div>
+	            </div>
+	        </div>
+	    </div>
+	</script>
+	<script id="mui_card_after" type="text/template">
+	    <div class="mui-card">
+	            <div class="mui-card-content">
+	                <div class="mui-card-content-inner">
+	                    <div class="cell-view-12">
+	                        <span class="mui-radius mui-badge-primary">{num}</span>
+	                    </div>
+	                    <div class="cell-view-4">{dian_kwh}(KWH)</div>
+	                    <div class="cell-view-4">自用.{user_self}</div>
+	                    <div class="cell-view-4">补贴.{subsidies}</div>
+	                    <div class="cell-view-4">收益.{shouyiAll}</div>
+	                    <div class="cell-view-4">本息.{interest}</div>
+	                    <div class="cell-view-4">净收.{shouyiJing}</div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	
+	</script>
+    <script src="../../js/zepto.js"></script>
+    <script src="../../js/mui.min.js"></script>
+    <script src="../../js/mui.picker.js"></script>
+	<script src="../../js/mui.picker.min.js"></script>
+	<script src="../../js/mui.poppicker.js"></script>
+    <script src="../../js/mui.enterfocus.js"></script>
+    <script src="../../js/template.min.js"></script>
+    <script src="../../config.js"></script>
+    <script src="../../js/app.js"></script>
+    <script src="../../js/sign.js"></script>
+	<script src="../../js/md5.js"></script>
+	<script src="../../js/jquery.1.9.1.js"></script>
+	<script type="text/javascript">
+	    var jQuery = jQuery.noConflict();
+	</script>
+	<script>
+		var _json = {};
+		_json["each_plate_w"] = {
+			'text':'',
+			'value':'270'
+		};
+		var sid = localStorage.getItem("sid");
+	    mui.init();
+	    mui.plusReady(function() {
+	    	var obj = {};
+	    	obj["sid"] = sid;
+	    	var sign = GetSign(obj);
+	    	var param = {
+		        queryData: {
+		          'method': config.apimethod.pertzinfo,
+		          'sign':sign,
+		          'sid':sid
+		        },
+		        method: 'POST'
+		    }
+	    	$.dataRequest(param, function(rs) {
+	    		console.log(JSON.stringify(rs));
+	    		for(var item in rs.data)
+	    		{
+	    			var obj_item = {};
+	    			obj_item["text"] = "";
+	    			obj_item["value"] = rs.data[item];
+	    			_json[item] = obj_item;
+	    		}
+	    		_json["tz_price_all"] = {
+					"text": "单价",
+					"value": [{
+						"full_payment_price": rs.data.full_payment_price,
+						"loan_price": rs.data.loan_price,
+						"roleId": null
+					}]
+				};
+				console.log(JSON.stringify(_json));
+				
+				mui(document.body).on('tap','.mui-action-home',function(){
+		            mui.back();
+		        });
+		        //投资模式改变后需要改变金额
+		        var touziTypeJson = new mui.PopPicker();
+		        touziTypeJson.setData([{
+		            value: 'full_payment',
+		            text: '全款'
+		        }, {
+		            value: 'loan',
+		            text: '贷款'
+		        }]);
+		        
+		        var touziTypeButton = document.getElementById('touzi_type_btn');
+		        touziTypeButton.addEventListener('tap', function(event) {
+		            touziTypeJson.show(function(items) {
+		                var result = items[0];
+		                jQuery('#touzi_type').val(result.value);
+		                var btnTz = jQuery('#touzi_type_btn');
+		                btnTz.text(result.text);
+		
+		                //设置单价
+		                var danjia = 0;
+		                if(result.value){
+		                  var key = result.value+'_price';
+		                  danjia = parseFloat(_json[key]['value'])||0;
+		                }
+		                jQuery('#price').val(danjia);
+		                jQuery('#price').change();
+		            });
+		        }, false);
+		
+		        //贷款时间选择
+		        var loanYearPicker = new mui.PopPicker();
+		        var loanYearData = [];
+		        for(var i=1;i<=10;i++){
+		            loanYearData.push({
+		                value: i,
+		                text: '贷款'+i+'年'
+		            });
+		        }
+		        
+		        loanYearPicker.setData(loanYearData);
+		        var loan_year_btn = document.getElementById('loan_year_btn');
+		        loan_year_btn.addEventListener('tap', function(event) {
+		            loanYearPicker.show(function(items) {
+		                var result = items[0];
+		                jQuery('#loan_year').val(result.value);
+		                var btnTz = jQuery('#loan_year_btn');
+		                btnTz.text(result.text);
+		
+		                //选择贷款后改变利率
+		                if(result.value > 0){
+		                  var key = 'interest_rate_'+result.value;
+		                  var rate = _json[key]['value'];
+		                  jQuery('#year_rate').val(rate);
+		                }
+		            });
+		        }, false);
+		         //end
+		        
+		        //改变单价的时候
+		        jQuery('#price').change(function(){
+		            setMoney();
+		        });
+		
+		        //计算装机容量：单独的
+		        jQuery('#ban_num').change(function(){
+		            var userBan = parseInt(jQuery(this).val())||0;
+		            var each_plate_w = parseInt(_json.each_plate_w.value)||0;
+		            var rongliang = userBan * each_plate_w /1000;
+		            jQuery('#rongliang').val(rongliang);
+		            jQuery('#rongliang').change();
+		        });
+		        //装机容量调整后
+		        jQuery('#rongliang').change(function(){
+		            //计算年发电量
+		            setDianYear();
+		            setMoney();
+		        });
+		
+		        jQuery('#touzi_year').change(function(){
+		            var year = parseInt(jQuery('#touzi_year').val());
+		            if(isNaN(year))jQuery('#touzi_year').val(25);
+		            if(year > 50) mui.alert('确定能运营那么久？');
+		        });
+		
+		        //请求php计算明细
+		        jQuery('#ok-view').click(function(){
+		        	var waiting = plus.nativeUI.showWaiting();
+		            var that = this;
+		            var key = ['touzi_type','rongliang','touzi_year','loan_year','touziShebei'];
+		            var data = {};
+		            data["sid"] = sid;
+		            for(var kk in key){
+		                data[key[kk]] = jQuery('#'+key[kk]).val();
+		            }
+		            console.log(JSON.stringify(data));
+		            sign = GetSign(data);
+		            var param1 = {
+				        queryData: {
+				          'method': config.apimethod.pertzdetail,
+				          'sign':sign,
+				          'sid':sid,
+				          'touzi_type':jQuery('#touzi_type').val(),
+				          'rongliang':jQuery('#rongliang').val(),
+				          'touzi_year':jQuery('#touzi_year').val(),
+				          'loan_year':jQuery('#loan_year').val(),
+				          'touziShebei':jQuery('#touziShebei').val()
+				        },
+				        method: 'POST'
+				    }
+		            console.log(JSON.stringify(param1));
+		            $.dataRequest(param1, function(rs1) {
+		            	console.log(JSON.stringify(rs1));
+		            	waiting.close();
+		            	if(rs1.rsp=="succ")
+		            	{
+		            		if(rs1.data.status=="succ")
+		            		{
+		            			jQuery('#touzi_rate').val(rs1.data.shouyilv);
+		                    	jQuery('#huibenyear').val(rs1.data.huibenYear);
+		                    	var allHtml = [];
+			                    for(var kl in rs1.data.view){
+			                        if(kl == 0 || rs1.data.view[kl].num == '合计'){
+			                            var _html = substitute(jQuery('#mui_card_first').html(),rs1.data.view[kl]);
+			                            allHtml.push(_html);
+			                        }else{
+			                            var _html = substitute(jQuery('#mui_card_after').html(),rs1.data.view[kl]);
+			                            allHtml.push(_html);
+			                        }
+			                    }
+			                    jQuery('.mui-card-container').html(allHtml.join(''));
+		            		}
+		            	}else{
+		            		plus.nativeUI.toast("获取失败：" + rs1.res);
+							return;
+		            	}
+		            })
+		
+/*		            jQuery.post(_url,data,function(dlist){
+		                if(dlist.status == 'succ'){
+		                    jQuery('#touzi_rate').val(dlist.shouyilv);
+		                    jQuery('#huibenyear').val(dlist.huibenYear);
+		                    var allHtml = [];
+		                    for(var kl in dlist.view){
+		                        if(kl == 0 || dlist.view[kl].num == '合计'){
+		                            var _html = substitute(jQuery('#mui_card_first').html(),dlist.view[kl]);
+		                            allHtml.push(_html);
+		                        }else{
+		                            var _html = substitute(jQuery('#mui_card_after').html(),dlist.view[kl]);
+		                            allHtml.push(_html);
+		                        }
+		                    }
+		                    jQuery('.mui-card-container').html(allHtml.join(''));
+		
+		                }else{
+		                    if(!dlist.msg){
+		                        dlist['msg'] = '计算失败';
+		                    }
+		                    mui.alert(dlist.msg);
+		                }
+		
+		                setTimeout(function() {
+		                    mui(that).button('reset');
+		                }.bind(that), 50);
+		            },'json');*/
+		
+		        });
+	    	})
+	    	
+	       function setMoney(){
+			    //计算设备投资
+			    var Rongliang = parseFloat(jQuery('#rongliang').val())||0;
+			    var price = parseFloat(jQuery('#price').val())||0;
+			    if(price<6 || price>8){
+			        mui.alert('单价设置超出范围6-8元');
+			    }
+			    var Money = toDecimal(Rongliang*price*1000);
+			    jQuery('#touziShebei').val(Money);
+			}
+			//计算第一年年发电量
+			function setDianYear(){
+			    var rongliang = parseFloat(jQuery('#rongliang').val())||0;
+			    var year_time = parseFloat(_json.year_time.value)||0;
+			    var yearDian  = toDecimal(rongliang * year_time);
+			    jQuery('#yearDian').val(yearDian);
+			}
+			
+			//保留两位小数
+			//功能：将浮点数四舍五入，取小数点后2位
+			function toDecimal(x) {
+			    var f = parseFloat(x);
+			    if (isNaN(f)) {
+			        return x;
+			    }
+			    f = Math.round(x*100)/100;
+			    return f;
+			}
+			
+			function substitute(str,o,regexp){
+			
+			  return  str.replace(regexp || /\\?\{([^{}]+)\}/g, function (match, name) {
+			
+			    return (o[name] === undefined) ? '' : o[name];
+			
+			  });
+			
+			}
+	    });
+		
+		
+	
+	</script>
+</html>

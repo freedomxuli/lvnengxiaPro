@@ -1,0 +1,544 @@
+
+<!DOCTYPE html>
+<html class="ui-page-login">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>代理注册</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/mui.picker.css" />
+	    <link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+	    <link rel="stylesheet" type="text/css" href="../css/mui.poppicker.css" />
+	    <link rel="stylesheet" type="text/css" href="../css/icons-extra.css" />
+		
+		<style>
+			.area {
+				margin: 20px auto 0px auto;
+			}
+			.mui-input-group:first-child {
+				margin-top: 20px;
+			}
+			.mui-input-group label {
+				width: 37%;
+			}
+			.mui-input-row label~input,
+			.mui-input-row label~select,
+			.mui-input-row label~textarea {
+				width: 63%;
+			}
+			.mui-checkbox input[type=checkbox],
+			.mui-radio input[type=radio] {
+				top: 6px;
+			}
+			.mui-content-padded {
+				margin-top: 25px;
+			}
+			.mui-btn {
+				padding: 10px;
+			}
+   			.box-check-group{float: left;width: 60%;line-height: 40px;}
+		    .box-check-group input[type='radio']{padding: 10px;position: relative;width: 20px;height: 20px;border:1px solid #a1a1a1; border-radius: 50%;background: #efefef;margin-left: 20px;}
+		    .box-check-group input[type='radio']:checked:after{
+		        content: ' ';
+		        width: 12px;
+		        height: 12px;
+		        border-radius: 50px;
+		        margin-top:-6px;
+		        margin-left:-6px;
+		        position: absolute;
+		        top: 50%;
+		        background: #007aff;
+		        color: #007aff;
+		        box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);
+		        text-shadow: 0px;
+		        left: 50%;
+		    }
+		    .mui-input-row .extra {
+			    position: absolute;
+			    right: 0;
+			    top: 0;
+			    width: 117px;
+			    height: 40px;
+			}
+			.mui-input-row .get-code{
+			    display: block;
+			    width: 117px;
+			    height: 40px;
+			    border: 0;
+			    background: #dfe2e5;
+			    color: #EEA905;
+			    cursor: pointer;
+			}
+			.mui-input-btn-label input[type='text']{width: 45% !important;float: left !important;}
+    		.mui-input-btn-label button{width: 15% !important;padding: 8px !important;margin:0px !important;}
+    		.verify-img{height: 40px;width: 75px; vertical-align: middle;float: right;}
+		</style>
+		
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">代理注册</h1>
+		</header>
+		<div class="mui-content">
+			<form class="mui-input-group">
+				<input id='inputToken' type="hidden" value="">
+				<div class="mui-input-row">
+					<label>手机号</label>
+					<input id='userName' type="tel" class="mui-input-clear mui-input" placeholder="请输入手机号码">
+					<input id='openid' type="hidden" class="mui-input-clear mui-input" value="">
+				</div>
+				<div class="mui-input-row">
+					<label>姓名</label>
+					<input id='realName' type="text" class="mui-input-clear mui-input" placeholder="请输入姓名">
+				</div>
+				<div class="mui-input-row">
+					<label>身份证号</label>
+					<input id='shenfenzheng' type="text" class="mui-input-clear mui-input" placeholder="请输入身份证号">
+				</div>
+				<div class="mui-input-row">
+					<label>密码</label>
+					<input id='password' type="password" class="mui-input-clear mui-input" placeholder="请输入密码">
+				</div>
+				<div class="mui-input-row">
+					<label>确认密码</label>
+					<input id='password_confirm' type="password" class="mui-input-clear mui-input" placeholder="请确认密码">
+					<input id='regType' type="hidden" value="0">
+				</div>
+		        <div class="mui-input-row mui-input-btn-label">
+		            <label>省</label>
+		            <input type="text" name="area_text1" placeholder="省" id="area_text1" value="" readonly class="area-text">
+		            <button id='showarea_id1'  data-level=1 data-select='' class="mui-btn mui-btn-block btn-select-area" type='button'><i class="mui-icon mui-icon-more"></i></button>
+		            <input class="select-hide" type="hidden" id="area_id1" name="area_id1" value="">
+		        </div>
+		        <div class="mui-input-row mui-input-btn-label">
+		            <label>市</label>
+		            <input type="text" name="area_text2" placeholder="市" id="area_text2" value="" readonly class="area-text">
+		            <button id='showarea_id2' data-select='' class="mui-btn mui-btn-block btn-select-area" data-level=2 type='button'><i class="mui-icon mui-icon-more"></i></button>
+		            <input class="select-hide" type="hidden" id="area_id2" name="area_id2" value="">
+		        </div>
+		        <div class="mui-input-row mui-input-btn-label">
+		            <label>区</label>
+		            <input type="text" name="area_text3" placeholder="区" id="area_text3" value="" readonly class="area-text">
+		            <button id='showarea_id3'  data-level=3 data-select='' class="mui-btn mui-btn-block btn-select-area" type='button'><i class="mui-icon mui-icon-more"></i></button>
+		            <input class="select-hide" type="hidden" id="area_id3" name="area_id3" value="">
+		        </div>
+		        <div class="mui-input-row mui-input-btn-label">
+		            <label>镇</label>
+		            <input type="text" name="area_text4" placeholder="镇" id="area_text4" value="" readonly>
+		            <button id='showarea_id4'  data-level=4 data-select='' class="mui-btn mui-btn-block btn-select-area" type='button'><i class="mui-icon mui-icon-more"></i></button>
+		            <input class="select-hide" type="hidden" id="area_id4" name="area_id4" value="">
+		        </div>
+		        <div class="mui-input-row">
+					<label>短信验证</label>
+	                <input id="msgCode" type="text" name="msgCode" class="text msgCode" placeholder="短信验证码" >
+	                <div class="extra">
+	                    <button id="sendBtn" class="msgCodeBtn get-code" type="button" style="display: block;">发送验证码
+	                    </button>
+	                    <button id="resetTimeBtn" class="msgCodeBtn get-code" disabled style="display: none;">
+	                        <span id="resetTime-mobile">60</span>秒后重发
+	                    </button>
+	                </div>
+	                <p class="fill-info"></p>
+	            </div>
+			</form>
+			<div class="mui-content-padded">
+				<button id='reg' class="mui-btn mui-btn-block mui-btn-primary">注册</button>
+			</div>
+			<div class="mui-content-padded">
+				<p></p>
+			</div>
+		</div>
+	    <script src="../js/zepto.js"></script>
+	    <script src="../js/mui.min.js"></script>
+	    <script src="../js/mui.picker.js"></script>
+		<script src="../js/mui.picker.min.js"></script>
+		<script src="../js/mui.poppicker.js"></script>
+	    <script src="../js/mui.enterfocus.js"></script>
+	    <script src="../js/template.min.js"></script>
+	    <script src="../config.js"></script>
+	    <script src="../js/app.js"></script>
+	    <script src="../js/sign.js"></script>
+		<script src="../js/md5.js"></script>
+		<script src="../js/jquery.1.9.1.js"></script>
+		<script type="text/javascript">
+		    var jQuery = jQuery.noConflict();
+		</script>
+		<script>
+			mui.init({
+	            swipeBack: true //启用右滑关闭功能
+	        });
+			mui.plusReady(function() {
+				
+				var appCode = "";
+				var pickerArea = [];
+				var city1={};
+				var city2={};
+				var city3={};
+				var city4={};
+				jQuery('.btn-select-area').each(function(){
+					var llevel = jQuery(this).data('level');
+				    pickerArea[llevel] = new mui.PopPicker();
+				});
+				
+				//获取重新发送的验证码
+			    mui(document.body).on('tap','#sendBtn',function(){
+			    	var waiting = plus.nativeUI.showWaiting();
+			        var phonenum = jQuery('#userName').val();
+			        if (!phonenum) {
+						mui.toast('请先填写手机号');
+						waiting.close();
+						return;
+					}
+			        var val_obj = {};
+					val_obj["type"] = "register";
+					val_obj["mobile"] = phonenum;
+					val_obj["timestamp"] = new Date().getTime();
+					console.log(val_obj); 
+					var sign = GetSign(val_obj);
+					console.log(sign);
+					var param = {
+				        queryData: {
+				          'method': config.apimethod.usersendSms,
+				          'sign':sign,
+				          'type':"register",
+				          'mobile':phonenum,
+				          'timestamp':val_obj["timestamp"]
+				        },
+				        method: 'POST'
+				    }
+					$.dataRequest(param, function(rs) {
+				        console.log(JSON.stringify(rs));
+				        waiting.close(); 
+				        if(rs.rsp=="succ")
+				        {
+				        	if(rs.data.success=="true"){
+				        		plus.nativeUI.toast("发送成功");
+				        		getCodeCountDown(60);
+								return;
+				        	}else
+				        	{
+				        		plus.nativeUI.toast("发送失败：" + rs.data.message);
+								return;
+				        	}
+				        }else
+				        {
+				        	plus.nativeUI.toast("发送失败：" + rs.data);
+							return;
+				        }
+				    });
+			    })
+			    
+			    var val_area = {};
+			    val_area["mid"] = "";
+			    val_area["timestamp"] = new Date().getTime();
+			    var sign_area = GetSign(val_area);
+			    var param_area = {
+			        queryData: {
+			          'method': config.apimethod.arealist,
+			          'sign':sign_area,
+			          'mid':"",
+			          'timestamp':val_area["timestamp"]
+			        },
+			        method: 'POST'
+			    }
+			    $.dataRequest(param_area, function(rs) {
+			        if(rs.rsp=="succ")
+			        {
+			        	console.log(JSON.stringify(rs.data.Area[0]));
+			        	jQuery("#showarea_id1").data("select",rs.data.Area[0]);
+			        	pickerArea[1].setData(rs.data.Area[0]);
+			        	for(var i = 0;i<rs.data.Area[0].length;i++)
+			        	{
+			        		city1[rs.data.Area[0][i].text] = rs.data.Area[0][i].value;
+			        	}
+			        	setdq();
+			        	changedq(1);
+			        }else
+			        {
+			        	plus.nativeUI.toast("获取失败：" + rs.data);
+						return;
+			        }
+			    });
+			    function setdq(){
+			    	jQuery('.btn-select-area').each(function(){
+			    		var llevel = jQuery(this).data('level');
+			    		this.addEventListener('tap', function(event) {
+			    			var level = parseInt(jQuery(this).data('level'))||1;
+			    			if(level != 1){
+				                //查看上一级是否已经选择，没有选择上级不能拿选择当前地区
+				                var prevLevel = level - 1;
+				                var _tmpval = jQuery('#area_text'+prevLevel).val();
+				                if(!_tmpval){
+				                    mui.toast('请先选择上级地区');
+				                    return;
+				                }
+				           }
+			    			var forInput = jQuery(this).siblings('input[type=text]');
+					        var forVal = jQuery(this).siblings('input[type=hidden]');
+					        var oldVal = forInput.val();
+					        if(forVal.val()){
+					            pickerArea[llevel].pickers[0].setSelectedValue(forVal.val(), 2000);
+					        } 
+			    			pickerArea[llevel].show(function(items) {
+				                forInput && forInput.val(items[0]['text']);
+				                forVal && forVal.val(items[0]['value']);
+	
+				                if(oldVal!=items[0]['text'])forInput.change();
+				            });
+			    		});
+			    	});
+			    }
+			    
+			    function setdq2(curLevel){
+			    	jQuery('.btn-select-area').each(function(){
+			    		var llevel = jQuery(this).data('level');
+			    		if(parseInt(llevel)>=parseInt(curLevel))
+			    		{
+			    			this.addEventListener('tap', function(event) {
+				    			var level = parseInt(jQuery(this).data('level'))||1;
+				    			if(level != 1){
+					                //查看上一级是否已经选择，没有选择上级不能拿选择当前地区
+					                var prevLevel = level - 1;
+					                var _tmpval = jQuery('#area_text'+prevLevel).val();
+					                if(!_tmpval){
+					                    mui.toast('请先选择上级地区');
+					                    return;
+					                }
+					            }
+				    			var forInput = jQuery(this).siblings('input[type=text]');
+						        var forVal = jQuery(this).siblings('input[type=hidden]');
+						        var oldVal = forInput.val();
+						        if(forVal.val()){
+						            pickerArea[llevel].pickers[0].setSelectedValue(forVal.val(), 2000);
+						        } 
+				    			pickerArea[llevel].show(function(items) {
+					                forInput && forInput.val(items[0]['text']);
+					                forVal && forVal.val(items[0]['value']);
+		
+					                if(oldVal!=items[0]['text'])forInput.change();
+					            });
+				    		});
+			    		}
+			    	});
+			    }
+			    
+			    function changedq(n){
+			    	//改变取值后，对下一级进行更新选项
+			    	var obj = {};
+			    	switch(n)
+			    	{
+			    		case 1:
+			    			obj = city1;
+			    		break;
+			    		case 2:
+			    			obj = city2;
+			    		break;
+			    		case 3:
+			    			obj = city3;
+			    		break;
+			    		case 4:
+			    			obj = city4;
+			    		break;
+			    	}
+			    	console.log(n);
+			    	console.log(JSON.stringify(obj));
+				    jQuery('.area-text').change(function(){
+				        var that = this;
+				        var curLevel = parseInt(jQuery(this).siblings('button').data('level'))||1;
+				        jQuery(this).siblings('input[type=hidden]').val(obj[jQuery(this).val()]);
+				        curLevel = curLevel+1;
+				        console.log(curLevel);
+				        //强制清空下级所有数据
+				        for(var le=curLevel;le<=4;le++){
+				            pickerArea[le].setData([]);
+				            //清空text和hidden值
+				            jQuery('#area_text'+le).val('');
+				            jQuery('#area_text'+le).siblings('input[type=hidden]').val('');
+				        }
+				        //清空end
+	
+				        //获取下一级地区数据
+				        var button = jQuery('#area_text'+curLevel).siblings('button');
+				        // button.attr('disabled' ,'disabled');
+	
+				        var area_id = jQuery(this).siblings('input[type=hidden]').val();
+				        console.log(area_id);
+				        button.attr('data-select','');
+				        //开始到后台获取数据
+				        var val_obj = {};
+						val_obj["areaid"] = area_id;
+						val_obj["timestamp"] = new Date().getTime();
+						console.log(val_obj); 
+						var sign = GetSign(val_obj);
+						console.log(sign);
+						var param = {
+					        queryData: {
+					          'method': config.apimethod.areachildlist,
+					          'sign':sign,
+					          'areaid':area_id,
+					          'timestamp':val_obj["timestamp"]
+					        },
+					        method: 'POST'
+					    }
+						$.dataRequest(param, function(rs1) {
+					        if(rs1.rsp=="succ")
+		        			{
+		        				console.log(JSON.stringify(rs1.data));
+		        				jQuery("#showarea_id"+curLevel).data("select",rs1.data);
+		        				for(var i = 0;i<rs1.data.length;i++)
+					        	{
+					        		if(curLevel==2)
+					        		{
+					        			city2[rs1.data[i].text] = rs1.data[i].value;
+					        			pickerArea[2].setData(rs1.data);
+					        		}else if(curLevel==3)
+	 				        		{
+					        			city3[rs1.data[i].text] = rs1.data[i].value;
+					        			pickerArea[3].setData(rs1.data);
+					        		}else
+					        		{
+					        			city4[rs1.data[i].text] = rs1.data[i].value;
+					        			pickerArea[4].setData(rs1.data);
+					        		}
+					        	}
+					        	console.log(JSON.stringify(city2));
+		        				setdq2(curLevel);
+		        				if(curLevel<4)
+		        					changedq(curLevel);
+		        			}
+					    });
+				    });
+			    }
+	
+			    /* 获取验证码倒计时 */
+			    function getCodeCountDown(sec) {
+			        var s = sec;
+			        jQuery('#sendBtn').hide();
+			        jQuery('#resetTimeBtn').show();
+			        jQuery('#resetTime-mobile').text(s);
+			        var timer = setInterval(function () {
+			            if (s > 1) {
+			                s--;
+			                jQuery('#resetTime-mobile').text(s);
+			            }
+			            else {
+			                jQuery('#sendBtn').show();
+			                jQuery('#resetTimeBtn').hide();
+			                clearInterval(timer);
+			            }
+			        }, 1000)
+			    }
+				//默认给输入框显示值
+			    jQuery('.select-hide[value!=""]').each(function(){
+			        var textInput=jQuery(this).siblings('input[type=text]');
+			        var _data = jQuery(this).siblings('button').data('select');
+			        var curVal = jQuery(this).val();
+			        if(!textInput.value){
+			            for(var k in _data){
+			                if(_data[k]['value'] == curVal){
+			                    textInput.val(_data[k]['text']);
+			                }
+			            }
+			        }
+			    });
+	
+				mui(document.body).on('tap',".mui-icon-left-nav",function(){
+					clicked('_www/view/login.html');
+				});
+	
+				mui(document.body).on('tap',"#reg",function(){
+					var waiting = plus.nativeUI.showWaiting();
+					var that = this;
+					var regButton = document.getElementById('reg');
+					var realName = document.getElementById('realName');
+					var passwordBox = document.getElementById('password');
+					var passwordConfirmBox = document.getElementById('password_confirm');
+					var userName = document.getElementById('userName');
+					var openid = document.getElementById('openid');
+					var shenfenzheng = document.getElementById('shenfenzheng');
+					var area_text1 = document.getElementById('area_text1');
+					var area_text2 = document.getElementById('area_text2');
+					var area_text3 = document.getElementById('area_text3');
+					var area_text4 = document.getElementById('area_text4');
+					var area_id1 = document.getElementById('area_id1');
+					var area_id2 = document.getElementById('area_id2');
+					var area_id3 = document.getElementById('area_id3');
+					var area_id4 = document.getElementById('area_id4');
+					var msgCode = document.getElementById('msgCode');
+					var inputToken = document.getElementById('inputToken');
+	
+					var passwordConfirm = passwordConfirmBox.value;
+					if (passwordConfirm != passwordBox.value) {
+						mui.toast('密码不一致');
+						waiting.close();
+						return;
+					}
+					if(!userName.value){
+						mui.toast('请输入手机号码');
+						waiting.close();
+						return;
+					}
+					if(!msgCode.value){
+						mui.toast('请输入手机验证码');
+						waiting.close();
+						return;
+					}
+	
+					var obj_reg = {};
+					obj_reg["tel"] = userName.value;
+					obj_reg["realName"] = realName.value;
+					obj_reg["shenfenzheng"] = shenfenzheng.value;
+					obj_reg["password"] = passwordConfirm;
+					obj_reg["area_id1"] = area_id1.value;
+					obj_reg["area_id2"] = area_id2.value;
+					obj_reg["area_id3"] = area_id3.value;
+					obj_reg["area_id4"] = area_id4.value;
+					obj_reg["vcode"] = msgCode.value;
+					var sign = GetSign(obj_reg);
+					var param_reg = {
+				        queryData: {
+				          'method': config.apimethod.signup,
+				          'sign':sign,
+				          'tel':userName.value,
+				          'realName':realName.value,
+				          'shenfenzheng':shenfenzheng.value,
+				          'password':passwordConfirm,
+				          'areaId1':area_id1.value,
+				          'areaId2':area_id2.value,
+				          'areaId3':area_id3.value,
+				          'areaId4':area_id4.value,
+				          'vcode':msgCode.value
+				        },
+				        method: 'POST'
+				    }
+					console.log(JSON.stringify(param_reg))
+					$.dataRequest(param_reg, function(rs) {
+				        console.log(JSON.stringify(rs));
+				        waiting.close(); 
+				        if(rs.rsp=="succ")
+				        {
+				        	if(rs.data.succ=="true"){
+				        		plus.nativeUI.toast("注册成功，等待审核");
+				        		clicked('_www/view/login.html');
+								//return;
+				        	}else
+				        	{
+				        		plus.nativeUI.toast("注册失败：" + rs.data.msg);
+								return;
+				        	}
+				        }else
+				        {
+				        	plus.nativeUI.toast("注册失败：" + rs.data);
+							return;
+				        }
+				    });
+				});
+			})
+		</script>
+	
+	</body>
+
+</html>
