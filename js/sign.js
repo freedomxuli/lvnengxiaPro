@@ -1,6 +1,10 @@
-var private_key = "eqinfo1g2j3ew5rtyg06tofkvm479rifkv3b4v56cx8e7";
 function GetSign (params){
+	var private_key = "eqinfo1g2j3ew5rtyg06tofkvm479rifkv3b4v56cx8e7";
 	var param = assemble(params);
+	console.log(param);
+	console.log("数组加密："+hex_md5(param));
+	console.log("数组加密大写："+hex_md5(param).toUpperCase());
+	console.log("数组加密大写后加私钥："+hex_md5(param).toUpperCase()+private_key);
 	return hex_md5(hex_md5(param).toUpperCase()+private_key).toUpperCase();
 }
 
@@ -10,13 +14,14 @@ function assemble(params)
 	var sign = '';
 	for(var k in new_array)
 	{
-		if(!new_array[k]){
+		sign+=k.toString()+new_array[k].toString();
+		/*if(!new_array[k]){
 			continue;
 		}
 		else
 		{
 			sign+=k.toString()+new_array[k].toString();
-		}
+		}*/
 	}
 	return sign;
 }

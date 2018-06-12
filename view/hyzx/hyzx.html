@@ -229,6 +229,8 @@
         		var obj_xx = {};
 	        	obj_xx["sid"] = sid;
 	        	obj_xx["type"] = 'simple';
+	        	obj_xx["method"] = config.apimethod.userinfo;
+        		obj_xx["version"] = config.apiversion;
 	        	var sign = GetSign(obj_xx);
 	        	var param = {
 			        queryData: {
@@ -250,6 +252,8 @@
         	{
         		var obj_auth = {};
         		obj_auth["sid"] = sid;
+        		obj_auth["method"] = config.apimethod.homemenu;
+        		obj_auth["version"] = config.apiversion;
         		var sign = GetSign(obj_auth);
         		var param = {
 			        queryData: {
@@ -413,6 +417,10 @@
 			
 			mui(document).on('tap', '#memberReg', function() {
 				clicked("_www/view/memberReg/memberReg.html");
+			});
+			
+			mui(document).on('tap', '#proShenhe', function() {
+				clicked("_www/view/khxm/xmshfp.html");
 			});
         })
     </script>

@@ -168,6 +168,8 @@
 	    mui.plusReady(function() {
 	    	var obj = {};
 	    	obj["sid"] = sid;
+	    	obj["method"] = config.apimethod.pertzinfo;
+        	obj["version"] = config.apiversion;
 	    	var sign = GetSign(obj);
 	    	var param = {
 		        queryData: {
@@ -293,6 +295,8 @@
 		            for(var kk in key){
 		                data[key[kk]] = jQuery('#'+key[kk]).val();
 		            }
+		            data["method"] = config.apimethod.pertzdetail;
+        			data["version"] = config.apiversion;
 		            console.log(JSON.stringify(data));
 		            sign = GetSign(data);
 		            var param1 = {

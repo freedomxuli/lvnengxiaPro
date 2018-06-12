@@ -1,0 +1,1980 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Jado绿能侠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link href="../../css/mui.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="../../css/mui.picker.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/mui.picker.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/mui.poppicker.css" />
+    
+    <style type="text/css">
+        .mui-pagination .p_bar a{
+            line-height: 1.428571429;
+            position: relative;
+            float: left;
+            margin-left: -1px;
+            padding: 6px 12px;
+            text-decoration: none;
+            color: #007aff;
+            border: 1px solid #ddd;
+            background-color: #fff;
+        }
+        .mui-pagination .p_bar a:first-child{
+            border-top-left-radius: 6px;
+            border-bottom-left-radius: 6px;
+            background-clip: padding-box;
+        }
+        .mui-pagination .p_bar a:last-child{
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+            background-clip: padding-box;
+        }
+        .mui-pagination .p_bar a.p_curpage{
+            color: #fff;
+            border-color: #007aff;
+            background-color: #007aff;
+        }
+        .cell-view-3{float: left;width: 25%;}
+        .cell-view-4{float: left;width: 33.33%;}
+        .cell-view-6{float: left;width: 50%;}
+        .cell-view-8{float:left;width: 66.66%;}
+        .cell-view-12{float:left;width: 100%;}
+        span.title{color: gray;width: 46px;display: inline-block;}
+        span.green{color: green;}
+        span.gray{color: gray;}
+        span.orange{color: orange;}
+        .content-view{padding-left: 18px;}
+        .mui-radius{border-radius: 100px ;padding: 3px 10px;}
+        .mui-content>.mui-card:first-child{margin-top: 1px;}
+        .mui-card{margin:0px;margin-top: 1px; border-radius: 0px;}
+        .cell-detial{
+            position: absolute;right: 3px;top: 30px;font-size: 1em;color:#007aff;
+        }
+        .mui-card-content-inner{padding: 8px 10px;}
+        .detial-cell{padding: 8px;border-top: 1px solid #efefef;display: none;}
+        .mui-input-row{height: auto !important;}
+        .mui-input-btn-label{width: 100%;}
+        .mui-input-row input[readonly]{background: #efefef;}
+        .mui-input-row label{width: 40%;}
+        .mui-input-row input[type='text'],textarea{width: 60% !important;}
+        .mui-input-btn-label input[type='text']{width: 45% !important;float: left !important;}
+        .mui-input-btn-label button{width: 15% !important;padding: 8px !important;margin:0px !important;}
+        .search-container{display: none;margin-bottom: 15px;}
+        .mui-button-row-search button{width: 49%;}
+    </style>
+    
+</head>
+<body>
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-icon mui-icon-home mui-action-home"></a>
+        <h1 class="mui-title">会员申请列表</h1>
+        <a class="mui-pull-right mui-action-search">
+            <i class="mui-icon mui-icon-search"></i>
+        </a>
+    </header>
+    <div class="mui-content">
+        <div class="mui-card search-container">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <form name="FormSearch" id='FormSearch' method="post" action="" class="mui-input-group">
+                        <div class="mui-input-row">
+                            <label>客户名称</label>
+                            <input type="text" name="key" value="" placeholder="客户名称">
+                        </div>
+                        <div class="mui-input-row mui-input-btn-label">
+                            <label>客户类型</label>
+                            <input type="text" name="clientTypeText" placeholder="客户类型" id="clientTypeText" value="" readonly>
+                            <button id='showclientTypeText' data-select='[{"text":"\u79c1\u5b85","value":"\u79c1\u5b85"},{"text":"\u4f01\u4e1a","value":"\u4f01\u4e1a"}]' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
+                            <input class="select-hide" type="hidden" id="clientType" name="clientType" value="">
+                        </div>
+                        <div class="mui-input-row mui-input-btn-label">
+                            <label>分派状态</label>
+                            <input type="text" name="isApplyText" placeholder="分派状态" id="isApplyText" value="" readonly>
+                            <button id='isApplyText' data-select='[{"text":"\u672a\u5206\u6d3e","value":1},{"text":"\u5df2\u5206\u6d3e","value":2}]' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
+                            <input class="select-hide" type="hidden" id="isApply" name="isApply" value="1">
+                        </div>
+                        <div class="mui-button-row mui-button-row-search">
+                            <button type="button" class="mui-btn mui-btn-default mui-icon mui-icon-undo btn-clear-search">清空</button>
+                            <button type="submit" class="mui-btn mui-btn-primary mui-icon mui-icon-search">搜索</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">客户</span><b>哦only你</b></div>
+                    <div class="cell-view-6">
+                    <span class="title">负责人</span></div>
+                    <div class="cell-view-6">
+                    <span class="title">日期</span>2018-06-07</div>
+                    <div class="cell-view-12">
+                        <span class="title">等级</span>
+                        <span class="green"></span>
+                    </div>
+                    <div class="cell-view-12">
+                    <span class="title">地区</span>江苏省常州市武进区湖塘镇ing哦咯多</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-6">
+                            <span class="gray">申请容量</span>.0.1600.KWp
+                        </div>
+                        <div class="cell-view-6">
+                            <span class="gray">客户类型</span>.<span class="orange">企业</span>
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">开户行</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">银行帐号</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶瓦片类型</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶朝南面积</span>.2.m²
+                        </div>
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Remove&id=74" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Edit&id=74"  class="edit-client">
+                                <span class="mui-icon mui-icon-settings"></span>审核分派
+                            </a>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">客户</span><b>吴琼</b></div>
+                    <div class="cell-view-6">
+                    <span class="title">负责人</span></div>
+                    <div class="cell-view-6">
+                    <span class="title">日期</span>2018-06-07</div>
+                    <div class="cell-view-12">
+                        <span class="title">等级</span>
+                        <span class="green"></span>
+                    </div>
+                    <div class="cell-view-12">
+                    <span class="title">地区</span>江苏省常州市武进区湖塘镇66</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-6">
+                            <span class="gray">申请容量</span>.32.7273.KWp
+                        </div>
+                        <div class="cell-view-6">
+                            <span class="gray">客户类型</span>.<span class="orange">私宅</span>
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">开户行</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">银行帐号</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶瓦片类型</span>.洋瓦
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶朝南面积</span>.200.m²
+                        </div>
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Remove&id=73" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Edit&id=73"  class="edit-client">
+                                <span class="mui-icon mui-icon-settings"></span>审核分派
+                            </a>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">客户</span><b>吴琼</b></div>
+                    <div class="cell-view-6">
+                    <span class="title">负责人</span></div>
+                    <div class="cell-view-6">
+                    <span class="title">日期</span>2018-06-04</div>
+                    <div class="cell-view-12">
+                        <span class="title">等级</span>
+                        <span class="green"></span>
+                    </div>
+                    <div class="cell-view-12">
+                    <span class="title">地区</span>江苏省常州市天宁区青龙街道66</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-6">
+                            <span class="gray">申请容量</span>.20.KWp
+                        </div>
+                        <div class="cell-view-6">
+                            <span class="gray">客户类型</span>.<span class="orange">私宅</span>
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">开户行</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">银行帐号</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶瓦片类型</span>.小瓦
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶朝南面积</span>.200.m²
+                        </div>
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Remove&id=66" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Edit&id=66"  class="edit-client">
+                                <span class="mui-icon mui-icon-settings"></span>审核分派
+                            </a>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">客户</span><b>吴琼</b></div>
+                    <div class="cell-view-6">
+                    <span class="title">负责人</span></div>
+                    <div class="cell-view-6">
+                    <span class="title">日期</span>2018-06-04</div>
+                    <div class="cell-view-12">
+                        <span class="title">等级</span>
+                        <span class="green"></span>
+                    </div>
+                    <div class="cell-view-12">
+                    <span class="title">地区</span>江苏省常州市天宁区青龙街道66</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-6">
+                            <span class="gray">申请容量</span>.20.KWp
+                        </div>
+                        <div class="cell-view-6">
+                            <span class="gray">客户类型</span>.<span class="orange">私宅</span>
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">开户行</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">银行帐号</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶瓦片类型</span>.小瓦
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶朝南面积</span>.200.m²
+                        </div>
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Remove&id=65" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Edit&id=65"  class="edit-client">
+                                <span class="mui-icon mui-icon-settings"></span>审核分派
+                            </a>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">客户</span><b>吴琼</b></div>
+                    <div class="cell-view-6">
+                    <span class="title">负责人</span></div>
+                    <div class="cell-view-6">
+                    <span class="title">日期</span>2018-06-04</div>
+                    <div class="cell-view-12">
+                        <span class="title">等级</span>
+                        <span class="green"></span>
+                    </div>
+                    <div class="cell-view-12">
+                    <span class="title">地区</span>江苏省常州市武进区湖塘镇66</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-6">
+                            <span class="gray">申请容量</span>.32.7273.KWp
+                        </div>
+                        <div class="cell-view-6">
+                            <span class="gray">客户类型</span>.<span class="orange">私宅</span>
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">开户行</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">银行帐号</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶瓦片类型</span>.小瓦
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶朝南面积</span>.200.m²
+                        </div>
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Remove&id=64" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Edit&id=64"  class="edit-client">
+                                <span class="mui-icon mui-icon-settings"></span>审核分派
+                            </a>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">客户</span><b>吴琼</b></div>
+                    <div class="cell-view-6">
+                    <span class="title">负责人</span></div>
+                    <div class="cell-view-6">
+                    <span class="title">日期</span>2018-06-04</div>
+                    <div class="cell-view-12">
+                        <span class="title">等级</span>
+                        <span class="green"></span>
+                    </div>
+                    <div class="cell-view-12">
+                    <span class="title">地区</span>江苏省常州市天宁区青龙街道66</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-6">
+                            <span class="gray">申请容量</span>.20.KWp
+                        </div>
+                        <div class="cell-view-6">
+                            <span class="gray">客户类型</span>.<span class="orange">私宅</span>
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">开户行</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">银行帐号</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶瓦片类型</span>.小瓦
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶朝南面积</span>.200.m²
+                        </div>
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Remove&id=62" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Edit&id=62"  class="edit-client">
+                                <span class="mui-icon mui-icon-settings"></span>审核分派
+                            </a>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">客户</span><b>吴琼</b></div>
+                    <div class="cell-view-6">
+                    <span class="title">负责人</span></div>
+                    <div class="cell-view-6">
+                    <span class="title">日期</span>2018-06-04</div>
+                    <div class="cell-view-12">
+                        <span class="title">等级</span>
+                        <span class="green"></span>
+                    </div>
+                    <div class="cell-view-12">
+                    <span class="title">地区</span>江苏省常州市天宁区青龙街道66</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-6">
+                            <span class="gray">申请容量</span>.20.KWp
+                        </div>
+                        <div class="cell-view-6">
+                            <span class="gray">客户类型</span>.<span class="orange">私宅</span>
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">开户行</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">银行帐号</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶瓦片类型</span>.小瓦
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶朝南面积</span>.200.m²
+                        </div>
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Remove&id=61" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Edit&id=61"  class="edit-client">
+                                <span class="mui-icon mui-icon-settings"></span>审核分派
+                            </a>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">客户</span><b>吴琼</b></div>
+                    <div class="cell-view-6">
+                    <span class="title">负责人</span></div>
+                    <div class="cell-view-6">
+                    <span class="title">日期</span>2018-06-04</div>
+                    <div class="cell-view-12">
+                        <span class="title">等级</span>
+                        <span class="green"></span>
+                    </div>
+                    <div class="cell-view-12">
+                    <span class="title">地区</span>江苏省常州市天宁区青龙街道66</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-6">
+                            <span class="gray">申请容量</span>.20.KWp
+                        </div>
+                        <div class="cell-view-6">
+                            <span class="gray">客户类型</span>.<span class="orange">私宅</span>
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">开户行</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">银行帐号</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶瓦片类型</span>.小瓦
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶朝南面积</span>.200.m²
+                        </div>
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Remove&id=60" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Edit&id=60"  class="edit-client">
+                                <span class="mui-icon mui-icon-settings"></span>审核分派
+                            </a>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">客户</span><b>吴琼</b></div>
+                    <div class="cell-view-6">
+                    <span class="title">负责人</span></div>
+                    <div class="cell-view-6">
+                    <span class="title">日期</span>2018-06-04</div>
+                    <div class="cell-view-12">
+                        <span class="title">等级</span>
+                        <span class="green"></span>
+                    </div>
+                    <div class="cell-view-12">
+                    <span class="title">地区</span>江苏省常州市天宁区青龙街道66</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-6">
+                            <span class="gray">申请容量</span>.20.KWp
+                        </div>
+                        <div class="cell-view-6">
+                            <span class="gray">客户类型</span>.<span class="orange">私宅</span>
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">开户行</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">银行帐号</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶瓦片类型</span>.小瓦
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶朝南面积</span>.200.m²
+                        </div>
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Remove&id=59" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Edit&id=59"  class="edit-client">
+                                <span class="mui-icon mui-icon-settings"></span>审核分派
+                            </a>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">客户</span><b>英航工作室</b></div>
+                    <div class="cell-view-6">
+                    <span class="title">负责人</span></div>
+                    <div class="cell-view-6">
+                    <span class="title">日期</span>2018-06-03</div>
+                    <div class="cell-view-12">
+                        <span class="title">等级</span>
+                        <span class="green"></span>
+                    </div>
+                    <div class="cell-view-12">
+                    <span class="title">地区</span>黑龙江省哈尔滨市松北区松北街道江苏省常州市天宁区</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-6">
+                            <span class="gray">申请容量</span>.44.4800.KWp
+                        </div>
+                        <div class="cell-view-6">
+                            <span class="gray">客户类型</span>.<span class="orange">企业</span>
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">开户行</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">银行帐号</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶瓦片类型</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶朝南面积</span>.556.m²
+                        </div>
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Remove&id=58" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Edit&id=58"  class="edit-client">
+                                <span class="mui-icon mui-icon-settings"></span>审核分派
+                            </a>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">客户</span><b>徐力</b></div>
+                    <div class="cell-view-6">
+                    <span class="title">负责人</span></div>
+                    <div class="cell-view-6">
+                    <span class="title">日期</span>2018-05-17</div>
+                    <div class="cell-view-12">
+                        <span class="title">等级</span>
+                        <span class="green"></span>
+                    </div>
+                    <div class="cell-view-12">
+                    <span class="title">地区</span>江苏省南京市玄武区玄武门街道清潭</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-6">
+                            <span class="gray">申请容量</span>.3333.KWp
+                        </div>
+                        <div class="cell-view-6">
+                            <span class="gray">客户类型</span>.<span class="orange">私宅</span>
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">开户行</span>.工行科教城支行
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">银行帐号</span>.458764884
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶瓦片类型</span>.琉璃瓦
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶朝南面积</span>.3.m²
+                        </div>
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Remove&id=57" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Edit&id=57"  class="edit-client">
+                                <span class="mui-icon mui-icon-settings"></span>审核分派
+                            </a>
+                        </div>
+                                                <div id="slider" class="mui-slider" data-slidershowtimer="161">
+                            <div class="mui-slider-group mui-slider-loop">
+                                <div class="mui-slider-item mui-slider-item-duplicate">
+                                    <a href="#">
+                                        <img src="upload/client/b1805172305117984.jpg">
+                                        <p class="mui-slider-title">房屋远景</p>
+                                    </a>
+                                </div>
+                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1805172305117984.jpg">
+                                            <p class="mui-slider-title">房屋远景</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1805172305199774.jpg">
+                                            <p class="mui-slider-title">房产证证号页</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1805172305277464.jpg">
+                                            <p class="mui-slider-title">房产证内容页</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1805172305337802.jpg">
+                                            <p class="mui-slider-title">土地证</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1805172305476156.jpg">
+                                            <p class="mui-slider-title">户主身份证正面照</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1805172306162939.jpg">
+                                            <p class="mui-slider-title">户主身份证反面照</p>
+                                        </a>
+                                    </div>
+                                                                                                                                                                        <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1806030006248610.jpg">
+                                            <p class="mui-slider-title">户口簿整本(最多6张)</p>
+                                        </a>
+                                    </div>
+                                                                                                                                                                        <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1805172306313462.jpg">
+                                            <p class="mui-slider-title">银行卡</p>
+                                        </a>
+                                    </div>
+                                                                                                <div class="mui-slider-item mui-slider-item-duplicate">
+                                    <a href="#">
+                                        <img src="upload/client/b1805172305117984.jpg">
+                                        <p class="mui-slider-title">房屋远景</p>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="mui-slider-indicator mui-text-right">
+                                                                                                    <div class="mui-indicator mui-active"></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                                                        <div class="mui-indicator"></div>
+                                                                                                                                                                        <div class="mui-indicator "></div>
+                                                                                            </div>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">客户</span><b>徐力</b></div>
+                    <div class="cell-view-6">
+                    <span class="title">负责人</span></div>
+                    <div class="cell-view-6">
+                    <span class="title">日期</span>2018-05-17</div>
+                    <div class="cell-view-12">
+                        <span class="title">等级</span>
+                        <span class="green"></span>
+                    </div>
+                    <div class="cell-view-12">
+                    <span class="title">地区</span>江苏省南京市玄武区玄武门街道清潭</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-6">
+                            <span class="gray">申请容量</span>.255.KWp
+                        </div>
+                        <div class="cell-view-6">
+                            <span class="gray">客户类型</span>.<span class="orange">私宅</span>
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">开户行</span>.工行科教城支行
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">银行帐号</span>.458764884
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶瓦片类型</span>.琉璃瓦
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶朝南面积</span>.3.m²
+                        </div>
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Remove&id=56" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Edit&id=56"  class="edit-client">
+                                <span class="mui-icon mui-icon-settings"></span>审核分派
+                            </a>
+                        </div>
+                                                <div id="slider" class="mui-slider" data-slidershowtimer="161">
+                            <div class="mui-slider-group mui-slider-loop">
+                                <div class="mui-slider-item mui-slider-item-duplicate">
+                                    <a href="#">
+                                        <img src="upload/client/b1805172305117984.jpg">
+                                        <p class="mui-slider-title">房屋远景</p>
+                                    </a>
+                                </div>
+                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1805172305117984.jpg">
+                                            <p class="mui-slider-title">房屋远景</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1805172305199774.jpg">
+                                            <p class="mui-slider-title">房产证证号页</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1805172305277464.jpg">
+                                            <p class="mui-slider-title">房产证内容页</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1805172305337802.jpg">
+                                            <p class="mui-slider-title">土地证</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1805172305476156.jpg">
+                                            <p class="mui-slider-title">户主身份证正面照</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1805172306162939.jpg">
+                                            <p class="mui-slider-title">户主身份证反面照</p>
+                                        </a>
+                                    </div>
+                                                                                                                                                                        <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1806030004152231.jpg">
+                                            <p class="mui-slider-title">户口簿整本(最多6张)</p>
+                                        </a>
+                                    </div>
+                                                                                                                                                                        <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1805172306313462.jpg">
+                                            <p class="mui-slider-title">银行卡</p>
+                                        </a>
+                                    </div>
+                                                                                                <div class="mui-slider-item mui-slider-item-duplicate">
+                                    <a href="#">
+                                        <img src="upload/client/b1805172305117984.jpg">
+                                        <p class="mui-slider-title">房屋远景</p>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="mui-slider-indicator mui-text-right">
+                                                                                                    <div class="mui-indicator mui-active"></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                                                        <div class="mui-indicator"></div>
+                                                                                                                                                                        <div class="mui-indicator "></div>
+                                                                                            </div>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">客户</span><b>哈哈</b></div>
+                    <div class="cell-view-6">
+                    <span class="title">负责人</span></div>
+                    <div class="cell-view-6">
+                    <span class="title">日期</span>2018-06-02</div>
+                    <div class="cell-view-12">
+                        <span class="title">等级</span>
+                        <span class="green"></span>
+                    </div>
+                    <div class="cell-view-12">
+                    <span class="title">地区</span>黑龙江省哈尔滨市道外区滨江街道清潭没事</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-6">
+                            <span class="gray">申请容量</span>.588.KWp
+                        </div>
+                        <div class="cell-view-6">
+                            <span class="gray">客户类型</span>.<span class="orange">私宅</span>
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">开户行</span>.工行科教城支行
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">银行帐号</span>.6584
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶瓦片类型</span>.半圆筒瓦
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶朝南面积</span>.3平方.m²
+                        </div>
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Remove&id=55" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Edit&id=55"  class="edit-client">
+                                <span class="mui-icon mui-icon-settings"></span>审核分派
+                            </a>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">客户</span><b>哈哈</b></div>
+                    <div class="cell-view-6">
+                    <span class="title">负责人</span></div>
+                    <div class="cell-view-6">
+                    <span class="title">日期</span>2018-06-02</div>
+                    <div class="cell-view-12">
+                        <span class="title">等级</span>
+                        <span class="green"></span>
+                    </div>
+                    <div class="cell-view-12">
+                    <span class="title">地区</span>黑龙江省齐齐哈尔市建华区中华街道清潭</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-6">
+                            <span class="gray">申请容量</span>.333.KWp
+                        </div>
+                        <div class="cell-view-6">
+                            <span class="gray">客户类型</span>.<span class="orange">私宅</span>
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">开户行</span>.工行科教城支行
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">银行帐号</span>.5555
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶瓦片类型</span>.琉璃瓦
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶朝南面积</span>.3平方.m²
+                        </div>
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Remove&id=54" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Edit&id=54"  class="edit-client">
+                                <span class="mui-icon mui-icon-settings"></span>审核分派
+                            </a>
+                        </div>
+                                                <div id="slider" class="mui-slider" data-slidershowtimer="161">
+                            <div class="mui-slider-group mui-slider-loop">
+                                <div class="mui-slider-item mui-slider-item-duplicate">
+                                    <a href="#">
+                                        <img src="[object Object]">
+                                        <p class="mui-slider-title">房屋远景</p>
+                                    </a>
+                                </div>
+                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="[object Object]">
+                                            <p class="mui-slider-title">房屋远景</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="[object Object]">
+                                            <p class="mui-slider-title">房产证证号页</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="[object Object]">
+                                            <p class="mui-slider-title">房产证内容页</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="[object Object]">
+                                            <p class="mui-slider-title">土地证</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="[object Object]">
+                                            <p class="mui-slider-title">户主身份证正面照</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="[object Object]">
+                                            <p class="mui-slider-title">户主身份证反面照</p>
+                                        </a>
+                                    </div>
+                                                                                                                                                                        <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1806022241021741.jpg">
+                                            <p class="mui-slider-title">户口簿整本(最多6张)</p>
+                                        </a>
+                                    </div>
+                                                                        <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1806022241128890.jpg">
+                                            <p class="mui-slider-title">户口簿整本(最多6张)</p>
+                                        </a>
+                                    </div>
+                                                                                                                                                                        <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="[object Object]">
+                                            <p class="mui-slider-title">银行卡</p>
+                                        </a>
+                                    </div>
+                                                                                                <div class="mui-slider-item mui-slider-item-duplicate">
+                                    <a href="#">
+                                        <img src="[object Object]">
+                                        <p class="mui-slider-title">房屋远景</p>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="mui-slider-indicator mui-text-right">
+                                                                                                    <div class="mui-indicator mui-active"></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                                                        <div class="mui-indicator"></div>
+                                                                        <div class="mui-indicator"></div>
+                                                                                                                                                                        <div class="mui-indicator "></div>
+                                                                                            </div>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">客户</span><b>哈哈</b></div>
+                    <div class="cell-view-6">
+                    <span class="title">负责人</span></div>
+                    <div class="cell-view-6">
+                    <span class="title">日期</span>2018-06-02</div>
+                    <div class="cell-view-12">
+                        <span class="title">等级</span>
+                        <span class="green"></span>
+                    </div>
+                    <div class="cell-view-12">
+                    <span class="title">地区</span>江苏省常州市天宁区红梅街道清潭几句话</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-6">
+                            <span class="gray">申请容量</span>.39.KWp
+                        </div>
+                        <div class="cell-view-6">
+                            <span class="gray">客户类型</span>.<span class="orange">私宅</span>
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">开户行</span>.工行科教城支行
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">银行帐号</span>.559495
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶瓦片类型</span>.琉璃瓦
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶朝南面积</span>.3平方.m²
+                        </div>
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Remove&id=53" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Edit&id=53"  class="edit-client">
+                                <span class="mui-icon mui-icon-settings"></span>审核分派
+                            </a>
+                        </div>
+                                                <div id="slider" class="mui-slider" data-slidershowtimer="161">
+                            <div class="mui-slider-group mui-slider-loop">
+                                <div class="mui-slider-item mui-slider-item-duplicate">
+                                    <a href="#">
+                                        <img src="[object Object]">
+                                        <p class="mui-slider-title">房屋远景</p>
+                                    </a>
+                                </div>
+                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="[object Object]">
+                                            <p class="mui-slider-title">房屋远景</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="[object Object]">
+                                            <p class="mui-slider-title">房产证证号页</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="[object Object]">
+                                            <p class="mui-slider-title">房产证内容页</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="[object Object]">
+                                            <p class="mui-slider-title">土地证</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="[object Object]">
+                                            <p class="mui-slider-title">户主身份证正面照</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="[object Object]">
+                                            <p class="mui-slider-title">户主身份证反面照</p>
+                                        </a>
+                                    </div>
+                                                                                                                                                                        <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1806022229459183.jpg">
+                                            <p class="mui-slider-title">户口簿整本(最多6张)</p>
+                                        </a>
+                                    </div>
+                                                                        <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1806022229565970.jpg">
+                                            <p class="mui-slider-title">户口簿整本(最多6张)</p>
+                                        </a>
+                                    </div>
+                                                                                                                                                                        <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="[object Object]">
+                                            <p class="mui-slider-title">银行卡</p>
+                                        </a>
+                                    </div>
+                                                                                                <div class="mui-slider-item mui-slider-item-duplicate">
+                                    <a href="#">
+                                        <img src="[object Object]">
+                                        <p class="mui-slider-title">房屋远景</p>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="mui-slider-indicator mui-text-right">
+                                                                                                    <div class="mui-indicator mui-active"></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                                                        <div class="mui-indicator"></div>
+                                                                        <div class="mui-indicator"></div>
+                                                                                                                                                                        <div class="mui-indicator "></div>
+                                                                                            </div>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">客户</span><b>哈哈</b></div>
+                    <div class="cell-view-6">
+                    <span class="title">负责人</span></div>
+                    <div class="cell-view-6">
+                    <span class="title">日期</span>2018-06-02</div>
+                    <div class="cell-view-12">
+                        <span class="title">等级</span>
+                        <span class="green"></span>
+                    </div>
+                    <div class="cell-view-12">
+                    <span class="title">地区</span>江苏省无锡市崇安区通江街道清潭你那边</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-6">
+                            <span class="gray">申请容量</span>.856.KWp
+                        </div>
+                        <div class="cell-view-6">
+                            <span class="gray">客户类型</span>.<span class="orange">私宅</span>
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">开户行</span>.江南银行竹箦支行
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">银行帐号</span>.58888
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶瓦片类型</span>.半圆筒瓦
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶朝南面积</span>.3平方.m²
+                        </div>
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Remove&id=52" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Edit&id=52"  class="edit-client">
+                                <span class="mui-icon mui-icon-settings"></span>审核分派
+                            </a>
+                        </div>
+                                                <div id="slider" class="mui-slider" data-slidershowtimer="161">
+                            <div class="mui-slider-group mui-slider-loop">
+                                <div class="mui-slider-item mui-slider-item-duplicate">
+                                    <a href="#">
+                                        <img src="[object Object]">
+                                        <p class="mui-slider-title">房屋远景</p>
+                                    </a>
+                                </div>
+                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="[object Object]">
+                                            <p class="mui-slider-title">房屋远景</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="[object Object]">
+                                            <p class="mui-slider-title">房产证证号页</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="[object Object]">
+                                            <p class="mui-slider-title">房产证内容页</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="[object Object]">
+                                            <p class="mui-slider-title">土地证</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="[object Object]">
+                                            <p class="mui-slider-title">户主身份证正面照</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="[object Object]">
+                                            <p class="mui-slider-title">户主身份证反面照</p>
+                                        </a>
+                                    </div>
+                                                                                                                                                                        <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="[object Object]upload/client/b1806022211361458.jpg">
+                                            <p class="mui-slider-title">户口簿整本(最多6张)</p>
+                                        </a>
+                                    </div>
+                                                                        <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1806022211465854.jpg">
+                                            <p class="mui-slider-title">户口簿整本(最多6张)</p>
+                                        </a>
+                                    </div>
+                                                                                                                                                                        <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="[object Object]">
+                                            <p class="mui-slider-title">银行卡</p>
+                                        </a>
+                                    </div>
+                                                                                                <div class="mui-slider-item mui-slider-item-duplicate">
+                                    <a href="#">
+                                        <img src="[object Object]">
+                                        <p class="mui-slider-title">房屋远景</p>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="mui-slider-indicator mui-text-right">
+                                                                                                    <div class="mui-indicator mui-active"></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                                                        <div class="mui-indicator"></div>
+                                                                        <div class="mui-indicator"></div>
+                                                                                                                                                                        <div class="mui-indicator "></div>
+                                                                                            </div>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">客户</span><b>哈哈</b></div>
+                    <div class="cell-view-6">
+                    <span class="title">负责人</span></div>
+                    <div class="cell-view-6">
+                    <span class="title">日期</span>2018-06-02</div>
+                    <div class="cell-view-12">
+                        <span class="title">等级</span>
+                        <span class="green"></span>
+                    </div>
+                    <div class="cell-view-12">
+                    <span class="title">地区</span>江苏省徐州市鼓楼区丰财街道清潭滚滚滚</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-6">
+                            <span class="gray">申请容量</span>.123.KWp
+                        </div>
+                        <div class="cell-view-6">
+                            <span class="gray">客户类型</span>.<span class="orange">私宅</span>
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">开户行</span>.江南银行社渚支行
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">银行帐号</span>.58879
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶瓦片类型</span>.洋瓦
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶朝南面积</span>.3平方.m²
+                        </div>
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Remove&id=51" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Edit&id=51"  class="edit-client">
+                                <span class="mui-icon mui-icon-settings"></span>审核分派
+                            </a>
+                        </div>
+                                                <div id="slider" class="mui-slider" data-slidershowtimer="161">
+                            <div class="mui-slider-group mui-slider-loop">
+                                <div class="mui-slider-item mui-slider-item-duplicate">
+                                    <a href="#">
+                                        <img src="upload/client/b1806022148556740.jpg">
+                                        <p class="mui-slider-title">房屋远景</p>
+                                    </a>
+                                </div>
+                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1806022148556740.jpg">
+                                            <p class="mui-slider-title">房屋远景</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1806022149186988.jpg">
+                                            <p class="mui-slider-title">房产证证号页</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1806022149497970.jpg">
+                                            <p class="mui-slider-title">房产证内容页</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1806022150042759.jpg">
+                                            <p class="mui-slider-title">土地证</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1806022150182150.jpg">
+                                            <p class="mui-slider-title">户主身份证正面照</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1806022150305404.jpg">
+                                            <p class="mui-slider-title">户主身份证反面照</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1806022150447001.jpg">
+                                            <p class="mui-slider-title">配偶身份证正面照</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1806022150573390.jpg">
+                                            <p class="mui-slider-title">配偶身份证反面照</p>
+                                        </a>
+                                    </div>
+                                                                                                                                                                        <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="[object Object]upload/client/b1806022145006182.jpg">
+                                            <p class="mui-slider-title">户口簿整本(最多6张)</p>
+                                        </a>
+                                    </div>
+                                                                        <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1806022145122780.jpg">
+                                            <p class="mui-slider-title">户口簿整本(最多6张)</p>
+                                        </a>
+                                    </div>
+                                                                                                                                                                        <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1806022151118740.jpg">
+                                            <p class="mui-slider-title">银行卡</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1806022151247687.jpg">
+                                            <p class="mui-slider-title">结婚证</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1806022151397086.jpg">
+                                            <p class="mui-slider-title">单身证明</p>
+                                        </a>
+                                    </div>
+                                                                                                <div class="mui-slider-item mui-slider-item-duplicate">
+                                    <a href="#">
+                                        <img src="upload/client/b1806022148556740.jpg">
+                                        <p class="mui-slider-title">房屋远景</p>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="mui-slider-indicator mui-text-right">
+                                                                                                    <div class="mui-indicator mui-active"></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                                                        <div class="mui-indicator"></div>
+                                                                        <div class="mui-indicator"></div>
+                                                                                                                                                                        <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                            </div>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">客户</span><b>邹俊逸</b></div>
+                    <div class="cell-view-6">
+                    <span class="title">负责人</span></div>
+                    <div class="cell-view-6">
+                    <span class="title">日期</span>2018-05-29</div>
+                    <div class="cell-view-12">
+                        <span class="title">等级</span>
+                        <span class="green"></span>
+                    </div>
+                    <div class="cell-view-12">
+                    <span class="title">地区</span>江苏省常州市新北区三井街道123</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-6">
+                            <span class="gray">申请容量</span>.32.7273.KWp
+                        </div>
+                        <div class="cell-view-6">
+                            <span class="gray">客户类型</span>.<span class="orange">私宅</span>
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">开户行</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">银行帐号</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶瓦片类型</span>.小瓦
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶朝南面积</span>.200.m²
+                        </div>
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Remove&id=49" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Edit&id=49"  class="edit-client">
+                                <span class="mui-icon mui-icon-settings"></span>审核分派
+                            </a>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">客户</span><b>英航工作室</b></div>
+                    <div class="cell-view-6">
+                    <span class="title">负责人</span></div>
+                    <div class="cell-view-6">
+                    <span class="title">日期</span>2018-05-27</div>
+                    <div class="cell-view-12">
+                        <span class="title">等级</span>
+                        <span class="green"></span>
+                    </div>
+                    <div class="cell-view-12">
+                    <span class="title">地区</span>江苏省南京市白下区建康路街道江苏省常州市天宁区</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-6">
+                            <span class="gray">申请容量</span>.28.6400.KWp
+                        </div>
+                        <div class="cell-view-6">
+                            <span class="gray">客户类型</span>.<span class="orange">企业</span>
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">开户行</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">银行帐号</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶瓦片类型</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶朝南面积</span>.358.m²
+                        </div>
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Remove&id=48" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Edit&id=48"  class="edit-client">
+                                <span class="mui-icon mui-icon-settings"></span>审核分派
+                            </a>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">客户</span><b>徐力</b></div>
+                    <div class="cell-view-6">
+                    <span class="title">负责人</span></div>
+                    <div class="cell-view-6">
+                    <span class="title">日期</span>2018-05-17</div>
+                    <div class="cell-view-12">
+                        <span class="title">等级</span>
+                        <span class="green"></span>
+                    </div>
+                    <div class="cell-view-12">
+                    <span class="title">地区</span>江苏省南京市玄武区玄武门街道清潭</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-6">
+                            <span class="gray">申请容量</span>.444.KWp
+                        </div>
+                        <div class="cell-view-6">
+                            <span class="gray">客户类型</span>.<span class="orange">私宅</span>
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">开户行</span>.工行科教城支行
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">银行帐号</span>.458764884
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶瓦片类型</span>.琉璃瓦
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶朝南面积</span>.3.m²
+                        </div>
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Remove&id=44" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Edit&id=44"  class="edit-client">
+                                <span class="mui-icon mui-icon-settings"></span>审核分派
+                            </a>
+                        </div>
+                                                <div id="slider" class="mui-slider" data-slidershowtimer="161">
+                            <div class="mui-slider-group mui-slider-loop">
+                                <div class="mui-slider-item mui-slider-item-duplicate">
+                                    <a href="#">
+                                        <img src="upload/client/b1805172305117984.jpg">
+                                        <p class="mui-slider-title">房屋远景</p>
+                                    </a>
+                                </div>
+                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1805172305117984.jpg">
+                                            <p class="mui-slider-title">房屋远景</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1805172305199774.jpg">
+                                            <p class="mui-slider-title">房产证证号页</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1805172305277464.jpg">
+                                            <p class="mui-slider-title">房产证内容页</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1805172305337802.jpg">
+                                            <p class="mui-slider-title">土地证</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1805172305476156.jpg">
+                                            <p class="mui-slider-title">户主身份证正面照</p>
+                                        </a>
+                                    </div>
+                                                                                                                                    <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1805172306162939.jpg">
+                                            <p class="mui-slider-title">户主身份证反面照</p>
+                                        </a>
+                                    </div>
+                                                                                                                                                                        <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1806030009132332.jpg">
+                                            <p class="mui-slider-title">户口簿整本(最多6张)</p>
+                                        </a>
+                                    </div>
+                                                                                                                                                                        <div class="mui-slider-item">
+                                        <a href="#">
+                                            <img src="upload/client/b1805172306313462.jpg">
+                                            <p class="mui-slider-title">银行卡</p>
+                                        </a>
+                                    </div>
+                                                                                                <div class="mui-slider-item mui-slider-item-duplicate">
+                                    <a href="#">
+                                        <img src="upload/client/b1805172305117984.jpg">
+                                        <p class="mui-slider-title">房屋远景</p>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="mui-slider-indicator mui-text-right">
+                                                                                                    <div class="mui-indicator mui-active"></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                    <div class="mui-indicator "></div>
+                                                                                                                                                                        <div class="mui-indicator"></div>
+                                                                                                                                                                        <div class="mui-indicator "></div>
+                                                                                            </div>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">客户</span><b>吴琼</b></div>
+                    <div class="cell-view-6">
+                    <span class="title">负责人</span></div>
+                    <div class="cell-view-6">
+                    <span class="title">日期</span>2018-05-14</div>
+                    <div class="cell-view-12">
+                        <span class="title">等级</span>
+                        <span class="green"></span>
+                    </div>
+                    <div class="cell-view-12">
+                    <span class="title">地区</span>江苏省常州市武进区湖塘镇66</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-6">
+                            <span class="gray">申请容量</span>.0.KWp
+                        </div>
+                        <div class="cell-view-6">
+                            <span class="gray">客户类型</span>.<span class="orange">私宅</span>
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">开户行</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">银行帐号</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶瓦片类型</span>.小瓦
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶朝南面积</span>..m²
+                        </div>
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Remove&id=38" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Edit&id=38"  class="edit-client">
+                                <span class="mui-icon mui-icon-settings"></span>审核分派
+                            </a>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">客户</span><b>花轮</b></div>
+                    <div class="cell-view-6">
+                    <span class="title">负责人</span></div>
+                    <div class="cell-view-6">
+                    <span class="title">日期</span>2018-04-17</div>
+                    <div class="cell-view-12">
+                        <span class="title">等级</span>
+                        <span class="green"></span>
+                    </div>
+                    <div class="cell-view-12">
+                    <span class="title">地区</span>江苏省常州市武进区湖塘镇66</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-6">
+                            <span class="gray">申请容量</span>.8.KWp
+                        </div>
+                        <div class="cell-view-6">
+                            <span class="gray">客户类型</span>.<span class="orange">企业</span>
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">开户行</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">银行帐号</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶瓦片类型</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶朝南面积</span>.100.m²
+                        </div>
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Remove&id=19" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Edit&id=19"  class="edit-client">
+                                <span class="mui-icon mui-icon-settings"></span>审核分派
+                            </a>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">客户</span><b>大江</b></div>
+                    <div class="cell-view-6">
+                    <span class="title">负责人</span></div>
+                    <div class="cell-view-6">
+                    <span class="title">日期</span>2018-04-13</div>
+                    <div class="cell-view-12">
+                        <span class="title">等级</span>
+                        <span class="green"></span>
+                    </div>
+                    <div class="cell-view-12">
+                    <span class="title">地区</span>江苏省常州市武进区湖塘镇11</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-6">
+                            <span class="gray">申请容量</span>.16.0000.KWp
+                        </div>
+                        <div class="cell-view-6">
+                            <span class="gray">客户类型</span>.<span class="orange">企业</span>
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">开户行</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">银行帐号</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶瓦片类型</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶朝南面积</span>.200.m²
+                        </div>
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Remove&id=12" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Edit&id=12"  class="edit-client">
+                                <span class="mui-icon mui-icon-settings"></span>审核分派
+                            </a>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">客户</span><b>杰多新能源</b></div>
+                    <div class="cell-view-6">
+                    <span class="title">负责人</span></div>
+                    <div class="cell-view-6">
+                    <span class="title">日期</span>2018-04-07</div>
+                    <div class="cell-view-12">
+                        <span class="title">等级</span>
+                        <span class="green"></span>
+                    </div>
+                    <div class="cell-view-12">
+                    <span class="title">地区</span>江苏省常州市武进区湖塘镇新城帝景26乙单元1301</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-6">
+                            <span class="gray">申请容量</span>.1309.0909.KWp
+                        </div>
+                        <div class="cell-view-6">
+                            <span class="gray">客户类型</span>.<span class="orange">企业</span>
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">开户行</span>.工行科教城支行
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">银行帐号</span>.5874566
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶瓦片类型</span>.
+                        </div>
+                        <div class="cell-view-12">
+                            <span class="gray">屋顶朝南面积</span>.8000.m²
+                        </div>
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Remove&id=10" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Edit&id=10"  class="edit-client">
+                                <span class="mui-icon mui-icon-settings"></span>审核分派
+                            </a>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-content-padded">
+            <div class="mui-pagination">
+            <div class="p_bar"><a class="p_curpage">1</a></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/zepto.js"></script>
+<script src="../../js/mui.picker.js"></script>
+<script src="../../js/mui.picker.min.js"></script>
+<script src="../../js/mui.poppicker.js"></script>
+<script src="../../js/mui.enterfocus.js"></script>
+<script src="../../js/template.min.js"></script>
+<script src="../../config.js"></script>
+<script src="../../js/app.js"></script>
+<script src="../../js/sign.js"></script>
+<script src="../../js/md5.js"></script>
+<script src="../../js/jquery.1.9.1.js"></script>
+<script type="text/javascript">
+    var jQuery = jQuery.noConflict();
+</script>
+<script>
+
+(function($, doc) {
+    mui.init();
+    //首页
+    mui(document.body).on('tap','.mui-action-home',function(){
+        document.location.href = 'index.php';
+    });
+    mui(document.body).on('tap','.mui-action-search',function(){
+        jQuery('.search-container').slideToggle();
+    });
+
+    mui('.mui-content-padded').on('tap','.p_num,.p_redirect',function(){
+        document.location.href = jQuery(this).attr('href');
+    });
+    mui(document.body).on('tap','.edit-client',function(){
+        var that = this;
+        if(jQuery(that).hasClass('edit-remove')){
+            var res = mui.confirm('删除后不可逆转','确认删除?',['不删','删'],function(e){
+                if (e.index == 1) {
+                    document.location.href = jQuery(that).attr('href');
+                } else {
+                    return;
+                }
+            });
+        }else{
+            document.location.href = jQuery(that).attr('href');
+        }
+    });
+    //显示详细
+    jQuery('.action-detial').click(function(){
+        jQuery(this).parent().siblings('.detial-cell').slideToggle();
+    })
+
+    //默认显示框里的值
+    jQuery('.select-hide[value!=""]').each(function(){
+        var textInput=jQuery(this).siblings('input[type=text]');
+        var _data = jQuery(this).siblings('button').data('select');
+        var curVal = jQuery(this).val();
+        if(!textInput.value){
+            for(var k in _data){
+                if(_data[k]['value'] == curVal){
+                    textInput.val(_data[k]['text']);
+                }
+            }
+        }
+    });
+
+    //选择类型
+    jQuery('.btn-select').each(function(){
+        var picker = new mui.PopPicker();
+        var json = jQuery(this).data('select');
+        picker.setData(json);
+        var forInput = jQuery(this).siblings('input[type=text]');
+        var forVal = jQuery(this).siblings('input[type=hidden]');
+        if(forVal.val()){
+            picker.pickers[0].setSelectedValue(forVal.val(), 2000);
+        }
+        this.addEventListener('tap', function(event) {
+            picker.show(function(items) {
+                forInput && forInput.val(items[0]['text']);
+                forVal && forVal.val(items[0]['value']);
+            });
+        }, false);
+    });
+
+    //清空搜索
+    jQuery('.btn-clear-search').click(function(){
+        jQuery('#FormSearch').find('input').val('');
+        jQuery('#FormSearch').submit();
+    });
+})(mui, document);
+
+
+</script>
+</html>

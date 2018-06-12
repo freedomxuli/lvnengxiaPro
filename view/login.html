@@ -158,6 +158,8 @@
 			var sid = localStorage.getItem("sid");
     		var obj_sid = {};
 			obj_sid["sid"] = sid;
+			obj_sid["method"] = config.apimethod.getsidver;
+        	obj_sid["version"] = config.apiversion;
 			var sign = GetSign(obj_sid);
 			var param = {
 		        queryData: {
@@ -168,7 +170,7 @@
 		        method: 'POST'
 		    }
 			$.dataRequest(param, function(rs) {
-				//console.log(JSON.stringify(rs));
+				console.log(JSON.stringify(rs));
 				if(rs.rsp=="succ")
         		{
         			if(rs.data.status=="true")
@@ -198,6 +200,8 @@
 				var val_obj = {};
 				val_obj["userName"] = username;
 				val_obj["password"] = password;
+				val_obj["method"] = config.apimethod.login;
+        		val_obj["version"] = config.apiversion;
 				//console.log(val_obj); 
 				var sign = GetSign(val_obj);
 				var param = {
@@ -210,7 +214,7 @@
 			        method: 'POST'
 			    }
 				$.dataRequest(param, function(rs) {
-			        //console.log(JSON.stringify(rs));
+			        console.log(JSON.stringify(rs));
 			        waiting.close();
 			        if(rs.rsp=="succ")
 			        {

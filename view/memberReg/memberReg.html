@@ -110,55 +110,14 @@
                 </div>
             </div>
         </div>
-                <div class="mui-card">
-            <div class="mui-card-content">
-                <div class="mui-card-content-inner">
-                    <div class="cell-view-12">
-                    <span class="title">手机号</span><b><a href="tel:"></a></b></div>
-                    <div class="cell-view-6">
-                    <span class="title">会员名</span></div>
-                    <div class="cell-view-6">
-                        <span class="title">注册类型</span>
-                        <span class="orange">个人</span>
-                    </div>
-                    <div class="cell-view-6">
-                    <span class="title">注册时间</span>0000-00-00</div>
-                    <div class="cell-view-6">
-                        <span class="title">会员类别</span>
-                        <span class="green"></span>
-                    </div>
-                    <div class="cell-view-12">
-                    <span class="title">地区</span></div>
-                    <div class="cell-view-12">
-                    <span class="title">代理</span></div>
-                    <div class="cell-detial">
-                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
-                    </div>
-                    <div class="cell-view-12 detial-cell">
-                                                <div class="cell-view-12">
-                            <span class="gray">户主年龄</span>.
-                        </div>
-                        <div class="cell-view-12">
-                            <span class="gray">屋顶朝南面积</span>.
-                        </div>
-                        <div class="cell-view-12">
-                            <span class="gray">瓦片类型</span>.
-                        </div>
-                                                <div class="cell-view-12">
-                            <span class="title">会员备注</span>.
-                        </div>
-                        <div class="cell-view-12">
-                            <span class="title">回访记录</span>.
-                        </div>
-                                                <div class="cell-view-12">
-                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=EditKind&id=825"  class="edit-client">
-                                <span class="mui-icon mui-icon-star"></span>会员分类
-                            </a>
-                        </div>
-                                            </div>
-                </div>
-            </div>
-        </div>
+        <div id="pullrefresh" class="mui-content mui-scroll-wrapper content-div mui-card mui-card-list-eqinfo">
+			<div class="mui-scroll mui-card-content">
+				<ul class="mui-table-view" id="content-card-list">
+				<!--数据列表-->
+				</ul>
+        	</div>
+
+		</div>
     </div>
 </body>
 <script src="../../js/mui.min.js"></script>
@@ -176,9 +135,147 @@
 <script type="text/javascript">
     var jQuery = jQuery.noConflict();
 </script>
+<script type="text/html" id="cardlist">
+	<%
+		for(var i = 0;i<List.length;i++)
+		{
+		%>
+		<li>
+				<div class="mui-card">
+	            <div class="mui-card-content">
+	                <div class="mui-card-content-inner">
+	                    <div class="cell-view-12">
+	                    <span class="title">手机号</span><b><a href="tel:"><%=List[i].account%></a></b></div>
+	                    <div class="cell-view-6">
+	                    <span class="title">会员名</span><%=List[i].name%></div>
+	                    <div class="cell-view-6">
+	                        <span class="title">注册类型</span>
+	                        <span class="orange"><%=List[i].regType%></span>
+	                    </div>
+	                    <div class="cell-view-6">
+	                    <span class="title">注册时间</span><%=List[i].regTime%></div>
+	                    <div class="cell-view-6">
+	                        <span class="title">会员类别</span>
+	                        <span class="green"></span>
+	                    </div>
+	                    <div class="cell-view-12">
+	                    <span class="title">地区</span><%=List[i].address%></div>
+	                    <div class="cell-view-12">
+	                    <span class="title">代理</span></div>
+	                    <div class="cell-detial">
+	                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+	                    </div>
+	                    <div class="cell-view-12 detial-cell">
+	                                                <div class="cell-view-12">
+	                            <span class="gray">户主年龄</span>.
+	                        </div>
+	                        <div class="cell-view-12">
+	                            <span class="gray">屋顶朝南面积</span>.
+	                        </div>
+	                        <div class="cell-view-12">
+	                            <span class="gray">瓦片类型</span>.
+	                        </div>
+	                                                <div class="cell-view-12">
+	                            <span class="title">会员备注</span>.
+	                        </div>
+	                        <div class="cell-view-12">
+	                            <span class="title">回访记录</span>.
+	                        </div>
+	                                                <div class="cell-view-12">
+	                            <a href="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=EditKind&id=825"  class="edit-client">
+	                                <span class="mui-icon mui-icon-star"></span>会员分类
+	                            </a>
+	                        </div>
+	                                            </div>
+	                </div>
+	            </div>
+	        </div>
+	        </li>
+		<%
+		}
+	%>
+</script>
 <script>
-
-    mui.init();
+	var count = 1;
+	var pageNum = 25;
+	var sid = localStorage.getItem("sid");
+    mui.init({
+    	pullRefresh: {
+			container: '#pullrefresh',
+			up: {
+				contentrefresh: '正在加载...',
+				callback: pullupRefresh
+			}
+		}
+    });
+    
+    /**
+	 * 上拉加载具体业务实现
+	 */
+	function pullupRefresh() {
+		loadData();
+	}
+	
+	function timestampToTime(timestamp) {
+        var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+        Y = date.getFullYear() + '-';
+        M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+        D = date.getDate() + ' ';
+        h = date.getHours() + ':';
+        m = date.getMinutes() + ':';
+        s = date.getSeconds();
+        return Y+M+D+h+m+s;
+    }
+	
+	function loadData(){
+		/*var obj = {};
+		obj["name"] = ;*/
+		var now_time = new Date().getTime();
+		var obj_point = {};
+		obj_point["sid"] = sid;
+		obj_point["page"] = count;
+		obj_point["pageNum"] = pageNum;
+		obj_point["condition"] = '';
+		obj_point["timestamp"] = now_time;
+		obj_point["method"] = config.apimethod.memberslist;
+        obj_point["version"] = config.apiversion;
+		var sign = GetSign(obj_point);
+		var param = {
+	        queryData: {
+	          'method': config.apimethod.memberslist,
+	          'sign':sign,
+	          'sid':sid,
+	          'page':count,
+	          'pageNum':pageNum,
+	          'condition':'',
+	          'timestamp':now_time
+	        },
+	        method: 'POST'
+	   }
+		$.dataRequest(param, function(rs) {
+			console.log(JSON.stringify(rs));
+			if(rs.rsp=="succ")
+			{
+				if(rs.data.List)
+				{
+					++count;
+					setTimeout(function() {
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh((count > rs.data.pageCount)); //参数为true代表没有更多数据了。
+						var list = template("msg_list",rs.data);
+						jQuery('.main-class').append(list);
+					}, 1500);
+				}else
+				{
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh((count > 0));
+				}
+			}else
+			{
+				plus.nativeUI.toast("获取失败：" + rs.data);
+				return;
+			}
+		});
+	}
+	
     //首页
     mui(document.body).on('tap','.mui-action-home',function(){
         clicked('_www/view/hyzx/hyzx.html');
@@ -230,10 +327,21 @@
 
     //清空搜索
     jQuery('.btn-clear-search').click(function(){
-        jQuery('#FormSearch').find('input').val('');
-        jQuery('#FormSearch').submit();
+        //jQuery('#FormSearch').find('input').val('');
+        //jQuery('#FormSearch').submit();
     });
 
+	if (mui.os.plus) {
+		mui.plusReady(function() {
+			setTimeout(function() {
+				mui('#pullrefresh').pullRefresh().pullupLoading();
+			}, 1000);
 
+		});
+	} else {
+		mui.ready(function() {
+			mui('#pullrefresh').pullRefresh().pullupLoading();
+		});
+	}
 </script>
 </html>

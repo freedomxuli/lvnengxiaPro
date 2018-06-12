@@ -161,6 +161,7 @@ var config = {
         getsidver:'verifiIdentity.user.sid',//获取sid
         getwddzurl:'ems.url.get',//获取我的电站
         userinfo:'user.info.detail.get',//获取个人信息
-        homemenu:'home.menu.auth.get'//首页权限
+        homemenu:'home.menu.auth.get',//首页权限
+        memberslist:'get.members.list'//会员列表
     }
 }

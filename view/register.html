@@ -196,6 +196,8 @@
 					val_obj["type"] = "register";
 					val_obj["mobile"] = phonenum;
 					val_obj["timestamp"] = new Date().getTime();
+					val_obj["method"] = config.apimethod.usersendSms;
+        			val_obj["version"] = config.apiversion;
 					console.log(val_obj); 
 					var sign = GetSign(val_obj);
 					console.log(sign);
@@ -234,6 +236,8 @@
 			    var val_area = {};
 			    val_area["mid"] = "";
 			    val_area["timestamp"] = new Date().getTime();
+			    val_area["method"] = config.apimethod.arealist;
+        		val_area["version"] = config.apiversion;
 			    var sign_area = GetSign(val_area);
 			    var param_area = {
 			        queryData: {
@@ -371,6 +375,8 @@
 				        var val_obj = {};
 						val_obj["areaid"] = area_id;
 						val_obj["timestamp"] = new Date().getTime();
+						val_obj["method"] = config.apimethod.areachildlist;
+        				val_obj["version"] = config.apiversion;
 						console.log(val_obj); 
 						var sign = GetSign(val_obj);
 						console.log(sign);
@@ -497,6 +503,8 @@
 					obj_reg["area_id3"] = area_id3.value;
 					obj_reg["area_id4"] = area_id4.value;
 					obj_reg["vcode"] = msgCode.value;
+					obj_reg["method"] = config.apimethod.signup;
+        			obj_reg["version"] = config.apiversion;
 					var sign = GetSign(obj_reg);
 					var param_reg = {
 				        queryData: {

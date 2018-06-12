@@ -323,6 +323,8 @@
     	var waiting = plus.nativeUI.showWaiting();
 		var obj_comtzinfo = {};
     	obj_comtzinfo["sid"] = sid;
+    	obj_comtzinfo["method"] = config.apimethod.comtzinfo;
+        obj_comtzinfo["version"] = config.apiversion;
     	var sign = GetSign(obj_comtzinfo);
     	var param = {
 	        queryData: {
@@ -410,6 +412,8 @@
 	                data[key[kk]] = jQuery('#'+key[kk]).val();
 	            }
 	            console.log(JSON.stringify(data));
+	            data["method"] = config.apimethod.comtzdetail;
+        		data["version"] = config.apiversion;
 	            sign = GetSign(data);
 	            var param1 = {
 			        queryData: {
