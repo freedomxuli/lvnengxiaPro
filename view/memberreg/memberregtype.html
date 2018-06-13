@@ -1,0 +1,329 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Jado绿能侠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link href="../../css/mui.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="../../css/mui.picker.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/mui.picker.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/mui.poppicker.css" />
+    
+    <style type="text/css">
+        /*.mui-plus header.mui-bar{
+            display: none;
+        }
+        .mui-plus .mui-bar-nav~.mui-content{
+            padding: 0;
+        }*/
+
+        /*hm开头的表示仅为 Hello MUI示例定义*/
+        .hm-description{
+            margin: .5em 0;
+        }
+
+        .hm-description>li {
+            font-size: 14px;
+            color: #8f8f94;
+        }
+        .mui-plus .plus{
+            display: inline;
+        }
+        #btn_submit{z-index: 100;}
+        html,
+        body,
+        .mui-content {
+            height: 0px;
+            margin: 0px;
+            background-color: #efeff4;
+        }
+        h5.mui-content-padded {
+            margin-left: 3px;
+            margin-top: 20px !important;
+        }
+        h5.mui-content-padded:first-child {
+            margin-top: 12px !important;
+        }
+        .mui-btn {
+            font-size: 16px;
+            padding: 8px;
+            margin: 3px;
+        }
+        .ui-alert {
+            text-align: center;
+            padding: 20px 10px;
+            font-size: 16px;
+        }
+        * {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+        }
+        .plus{
+            display: none;
+        }
+
+        p {
+            text-indent: 22px;
+        }
+        span.mui-icon {
+            font-size: 14px;
+            color: #007aff;
+            margin-left: -15px;
+            padding-right: 10px;
+        }
+        .mui-popover {
+            height: 100px;
+        }
+        .mui-content {
+            /*padding: 10px;*/
+        }
+        #topPopover {
+            position: fixed;
+            top: 16px;
+            left: 3px;
+        }
+        #topPopover .mui-popover-arrow {
+            left: 3px;
+        }
+
+        footer{position: fixed;bottom: 0px;left: 0px;width: 100%;height: 40px;z-index: 99;}
+        footer button{height: 40px;border-radius: 0px !important;padding:0px;line-height: 0.8 !important;margin: 0px !important;}
+    .mui-input-row{height: auto !important;}
+    .mui-input-btn-label{width: 100%;}
+    .mui-input-row input[readonly]{background: #efefef;}
+    .mui-input-row label{width: 40%;}
+    .mui-input-row input[type='text'],textarea{width: 60% !important;}
+    .mui-input-btn-label input[type='text']{width: 45% !important;float: left !important;}
+    .mui-input-btn-label button{width: 15% !important;padding: 8px !important;margin:0px !important;}
+    .up-image{
+        width: 73px;
+        height: 74px;
+        _width: 73px;
+        _height: 74px;
+        position: relative;
+        z-index: 9;
+        opacity: 0;
+    }
+    .up-image-btn{background: url('Resource/Image/photo.jpg')  no-repeat;
+        position: absolute;
+        border: 1px solid #d1d1d1;
+        display: inline-block;
+        color: #fff;
+        width: 73px;
+        height: 74px;
+        _width: 73px;
+        _height: 74px;
+        text-align: center;
+        top: 0px;
+        left: 0px;
+    }
+    .image-box{width: 60%;float: left;position: relative;}
+    .image-row{height: 84px !important;}
+    .image-show-box{float: right;height: 84px;position: relative;border:1px solid #d1d1d1;display: none;}
+    .image-show-box img{max-height: 84px;max-width:100px; }
+    .image-show-box .gray-div-img{width: 100%;height: 84px;opacity: 0.7;background: #222;position: absolute;top: 0px;left: 0px;text-align: center;padding-top: 40%;color: #fff;display: none;z-index: 4;}
+    .image-show-box i{position: absolute;left: 0px;top: 0px;font-size: 2em;background: #efefef;border-radius: 50%;color: red;z-index: 3;}
+    .box-check-group{float: left;width: 60%;line-height: 40px;}
+    .box-check-group input[type='radio']{padding: 10px;position: relative;width: 20px;height: 20px;border:1px solid #a1a1a1; border-radius: 50%;background: #efefef;margin-left: 20px;}
+    .box-check-group input[type='radio']:checked:after{
+        content: ' ';
+        width: 12px;
+        height: 12px;
+        border-radius: 50px;
+        margin-top:-6px;
+        margin-left:-6px;
+        position: absolute;
+        top: 50%;
+        background: #007aff;
+        color: #007aff;
+        box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);
+        text-shadow: 0px;
+        left: 50%;
+    }
+    }
+    textarea {
+        line-height: 21px;
+        border: 1px solid rgba(0,0,0,.2) !important;
+        /*padding: 8px;*/
+    }
+    .mui-form-select{width: 60%  !important;}
+    .block-dis{display: block;}
+    .mui-input-row .mui-btn{line-height:1.4}
+    </style>
+    
+</head>
+<body>
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-icon mui-icon-home mui-action-home"></a>
+        <h1 class="mui-title">添加会员类别</h1>
+    </header>
+    <div class="mui-content">
+        <div class="mui-input-group" id="form_client">
+        <div class="mui-input-row">
+            <label>会员名称</label>
+            <input type="text" name="realName" placeholder="客户名称" id="realName" value="" readonly>
+            <input type="hidden" name="id" value="825">
+        </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>会员类别</label>
+            <input type="text" name="memberKindText" placeholder="会员类别" id="memberKindText" value="" readonly>
+            <button id='showmemberKindText' data-select='' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
+            <input class="select-hide" type="hidden" id="memberKind" name="memberKind" value="">
+        </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>回访记录</label>
+            <textarea name="remark" placeholder="回访记录" id="remark"></textarea>
+        </div>
+        </div>
+        <div class="" style="height: 50px;"></div>
+    </div>
+
+    <footer>
+        <button type="button" id="btn_submit" class="mui-btn mui-btn-block mui-btn-primary">确定并保存</button>
+    </footer>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/zepto.js"></script>
+<script src="../../js/mui.picker.js"></script>
+<script src="../../js/mui.picker.min.js"></script>
+<script src="../../js/mui.poppicker.js"></script>
+<script src="../../js/mui.enterfocus.js"></script>
+<script src="../../js/template.min.js"></script>
+<script src="../../config.js"></script>
+<script src="../../js/app.js"></script>
+<script src="../../js/sign.js"></script>
+<script src="../../js/md5.js"></script>
+<script src="../../js/jquery.1.9.1.js"></script>
+<script type="text/javascript">
+    var jQuery = jQuery.noConflict();
+</script>
+<script>
+    mui.init();
+    var mid = "";
+    var realname = "";
+    var sid = localStorage.getItem("sid");
+    mui.plusReady(function() {
+    	mid = plus.webview.currentWebview().mid;
+      	realname = plus.webview.currentWebview().realname;
+      	jQuery('#realName').val(realname);
+      	var obj_reg = {};
+    	obj_reg["sid"] = sid;
+    	obj_reg["method"] = config.apimethod.regType;
+    	obj_reg["version"] = config.apiversion;
+    	var sign_reg = GetSign(obj_reg);
+    	var param_reg = {
+	        queryData: {
+	          'method': config.apimethod.regType,
+	          'sign':sign_reg,
+	          'sid':sid
+	        },
+	        method: 'POST'
+	    }
+    	$.dataRequest(param_reg, function(rs) {
+    		if(rs.rsp=="succ")
+			{
+				jQuery('#showmemberKindText').data('select',rs.data);
+				
+		    	//首页
+			    mui(document.body).on('tap','.mui-action-home',function(){
+			        clicked('_www/view/hyzx/hyzx.html');
+			    });
+			
+			    //修改的时候默认给输入框显示值
+			    jQuery('.select-hide[value!=""]').each(function(){
+			        var textInput=jQuery(this).siblings('input[type=text]');
+			        var _data = jQuery(this).siblings('button').data('select');
+			        var curVal = jQuery(this).val();
+			        if(!textInput.value){
+			            for(var k in _data){
+			                if(_data[k]['value'] == curVal){
+			                    textInput.val(_data[k]['text']);
+			                }
+			            }
+			        }
+			    });
+				
+			    //选择类型
+			    jQuery('.btn-select').each(function(){
+			        var picker = new mui.PopPicker();
+			        var json = jQuery(this).data('select');
+			        picker.setData(json);
+			        var forInput = jQuery(this).siblings('input[type=text]');
+			        var forVal = jQuery(this).siblings('input[type=hidden]');
+			        if(forVal.val()){
+			            picker.pickers[0].setSelectedValue(forVal.val(), 2000);
+			        }
+			        this.addEventListener('tap', function(event) {
+			            picker.show(function(items) {
+			                forInput && forInput.val(items[0]['text']);
+			                forVal && forVal.val(items[0]['value']);
+			                forVal.change();
+			            });
+			        }, false);
+			    });
+			
+			    //提交按钮事件：需要验证基本信息
+			    var rulesRequired = ['memberKind'];
+			    jQuery('#btn_submit').click(function(){
+			        var that = this;
+			        var waiting = plus.nativeUI.showWaiting();
+			        //验证是否填写
+			        var _rule_res = '';
+			        jQuery(rulesRequired).each(function(){
+			            var _val = jQuery('#'+this).val();
+			            if(!_val){
+			                _rule_res = jQuery('#'+this).attr('placeholder');
+			                return false;
+			            }
+			        });
+			
+			        if(_rule_res){
+			            mui.alert(_rule_res+'必填');
+			            waiting.close(); 
+			            return;
+			        }
+					var obj = {};
+					obj["sid"] = sid;
+					obj["mid"] = mid;
+					obj["memberKind"] = jQuery('#memberKind').val();
+					obj["remark"] = jQuery('#remark').val();
+					obj["method"] = config.apimethod.saveregType;
+					obj["version"] = config.apiversion;
+					var sign = GetSign(obj);
+					console.log(JSON.stringify(obj));
+					var param = {
+						queryData: {
+				          'method': config.apimethod.saveregType,
+				          'sign':sign,
+				          'sid':sid,
+				          'mid':mid,
+				          'memberKind':jQuery('#memberKind').val(),
+				          'remark':jQuery('#remark').val()
+				        },
+				        method: 'POST'
+					}
+					console.log(JSON.stringify(param));
+					$.dataRequest(param, function(rs) {
+						console.log(JSON.stringify(rs));
+						waiting.close(); 
+						if(rs.rsp == "succ")
+						{
+							plus.nativeUI.toast("修改成功");
+							clicked('_www/view/hyzx/hyzx.html');
+						}else{
+							plus.nativeUI.toast("修改失败："+ rs.res);
+							return;
+						}
+					})
+			        //提交
+			        //jQuery('#form_client').submit();
+			
+			    });
+			}
+    	})
+    })
+</script>
+</html>

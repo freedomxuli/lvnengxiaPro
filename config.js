@@ -162,6 +162,8 @@ var config = {
         getwddzurl:'ems.url.get',//获取我的电站
         userinfo:'user.info.detail.get',//获取个人信息
         homemenu:'home.menu.auth.get',//首页权限
-        memberslist:'get.members.list'//会员列表
+        memberslist:'get.members.list',//会员列表
+        regType:'member.kind.list.get',//获取会员类别档案
+        saveregType:'member.kind.edit.save',//获取会员类别档案
     }
 }

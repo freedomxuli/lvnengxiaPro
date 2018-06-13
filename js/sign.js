@@ -2,10 +2,10 @@ function GetSign (params){
 	var private_key = "eqinfolg2j6ew5rbyg58tofjvw479rqfkv3b4v51cyhe7";
 	var param = assemble(params);
 /*	console.log(param);
-	console.log("数组加密："+hex_md5(param));
-	console.log("数组加密大写："+hex_md5(param).toUpperCase());
-	console.log("数组加密大写后加私钥："+hex_md5(param).toUpperCase()+private_key);*/
-	return hex_md5(hex_md5(param).toUpperCase()+private_key).toUpperCase();
+	console.log("数组加密："+md5(param));
+	console.log("数组加密大写："+md5(param).toUpperCase());
+	console.log("数组加密大写后加私钥："+md5(param).toUpperCase()+private_key);*/
+	return md5(md5(param).toUpperCase()+private_key).toUpperCase();
 }
 
 function assemble(params)

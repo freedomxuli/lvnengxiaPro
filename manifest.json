@@ -1,4 +1,4 @@
-﻿{
+{
     "@platforms": ["android", "iPhone", "iPad"],
     "id": "H5A990EE5",/*应用的标识，创建应用时自动生成，勿手动修改*/
     "name": "绿能侠管理端",/*应用名称，程序桌面图标名称*/
@@ -144,6 +144,44 @@
 					"view/hyzx/hyzx.html"
 				],
 				"priority": 0
+			},
+			"view/hyzx/hyzx.html": {
+				"resources": [],
+				"refer": [
+					"view/memberReg/memberReg.html",
+					"view/memberreg/memberreg.html"
+				],
+				"priority": 0
+			},
+			"view/memberReg/memberReg.html": {
+				"resources": [],
+				"refer": [
+					"view/hyzx/hyzx.html",
+					"view/memberReg/memberRegType.html",
+					"view/memberReg/memberregtype.html"
+				],
+				"priority": 0
+			},
+			"view/memberReg/memberregtype.html": {
+				"resources": [],
+				"refer": [
+					"view/hyzx/hyzx.html"
+				],
+				"priority": 0
+			},
+			"view/memberreg/memberreg.html": {
+				"resources": [],
+				"refer": [
+					"view/memberreg/memberregtype.html"
+				],
+				"priority": 0
+			},
+			"view/memberreg/memberregtype.html": {
+				"resources": [],
+				"refer": [
+					"view/hyzx/hyzx.html"
+				],
+				"priority": 0
 			}
 		},
 		"idle": {
@@ -182,7 +220,6 @@
 				"img/sqxx/027.png",
 				"js/app.js",
 				"img/register/next.png",
-				"view/memberReg/memberReg.html",
 				"fonts/mui.ttf",
 				"img/widgets_33.jpg",
 				"img/hyzx/head.png",
