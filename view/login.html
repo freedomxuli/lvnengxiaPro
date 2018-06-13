@@ -157,28 +157,31 @@
 			
 			var sid = localStorage.getItem("sid");
     		var obj_sid = {};
-			obj_sid["sid"] = sid;
-			obj_sid["method"] = config.apimethod.getsidver;
-        	obj_sid["version"] = config.apiversion;
-			var sign = GetSign(obj_sid);
-			var param = {
-		        queryData: {
-		          'method': config.apimethod.getsidver,
-		          'sign':sign,
-		          'sid':sid
-		        },
-		        method: 'POST'
-		    }
-			$.dataRequest(param, function(rs) {
-				console.log(JSON.stringify(rs));
-				if(rs.rsp=="succ")
-        		{
-        			if(rs.data.status=="true")
-        			{
-        				clicked('_www/view/hyzx/hyzx.html');
-        			}
-        		}
-			})
+    		if(sid)
+    		{
+    			obj_sid["sid"] = sid;
+				obj_sid["method"] = config.apimethod.getsidver;
+	        	obj_sid["version"] = config.apiversion;
+				var sign = GetSign(obj_sid);
+				var param = {
+			        queryData: {
+			          'method': config.apimethod.getsidver,
+			          'sign':sign,
+			          'sid':sid
+			        },
+			        method: 'POST'
+			    }
+				$.dataRequest(param, function(rs) {
+					console.log(JSON.stringify(rs));
+					if(rs.rsp=="succ")
+	        		{
+	        			if(rs.data.status=="true")
+	        			{
+	        				clicked('_www/view/hyzx/hyzx.html');
+	        			}
+	        		}
+				})
+    		}
 			
 			mui(document.body).on('tap',".mui-btn",function(){
 				var waiting = plus.nativeUI.showWaiting();
