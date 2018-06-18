@@ -149,7 +149,12 @@
 				"resources": [],
 				"refer": [
 					"view/memberReg/memberReg.html",
-					"view/memberreg/memberreg.html"
+					"view/memberreg/memberreg.html",
+					"view/khxm/xmshfp.html",
+					"view/khxm/jmxmlr.html",
+					"view/khxm/qyxmlr.html",
+					"view/khxm/khxmcx.html",
+					"view/kcsj/dkckhlb.html"
 				],
 				"priority": 0
 			},
@@ -180,6 +185,36 @@
 				"resources": [],
 				"refer": [
 					"view/hyzx/hyzx.html"
+				],
+				"priority": 0
+			},
+			"view/khxm/jmxmlr.html": {
+				"resources": [],
+				"refer": [
+					"view/hyzx/hyzx.html"
+				],
+				"priority": 0
+			},
+			"view/khxm/khxmcx.html": {
+				"resources": [],
+				"refer": [
+					"view/khxm/qyxmedit.html",
+					"view/khxm/jmxmedit.html",
+					"view/khxm/jdzl.html"
+				],
+				"priority": 0
+			},
+			"view/khxm/jdzl.html": {
+				"resources": [],
+				"refer": [
+					"view/khxm/sqxxzldetail.html"
+				],
+				"priority": 0
+			},
+			"view/kcsj/dkckhlb.html": {
+				"resources": [],
+				"refer": [
+					"view/kcsj/kcsjadd.html"
 				],
 				"priority": 0
 			}
@@ -245,7 +280,6 @@
 				"js/zepto.js",
 				"img/member/ghsjh.png",
 				"img/logo/1024.png",
-				"view/khxm/xmshfp.html",
 				"img/qdy/720P.png",
 				"img/hyzx/001.png",
 				"js/mui.min.js",

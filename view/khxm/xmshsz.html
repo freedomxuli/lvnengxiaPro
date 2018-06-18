@@ -13,12 +13,12 @@
     <link rel="stylesheet" type="text/css" href="../../css/mui.poppicker.css" />
     
     <style type="text/css">
-        /*.mui-plus header.mui-bar{
+        .mui-plus header.mui-bar{
             display: none;
         }
         .mui-plus .mui-bar-nav~.mui-content{
             padding: 0;
-        }*/
+        }
 
         /*hm开头的表示仅为 Hello MUI示例定义*/
         .hm-description{
@@ -158,26 +158,38 @@
 <body>
     <header class="mui-bar mui-bar-nav">
         <a class="mui-icon mui-icon-home mui-action-home"></a>
-        <h1 class="mui-title">添加会员类别</h1>
+        <h1 class="mui-title">项目审核分派</h1>
+        <a class="mui-pull-right mui-action-search">
+            <i class="mui-icon mui-icon-search"></i>
+        </a>
     </header>
     <div class="mui-content">
-        <div class="mui-input-group" id="form_client">
+        <form class="mui-input-group" id="form_client" action="http://test.lvnengxia.cn/index.php?controller=Jichu_APP_Shenhe&action=Save" method="POST">
         <div class="mui-input-row">
-            <label>会员名称</label>
-            <input type="text" name="realName" placeholder="客户名称" id="realName" value="" readonly>
-            <input type="hidden" name="id" value="825">
+            <label>客户名称</label>
+            <input type="text" name="compName" placeholder="客户名称" id="compName" value="" readonly>
+            <input type="hidden" name="clientId" value="66">
+            <input type="hidden" name="creater" placeholder="操作人" id="creater" value="管理员">
         </div>
         <div class="mui-input-row mui-input-btn-label">
-            <label>会员类别</label>
-            <input type="text" name="memberKindText" placeholder="会员类别" id="memberKindText" value="" readonly>
-            <button id='showmemberKindText' data-select='' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
-            <input class="select-hide" type="hidden" id="memberKind" name="memberKind" value="">
+            <label>负责人</label>
+            <input type="text" name="fuzerenText" placeholder="负责人" id="fuzerenText" value="" readonly>
+            <button id='showfuzerenText' data-select='' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
+            <input class="select-hide" type="hidden" id="fuzerenId" name="fuzerenId" value="">
         </div>
         <div class="mui-input-row mui-input-btn-label">
-            <label>回访记录</label>
-            <textarea name="remark" placeholder="回访记录" id="remark"></textarea>
+            <label>勘察人</label>
+            <input type="text" name="kancharenText" placeholder="勘察人" id="kancharenText" value="" readonly>
+            <button id='showkancharenText' data-select='' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
+            <input class="select-hide" type="hidden" id="kancharenId" name="kancharenId" value="">
         </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>客户等级</label>
+            <input type="text" name="levelText" placeholder="客户等级" id="levelText" value="" readonly>
+            <button id='showlevelText' data-select='' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
+            <input class="select-hide" type="hidden" id="level" name="level" value="">
         </div>
+        </form>
         <div class="" style="height: 50px;"></div>
     </div>
 
@@ -199,24 +211,28 @@
 <script src="../../js/jquery.1.9.1.js"></script>
 <script type="text/javascript">
     var jQuery = jQuery.noConflict();
-</script>
+</script> 
 <script>
+
     mui.init();
-    var mid = "";
+    var cid = "";
     var realname = "";
+    var fuzerenId = "";
+    var kancharenId = "";
+    var level = "";
     var sid = localStorage.getItem("sid");
-    mui.plusReady(function() {
-    	mid = plus.webview.currentWebview().mid;
+    mui.plusReady(function(){
+    	cid = plus.webview.currentWebview().cid;
       	realname = plus.webview.currentWebview().realname;
-      	jQuery('#realName').val(realname);
+      	jQuery('#compName').val(realname);
       	var obj_reg = {};
     	obj_reg["sid"] = sid;
-    	obj_reg["method"] = config.apimethod.regType;
+    	obj_reg["method"] = config.apimethod.dkcinit;
     	obj_reg["version"] = config.apiversion;
     	var sign_reg = GetSign(obj_reg);
     	var param_reg = {
 	        queryData: {
-	          'method': config.apimethod.regType,
+	          'method': config.apimethod.dkcinit,
 	          'sign':sign_reg,
 	          'sid':sid
 	        },
@@ -225,13 +241,8 @@
     	$.dataRequest(param_reg, function(rs) {
     		if(rs.rsp=="succ")
 			{
-				jQuery('#showmemberKindText').data('select',rs.data);
-				
-		    	//首页
-			    mui(document.body).on('tap','.mui-action-home',function(){
-			        clicked('_www/view/hyzx/hyzx.html');
-			    });
-			
+				/*jQuery("#showfuzerenText").data("select",rs.data.fuzerenArr);
+				jQuery("#showkancharenText").data("select",rs.data.fuzerenArr);*/
 			    //修改的时候默认给输入框显示值
 			    jQuery('.select-hide[value!=""]').each(function(){
 			        var textInput=jQuery(this).siblings('input[type=text]');
@@ -245,7 +256,7 @@
 			            }
 			        }
 			    });
-				
+			
 			    //选择类型
 			    jQuery('.btn-select').each(function(){
 			        var picker = new mui.PopPicker();
@@ -265,11 +276,13 @@
 			        }, false);
 			    });
 			
+			
 			    //提交按钮事件：需要验证基本信息
-			    var rulesRequired = ['memberKind'];
+			    var rulesRequired = ['fuzerenId'];
 			    jQuery('#btn_submit').click(function(){
+			    	var waiting = plus.nativeUI.showWaiting();
 			        var that = this;
-			        var waiting = plus.nativeUI.showWaiting();
+			       
 			        //验证是否填写
 			        var _rule_res = '';
 			        jQuery(rulesRequired).each(function(){
@@ -285,23 +298,26 @@
 			            waiting.close(); 
 			            return;
 			        }
-					var obj = {};
+			        
+			        var obj = {};
 					obj["sid"] = sid;
-					obj["mid"] = mid;
-					obj["memberKind"] = jQuery('#memberKind').val();
-					obj["remark"] = jQuery('#remark').val();
-					obj["method"] = config.apimethod.saveregType;
+					obj["cid"] = cid;
+					obj["lid"] = jQuery('#fuzerenId').val();
+					obj["fid"] = jQuery('#kancharenId').val();
+					obj["kid"] = jQuery('#level').val();
+					obj["method"] = config.apimethod.yhsqxmsh;
 					obj["version"] = config.apiversion;
 					var sign = GetSign(obj);
 					console.log(JSON.stringify(obj));
 					var param = {
 						queryData: {
-				          'method': config.apimethod.saveregType,
+				          'method': config.apimethod.yhsqxmsh,
 				          'sign':sign,
 				          'sid':sid,
-				          'mid':mid,
-				          'memberKind':jQuery('#memberKind').val(),
-				          'remark':jQuery('#remark').val()
+				          'cid':cid,
+				          'lid':jQuery('#fuzerenId').val(),
+				          'fid':jQuery('#kancharenId').val(),
+				          'kid':jQuery('#level').val()
 				        },
 				        method: 'POST'
 					}
@@ -322,5 +338,12 @@
 			}
     	})
     })
+
+    //首页
+    mui(document.body).on('tap','.mui-action-home',function(){
+        clicked('_www/view/hyzx/hyzx.html');
+    });
+
+
 </script>
 </html>

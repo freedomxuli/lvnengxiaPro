@@ -1,36 +1,86 @@
 {
-  "view/login.html": {
-    "refer": [
-      "view/hyzx/hyzx.html",
-      "view/register.html"
-    ],
-    "resources": []
-  },
-  "view/register.html": {
-    "refer": [
-      "view/login.html"
-    ],
-    "resources": []
-  },
-  "view/hyzx/hyzx.html": {
-    "refer": [
-      "view/tzsyb/grtzsyb.html",
-      "view/tzsyb/comtzsyb.html",
-      "view/memberReg/memberReg.html"
-    ],
-    "resources": []
-  },
-  "view/tzsyb/comtzsyb.html": {
-    "refer": [
-      "view/hyzx/hyzx.html",
-      "view/tzsyb/comtzsybdk.html"
-    ],
-    "resources": []
-  },
-  "view/tzsyb/comtzsybdk.html": {
-    "refer": [
-      "view/tzsyb/comtzsyb.html"
-    ],
-    "resources": []
-  }
+	"view/login.html": {
+		"refer": [
+			"view/hyzx/hyzx.html",
+			"view/register.html"
+		],
+		"resources": []
+	},
+	"view/register.html": {
+		"refer": [
+			"view/login.html"
+		],
+		"resources": []
+	},
+	"view/hyzx/hyzx.html": {
+		"refer": [
+			"view/tzsyb/grtzsyb.html",
+			"view/tzsyb/comtzsyb.html",
+			"view/memberReg/memberReg.html",
+			"view/memberreg/memberreg.html",
+			"view/khxm/xmshfp.html",
+			"view/khxm/jmxmlr.html",
+			"view/khxm/qyxmlr.html",
+			"view/khxm/khxmcx.html",
+			"view/kcsj/dkckhlb.html"
+		],
+		"resources": []
+	},
+	"view/tzsyb/comtzsyb.html": {
+		"refer": [
+			"view/hyzx/hyzx.html",
+			"view/tzsyb/comtzsybdk.html"
+		],
+		"resources": []
+	},
+	"view/tzsyb/comtzsybdk.html": {
+		"refer": [
+			"view/tzsyb/comtzsyb.html"
+		],
+		"resources": []
+	},
+	"view/memberReg/memberReg.html": {
+		"refer": [
+			"view/hyzx/hyzx.html",
+			"view/memberReg/memberRegType.html",
+			"view/memberReg/memberregtype.html"
+		]
+	},
+	"view/memberReg/memberregtype.html": {
+		"refer": [
+			"view/hyzx/hyzx.html"
+		]
+	},
+	"view/memberreg/memberreg.html": {
+		"refer": [
+			"view/memberreg/memberregtype.html"
+		]
+	},
+	"view/memberreg/memberregtype.html": {
+		"refer": [
+			"view/hyzx/hyzx.html"
+		]
+	},
+	"view/khxm/jmxmlr.html": {
+		"refer": [
+			"view/hyzx/hyzx.html"
+		]
+	},
+	"view/khxm/khxmcx.html": {
+		"refer": [
+			"view/khxm/qyxmedit.html",
+			"view/khxm/jmxmedit.html",
+			"view/khxm/jdzl.html"
+		]
+	},
+	"view/khxm/jdzl.html": {
+		"refer": [
+			"view/khxm/sqxxzldetail.html"
+		]
+	},
+	"view/kcsj/dkckhlb.html": {
+		"refer": [
+			"view/kcsj/kcsjadd.html"
+		]
+	}
 }

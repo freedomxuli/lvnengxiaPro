@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Jado绿能侠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="../../css/mui.min.css" />
+    
+    <style type="text/css">
+        .cell-detial{position: relative;font-size: 1em;color:#2BB673;width: 100%;background-color: #fff;border-top: 1px solid #efefef;clear: both;height: 30px;line-height: 30px;text-align: center;display: block;}
+        .mui-card-content{position: relative;}
+        .mui-after-content{margin-top:60px;}
+
+        .mui-input-row{height: auto !important;}
+        .mui-input-btn-label{width: 100%;}
+        .mui-input-row input[readonly]{background: #efefef;}
+        .mui-input-row label{width: 40%;}
+        .mui-input-row input[type='text'],textarea{width: 60% !important;}
+        .mui-input-btn-label input[type='text']{width: 45% !important;float: left !important;}
+        .mui-input-btn-label button{width: 15% !important;padding: 8px !important;margin:0px !important;}
+        .mui-card.mui-card-list-eqinfo .mui-card-content-inner{padding: 8px 0px;}
+        .mui-card-content-inner .cell-view-12{padding: 0px 10px;}
+        .detial-cell{padding: 0px 0px;border-top: 1px solid #efefef;display: none;clear: both;background-color: #EDF9F5;}
+        .mui-card-content-inner .cell-view-12.detial-cell{padding: 0px 0px;}
+    </style>
+
+    
+</head>
+<body>
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-action-back mui-icon mui-icon-arrowthinleft"></a>
+        <h1 class="mui-title">勘察材料详情</h1>
+    </header>
+
+    <div class="mui-after-content">
+                
+    </div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/zepto.js"></script>
+<script src="../../js/mui.picker.js"></script>
+<script src="../../js/mui.picker.min.js"></script>
+<script src="../../js/mui.poppicker.js"></script>
+<script src="../../js/mui.enterfocus.js"></script>
+<script src="../../js/template.min.js"></script>
+<script src="../../config.js"></script>
+<script src="../../js/app.js"></script>
+<script src="../../js/sign.js"></script>
+<script src="../../js/md5.js"></script>
+<script src="../../js/jquery.1.9.1.js"></script>
+<script type="text/javascript">
+    var jQuery = jQuery.noConflict();
+</script>
+<script>
+	var sid = localStorage.getItem("sid");
+    mui.init();
+    mui.plusReady(function(){
+    	var cid = plus.webview.currentWebview().cid;
+    	var itemCode = plus.webview.currentWebview().itemCode;
+    	var itemValue = plus.webview.currentWebview().itemValue;
+    	var obj_jd ={};
+	    obj_jd["sid"] = sid;
+	    obj_jd["cid"] = cid;
+	    obj_jd["itemCode"] = itemCode;
+	    obj_jd["itemValue"] = itemValue;
+	    obj_jd["method"] = config.apimethod.xmjdmxcx;
+		obj_jd["version"] = config.apiversion;
+	    var sign = GetSign(obj_jd);
+	    var param = {
+	        queryData: {
+	          'method': config.apimethod.xmjdmxcx,
+	          'sign':sign,
+	          'cid':cid,
+	          'sid':sid,
+	          'itemCode':itemCode,
+	          'itemValue':itemValue
+	        },
+	        method: 'POST'
+	    }
+	    $.dataRequest(param, function(rs) {
+	    	console.log(JSON.stringify(rs));
+			if(rs.rsp=="succ")
+			{
+				var html = "";
+				for(var i = 0; i<rs.data.rows.length; i++)
+				{
+					html += '<div class="mui-card mui-card-list-eqinfo mui-card-eqinfo-line">'+
+					            '<div class="mui-card-content">'+
+					                '<div class="mui-card-content-inner">';
+					                for(var item in rs.data.rows[i])
+					                {
+					                	html += '<div class="cell-view-12">'+
+							                    	'<span class="title-max">'+item+'</span>'+rs.data.rows[i][item]+
+							                    '</div>';
+					                }
+					                    
+					                html += '</div>'+
+					            '</div>'+
+					        '</div>';
+				}
+				console.log(html);
+				jQuery('.mui-after-content').html(html);
+			}else
+			{
+				plus.nativeUI.toast("获取失败：" + rs.data);
+				return;
+			}
+		})
+    });
+
+</script>
+</html>

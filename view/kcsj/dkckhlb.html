@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<link href="../../css/mui.min.css" rel="stylesheet" />
-	<link rel="stylesheet" type="text/css" href="../../css/mui.picker.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/mui.min.css" />
     <link rel="stylesheet" type="text/css" href="../../css/mui.picker.min.css" />
     <link rel="stylesheet" type="text/css" href="../../css/mui.poppicker.css" />
     
@@ -44,7 +43,7 @@
         .cell-view-6{float: left;width: 50%;}
         .cell-view-8{float:left;width: 66.66%;}
         .cell-view-12{float:left;width: 100%;}
-        span.title{color: gray;width: 60px;display: inline-block;}
+        span.title{color: gray;width: 46px;display: inline-block;}
         span.green{color: green;}
         span.gray{color: gray;}
         span.orange{color: orange;}
@@ -53,7 +52,7 @@
         .mui-content>.mui-card:first-child{margin-top: 1px;}
         .mui-card{margin:0px;margin-top: 1px; border-radius: 0px;}
         .cell-detial{
-            position: absolute;right: 3px;top: 45px;font-size: 1em;color:#007aff;
+            position: absolute;right: 3px;top: 30px;font-size: 1em;color:#007aff;
         }
         .mui-card-content-inner{padding: 8px 10px;}
         .detial-cell{padding: 8px;border-top: 1px solid #efefef;display: none;}
@@ -66,14 +65,14 @@
         .mui-input-btn-label button{width: 15% !important;padding: 8px !important;margin:0px !important;}
         .search-container{display: none;margin-bottom: 15px;}
         .mui-button-row-search button{width: 49%;}
-        .edit-client{color: blue;}
     </style>
     
 </head>
 <body>
     <header class="mui-bar mui-bar-nav">
         <a class="mui-icon mui-icon-home mui-action-home"></a>
-        <h1 class="mui-title">会员注册列表</h1>
+        <a class="mui-icon mui-icon-bars mui-action-index" href="http://test.lvnengxia.cn/index.php?controller=Fangan_APP_Fangan&action=Index"></a>
+        <h1 class="mui-title">待勘察客户列表</h1>
         <a class="mui-pull-right mui-action-search">
             <i class="mui-icon mui-icon-search"></i>
         </a>
@@ -82,32 +81,34 @@
         <div class="mui-card search-container">
             <div class="mui-card-content">
                 <div class="mui-card-content-inner">
-                    <div name="FormSearch" id='FormSearch' class="mui-input-group">
+                    <form name="FormSearch" id='FormSearch' method="post" action="" class="mui-input-group">
                         <div class="mui-input-row">
-                            <label>关键词</label>
-                            <input id="key" type="text" name="key" value="" placeholder="关键词">
-                        </div>
-                         <div class="mui-input-row">
-                            <label>地区</label>
-                            <input id="address" type="text" name="address" value="" placeholder="地区">
+                            <label>客户名称</label>
+                            <input type="text" name="key" value="" placeholder="客户名称">
                         </div>
                         <div class="mui-input-row mui-input-btn-label">
-                            <label>注册类型</label>
-                            <input type="text" name="regTypeText" placeholder="注册类型" id="regTypeText" value="" readonly>
-                            <button id='showregTypeText' data-select='[{"text":"\u4e2a\u4eba","value":0},{"text":"\u4f01\u4e1a","value":1}]' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
-                            <input class="select-hide" type="hidden" id="regType" name="regType" value="">
+                            <label>负责人</label>
+                            <input type="text" name="fuzerenText" placeholder="负责人" id="fuzerenText" value="" readonly>
+                            <button id='showfuzerenText' data-select='' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
+                            <input class="select-hide" type="hidden" id="fuzerenId" name="fuzerenId" value="">
                         </div>
                         <div class="mui-input-row mui-input-btn-label">
-                            <label>会员类别</label>
-                            <input type="text" name="memberKindText" placeholder="会员类别" id="memberKindText" value="" readonly>
-                            <button id='showmemberKindText' data-select='' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
-                            <input class="select-hide" type="hidden" id="memberKind" name="memberKind" value="">
+                            <label>等级</label>
+                            <input type="text" name="levelText" placeholder="等级" id="levelText" value="" readonly>
+                            <button id='showLevelText' data-select='' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
+                            <input class="select-hide" type="hidden" id="level" name="level" value="">
+                        </div>
+                        <div class="mui-input-row mui-input-btn-label">
+                            <label>客户类型</label>
+                            <input type="text" name="clientTypeText" placeholder="客户类型" id="clientTypeText" value="" readonly>
+                            <button id='showclientTypeText' data-select='' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
+                            <input class="select-hide" type="hidden" id="clientType" name="clientType" value="">
                         </div>
                         <div class="mui-button-row mui-button-row-search">
                             <button type="button" class="mui-btn mui-btn-default mui-icon mui-icon-undo btn-clear-search">清空</button>
                             <button type="submit" class="mui-btn mui-btn-primary mui-icon mui-icon-search">搜索</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -135,103 +136,106 @@
 <script src="../../js/jquery.1.9.1.js"></script>
 <script type="text/javascript">
     var jQuery = jQuery.noConflict();
-</script>
+</script> 
 <script type="text/html" id="cardlist">
 	<%
 		for(var i = 0;i<data.List.length;i++)
 		{
 		%>
 		<li>
-				<div class="mui-card">
+			<div class="mui-card">
 	            <div class="mui-card-content">
 	                <div class="mui-card-content-inner">
 	                    <div class="cell-view-12">
-	                    <span class="title">手机号</span><b><a href="tel:"><%=data.List[i].account%></a></b></div>
+	                    <span class="title">客户</span><b><%=data.List[i].compName%></b></div>
 	                    <div class="cell-view-6">
-	                    <span class="title">会员名</span><%=data.List[i].name%></div>
+	                    <span class="title">负责人</span><%=data.List[i].fuzeren%></div>
 	                    <div class="cell-view-6">
-	                        <span class="title">注册类型</span>
-	                        <span class="orange"><%=data.List[i].regType%></span>
-	                    </div>
+	                    <span class="title">勘察人</span><%=data.List[i].kancharen%></div>
 	                    <div class="cell-view-6">
-	                    <span class="title">注册时间</span><%=data.List[i].regTime%></div>
+	                    <span class="title">日期</span><%=data.List[i].clientDate%></div>
 	                    <div class="cell-view-6">
-	                        <span class="title">会员类别</span>
-	                        <span class="green"><%=data.List[i].memberKind%></span>
+	                    <span class="title">状态</span><%=data.List[i].proStatus=="active"?"正常":"暂停"%></div>
+	
+	                    <div class="cell-view-12">
+	                        <span class="title">等级</span>
+	                        <span class="green"><%=data.List[i].level%></span>
 	                    </div>
 	                    <div class="cell-view-12">
 	                    <span class="title">地区</span><%=data.List[i].address%></div>
-	                    <div class="cell-view-12">
-	                    <span class="title">代理</span><%=data.List[i].dailiName%></div>
 	                    <div class="cell-detial">
-	                        <i class="mui-icon mui-icon-arrowdown action-detial<%=data.currentPage%>" data-mid="<%=data.List[i].mid%>"></i>
+	                        <i class="mui-icon mui-icon-arrowdown action-detial<%=data.currentPage%>"></i>
 	                    </div>
-	                    <div id="mid<%=data.List[i].mid%>" class="cell-view-12 detial-cell">
-	                        
+	                    <div class="cell-view-12 detial-cell">
+	                        <div class="cell-view-6">
+	                            <span class="gray">申请容量</span>.<%=data.List[i].ApplyCapacity%>
+	                        </div>
+	                        <div class="cell-view-6">
+	                            <span class="gray">客户类型</span>.<span class="orange"><%=data.List[i].clientType%></span>
+	                        </div>
+	                                                <div class="cell-view-12">
+	                            <span class="gray">开户行</span>.<%=data.List[i].bankName%>
+	                        </div>
+	                        <div class="cell-view-12">
+	                            <span class="gray">银行帐号</span>.<%=data.List[i].bankId%>
+	                        </div>
+	                        <div class="cell-view-12">
+                                <span style="color:blue;" class="edit-kancha<%=data.currentPage%>" data-cid="<%=data.List[i].id%>" data-clienttype="<%=data.List[i].clientType%>">
+                                    	勘察设计
+                                    <span class="mui-icon mui-icon-arrowright"></span>
+                                </span>
+                            </div>
+	                        <%
+	                        	if(data.List[i].Pics)
+	                        	{
+	                        		%>
+		                        		<div id="slider" class="mui-slider" data-slidershowtimer="161">
+				                            <div class="mui-slider-group mui-slider-loop">
+				                            	<%
+				                            		for(var j = 0;j<data.List[i].Pics.length;j++)
+				                            		{
+				                            			%>
+					                            			<div class="mui-slider-item mui-slider-item-duplicate">
+							                                    <a href="#">
+							                                        <img src="<%=data.List[i].Pics[j].imageUrl%>">
+							                                        <p class="mui-slider-title"><%=data.List[i].Pics[j].title%></p>
+							                                    </a>
+							                                </div>
+				                            			<%
+				                            		}
+				                            	%>
+				                                
+				                            </div>
+				                            <div class="mui-slider-indicator mui-text-right">
+				                            	<%
+				                            		for(var j = 0;j<data.List[i].Pics.length;j++)
+				                            		{
+				                            			if(j==0)
+				                            			{
+				                            				%>
+				                            				<div class="mui-indicator mui-active"></div>
+				                            				<%
+				                            			}else
+				                            			{
+				                            				%>
+				                            				<div class="mui-indicator "></div>
+				                            				<%
+				                            			}
+				                            		}
+				                            	%>
+				                            </div>
+				                        </div>
+	                        		<%
+	                        	}
+	                        %>
 	                    </div>
 	                </div>
 	            </div>
-	        </div>
-	        </li>
+		    </div>
+	    </li>
 		<%
 		}
 	%>
-</script>
-<script type="text/html" id="hydetail">
-	<div class="cell-view-12">
-        <span class="gray">户主年龄</span>.<%=data.age%>
-    </div>
-    <div class="cell-view-12">
-        <span class="gray">屋顶朝南面积</span>.<%=data.roofAcreage%>
-    </div>
-    <div class="cell-view-12">
-        <span class="gray">瓦片类型</span>.<%=data.tileKind%>
-    </div>
-    <div class="cell-view-12">
-        <span class="title">会员备注</span>.<%=data.memo%>
-    </div>
-    <div class="cell-view-12">
-        <span class="title">回访记录</span>.<%=data.actionMemo%>
-    </div>
-    <div class="cell-view-12">
-        <div data-mid="<%=data.mid%>" data-realname="<%=data.name%>" class="edit-client">
-            <span class="mui-icon mui-icon-star"></span>会员分类
-        </div>
-    </div>
-</script>
-<script type="text/html" id="qydetail">
-	<div class="cell-view-12">
-        <span class="gray">公司名称</span>.<%=data.compName%>
-    </div>
-    <div class="cell-view-12">
-        <span class="gray">法人</span>.<%=data.corporation%>
-    </div>
-    <div class="cell-view-12">
-        <span class="gray">房产面积</span>.<%=data.acreage%>
-    </div>
-    <div class="cell-view-12">
-        <span class="gray">变压器容量</span>.<%=data.rongliang%>
-    </div>
-    <div class="cell-view-6">
-        <span class="gray">持有房产证</span>.<%=data.isProCard%>
-    </div>
-    <div class="cell-view-6">
-        <span class="gray">持有土地证</span>.<%=data.isLandCard%>
-    </div>
-    <div class="cell-view-12">
-        <span class="gray">房屋类型</span>.<%=data.roof%>
-    </div>
-    <div class="cell-view-12">
-        <span class="title">会员备注</span>.<%=data.memo%>
-    </div>
-    <div class="cell-view-12">
-        <span class="title">回访记录</span>.<%=data.actionMemo%>
-    </div>
-    <div class="cell-view-12">
-        <div data-mid="<%=data.mid%>" data-realname="<%=data.name%>" class="edit-client">
-            <span class="mui-icon mui-icon-star"></span>会员分类
-        </div>
-    </div>
 </script>
 <script>
 	var count = 1;
@@ -246,17 +250,16 @@
 			}
 		}
     });
-    
     loadRegType();
     function loadRegType(){
     	var obj_reg = {};
     	obj_reg["sid"] = sid;
-    	obj_reg["method"] = config.apimethod.regType;
+    	obj_reg["method"] = config.apimethod.dkcinit;
     	obj_reg["version"] = config.apiversion;
     	var sign_reg = GetSign(obj_reg);
     	var param_reg = {
 	        queryData: {
-	          'method': config.apimethod.regType,
+	          'method': config.apimethod.dkcinit,
 	          'sign':sign_reg,
 	          'sid':sid
 	        },
@@ -265,7 +268,11 @@
     	$.dataRequest(param_reg, function(rs) {
     		if(rs.rsp=="succ")
 			{
-				jQuery('#showmemberKindText').data('select',rs.data);
+				console.log(JSON.stringify(rs));
+				jQuery('#showfuzerenText').data('select',rs.data.fuzerenArr);
+				jQuery('#showLevelText').data('select',rs.data.level);
+				jQuery('#showclientTypeText').data('select',rs.data.clientType);
+				
 				//选择类型
 			    jQuery('.btn-select').each(function(){
 			        var picker = new mui.PopPicker();
@@ -317,44 +324,44 @@
         m = date.getMinutes() + ':';
         s = date.getSeconds();
         return Y+M+D+h+m+s;
-    }
-	
-	function loadData(key,regType,memberKind,address){
+   }
+    
+    function loadData(key,fuzerenId,levelId,type){
 		var now_time = new Date().getTime();
 		var obj_point = {};
 		obj_point["sid"] = sid;
 		obj_point["page"] = count;
 		obj_point["pageNum"] = pageNum;
 		obj_point["key"] = key;
-		obj_point["regType"] = regType;
-		obj_point["memberKind"] = memberKind;
-		obj_point["address"] = address;
-		obj_point["timestamp"] = now_time;
-		obj_point["method"] = config.apimethod.memberslist;
+		obj_point["fuzerenId"] = fuzerenId;
+		obj_point["type"] = type;
+		obj_point["levelId"] = levelId;
+		obj_point["method"] = config.apimethod.dkckhlb;
         obj_point["version"] = config.apiversion;
 		var sign = GetSign(obj_point);
 		var param = {
 	        queryData: {
-	          'method': config.apimethod.memberslist,
+	          'method': config.apimethod.dkckhlb,
 	          'sign':sign,
 	          'sid':sid,
 	          'page':count,
 	          'pageNum':pageNum,
 	          'key':key,
-	          'regType':regType,
-	          'memberKind':memberKind,
-	          'address':address,
-	          'timestamp':now_time
+	          'fuzerenId':fuzerenId,
+	          'type':type,
+	          'levelId':levelId
 	        },
 	        method: 'POST'
 	   }
 		$.dataRequest(param, function(rs) {
+			console.log(JSON.stringify(rs));
 			if(rs.rsp=="succ")
 			{
 				if(rs.data.List)
 				{
 					++count;
 					setTimeout(function() {
+						console.log(JSON.stringify(rs));
 						mui('#pullrefresh').pullRefresh().endPullupToRefresh((count > rs.data.pageCount)); //参数为true代表没有更多数据了。
 						var list = template("cardlist",rs);
 						jQuery('#content-card-list').append(list);
@@ -362,50 +369,24 @@
 					    //显示详细
 					    jQuery('.action-detial'+rs.data.currentPage).click(function(){
 					        jQuery(this).parent().siblings('.detial-cell').slideToggle();
-					        var mid = jQuery(this).data("mid");
-					        var obj = {};
-					        obj["sid"] = sid;
-					        obj["mid"] = mid;
-					        obj["type"] = "detailed";
-					        obj["method"] = config.apimethod.member;
-					        obj["version"] = config.apiversion;
-					        sign = GetSign(obj);
-					        var param1 = {
-						        queryData: {
-						          'method': config.apimethod.member,
-						          'sign':sign,
-						          'sid':sid,
-						          'mid':jQuery(this).data("mid"),
-						          'type':"detailed"
-						        },
-						        method: 'POST'
-						    }
-					        $.dataRequest(param1, function(rs1) {
-					        	if(rs1.rsp=="succ")
-								{
-									jQuery('#mid'+mid).html('');
-									rs1.data["mid"] = mid;
-									rs1.data["isProCard"] = rs1.data.isProCard == "0"?"没有":"有";
-									rs1.data["isLandCard"] = rs1.data.isLandCard == "0"?"没有":"有";
-									if(rs1.data.regType=="0")
-									{
-										var list1 = template("hydetail",rs1);
-										jQuery('#mid'+mid).append(list1);
-									}else{
-										var list1 = template("qydetail",rs1);
-										jQuery('#mid'+mid).append(list1);
-									}
-									jQuery('.edit-client').click(function(){
-										var id_new = jQuery(this).data("mid");
-										var realname = jQuery(this).data("realname");
-										clicked("_www/view/memberreg/memberregtype.html",{
-											'mid': id_new,
-											'realname':realname
-										});
-									})
-								}
-					        })
 					    })
+					    mui(".mui-slider").slider();
+					    
+					    mui(document.body).on('tap','.edit-kancha'+rs.data.currentPage,function(){
+					        var that = this;
+					        if(jQuery(this).data("clienttype")=="私宅")
+					        {
+					        	clicked("_www/view/kcsj/kcsjadd.html",{
+					            	cid:jQuery(this).data("cid")
+					            });
+					        }
+					        else{
+					        	clicked("_www/view/kcsj/kcsjqyadd.html",{
+					            	cid:jQuery(this).data("cid")
+					            });
+					        }
+					    });
+					    
 					}, 1500);
 				}else
 				{
@@ -418,14 +399,6 @@
 			}
 		});
 	}
-	
-    //首页
-    mui(document.body).on('tap','.mui-action-home',function(){
-        clicked('_www/view/hyzx/hyzx.html');
-    });
-    mui(document.body).on('tap','.mui-action-search',function(){
-        jQuery('.search-container').slideToggle();
-    });
 
     //清空搜索
     jQuery('.btn-clear-search').click(function(){
@@ -440,7 +413,7 @@
     jQuery('.mui-icon-search').click(function(){
     	jQuery('#content-card-list').html('');
     	count = 1;
-    	loadData(jQuery('#key').val(),jQuery('#address').val(),jQuery('#regType').val(),jQuery('#memberKind').val());
+    	loadData(jQuery('#key').val(),jQuery('#fuzerenId').val(),jQuery('#level').val(),jQuery('#clientType').val());
         //jQuery('#FormSearch').find('input').val('');
         //jQuery('#FormSearch').submit();
     });
@@ -457,5 +430,27 @@
 			mui('#pullrefresh').pullRefresh().pullupLoading();
 		});
 	}
+	
+    //首页
+    mui(document.body).on('tap','.mui-action-home',function(){
+        clicked('_www/view/hyzx/hyzx.html');
+    });
+    mui(document.body).on('tap','.mui-action-index',function(){
+        clicked('_www/view/kcsj/kckhlb.html');
+    });
+    mui(document.body).on('tap','.mui-action-search',function(){
+        jQuery('.search-container').slideToggle();
+    });
+
+/*    mui(document.body).on('tap','.edit-kancha',function(){
+        document.location.href = jQuery(this).attr('href');
+    });
+    //显示详细
+    jQuery('.action-detial').click(function(){
+        jQuery(this).parent().siblings('.detial-cell').slideToggle();
+    })*/
+
+    
+
 </script>
 </html>

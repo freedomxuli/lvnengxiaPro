@@ -24,15 +24,15 @@ var config = {
         comtzmblist:'vague.offer.qy.template.list',//企业模糊报价模版列表
         comtzmbdetail:'vague.price.qy.template.info.get',//企业模糊报价模版信息获取
         perjzinfo:'apply.build.personal.initData.get',//个人一键申请建站初始数据获取
-        perjzsave:'apply.build.personal.save',//个人申请建站保存
+        perjzsave:'build.edit.personal.save',//个人申请建站保存
         imageupload:'image.upload',//上传图片
         comjzinfo:'apply.build.qy.initData.get',//企业一键申请建站初始数据获取
-        comjzsave:'apply.build.qy.save',//企业一键申请建站初始数据获取
+        comjzsave:'build.edit.qy.save',//企业一键申请建站初始数据获取
         isinfoget:'is.perfect.infomation.get',//获取是否已经完善个人资料
         perjzjd:'apply.personal.progress.list',//个人建站进度查询
         comjzjd:'apply.qy.progress.list',//企业建站进度查询
-        grjdzl:'project.schedule.report',//个人进度总览
-        xmjdmxcx:'project.schedule.view.get',//项目进度明细查询
+        grjdzl:'build.row.progress',//个人进度总览
+        xmjdmxcx:'build.progress.detials',//项目进度明细查询
         changetel:'telphone.update',//更换手机号
         changepwd:'password.update',//修改会员密码
         savecom:'infomation.perfect.qy.save',//企业信息完善
@@ -165,5 +165,22 @@ var config = {
         memberslist:'get.members.list',//会员列表
         regType:'member.kind.list.get',//获取会员类别档案
         saveregType:'member.kind.edit.save',//获取会员类别档案
+        yhsqxmlb:'project.apply.list',//会员申请项目列表
+        yhsqxmsc:'project.apply.remove',//会员申请项目删除
+        yhsqxmsh:'project.apply.shenhe',//会员申请项目审核
+        dkcinit:'kancha.renwu.list.init',//待勘察设计初始化
+        jmxminit:'build.edit.personal.initData.get',//居民项目申请初始数据
+        jmxmtel:'build.search.member.by.tel',//录入项目查找会员相关信息
+        qyxmsqinit:'build.edit.qy.initData.get',//企业项目申请初始数据
+        khxminit:'build.list.init.get',//客户项目查询初始化
+        khcxlist:'build.list.get',//客户项目查询列表
+        khxmsc:'build.row.remove',//客户项目查询删除项目
+        tzkhdj:'level.edit.init',//调整客户等级初始化
+        savetzkhdj:'level.edit.save',//调整客户等级保存
+        dkckhlb:'kancha.renwu.list.get',//待勘察客户列表
+        kcszinit:'kancha.personal.edit.init',//勘察私宅项目初始化数据
+        cailiaolist:'cailiao.list.get',//获取材料档案列表
+        cailiaobrands:'cailiao.brands.get',//获取材料档案对应品牌
+        kcszxmsave:'kancha.personal.edit.save',//勘察私宅项目保存
     }
 }

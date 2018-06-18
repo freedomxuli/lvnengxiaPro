@@ -1,0 +1,2266 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Jado绿能侠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="../../css/mui.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/mui.picker.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/mui.poppicker.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/icons-extra.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/mui.indexedlist.css" />
+    
+    <style type="text/css">
+        /*.mui-plus header.mui-bar{
+            display: none;
+        }*/
+        .mui-plus .mui-bar-nav~.mui-content{
+            padding: 0;
+        }
+
+        /*hm开头的表示仅为 Hello MUI示例定义*/
+        .hm-description{
+            margin: .5em 0;
+        }
+
+        .hm-description>li {
+            font-size: 14px;
+            color: #8f8f94;
+        }
+        .mui-plus .plus{
+            display: inline;
+        }
+        .btn_submit{z-index:100;width:50%;float:left}
+        html,
+        body,
+        .mui-content {
+            height: 0px;
+            margin-top: 20px;
+            background-color: #efeff4;
+        }
+        h5.mui-content-padded {
+            margin-left: 3px;
+            margin-top: 20px !important;
+        }
+        h5.mui-content-padded:first-child {
+            margin-top: 12px !important;
+        }
+        .mui-btn {
+            font-size: 16px;
+            padding: 8px;
+            margin-top:40px ;
+            /*margin: 3px;*/
+        }
+        .ui-alert {
+            text-align: center;
+            padding: 20px 10px;
+            font-size: 16px;
+        }
+        * {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+        }
+        .plus{
+            display: none;
+        }
+
+        p {
+            text-indent: 22px;
+        }
+        span.mui-icon {
+            font-size: 14px;
+            color: #007aff;
+            margin-left: -15px;
+            padding-right: 10px;
+        }
+        .mui-popover {
+            height: 100px;
+        }
+        .mui-content {
+            /*padding: 10px;*/
+        }
+        #topPopover {
+            position: fixed;
+            top: 16px;
+            left: 3px;
+        }
+        #topPopover .mui-popover-arrow {
+            left: 3px;
+        }
+
+        footer{position: fixed;bottom: 0px;left: 0px;width: 100%;height: 40px;z-index: 99;}
+        footer button{height: 40px;border-radius: 0px !important;padding:0px;line-height: 0.8 !important;margin: 0px !important;}
+    .mui-input-row{height: auto !important;}
+    .mui-input-btn-label{width: 100%;}
+    .mui-input-row input[readonly]{background: #efefef;}
+    .mui-input-row label{width: 40%;}
+    .mui-input-row input[type='text'],textarea{width: 60% !important;}
+    .mui-input-btn-label input[type='text']{width: 45% !important;float: left !important;}
+    .mui-input-btn-label button{width: 15% !important;padding: 8px !important;margin:0px !important;}
+    .up-image{
+            width: 73px;
+            height: 74px;
+            _width: 73px;
+            _height: 74px;
+            position: relative;
+            z-index: 9;
+            opacity: 0;
+        }
+        .up-image-btn{
+            background: url('../../img/fbpl/photo.jpg')  no-repeat; 
+            background-position: -2px -4px;
+            position: absolute;
+            border: 1px solid #d1d1d1;
+            display: inline-block;
+            color: #fff;
+            width: 70px;
+            height: 70px;
+            _width: 70px;
+            _height: 70px;
+            text-align: center;
+            top: 2px;
+            left: 0px;
+        }
+        .image-box{width: 60%;float: left;position: relative;}
+        .image-row{height:auto!important; height:70px; min-height:70px;}
+        .image-show-box{float: right;height:auto!important; height:70px; min-height:70px;max-width:100px;position: relative;border:0px solid #d1d1d1;display: none;}
+        .image-show-box img{max-height: 70px;max-width:150px; }
+        .image-show-box .gray-div-img{width: 100%;height: 70px;opacity: 0.7;background: #222;position: absolute;top: 0px;left: 0px;text-align: center;padding-top: 40%;color: #fff;display: none;z-index: 5;}
+        .image-show-box i{
+            position: absolute;
+            left: -20px;
+            top: 4px;
+            font-size: 0.7em;
+            background: #F69753;
+            color: #fff;
+            z-index: 3;
+            max-height: 70px;
+            white-space: normal;
+            height: 70px;
+            width: 20px;
+            text-align: center;
+            vertical-align: middle;
+            padding-top: 20px;
+            font-style:normal;
+            line-height: 17px
+        }
+     .box-check-group{float: left;width: 60%;line-height: 40px;}
+    .box-check-group input[type='radio']{padding: 10px;position: relative;width: 20px;height: 20px;border:1px solid #a1a1a1; border-radius: 50%;background: #efefef;margin-left: 20px;}
+    .box-check-group input[type='radio']:checked:after{
+        content: ' ';
+        width: 12px;
+        height: 12px;
+        border-radius: 50px;
+        margin-top:-6px;
+        margin-left:-6px;
+        position: absolute;
+        top: 50%;
+        background: #007aff;
+        color: #007aff;
+        box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);
+        text-shadow: 0px;
+        left: 50%;
+    }
+    }
+    textarea {
+        line-height: 21px;
+        border: 1px solid rgba(0,0,0,.2) !important;
+        /*padding: 8px;*/
+    }
+    .block-dis{display: none;}
+    .mui-input-btn-label button .mui-icon{font-size: 24px !important;}
+    .mui-input-btn-label button {border-radius: 0px  !important;margin-top: -1px !important;}
+    #footNewCailiao{position: fixed;bottom: 0px;left: 0px;width: 100%;min-height: 500px;height:100%;background: #fff;z-index: 1000;display: none;}
+    #footNewCailiao .title{position: relative;}
+    #footNewCailiao .title .mui-icon-close{position: absolute;right: 0px;top: 0px;font-size: 2em;}
+    .top-add-btn{position: fixed;top: 11px !important;left: 0px;z-index: 100;border-radius: 0px;}
+    .new-main-list{margin-top: 50px !important;}
+    .mui-indexed-list-bar a{max-height: 50px;min-height: 18.5px;}
+    span.success{color: green;}
+    .mui-indexed-list-item{font-size: 0.8em;}
+    .mui-indexed-list-item span{font-size: 0.8em;}
+    .cell-view-3{float: left;width: 25%;}
+    .cell-view-4{float: left;width: 33.33%;}
+    .cell-view-6{float: left;width: 50%;}
+    .cell-view-12{float:left;width: 100%;}
+    .mui-card-cailiao-list input{border-bottom:1px solid #efefef;border-bottom:20px !important;width: 96%;}
+    header.mui-bar-nav{position: fixed !important;}
+    .mui-card-list-e7 i.mui-icon-close{position:absolute;top:0px;right:0px;font-size:1.8em;}
+    
+    .mui-input-row button i,img{margin-top:4px}
+    .up-image-android,.up-image-house{
+        width: 100%;
+        height: 28px;
+        _width: 100%;
+        _height: 28px;
+        position: absolute;
+        z-index: 9;
+        opacity: 0;
+        margin-top: 6px;
+        left:90px;
+    }
+    .image-btn-box{position: relative;display: inline-block;width: 100%;}
+    .up-image-btn-1{color: red;}
+    .mui-popover.mui-popover-action.mui-popover-bottom{margin-bottom: 50px;}
+    </style>
+    
+</head>
+<body>
+    <header class="mui-bar mui-bar-nav">
+        <!-- <a class="mui-icon mui-icon-home mui-action-home"></a> -->
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+        <h1 class="mui-title">居民勘察设计</h1>
+        <a class="mui-pull-right fanganList-go">
+            <i class="mui-icon mui-icon-bars"></i>
+        </a>
+        <a class="mui-icon mui-icon-home mui-action-home mui-pull-right"></a>
+    </header>
+    <div class="mui-content mui-after-content">
+        <div class="mui-input-group" id="form_fangan">
+        <!-- 申请日期 -->
+        <div class="mui-input-date mui-input-row mui-input-btn-label">
+            <label>勘察日期</label>
+            <input type="text" name="fanganDate" placeholder="勘察日期" id="fanganDate" value="2018-06-18" readonly>
+            <button id='fanganDateBtn' data-options='{"type":"date"}' class="btn mui-btn mui-btn-block btn-date"><i class="mui-icon-extra mui-icon-extra-calendar"></i></button>
+        </div>
+        <div class="mui-input-row">
+            <label>客户名称</label>
+            <input type="text" name="compName" placeholder="客户名称" id="compName" value="哈哈1" readonly>
+            <input type="hidden" name="clientId" value="76">
+            <input type="hidden" name="id" value="">
+            <input type="hidden" name="status" id="status">
+        </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>电站类型</label>
+            <input type="text" name="kind" placeholder="电站类型" id="kind" value="">
+            <button id='showkindType' data-select='' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
+        </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>屋顶结构</label>
+            <input type="text" name="roofName" placeholder="屋顶结构" id="roofName" value="" readonly>
+            <button id='showRoofName' data-select='' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
+            <input class="select-hide" type="hidden" id="roofId" name="roofId" value="">
+        </div>
+        <div class="mui-input-row">
+            <label>申请容量.KWp</label>
+            <input type="text" name="ApplyCapacity" placeholder="申请容量" id="ApplyCapacity" value="" readonly>
+        </div>
+        <div class="mui-input-row">
+            <label>装机容量.KWp</label>
+            <input type="text" name="rCnt" placeholder="装机容量" id="rCnt" value="">
+            <input type="hidden" name="jsCnt" id="jsCnt" value="">
+        </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>勘察人</label>
+            <input type="text" name="seePeoText" placeholder="勘察人" id="seePeoText" value="" readonly>
+            <button id='showSeePeo' data-select='' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
+            <input class="select-hide" type="hidden" id="seePeo" name="seePeo" value="">
+        </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>省</label>
+            <input type="text" name="area_text1" placeholder="省" id="area_text1" value="" readonly class="area-text">
+            <button id='showarea_id1'  data-level=1 data-select='' class="mui-btn mui-btn-block btn-select-area" type='button'><i class="mui-icon mui-icon-more"></i></button>
+            <input class="select-hide" type="hidden" id="area_id1" name="area_id1" value="">
+        </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>市</label>
+            <input type="text" name="area_text2" placeholder="市" id="area_text2" value="" readonly class="area-text">
+            <button id='showarea_id2' data-select='' class="mui-btn mui-btn-block btn-select-area" data-level=2 type='button'><i class="mui-icon mui-icon-more"></i></button>
+            <input class="select-hide" type="hidden" id="area_id2" name="area_id2" value="">
+        </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>区</label>
+            <input type="text" name="area_text3" placeholder="区" id="area_text3" value="" readonly class="area-text">
+            <button id='showarea_id3'  data-level=3 data-select='' class="mui-btn mui-btn-block btn-select-area" type='button'><i class="mui-icon mui-icon-more"></i></button>
+            <input class="select-hide" type="hidden" id="area_id3" name="area_id3" value="">
+        </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>镇</label>
+            <input type="text" name="area_text4" placeholder="镇" id="area_text4" value="" readonly>
+            <button id='showarea_id4'  data-level=4 data-select='' class="mui-btn mui-btn-block btn-select-area" type='button'><i class="mui-icon mui-icon-more"></i></button>
+            <input class="select-hide" type="hidden" id="area_id4" name="area_id4" value="">
+        </div>
+        <div class="mui-input-row">
+            <label>详细地址</label>
+            <input type="text" name="address" placeholder="详细地址" id="address" value="1">
+        </div>
+        <div class="mui-input-row image-row">
+            <label>图纸照片</label>
+            <div class="image-box">
+                <a href="#sheet_1"><input type="file" accept="image/*;capture=camera" name="pictureFile" id="pictureFile" class='up-image'></a>
+                <i class="up-image-btn"></i>
+                <div class="image-show-box block-dis">
+                    <div class="gray-div-img">上传中...</div>
+                    <i class="mui-img-remove">删除</i>
+                    <img src="">
+                    <input type="hidden" name="picturePic" id="picturePic" value="">
+                </div>
+            </div>
+        </div>
+        <div class="mui-input-row image-row">
+            <label>供电申报表</label>
+            <div class="image-box">
+                <a href="#sheet_2"><input type="file" accept="image/*;capture=camera" name="appPowerPicsFile" id="appPowerPicsFile" class='up-image'></a>
+                <i class="up-image-btn"></i>
+                <div class="image-show-box block-dis">
+                    <div class="gray-div-img">上传中...</div>
+                    <i class="mui-img-remove">删除</i>
+                    <img src="">
+                    <input type="hidden" name="PowerPic" id="PowerPic" value="">
+                </div>
+            </div>
+        </div>
+        <div class="mui-input-row image-row">
+            <label>授信资料</label>
+            <div class="image-box">
+                <a href="#sheet_3"><input type="file" accept="image/*;capture=camera" name="crePicsFile" id="crePicsFile" class='up-image'></a>
+                <i class="up-image-btn"></i>
+                <div class="image-show-box block-dis">
+                    <div class="gray-div-img">上传中...</div>
+                    <i class="mui-img-remove">删除</i>
+                    <img src="">
+                    <input type="hidden" name="crePic" id="crePic" value="">
+                </div>
+            </div>
+        </div>
+        <div class="mui-input-row image-row">
+            <label>个人贷款面谈记录</label>
+            <div class="image-box">
+                <a href="#sheet_4"><input type="file" accept="image/*;capture=camera" name="daikCardFile" id="daikCardFile" class='up-image'></a>
+                <i class="up-image-btn"></i>
+                <div class="image-show-box block-dis">
+                    <div class="gray-div-img">上传中...</div>
+                    <i class="mui-img-remove">删除</i>
+                    <img src="">
+                    <input type="hidden" name="daikCardPic" id="daikCardPic" value="">
+                </div>
+            </div>
+        </div>
+        <div class="mui-input-row image-row">
+            <label>保证金合同</label>
+            <div class="image-box">
+                <a href="#sheet_5"><input type="file" accept="image/*;capture=camera" name="ensureCardFile" id="ensureCardFile" class='up-image'></a>
+                <i class="up-image-btn"></i>
+                <div class="image-show-box block-dis">
+                    <div class="gray-div-img">上传中...</div>
+                    <i class="mui-img-remove">删除</i>
+                    <img src="">
+                    <input type="hidden" name="ensureCardPic" id="ensureCardPic" value="">
+                </div>
+            </div>
+        </div>
+        <div class="mui-input-row image-row">
+            <label>收入证明</label>
+            <div class="image-box">
+                <a href="#sheet_6"><input type="file" accept="image/*;capture=camera" name="incomeCardFile" id="incomeCardFile" class='up-image'></a>
+                <i class="up-image-btn"></i>
+                <div class="image-show-box block-dis">
+                    <div class="gray-div-img">上传中...</div>
+                    <i class="mui-img-remove">删除</i>
+                    <img src="">
+                    <input type="hidden" name="incomeCardPic" id="incomeCardPic" value="">
+                </div>
+            </div>
+        </div>
+        <div class="mui-input-row image-row">
+            <label>配偶收入证明</label>
+            <div class="image-box">
+                <a href="#sheet_7"><input type="file" accept="image/*;capture=camera" name="mateIncomeCardFile" id="mateIncomeCardFile" class='up-image'></a>
+                <i class="up-image-btn"></i>
+                <div class="image-show-box block-dis">
+                    <div class="gray-div-img">上传中...</div>
+                    <i class="mui-img-remove">删除</i>
+                    <img src="">
+                    <input type="hidden" name="mateIncomeCardPic" id="mateIncomeCardPic" value="">
+                </div>
+            </div>
+        </div>
+        <div class="mui-input-row image-row">
+            <label>个人征信授权委托</label>
+            <div class="image-box">
+                <a href="#sheet_8"><input type="file" accept="image/*;capture=camera" name="creditFile" id="creditFile" class='up-image'></a>
+                <i class="up-image-btn"></i>
+                <div class="image-show-box block-dis">
+                    <div class="gray-div-img">上传中...</div>
+                    <i class="mui-img-remove">删除</i>
+                    <img src="">
+                    <input type="hidden" name="creditPic" id="creditPic" value="">
+                </div>
+            </div>
+        </div>
+        <div class="mui-input-row image-row">
+            <label>配偶征信授权委托</label>
+            <div class="image-box">
+                <a href="#sheet_9"><input type="file" accept="image/*;capture=camera" name="mateCreditFile" id="mateCreditFile" class='up-image'></a>
+                <i class="up-image-btn"></i>
+                <div class="image-show-box block-dis">
+                    <div class="gray-div-img">上传中...</div>
+                    <i class="mui-img-remove">删除</i>
+                    <img src="">
+                    <input type="hidden" name="mateCreditPic" id="mateCreditPic" value="">
+                </div>
+            </div>
+        </div>
+        <div class="mui-input-row">
+            <label>备注</label>
+            <textarea class="form-control" placeholder="备注" rows="2" name="rmemo" id="rmemo"></textarea>
+        </div>
+        <div class="mui-input-row">
+            <label>材料清单</label>
+        </div>
+        <div class="mui-input-group">
+            <button type="button" id="add_list_new" class="mui-btn mui-btn-block mui-btn-primary">
+                <i class="mui-icon mui-icon-plusempty"></i>添加材料
+            </button>
+        </div>
+        <div class="mui-card-cailiao-list" id="mui-card-cailiao-list">
+                        
+                        
+                        
+        </div>
+
+        </div>
+        <div class="" style="height: 46px;"></div>
+    </div>
+    <div id="sheet_1" class="mui-popover mui-popover-action mui-popover-bottom"  style="display: none;">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <div class="paizhao image-btn-box">
+                    <input type="file" capture="camera" accept="image/*" name="pictureFile" value="" class="up-image-android action-camera">
+                    <span class="pictureFile"></span>
+                    <span class="up-image-btn-1">拍照</span>
+                </div>
+            </li>
+            <li class="mui-table-view-cell">
+                <div class="select-file image-btn-box">
+                    <input type="file" capture="camera" accept="image/*;capture=camera" name="pictureFile" value="" class="up-image-android action-gallery">
+                    <span class="pictureFile"></span>
+                    <span class="up-image-btn-2">相册</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="#sheet_1" class=""><b>取消</b></a>
+            </li>
+        </ul>
+    </div>
+    <div id="sheet_2" class="mui-popover mui-popover-action mui-popover-bottom"  style="display: none;">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <div class="paizhao image-btn-box">
+                    <input type="file" capture="camera" accept="image/*" name="appPowerPicsFile" value="" class="up-image-android action-camera">
+                    <span class="appPowerPicsFile"></span>
+                    <span class="up-image-btn-1">拍照</span>
+                </div>
+            </li>
+            <li class="mui-table-view-cell">
+                <div class="select-file image-btn-box">
+                    <input type="file" capture="camera" accept="image/*;capture=camera" name="appPowerPicsFile" value="" class="up-image-android action-gallery">
+                    <span class="appPowerPicsFile"></span>
+                    <span class="up-image-btn-2">相册</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="#sheet_2" class=""><b>取消</b></a>
+            </li>
+        </ul>
+    </div>
+    <div id="sheet_3" class="mui-popover mui-popover-action mui-popover-bottom"  style="display: none;">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <div class="paizhao image-btn-box">
+                    <input type="file" capture="camera" accept="image/*" name="crePicsFile" value="" class="up-image-android action-camera">
+                    <span class="crePicsFile"></span>
+                    <span class="up-image-btn-1">拍照</span>
+                </div>
+            </li>
+            <li class="mui-table-view-cell">
+                <div class="select-file image-btn-box">
+                    <input type="file" capture="camera" accept="image/*;capture=camera" name="crePicsFile" value="" class="up-image-android action-gallery">
+                    <span class="crePicsFile"></span>
+                    <span class="up-image-btn-2">相册</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="#sheet_2" class=""><b>取消</b></a>
+            </li>
+        </ul>
+    </div>
+    <div id="sheet_4" class="mui-popover mui-popover-action mui-popover-bottom"  style="display: none;">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <div class="paizhao image-btn-box">
+                    <input type="file" capture="camera" accept="image/*" name="daikCardFile" value="" class="up-image-android action-camera">
+                    <span class="daikCardFile"></span>
+                    <span class="up-image-btn-1">拍照</span>
+                </div>
+            </li>
+            <li class="mui-table-view-cell">
+                <div class="select-file image-btn-box">
+                    <input type="file" capture="camera" accept="image/*;capture=camera" name="daikCardFile" value="" class="up-image-android action-gallery">
+                    <span class="daikCardFile"></span>
+                    <span class="up-image-btn-2">相册</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="#sheet_2" class=""><b>取消</b></a>
+            </li>
+        </ul>
+    </div>
+    <div id="sheet_5" class="mui-popover mui-popover-action mui-popover-bottom"  style="display: none;">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <div class="paizhao image-btn-box">
+                    <input type="file" capture="camera" accept="image/*" name="ensureCardFile" value="" class="up-image-android action-camera">
+                    <span class="ensureCardFile"></span>
+                    <span class="up-image-btn-1">拍照</span>
+                </div>
+            </li>
+            <li class="mui-table-view-cell">
+                <div class="select-file image-btn-box">
+                    <input type="file" capture="camera" accept="image/*;capture=camera" name="ensureCardFile" value="" class="up-image-android action-gallery">
+                    <span class="ensureCardFile"></span>
+                    <span class="up-image-btn-2">相册</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="#sheet_2" class=""><b>取消</b></a>
+            </li>
+        </ul>
+    </div>
+    <div id="sheet_6" class="mui-popover mui-popover-action mui-popover-bottom"  style="display: none;">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <div class="paizhao image-btn-box">
+                    <input type="file" capture="camera" accept="image/*" name="incomeCardFile" value="" class="up-image-android action-camera">
+                    <span class="incomeCardFile"></span>
+                    <span class="up-image-btn-1">拍照</span>
+                </div>
+            </li>
+            <li class="mui-table-view-cell">
+                <div class="select-file image-btn-box">
+                    <input type="file" capture="camera" accept="image/*;capture=camera" name="incomeCardFile" value="" class="up-image-android action-gallery">
+                    <span class="incomeCardFile"></span>
+                    <span class="up-image-btn-2">相册</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="#sheet_2" class=""><b>取消</b></a>
+            </li>
+        </ul>
+    </div>
+    <div id="sheet_7" class="mui-popover mui-popover-action mui-popover-bottom"  style="display: none;">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <div class="paizhao image-btn-box">
+                    <input type="file" capture="camera" accept="image/*" name="mateIncomeCardFile" value="" class="up-image-android action-camera">
+                    <span class="mateIncomeCardFile"></span>
+                    <span class="up-image-btn-1">拍照</span>
+                </div>
+            </li>
+            <li class="mui-table-view-cell">
+                <div class="select-file image-btn-box">
+                    <input type="file" capture="camera" accept="image/*;capture=camera" name="mateIncomeCardFile" value="" class="up-image-android action-gallery">
+                    <span class="mateIncomeCardFile"></span>
+                    <span class="up-image-btn-2">相册</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="#sheet_2" class=""><b>取消</b></a>
+            </li>
+        </ul>
+    </div>
+    <div id="sheet_8" class="mui-popover mui-popover-action mui-popover-bottom"  style="display: none;">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <div class="paizhao image-btn-box">
+                    <input type="file" capture="camera" accept="image/*" name="creditFile" value="" class="up-image-android action-camera">
+                    <span class="creditFile"></span>
+                    <span class="up-image-btn-1">拍照</span>
+                </div>
+            </li>
+            <li class="mui-table-view-cell">
+                <div class="select-file image-btn-box">
+                    <input type="file" capture="camera" accept="image/*;capture=camera" name="creditFile" value="" class="up-image-android action-gallery">
+                    <span class="creditFile"></span>
+                    <span class="up-image-btn-2">相册</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="#sheet_2" class=""><b>取消</b></a>
+            </li>
+        </ul>
+    </div>
+    <div id="sheet_9" class="mui-popover mui-popover-action mui-popover-bottom"  style="display: none;">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <div class="paizhao image-btn-box">
+                    <input type="file" capture="camera" accept="image/*" name="mateCreditFile" value="" class="up-image-android action-camera">
+                    <span class="mateCreditFile"></span>
+                    <span class="up-image-btn-1">拍照</span>
+                </div>
+            </li>
+            <li class="mui-table-view-cell">
+                <div class="select-file image-btn-box">
+                    <input type="file" capture="camera" accept="image/*;capture=camera" name="mateCreditFile" value="" class="up-image-android action-gallery">
+                    <span class="mateCreditFile"></span>
+                    <span class="up-image-btn-2">相册</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="#sheet_2" class=""><b>取消</b></a>
+            </li>
+        </ul>
+    </div>
+
+    <footer>
+        <button type="button" class="btn_submit mui-btn mui-btn-block mui-btn-primary" >保存</button>
+        <button type="button" class="btn_submit mui-btn mui-btn-block" >暂存数据</button>
+    </footer>
+
+    <!--添加材料的弹出层-->
+    <div id="footNewCailiao" class="">
+        <!-- <div class="title"><i class="mui-icon mui-icon-close"></i></div> -->
+        <header class="mui-bar mui-bar-nav">
+            <a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-nocheck"></a>
+            <h1 class="mui-title">选择材料</h1>
+            <a id='done' class="mui-btn mui-btn-link mui-pull-right mui-btn-blue mui-disabled">添加</a>
+        </header>
+        <div class="new-main-list mui-content">
+            <div id='list' class="mui-indexed-list">
+                <div class="mui-indexed-list-search mui-input-row mui-search">
+                    <input type="search" class="mui-input-clear mui-indexed-list-search-input" placeholder="搜索材料">
+                </div>
+                <div class="mui-indexed-list-bar" style="display: none;">
+                   <!-- <a>D</a>
+                    <a>F</a>
+                    <a>H</a>
+                    <a>J</a>
+                    <a>N</a>
+                    <a>Q</a>
+                    <a>W</a>
+                    <a>X</a>
+                    <a>Z</a>-->
+                </div>
+                <div class="mui-indexed-list-alert"></div>
+                <div class="mui-indexed-list-inner">
+                    <div class="mui-indexed-list-empty-alert">没有材料</div>
+                    <ul class="mui-table-view" id="cailiao_list_kind_ul">
+                                                                       <!-- <li data-group="D" class="mui-table-view-divider mui-indexed-list-group">D</li>
+                                                                        <li data-value="DFCDFC" data-tags="DFCDFC" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_56" value='{"id":"56","kind":"\u5927\u8f85\u6750","proCode":"DFC0001","content":null,"proName":"\u5927\u8f85\u6750","guige":"\u5e38\u89c4","isCompute":"0","memo":"","unit":"\u5957","rongliang":"0.000","Cailiao":[{"id":"16","cId":"56","price":"69.25","brand":"\u5e38\u89c4"},{"id":"101","cId":"56","price":"90.00","brand":"\u5e38\u89c41"}],"showText":"\u5927\u8f85\u6750-\u5927\u8f85\u6750","LETTER_DATA":"DFCDFC","LETTER":"D"}' />大辅材-大辅材<span class="success">常规</span>
+                        </li>
+                                                                                                <li data-value="DGLXCDG" data-tags="DGLXCDG" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_58" value='{"id":"58","kind":"\u5bfc\u8f68","proCode":"LXCDG0001","content":null,"proName":"\u94dd\u578b\u6750\u5bfc\u8f68","guige":"40*30*3","isCompute":"0","memo":"","unit":"\u7c73","rongliang":"0.000","Cailiao":[{"id":"22","cId":"58","price":"252.00","brand":"\u5e38\u89c4"}],"showText":"\u5bfc\u8f68-\u94dd\u578b\u6750\u5bfc\u8f68","LETTER_DATA":"DGLXCDG","LETTER":"D"}' />导轨-铝型材导轨<span class="success">40*30*3</span>
+                        </li>
+                                                                                                <li data-value="DGRDDG" data-tags="DGRDDG" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_50" value='{"id":"50","kind":"\u5bfc\u8f68","proCode":"RDDG0001","content":null,"proName":"\u70ed\u9540\u950c\u5bfc\u8f68","guige":"41*41*2","isCompute":"0","memo":"","unit":"\u7c73","rongliang":"0.000","Cailiao":[{"id":"21","cId":"50","price":"97.00","brand":"\u5e38\u89c4"}],"showText":"\u5bfc\u8f68-\u70ed\u9540\u950c\u5bfc\u8f68","LETTER_DATA":"DGRDDG","LETTER":"D"}' />导轨-热镀锌导轨<span class="success">41*41*2</span>
+                        </li>
+                                                                        <li data-group="F" class="mui-table-view-divider mui-indexed-list-group">F</li>
+                                                                        <li data-value="FCFC" data-tags="FCFC" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_57" value='{"id":"57","kind":"\u5c0f\u8f85\u6750","proCode":"FC0001","content":null,"proName":"\u5c0f\u8f85\u6750","guige":"\u5e38\u89c4","isCompute":"0","memo":"","unit":"\u5957","rongliang":"0.000","Cailiao":[{"id":"24","cId":"57","price":"500.00","brand":"\u914d\u4ef6"}],"showText":"\u5c0f\u8f85\u6750-\u5c0f\u8f85\u6750","LETTER_DATA":"FCFC","LETTER":"F"}' />小辅材-小辅材<span class="success">常规</span>
+                        </li>
+                                                                                                <li data-value="FDQGCFDSB" data-tags="FDQGCFDSB" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_102" value='{"id":"102","kind":"\u53d1\u7535\u533a\u5de5\u7a0b","proCode":"FDSB0001","content":null,"proName":"\u53d1\u7535\u8bbe\u5907","guige":"10KW","isCompute":"0","memo":"","unit":"KW","rongliang":"0.000","Cailiao":null,"showText":"\u53d1\u7535\u533a\u5de5\u7a0b-\u53d1\u7535\u8bbe\u5907","LETTER_DATA":"FDQGCFDSB","LETTER":"F"}' />发电区工程-发电设备<span class="success">10KW</span>
+                        </li>
+                                                                        <li data-group="H" class="mui-table-view-divider mui-indexed-list-group">H</li>
+                                                                        <li data-value="HLBWSBGFBWJLG" data-tags="HLBWSBGFBWJLG" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_86" value='{"id":"86","kind":"\u6c47\u6d41\u5e76\u7f51\u8bbe\u5907","proCode":"GFBWJLG0001","content":null,"proName":"\u5149\u4f0f\u5e76\u7f51\u8ba1\u91cf\u67dc","guige":"GGD\u578b \u6846\u67b6\u5f0f","isCompute":"0","memo":"","unit":"\u5957","rongliang":"0.000","Cailiao":null,"showText":"\u6c47\u6d41\u5e76\u7f51\u8bbe\u5907-\u5149\u4f0f\u5e76\u7f51\u8ba1\u91cf\u67dc","LETTER_DATA":"HLBWSBGFBWJLG","LETTER":"H"}' />汇流并网设备-光伏并网计量柜<span class="success">GGD型 框架式</span>
+                        </li>
+                                                                                                <li data-value="HLBWSBGFBWJLG" data-tags="HLBWSBGFBWJLG" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_96" value='{"id":"96","kind":"\u6c47\u6d41\u5e76\u7f51\u8bbe\u5907","proCode":"GFBWJLG0002","content":null,"proName":"\u5149\u4f0f\u5e76\u7f51\u8ba1\u91cf\u67dc","guige":"GGD\u578b \u5851\u58f3\u5f0f","isCompute":"0","memo":"","unit":"\u5957","rongliang":"0.000","Cailiao":null,"showText":"\u6c47\u6d41\u5e76\u7f51\u8bbe\u5907-\u5149\u4f0f\u5e76\u7f51\u8ba1\u91cf\u67dc","LETTER_DATA":"HLBWSBGFBWJLG","LETTER":"H"}' />汇流并网设备-光伏并网计量柜<span class="success">GGD型 塑壳式</span>
+                        </li>
+                                                                                                <li data-value="HLBWSBJLHLX" data-tags="HLBWSBJLHLX" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_52" value='{"id":"52","kind":"\u6c47\u6d41\u5e76\u7f51\u8bbe\u5907","proCode":"JLHLX0003","content":null,"proName":"\u4ea4\u6d41\u6c47\u6d41\u7bb1","guige":"2\u8fdb1\u51fa","isCompute":"0","memo":"","unit":"\u5957","rongliang":"0.000","Cailiao":[{"id":"79","cId":"52","price":"7000.00","brand":"GGD\u301050kw\u3011"},{"id":"80","cId":"52","price":"2500.00","brand":"\u6c47\u6d41\u7bb1\u30103\u8fdb1\u51fa\u3011"},{"id":"81","cId":"52","price":"3000.00","brand":"\u6c47\u6d41\u7bb1\u30104\u8fdb1\u51fa\u3011"},{"id":"82","cId":"52","price":"3500.00","brand":"\u6c47\u6d41\u7bb1\u30105\u8fdb1\u51fa\u3011"},{"id":"83","cId":"52","price":"4000.00","brand":"\u6c47\u6d41\u7bb1\u30105\u8fdb1\u51fa\u3011"},{"id":"84","cId":"52","price":"2000.00","brand":"\u6c47\u6d41\u7bb1\u30102\u8fdb1\u51fa\u3011"},{"id":"85","cId":"52","price":"13000.00","brand":"GGD\u3010100kw\u3011"},{"id":"86","cId":"52","price":"18000.00","brand":"GGD\u3010150kw\u3011"},{"id":"87","cId":"52","price":"21000.00","brand":"GGD\u3010200kw\u3011"},{"id":"88","cId":"52","price":"25000.00","brand":"GGD\u3010300kw\u3011"},{"id":"89","cId":"52","price":"28000.00","brand":"GGD\u3010400kw\u3011"}],"showText":"\u6c47\u6d41\u5e76\u7f51\u8bbe\u5907-\u4ea4\u6d41\u6c47\u6d41\u7bb1","LETTER_DATA":"HLBWSBJLHLX","LETTER":"H"}' />汇流并网设备-交流汇流箱<span class="success">2进1出</span>
+                        </li>
+                                                                                                <li data-value="HLBWSBJLHLX" data-tags="HLBWSBJLHLX" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_85" value='{"id":"85","kind":"\u6c47\u6d41\u5e76\u7f51\u8bbe\u5907","proCode":"JLHLX0001","content":null,"proName":"\u4ea4\u6d41\u6c47\u6d41\u7bb1","guige":"4\u8fdb1\u51fa","isCompute":"0","memo":"","unit":"\u5957","rongliang":"0.000","Cailiao":null,"showText":"\u6c47\u6d41\u5e76\u7f51\u8bbe\u5907-\u4ea4\u6d41\u6c47\u6d41\u7bb1","LETTER_DATA":"HLBWSBJLHLX","LETTER":"H"}' />汇流并网设备-交流汇流箱<span class="success">4进1出</span>
+                        </li>
+                                                                                                <li data-value="HLBWSBJLHLX" data-tags="HLBWSBJLHLX" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_91" value='{"id":"91","kind":"\u6c47\u6d41\u5e76\u7f51\u8bbe\u5907","proCode":"JLHLX0002","content":null,"proName":"\u4ea4\u6d41\u6c47\u6d41\u7bb1","guige":"3\u8fdb1\u51fa","isCompute":"0","memo":"","unit":"\u5957","rongliang":"0.000","Cailiao":null,"showText":"\u6c47\u6d41\u5e76\u7f51\u8bbe\u5907-\u4ea4\u6d41\u6c47\u6d41\u7bb1","LETTER_DATA":"HLBWSBJLHLX","LETTER":"H"}' />汇流并网设备-交流汇流箱<span class="success">3进1出</span>
+                        </li>
+                                                                        <li data-group="J" class="mui-table-view-divider mui-indexed-list-group">J</li>
+                                                                        <li data-value="JKSBDNZLZXJCZZ" data-tags="JKSBDNZLZXJCZZ" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_55" value='{"id":"55","kind":"\u76d1\u63a7\u8bbe\u5907","proCode":"DNZLZXJCZZ0001","content":null,"proName":"\u7535\u80fd\u8d28\u91cf\u5728\u7ebf\u76d1\u6d4b\u88c5\u7f6e","guige":" PQS-681","isCompute":"0","memo":"","unit":"\u5957","rongliang":"0.000","Cailiao":[{"id":"90","cId":"55","price":"12500.00","brand":"\u707f\u80fd"}],"showText":"\u76d1\u63a7\u8bbe\u5907-\u7535\u80fd\u8d28\u91cf\u5728\u7ebf\u76d1\u6d4b\u88c5\u7f6e","LETTER_DATA":"JKSBDNZLZXJCZZ","LETTER":"J"}' />监控设备-电能质量在线监测装置<span class="success"> PQS-681</span>
+                        </li>
+                                                                                                <li data-value="JKSBNBQJKZD" data-tags="JKSBNBQJKZD" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_87" value='{"id":"87","kind":"\u76d1\u63a7\u8bbe\u5907","proCode":"NBQJKZD0001","content":null,"proName":"\u9006\u53d8\u5668\u76d1\u63a7\u7ec8\u7aef","guige":"GPRS","isCompute":"0","memo":"","unit":"\u5957","rongliang":"0.000","Cailiao":null,"showText":"\u76d1\u63a7\u8bbe\u5907-\u9006\u53d8\u5668\u76d1\u63a7\u7ec8\u7aef","LETTER_DATA":"JKSBNBQJKZD","LETTER":"J"}' />监控设备-逆变器监控终端<span class="success">GPRS</span>
+                        </li>
+                                                                        <li data-group="N" class="mui-table-view-divider mui-indexed-list-group">N</li>
+                                                                        <li data-value="NBQDX" data-tags="NBQDX" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_38" value='{"id":"38","kind":"\u9006\u53d8\u5668","proCode":"DX0005","content":"","proName":"\u5355\u76f8","guige":"3KW","isCompute":"0","memo":"","unit":"\u53f0","rongliang":"0.000","Cailiao":[{"id":"38","cId":"38","price":"1840.00","brand":"\u9633\u5149"},{"id":"39","cId":"38","price":"2010.00","brand":"\u9526\u6d6a"},{"id":"40","cId":"38","price":"1750.00","brand":"\u79d1\u58eb\u8fbe"},{"id":"41","cId":"38","price":"1950.00","brand":"\u56fa\u5fb7\u5a01"}],"showText":"\u9006\u53d8\u5668-\u5355\u76f8","LETTER_DATA":"NBQDX","LETTER":"N"}' />逆变器-单相<span class="success">3KW</span>
+                        </li>
+                                                                                                <li data-value="NBQDX" data-tags="NBQDX" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_43" value='{"id":"43","kind":"\u9006\u53d8\u5668","proCode":"DX0002","content":"","proName":"\u5355\u76f8","guige":"5KW","isCompute":"0","memo":"","unit":"\u53f0","rongliang":"0.000","Cailiao":[{"id":"42","cId":"43","price":"2760.00","brand":"\u9633\u5149"},{"id":"43","cId":"43","price":"2800.00","brand":"\u9526\u6d6a"},{"id":"44","cId":"43","price":"2650.00","brand":"\u79d1\u58eb\u8fbe"},{"id":"45","cId":"43","price":"2800.00","brand":"\u56fa\u5fb7\u5a01"}],"showText":"\u9006\u53d8\u5668-\u5355\u76f8","LETTER_DATA":"NBQDX","LETTER":"N"}' />逆变器-单相<span class="success">5KW</span>
+                        </li>
+                                                                                                <li data-value="NBQDX" data-tags="NBQDX" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_44" value='{"id":"44","kind":"\u9006\u53d8\u5668","proCode":"DX0003","content":"","proName":"\u5355\u76f8","guige":"6KW","isCompute":"0","memo":"","unit":"\u53f0","rongliang":"0.000","Cailiao":[{"id":"46","cId":"44","price":"2950.00","brand":"\u9633\u5149"},{"id":"47","cId":"44","price":"3090.00","brand":"\u9526\u6d6a"},{"id":"48","cId":"44","price":"2850.00","brand":"\u79d1\u58eb\u8fbe"},{"id":"49","cId":"44","price":"3000.00","brand":"\u56fa\u5fb7\u5a01"}],"showText":"\u9006\u53d8\u5668-\u5355\u76f8","LETTER_DATA":"NBQDX","LETTER":"N"}' />逆变器-单相<span class="success">6KW</span>
+                        </li>
+                                                                                                <li data-value="NBQDX" data-tags="NBQDX" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_45" value='{"id":"45","kind":"\u9006\u53d8\u5668","proCode":"DX0004","content":"","proName":"\u5355\u76f8","guige":"8KW","isCompute":"0","memo":"","unit":"\u53f0","rongliang":"0.000","Cailiao":[{"id":"50","cId":"45","price":"4560.00","brand":"\u9526\u6d6a"},{"id":"51","cId":"45","price":"4600.00","brand":"\u79d1\u58eb\u8fbe"},{"id":"52","cId":"45","price":"5300.00","brand":"\u56fa\u5fb7\u5a01"}],"showText":"\u9006\u53d8\u5668-\u5355\u76f8","LETTER_DATA":"NBQDX","LETTER":"N"}' />逆变器-单相<span class="success">8KW</span>
+                        </li>
+                                                                                                <li data-value="NBQDX" data-tags="NBQDX" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_98" value='{"id":"98","kind":"\u9006\u53d8\u5668","proCode":"DX0006","content":null,"proName":"\u5355\u76f8","guige":"4KW","isCompute":"0","memo":"","unit":"\u53f0","rongliang":"0.000","Cailiao":null,"showText":"\u9006\u53d8\u5668-\u5355\u76f8","LETTER_DATA":"NBQDX","LETTER":"N"}' />逆变器-单相<span class="success">4KW</span>
+                        </li>
+                                                                                                <li data-value="NBQSX" data-tags="NBQSX" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_48" value='{"id":"48","kind":"\u9006\u53d8\u5668","proCode":"SX0001","content":null,"proName":"\u4e09\u76f8","guige":"10KW","isCompute":"0","memo":"","unit":"\u53f0","rongliang":"0.000","Cailiao":[{"id":"34","cId":"48","price":"5520.00","brand":"\u9633\u5149"},{"id":"35","cId":"48","price":"5490.00","brand":"\u9526\u6d6a"},{"id":"36","cId":"48","price":"4700.00","brand":"\u79d1\u58eb\u8fbe"},{"id":"37","cId":"48","price":"5400.00","brand":"\u56fa\u5fb7\u5a01"}],"showText":"\u9006\u53d8\u5668-\u4e09\u76f8","LETTER_DATA":"NBQSX","LETTER":"N"}' />逆变器-三相<span class="success">10KW</span>
+                        </li>
+                                                                                                <li data-value="NBQSX" data-tags="NBQSX" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_54" value='{"id":"54","kind":"\u9006\u53d8\u5668","proCode":"SX0002","content":null,"proName":"\u4e09\u76f8","guige":"50KW","isCompute":"0","memo":"","unit":"\u53f0","rongliang":"0.000","Cailiao":[{"id":"10","cId":"54","price":"13500.00","brand":"\u79d1\u58eb\u8fbe"},{"id":"11","cId":"54","price":"15500.00","brand":"\u9526\u6d6a"},{"id":"12","cId":"54","price":"20000.00","brand":"\u9633\u5149"}],"showText":"\u9006\u53d8\u5668-\u4e09\u76f8","LETTER_DATA":"NBQSX","LETTER":"N"}' />逆变器-三相<span class="success">50KW</span>
+                        </li>
+                                                                                                <li data-value="NBQSX" data-tags="NBQSX" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_61" value='{"id":"61","kind":"\u9006\u53d8\u5668","proCode":"SX0003","content":null,"proName":"\u4e09\u76f8","guige":"15KW","isCompute":"0","memo":"","unit":"\u53f0","rongliang":"0.000","Cailiao":[{"id":"57","cId":"61","price":"6000.00","brand":"\u9526\u6d6a"},{"id":"58","cId":"61","price":"6600.00","brand":"\u79d1\u58eb\u8fbe"},{"id":"59","cId":"61","price":"6700.00","brand":"\u56fa\u5fb7\u5a01"}],"showText":"\u9006\u53d8\u5668-\u4e09\u76f8","LETTER_DATA":"NBQSX","LETTER":"N"}' />逆变器-三相<span class="success">15KW</span>
+                        </li>
+                                                                                                <li data-value="NBQSX" data-tags="NBQSX" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_62" value='{"id":"62","kind":"\u9006\u53d8\u5668","proCode":"SX0004","content":null,"proName":"\u4e09\u76f8","guige":"17KW","isCompute":"0","memo":"","unit":"\u53f0","rongliang":"0.000","Cailiao":[{"id":"60","cId":"62","price":"7600.00","brand":"\u56fa\u5fb7\u5a01"},{"id":"61","cId":"62","price":"9820.00","brand":"\u534e\u4e3a"}],"showText":"\u9006\u53d8\u5668-\u4e09\u76f8","LETTER_DATA":"NBQSX","LETTER":"N"}' />逆变器-三相<span class="success">17KW</span>
+                        </li>
+                                                                                                <li data-value="NBQSX" data-tags="NBQSX" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_63" value='{"id":"63","kind":"\u9006\u53d8\u5668","proCode":"SX0005","content":null,"proName":"\u4e09\u76f8","guige":"60KW","isCompute":"0","memo":"","unit":"\u53f0","rongliang":"0.000","Cailiao":[{"id":"62","cId":"63","price":"25300.00","brand":"\u534e\u4e3a"},{"id":"63","cId":"63","price":"18000.00","brand":"\u9633\u5149"},{"id":"64","cId":"63","price":"14500.00","brand":"\u79d1\u58eb\u8fbe"}],"showText":"\u9006\u53d8\u5668-\u4e09\u76f8","LETTER_DATA":"NBQSX","LETTER":"N"}' />逆变器-三相<span class="success">60KW</span>
+                        </li>
+                                                                                                <li data-value="NBQSX" data-tags="NBQSX" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_64" value='{"id":"64","kind":"\u9006\u53d8\u5668","proCode":"SX0006","content":null,"proName":"\u4e09\u76f8","guige":"12KW","isCompute":"0","memo":"","unit":"\u53f0","rongliang":"0.000","Cailiao":[{"id":"65","cId":"64","price":"6260.00","brand":"\u9633\u5149"},{"id":"66","cId":"64","price":"5800.00","brand":"\u79d1\u58eb\u8fbe"},{"id":"67","cId":"64","price":"8150.00","brand":"\u534e\u4e3a"}],"showText":"\u9006\u53d8\u5668-\u4e09\u76f8","LETTER_DATA":"NBQSX","LETTER":"N"}' />逆变器-三相<span class="success">12KW</span>
+                        </li>
+                                                                                                <li data-value="NBQSX" data-tags="NBQSX" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_65" value='{"id":"65","kind":"\u9006\u53d8\u5668","proCode":"SX0007","content":null,"proName":"\u4e09\u76f8","guige":"20KW","isCompute":"0","memo":"","unit":"\u53f0","rongliang":"0.000","Cailiao":[{"id":"68","cId":"65","price":"6800.00","brand":"\u79d1\u58eb\u8fbe"},{"id":"69","cId":"65","price":"7800.00","brand":"\u56fa\u5fb7\u5a01"},{"id":"70","cId":"65","price":"8700.00","brand":"\u9526\u6d6a"},{"id":"71","cId":"65","price":"12400.00","brand":"\u534e\u4e3a"}],"showText":"\u9006\u53d8\u5668-\u4e09\u76f8","LETTER_DATA":"NBQSX","LETTER":"N"}' />逆变器-三相<span class="success">20KW</span>
+                        </li>
+                                                                        <li data-group="Q" class="mui-table-view-divider mui-indexed-list-group">Q</li>
+                                                                        <li data-value="QJTXQJ" data-tags="QJTXQJ" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_93" value='{"id":"93","kind":"\u6865\u67b6","proCode":"TXQJ0001","content":null,"proName":"\u68af\u5f62\u6865\u67b6","guige":"100*100*1.5","isCompute":"0","memo":"","unit":"\u7c73","rongliang":"0.000","Cailiao":[{"id":"99","cId":"93","price":"55.00","brand":"\u5e38\u89c4"}],"showText":"\u6865\u67b6-\u68af\u5f62\u6865\u67b6","LETTER_DATA":"QJTXQJ","LETTER":"Q"}' />桥架-梯形桥架<span class="success">100*100*1.5</span>
+                        </li>
+                                                                                                <li data-value="QJTXQJ" data-tags="QJTXQJ" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_94" value='{"id":"94","kind":"\u6865\u67b6","proCode":"TXQJ0002","content":null,"proName":"\u68af\u5f62\u6865\u67b6","guige":"200*100*1.5","isCompute":"0","memo":"","unit":"\u7c73","rongliang":"0.000","Cailiao":[{"id":"100","cId":"94","price":"65.00","brand":"\u5e38\u89c4"}],"showText":"\u6865\u67b6-\u68af\u5f62\u6865\u67b6","LETTER_DATA":"QJTXQJ","LETTER":"Q"}' />桥架-梯形桥架<span class="success">200*100*1.5</span>
+                        </li>
+                                                                        <li data-group="W" class="mui-table-view-divider mui-indexed-list-group">W</li>
+                                                                        <li data-value="WGWG" data-tags="WGWG" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_49" value='{"id":"49","kind":"\u5f2f\u94a9","proCode":"WG0001","content":null,"proName":"\u5f2f\u94a9","guige":"\u5927\u5f2f\u94a9\uff08\u53ef\u8c03\uff09","isCompute":"0","memo":"","unit":"\u5957","rongliang":"0.000","Cailiao":[{"id":"26","cId":"49","price":"17.00","brand":"\u5e38\u89c4"},{"id":"102","cId":"49","price":"5.00","brand":"\u5e38\u89c42"}],"showText":"\u5f2f\u94a9-\u5f2f\u94a9","LETTER_DATA":"WGWG","LETTER":"W"}' />弯钩-弯钩<span class="success">大弯钩（可调）</span>
+                        </li>
+                                                                                                <li data-value="WGWG" data-tags="WGWG" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_95" value='{"id":"95","kind":"\u5f2f\u94a9","proCode":"WG0002","content":null,"proName":"\u5f2f\u94a9","guige":"\u5c0f\u5f2f\u94a9\uff08\u53ef\u8c03\uff09","isCompute":"0","memo":"","unit":"\u5957","rongliang":"0.000","Cailiao":null,"showText":"\u5f2f\u94a9-\u5f2f\u94a9","LETTER_DATA":"WGWG","LETTER":"W"}' />弯钩-弯钩<span class="success">小弯钩（可调）</span>
+                        </li>
+                                                                        <li data-group="X" class="mui-table-view-divider mui-indexed-list-group">X</li>
+                                                                        <li data-value="XLFC  PERG" data-tags="XLFC  PERG" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_92" value='{"id":"92","kind":"\u7ebf\u7f06\u8f85\u6750","proCode":"  PERG0001","content":null,"proName":"  PE\u8f6f\u7ba1","guige":"\u03c625","isCompute":"0","memo":"","unit":"\u7c73","rongliang":"0.000","Cailiao":null,"showText":"\u7ebf\u7f06\u8f85\u6750-  PE\u8f6f\u7ba1","LETTER_DATA":"XLFC  PERG","LETTER":"X"}' />线缆辅材-  PE软管<span class="success">φ25</span>
+                        </li>
+                                                                                                <li data-value="XLFCFHN" data-tags="XLFCFHN" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_90" value='{"id":"90","kind":"\u7ebf\u7f06\u8f85\u6750","proCode":"FHN0001","content":null,"proName":"\u9632\u706b\u6ce5","guige":"","isCompute":"0","memo":"","unit":"\u5305","rongliang":"0.000","Cailiao":null,"showText":"\u7ebf\u7f06\u8f85\u6750-\u9632\u706b\u6ce5","LETTER_DATA":"XLFCFHN","LETTER":"X"}' />线缆辅材-防火泥<span class="success"></span>
+                        </li>
+                                                                                                <li data-value="XLFCJDBT" data-tags="XLFCJDBT" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_88" value='{"id":"88","kind":"\u7ebf\u7f06\u8f85\u6750","proCode":"JDBT0001","content":null,"proName":"\u63a5\u5730\u6241\u94c1","guige":"40*4","isCompute":"0","memo":"","unit":"\u7c73","rongliang":"0.000","Cailiao":null,"showText":"\u7ebf\u7f06\u8f85\u6750-\u63a5\u5730\u6241\u94c1","LETTER_DATA":"XLFCJDBT","LETTER":"X"}' />线缆辅材-接地扁铁<span class="success">40*4</span>
+                        </li>
+                                                                                                <li data-value="XLFCPVCG" data-tags="XLFCPVCG" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_89" value='{"id":"89","kind":"\u7ebf\u7f06\u8f85\u6750","proCode":"PVCG0001","content":null,"proName":"PVC\u7ba1","guige":"\u03c625","isCompute":"0","memo":"","unit":"\u7c73","rongliang":"0.000","Cailiao":null,"showText":"\u7ebf\u7f06\u8f85\u6750-PVC\u7ba1","LETTER_DATA":"XLFCPVCG","LETTER":"X"}' />线缆辅材-PVC管<span class="success">φ25</span>
+                        </li>
+                                                                                                <li data-value="XLJLDL" data-tags="XLJLDL" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_42" value='{"id":"42","kind":"\u7ebf\u7f06","proCode":"JLDL0001","content":"","proName":"\u4ea4\u6d41\u7535\u7f06","guige":"ZRC-YJV-0.6\/1-3*120+1*70","isCompute":"0","memo":"","unit":"M","rongliang":"0.000","Cailiao":[{"id":"73","cId":"42","price":"205.00","brand":"\u4e0a\u4e0a"}],"showText":"\u7ebf\u7f06-\u4ea4\u6d41\u7535\u7f06","LETTER_DATA":"XLJLDL","LETTER":"X"}' />线缆-交流电缆<span class="success">ZRC-YJV-0.6/1-3*120+1*70</span>
+                        </li>
+                                                                                                <li data-value="XLJLDL" data-tags="XLJLDL" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_59" value='{"id":"59","kind":"\u7ebf\u7f06","proCode":"JLDL0002","content":null,"proName":"\u4ea4\u6d41\u7535\u7f06","guige":"ZRC-YJV-0.6\/1-3*95+1*50","isCompute":"0","memo":"","unit":"M","rongliang":"0.000","Cailiao":[{"id":"74","cId":"59","price":"160.00","brand":"\u4e0a\u4e0a"}],"showText":"\u7ebf\u7f06-\u4ea4\u6d41\u7535\u7f06","LETTER_DATA":"XLJLDL","LETTER":"X"}' />线缆-交流电缆<span class="success">ZRC-YJV-0.6/1-3*95+1*50</span>
+                        </li>
+                                                                                                <li data-value="XLJLDL" data-tags="XLJLDL" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_69" value='{"id":"69","kind":"\u7ebf\u7f06","proCode":"JLDL0006","content":null,"proName":"\u4ea4\u6d41\u7535\u7f06","guige":"ZRC-YJV-0.6\/1-3*240+1*120","isCompute":"0","memo":"","unit":"M","rongliang":"0.000","Cailiao":[{"id":"75","cId":"69","price":"345.00","brand":"\u4e0a\u4e0a"}],"showText":"\u7ebf\u7f06-\u4ea4\u6d41\u7535\u7f06","LETTER_DATA":"XLJLDL","LETTER":"X"}' />线缆-交流电缆<span class="success">ZRC-YJV-0.6/1-3*240+1*120</span>
+                        </li>
+                                                                                                <li data-value="XLJLDL" data-tags="XLJLDL" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_70" value='{"id":"70","kind":"\u7ebf\u7f06","proCode":"JLDL0007","content":null,"proName":"\u4ea4\u6d41\u7535\u7f06","guige":"ZRC-YJV-0.6\/1-3*25+1*16","isCompute":"0","memo":"","unit":"M","rongliang":"0.000","Cailiao":[{"id":"76","cId":"70","price":"37.00","brand":"\u4e0a\u4e0a"}],"showText":"\u7ebf\u7f06-\u4ea4\u6d41\u7535\u7f06","LETTER_DATA":"XLJLDL","LETTER":"X"}' />线缆-交流电缆<span class="success">ZRC-YJV-0.6/1-3*25+1*16</span>
+                        </li>
+                                                                                                <li data-value="XLJLDL" data-tags="XLJLDL" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_71" value='{"id":"71","kind":"\u7ebf\u7f06","proCode":"JLDL0008","content":null,"proName":"\u4ea4\u6d41\u7535\u7f06","guige":"ZRC-YJV-0.6\/1-3*50+1*25","isCompute":"0","memo":"","unit":"M","rongliang":"0.000","Cailiao":[{"id":"77","cId":"71","price":"69.00","brand":"\u4e0a\u4e0a"}],"showText":"\u7ebf\u7f06-\u4ea4\u6d41\u7535\u7f06","LETTER_DATA":"XLJLDL","LETTER":"X"}' />线缆-交流电缆<span class="success">ZRC-YJV-0.6/1-3*50+1*25</span>
+                        </li>
+                                                                                                <li data-value="XLJLDL" data-tags="XLJLDL" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_72" value='{"id":"72","kind":"\u7ebf\u7f06","proCode":"JLDL0009","content":null,"proName":"\u4ea4\u6d41\u7535\u7f06","guige":"ZRC-YJV-0.6\/1-3*70+1*35","isCompute":"0","memo":"","unit":"M","rongliang":"0.000","Cailiao":[{"id":"78","cId":"72","price":"104.00","brand":"\u4e0a\u4e0a"}],"showText":"\u7ebf\u7f06-\u4ea4\u6d41\u7535\u7f06","LETTER_DATA":"XLJLDL","LETTER":"X"}' />线缆-交流电缆<span class="success">ZRC-YJV-0.6/1-3*70+1*35</span>
+                        </li>
+                                                                                                <li data-value="XLJLDL" data-tags="XLJLDL" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_82" value='{"id":"82","kind":"\u7ebf\u7f06","proCode":"JLDL0010","content":null,"proName":"\u4ea4\u6d41\u7535\u7f06","guige":"ZRC-YJV-0.6\/1-4*16","isCompute":"0","memo":"","unit":"M","rongliang":"0.000","Cailiao":null,"showText":"\u7ebf\u7f06-\u4ea4\u6d41\u7535\u7f06","LETTER_DATA":"XLJLDL","LETTER":"X"}' />线缆-交流电缆<span class="success">ZRC-YJV-0.6/1-4*16</span>
+                        </li>
+                                                                                                <li data-value="XLJLDL" data-tags="XLJLDL" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_83" value='{"id":"83","kind":"\u7ebf\u7f06","proCode":"JLDL0011","content":null,"proName":"\u4ea4\u6d41\u7535\u7f06","guige":"ZRC-YJV22-0.6\/1-3*95+1*50","isCompute":"0","memo":"","unit":"M","rongliang":"0.000","Cailiao":null,"showText":"\u7ebf\u7f06-\u4ea4\u6d41\u7535\u7f06","LETTER_DATA":"XLJLDL","LETTER":"X"}' />线缆-交流电缆<span class="success">ZRC-YJV22-0.6/1-3*95+1*50</span>
+                        </li>
+                                                                                                <li data-value="XLJLDL" data-tags="XLJLDL" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_84" value='{"id":"84","kind":"\u7ebf\u7f06","proCode":"JLDL0012","content":null,"proName":"\u4ea4\u6d41\u7535\u7f06","guige":"ZRC-YJV22-0.6\/1-3*120+1*70","isCompute":"0","memo":"","unit":"M","rongliang":"0.000","Cailiao":null,"showText":"\u7ebf\u7f06-\u4ea4\u6d41\u7535\u7f06","LETTER_DATA":"XLJLDL","LETTER":"X"}' />线缆-交流电缆<span class="success">ZRC-YJV22-0.6/1-3*120+1*70</span>
+                        </li>
+                                                                                                <li data-value="XLZLDL" data-tags="XLZLDL" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_41" value='{"id":"41","kind":"\u7ebf\u7f06","proCode":"ZLDL0001","content":"","proName":"\u76f4\u6d41\u7535\u7f06","guige":"PV1-F-1*4","isCompute":"0","memo":"","unit":"\u7c73","rongliang":"0.000","Cailiao":null,"showText":"\u7ebf\u7f06-\u76f4\u6d41\u7535\u7f06","LETTER_DATA":"XLZLDL","LETTER":"X"}' />线缆-直流电缆<span class="success">PV1-F-1*4</span>
+                        </li>
+                                                                                                <li data-value="XLZLDL" data-tags="XLZLDL" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_60" value='{"id":"60","kind":"\u7ebf\u7f06","proCode":"ZLDL0002","content":null,"proName":"\u76f4\u6d41\u7535\u7f06","guige":"PV1-F-1*6","isCompute":"0","memo":"","unit":"\u7c73","rongliang":"0.000","Cailiao":[{"id":"72","cId":"60","price":"3.00","brand":"\u4e5d\u6d32"}],"showText":"\u7ebf\u7f06-\u76f4\u6d41\u7535\u7f06","LETTER_DATA":"XLZLDL","LETTER":"X"}' />线缆-直流电缆<span class="success">PV1-F-1*6</span>
+                        </li>
+                                                                                                <li data-value="XMGLSGFY" data-tags="XMGLSGFY" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_53" value='{"id":"53","kind":"\u9879\u76ee\u7ba1\u7406","proCode":"SGFY0001","content":null,"proName":"\u65bd\u5de5\u8d39\u7528","guige":"\u5de5\u65f6","isCompute":"0","memo":"","unit":"W","rongliang":"0.000","Cailiao":[{"id":"53","cId":"53","price":"0.00","brand":"\u5f69\u94a2\u74e6"},{"id":"54","cId":"53","price":"0.00","brand":"\u5e73\u9876"},{"id":"55","cId":"53","price":"0.00","brand":"\u4eba\u5b57\u9876"},{"id":"56","cId":"53","price":"0.00","brand":"\u9a6c\u978d\u677f"}],"showText":"\u9879\u76ee\u7ba1\u7406-\u65bd\u5de5\u8d39\u7528","LETTER_DATA":"XMGLSGFY","LETTER":"X"}' />项目管理-施工费用<span class="success">工时</span>
+                        </li>
+                                                                        <li data-group="Z" class="mui-table-view-divider mui-indexed-list-group">Z</li>
+                                                                        <li data-value="ZJDJ" data-tags="ZJDJ" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_34" value='{"id":"34","kind":"\u7ec4\u4ef6","proCode":"DJ0002","content":"","proName":"\u591a\u6676","guige":"270Wp","isCompute":"1","memo":"","unit":"\u7247","rongliang":"270.000","Cailiao":[{"id":"32","cId":"34","price":"685.00","brand":"\u5929\u5408"},{"id":"33","cId":"34","price":"756.00","brand":"\u963f\u7279\u65af"}],"showText":"\u7ec4\u4ef6-\u591a\u6676","LETTER_DATA":"ZJDJ","LETTER":"Z"}' />组件-多晶<span class="success">270Wp</span>
+                        </li>
+                                                                                                <li data-value="ZJDJ" data-tags="ZJDJ" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_37" value='{"id":"37","kind":"\u7ec4\u4ef6","proCode":"DJ0001","content":"","proName":"\u5355\u6676","guige":"285Wp","isCompute":"1","memo":"","unit":"\u7247","rongliang":"285.000","Cailiao":[{"id":"31","cId":"37","price":"855.00","brand":"\u5929\u5408"}],"showText":"\u7ec4\u4ef6-\u5355\u6676","LETTER_DATA":"ZJDJ","LETTER":"Z"}' />组件-单晶<span class="success">285Wp</span>
+                        </li>
+                                                                                                <li data-value="ZJDJ" data-tags="ZJDJ" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_99" value='{"id":"99","kind":"\u7ec4\u4ef6","proCode":"DJ0003","content":null,"proName":"\u591a\u6676","guige":"275Wp","isCompute":"1","memo":"","unit":"\u7247","rongliang":"275.000","Cailiao":null,"showText":"\u7ec4\u4ef6-\u591a\u6676","LETTER_DATA":"ZJDJ","LETTER":"Z"}' />组件-多晶<span class="success">275Wp</span>
+                        </li>
+                                                                                                <li data-value="ZJDJ" data-tags="ZJDJ" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_100" value='{"id":"100","kind":"\u7ec4\u4ef6","proCode":"DJ0004","content":null,"proName":"\u5355\u6676","guige":"290Wp","isCompute":"1","memo":"","unit":"\u7247","rongliang":"290.000","Cailiao":null,"showText":"\u7ec4\u4ef6-\u5355\u6676","LETTER_DATA":"ZJDJ","LETTER":"Z"}' />组件-单晶<span class="success">290Wp</span>
+                        </li>
+                                                                                                <li data-value="ZJZJ" data-tags="ZJZJ" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_40" value='{"id":"40","kind":"\u652f\u67b6","proCode":"ZJ0002","content":"","proName":"\u652f\u67b6","guige":"\u9a6c\u978d\u7248\u5c4b\u9876","isCompute":"0","memo":"","unit":"W","rongliang":"0.000","Cailiao":[{"id":"28","cId":"40","price":"0.00","brand":"\u5e38\u89c4"}],"showText":"\u652f\u67b6-\u652f\u67b6","LETTER_DATA":"ZJZJ","LETTER":"Z"}' />支架-支架<span class="success">马鞍版屋顶</span>
+                        </li>
+                                                                                                <li data-value="ZJZJ" data-tags="ZJZJ" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_74" value='{"id":"74","kind":"\u652f\u67b6","proCode":"ZJ0003","content":null,"proName":"\u652f\u67b6","guige":"\u5f69\u94a2\u74e6+\u5e73\u94fa","isCompute":"0","memo":"","unit":"W","rongliang":"0.000","Cailiao":[{"id":"91","cId":"74","price":"0.00","brand":"\u5e38\u89c4"}],"showText":"\u652f\u67b6-\u652f\u67b6","LETTER_DATA":"ZJZJ","LETTER":"Z"}' />支架-支架<span class="success">彩钢瓦+平铺</span>
+                        </li>
+                                                                                                <li data-value="ZJZJ" data-tags="ZJZJ" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_75" value='{"id":"75","kind":"\u652f\u67b6","proCode":"ZJ0004","content":null,"proName":"\u652f\u67b6","guige":"\u5f69\u94a2\u74e6+\u503e\u89d2","isCompute":"0","memo":"","unit":"W","rongliang":"0.000","Cailiao":[{"id":"94","cId":"75","price":"0.00","brand":"\u5e38\u89c4"}],"showText":"\u652f\u67b6-\u652f\u67b6","LETTER_DATA":"ZJZJ","LETTER":"Z"}' />支架-支架<span class="success">彩钢瓦+倾角</span>
+                        </li>
+                                                                                                <li data-value="ZJZJ" data-tags="ZJZJ" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_78" value='{"id":"78","kind":"\u652f\u67b6","proCode":"ZJ0007","content":null,"proName":"\u652f\u67b6","guige":"\u5e73\u5c4b\u9876 \u914d\u91cd+\u53cc\u6392\u6a2a\u88c5","isCompute":"0","memo":"","unit":"W","rongliang":"0.000","Cailiao":[{"id":"95","cId":"78","price":"0.00","brand":"\u5e38\u89c4"}],"showText":"\u652f\u67b6-\u652f\u67b6","LETTER_DATA":"ZJZJ","LETTER":"Z"}' />支架-支架<span class="success">平屋顶 配重+双排横装</span>
+                        </li>
+                                                                                                <li data-value="ZJZJ" data-tags="ZJZJ" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_79" value='{"id":"79","kind":"\u652f\u67b6","proCode":"ZJ0008","content":null,"proName":"\u652f\u67b6","guige":"\u4eba\u5b57\u5c4b\u9876+\u5f2f\u94a9","isCompute":"0","memo":"","unit":"W","rongliang":"0.000","Cailiao":[{"id":"93","cId":"79","price":"0.00","brand":"\u5e38\u89c4"}],"showText":"\u652f\u67b6-\u652f\u67b6","LETTER_DATA":"ZJZJ","LETTER":"Z"}' />支架-支架<span class="success">人字屋顶+弯钩</span>
+                        </li>
+                                                                                                <li data-value="ZJZJ" data-tags="ZJZJ" class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+                            <input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_101" value='{"id":"101","kind":"\u652f\u67b6","proCode":"ZJ0009","content":null,"proName":"\u652f\u67b6","guige":"\u5e73\u5c4b\u9876 \u914d\u91cd+\u5355\u6392\u7ad6\u88c5","isCompute":"0","memo":"","unit":"W","rongliang":"0.000","Cailiao":null,"showText":"\u652f\u67b6-\u652f\u67b6","LETTER_DATA":"ZJZJ","LETTER":"Z"}' />支架-支架<span class="success">平屋顶 配重+单排竖装</span>
+                        </li>-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/zepto.js"></script>
+<script src="../../js/mui.picker.js"></script>
+<script src="../../js/mui.picker.min.js"></script>
+<script src="../../js/mui.poppicker.js"></script>
+<script src="../../js/mui.enterfocus.js"></script>
+<script src="../../js/template.min.js"></script>
+<script src="../../config.js"></script>
+<script src="../../js/app.js"></script>
+<script src="../../js/sign.js"></script>
+<script src="../../js/md5.js"></script>
+<script src="../../js/mui.indexedlist.js"></script>
+<script src="../../js/jquery.1.9.1.js"></script>
+<script type="text/javascript">
+    var jQuery = jQuery.noConflict();
+</script> 
+<script type="text/html" id="cailiao_list_init">
+	<%
+		for(var i = 0;i<SonList.length;i++)
+		{
+			%>
+				<div class="mui-card mui-card-list-e7">
+			        <div class="mui-card-content">
+			            <div class="mui-card-content-inner">
+			                <i class="mui-icon mui-icon-close mui-action-remove-son"></i>
+			                <input type="hidden" name="sonId[]" value="<%=SonList[i].sonid%>">
+			                <input type="hidden" name="cailiaoId[]" value="<%=SonList[i].clId%>">
+			                <input type="hidden" name="guige[]" value="">
+			                <input type="hidden" name="unitRongliang[]" value="">
+			                <div class="cell-view-12">名称：<%=SonList[i].showText%></div>
+			                <div class="cell-view-12">品牌：
+			                    <select name="brand[]" style="width:60%;">
+			                    	<option value=''>请选择</option>
+			                    	<%
+			                    		if(SonList[i].brand)
+			                    		{
+			                    			for(var j=0;j<SonList[i].brandArr.length;j++)
+			                    			{
+			                    				if(SonList[i].brand==SonList[i].brandArr[j].value)
+			                    				{
+			                    					%>
+			                    					<option value='<%=SonList[i].brandArr[j].value%>' selected><%=SonList[i].brandArr[j].text%></option>
+			                    					<%
+			                    				}else
+			                    				{
+			                    					%>
+			                    					<option value='<%=SonList[i].brandArr[j].value%>'><%=SonList[i].brandArr[j].text%></option>
+			                    					<%
+			                    				}
+			                    			}
+			                    		}else
+			                    		{
+			                    			for(var j=0;j<SonList[i].brandArr.length;j++)
+			                    			{
+			                    				if(j==0)
+			                    				{
+			                    					%>
+			                    					<option value='<%=SonList[i].brandArr[j].value%>' selected><%=SonList[i].brandArr[j].text%></option>
+			                    					<%
+			                    				}else
+			                    				{
+			                    					%>
+			                    					<option value='<%=SonList[i].brandArr[j].value%>'><%=SonList[i].brandArr[j].text%></option>
+			                    					<%
+			                    				}
+			                    			}
+			                    		}
+			                    	%>
+                                </select>
+			                </div>
+			                <div class="cell-view-6">数量：
+			                    <input name="cnt[]" type="text" style="width:60%;" value="<%=SonList[i].cnt%>">片
+			                </div>
+			                <div class="cell-view-12">备注：
+			                    <input type="text" name="memo[]" style="width: 85%;" value="<%=SonList[i].memo%>">
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			<%
+		}
+	%>
+	<br /><br /><br />
+</script>
+<script id="cailiao_list_template" type="text/template">
+    <div class="mui-card mui-card-list-e7">
+        <div class="mui-card-content">
+            <div class="mui-card-content-inner">
+                <i class="mui-icon mui-icon-close mui-action-remove-son"></i>
+                <input type="hidden" name="sonId[]" value="">
+                <input type="hidden" name="cailiaoId[]" value="{id}">
+                <input type="hidden" name="guige[]" value="{guige}">
+                <input type="hidden" name="unitRongliang[]" value="{rongliang}">
+                <div class="cell-view-12">名称：{showText}</div>
+                <div class="cell-view-12">
+                    品牌：
+                    <select name="brand[]" class="mui-select fluid" style="width:60%;">
+                        <option value=''>请选择</option>
+                        {showBrand}
+                    </select>
+                </div>
+                <div class="cell-view-6">数量：
+                    <input type="text" name="cnt[]" style="width:60%;">{unit}
+                </div>
+                <div class="cell-view-12">备注：
+                    <input type="text" name="memo[]" style="width:85%;">
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script id="cailiao_list_kind" type="text/html">
+	<%
+		for(var i = 0;i<data.length;i++)
+		{
+			%>
+				<li class="mui-table-view-cell mui-indexed-list-item mui-checkbox mui-left">
+					<input type="checkbox" class="footNewCailiao-checkbox" id="cailiao_checkbox_<%=data[i].id%>" value='<%=data[i].value%>' /><%=data[i].kind%>-<%=data[i].proName%><span class="success"><%=data[i].guige%></span>
+				</li>
+			<%
+		}
+	%>
+
+</script>
+<script type="text/javascript" charset="utf-8">
+	var sid = localStorage.getItem("sid");
+	var pickerArea = [];
+	var city1={};
+	var city2={};
+	var city3={};
+	var city4={};
+	var id = "";
+	var cid = "";
+	jQuery('.btn-select-area').each(function(){
+		var llevel = jQuery(this).data('level');
+	    pickerArea[llevel] = new mui.PopPicker();
+	});
+    mui.init();
+    mui.plusReady(function(){
+    	cid = plus.webview.currentWebview().cid;
+    	var obj_xx = {};
+		obj_xx['sid'] = sid;
+		obj_xx['cid'] = cid;
+		obj_xx['kid'] = "";
+		obj_xx["method"] = config.apimethod.kcszinit;
+		obj_xx["version"] = config.apiversion;
+		var sign = GetSign(obj_xx);
+		var param_xx = {
+	        queryData: {
+	          'method': config.apimethod.kcszinit,
+	          'sign':sign,
+	          'sid':sid,
+	          'cid':cid,
+	          'kid':""
+	        },
+	        method: 'POST'
+	    }
+		$.dataRequest(param_xx, function(rs) {
+			if(rs.rsp=="succ")
+		    {
+		    	console.log(JSON.stringify(rs));
+		    	jQuery("#clientDate").val(rs.data.fanganDate);
+		    	jQuery("#compName").val(rs.data.compName);
+		    	jQuery("#showkindType").data("select",rs.data.Options.kindArr);
+		    	jQuery("#kind").val(rs.data.kind);
+		    	jQuery("#showRoofName").data("select",rs.data.Options.roofName);
+		    	jQuery("#roofId").val(rs.data.roofId);
+		    	jQuery("#showSeePeo").data("select",rs.data.Options.kanchaArr);
+		    	jQuery("#seePeo").val(rs.data.seePeo);
+		    	for(var i = 0;i<rs.data.Options.kanchaArr.length;i++)
+		    	{
+		    		if(rs.data.Options.kanchaArr[i].value == rs.data.seePeo)
+		    		{
+		    			jQuery("#seePeoText").val(rs.data.Options.kanchaArr[i].text);
+		    		}
+		    	}
+		    	jQuery("#ApplyCapacity").val(rs.data.sqrongliang);
+		    	jQuery("#rCnt").val(rs.data.cnt);
+		    	jQuery("#address").val(rs.data.address);
+		    	jQuery("#area_id1").val(rs.data.Areas.selected[0]);
+		    	jQuery("#area_id2").val(rs.data.Areas.selected[1]);
+		    	jQuery("#area_id3").val(rs.data.Areas.selected[2]);
+		    	jQuery("#area_id4").val(rs.data.Areas.selected[3]);
+		    	
+		    	var list_init = template("cailiao_list_init",rs.data);
+		    	jQuery('#mui-card-cailiao-list').append(list_init);
+		    	
+		    	jQuery('.select-hide[value!=""]').each(function(){
+			        var textInput=jQuery(this).siblings('input[type=text]');
+			        var _data = jQuery(this).siblings('button').data('select');
+			        var curVal = jQuery(this).val();
+			        if(!textInput.value){
+			            for(var k in _data){
+			                if(_data[k]['value'] == curVal){
+			                    textInput.val(_data[k]['text']);
+			                }
+			            }
+			        }
+			    });
+    
+			    //日期选择
+			    var btns = mui('.btn-date');
+			    btns.each(function(i, btn) {
+			        btn.addEventListener('tap', function() {
+			            var optionsJson = this.getAttribute('data-options') || '{}';
+			            var options = JSON.parse(optionsJson);
+			            var id = this.getAttribute('id');
+			            var that = this;
+			            /*
+			             * 首次显示时实例化组件
+			             * 示例为了简洁，将 options 放在了按钮的 dom 上
+			             * 也可以直接通过代码声明 optinos 用于实例化 DtPicker
+			             */
+			            var picker = new mui.DtPicker(options);
+			            picker.show(function(rs) {
+			                jQuery(that).parents('.mui-input-date').find('input').val(rs.text);
+			                picker.dispose();
+			            });
+			        }, false);
+			    });
+			
+			    //选择类型
+			    jQuery('.btn-select').each(function(){
+			        var picker = new mui.PopPicker();
+			        var json = jQuery(this).data('select');
+			        picker.setData(json);
+			        var forInput = jQuery(this).siblings('input[type=text]');
+			        var forVal = jQuery(this).siblings('input[type=hidden]');
+			        if(forVal.val()){
+			            picker.pickers[0].setSelectedValue(forVal.val(), 2000);
+			        }
+			        this.addEventListener('tap', function(event) {
+			            picker.show(function(items) {
+			                forInput && forInput.val(items[0]['text']);
+			                forVal && forVal.val(items[0]['value']);
+			            });
+			        }, false);
+			    });
+		    	
+		    	var val_area = {};
+			    val_area["mid"] = "";
+			    val_area["timestamp"] = new Date().getTime();
+			    val_area["method"] = config.apimethod.arealist;
+				val_area["version"] = config.apiversion;
+			    var sign_area = GetSign(val_area);
+			    var param_area = {
+			        queryData: {
+			          'method': config.apimethod.arealist, 
+			          'sign':sign_area,
+			          'mid':"",
+			          'timestamp':val_area["timestamp"]
+			        },
+			        method: 'POST'
+			    }
+			    $.dataRequest(param_area, function(rs1) {
+			        if(rs1.rsp=="succ")
+			        {
+			        	console.log(JSON.stringify(rs1.data.Area[0]));
+			        	jQuery("#showarea_id1").data("select",rs1.data.Area[0]);
+			        	pickerArea[1].setData(rs1.data.Area[0]);
+			        	for(var i = 0;i<rs1.data.Area[0].length;i++)
+			        	{
+			        		city1[rs1.data.Area[0][i].text] = rs1.data.Area[0][i].value;
+			        		if(rs1.data.Area[0][i].value==rs.data.Areas.selected[0])
+			        			jQuery('#area_text1').val(rs1.data.Area[0][i].text);
+			        	}
+			        	pickerArea[2].setData(rs.data.Areas.Area[1]);
+			        	for(var i = 0;i<rs.data.Areas.Area[1].length;i++)
+			        	{
+			        		city2[rs.data.Areas.Area[1][i].text] = rs.data.Areas.Area[1][i].value;
+			        		if(rs.data.Areas.Area[1][i].value==rs.data.Areas.selected[1])
+			        			jQuery('#area_text2').val(rs.data.Areas.Area[1][i].text);
+			        	}
+			        	pickerArea[3].setData(rs.data.Areas.Area[2]);
+			        	for(var i = 0;i<rs.data.Areas.Area[2].length;i++)
+			        	{
+			        		city3[rs.data.Areas.Area[2][i].text] = rs.data.Areas.Area[2][i].value;
+			        		if(rs.data.Areas.Area[2][i].value==rs.data.Areas.selected[2])
+			        			jQuery('#area_text3').val(rs.data.Areas.Area[2][i].text);
+			        	}
+			        	pickerArea[4].setData(rs.data.Areas.Area[3]);
+			        	for(var i = 0;i<rs.data.Areas.Area[3].length;i++)
+			        	{
+			        		city4[rs.data.Areas.Area[3][i].text] = rs.data.Areas.Area[3][i].value;
+			        		if(rs.data.Areas.Area[3][i].value==rs.data.Areas.selected[3])
+			        			jQuery('#area_text4').val(rs.data.Areas.Area[3][i].text);
+			        	}
+			        	setdq();
+			        	changedq(1);
+			        }else
+			        {
+			        	plus.nativeUI.toast("获取失败：" + rs1.data);
+						return;
+			        }
+			    });
+		    }
+		})
+		
+		getlist();
+	    //getbrank();
+	    function getlist(){
+	    	var obj_xx = {};
+			obj_xx['sid'] = sid;
+			obj_xx["method"] = config.apimethod.cailiaolist;
+			obj_xx["version"] = config.apiversion;
+			var sign = GetSign(obj_xx);
+			var param_xx = {
+		        queryData: {
+		          'method': config.apimethod.cailiaolist,
+		          'sign':sign,
+		          'sid':sid
+		        },
+		        method: 'POST'
+		    }
+			$.dataRequest(param_xx, function(rs) {
+				console.log(JSON.stringify(rs));
+				for(var i = 0;i<rs.data.length;i++)
+				{
+					rs.data[i]["value"] = JSON.stringify(rs.data[i]);
+				}
+				var list = template("cailiao_list_kind",rs);
+				jQuery("#cailiao_list_kind_ul").html(list);
+				console.log(JSON.stringify(rs));
+			})
+	    }
+	    /*function getbrank(){
+	    	var obj_xx = {};
+			obj_xx['sid'] = sid;
+			obj_xx['cid'] = cid;
+			obj_xx["method"] = config.apimethod.cailiaobrands;
+			obj_xx["version"] = config.apiversion;
+			var sign = GetSign(obj_xx);
+			var param_xx = {
+		        queryData: {
+		          'method': config.apimethod.cailiaobrands,
+		          'sign':sign,
+		          'sid':sid,
+		          'cid':cid
+		        },
+		        method: 'POST'
+		    }
+			$.dataRequest(param_xx, function(rs) {
+				console.log(JSON.stringify(rs));
+			})
+	    }*/
+    })
+    
+    function changedq(n){
+    	//改变取值后，对下一级进行更新选项
+    	var obj = {};
+    	switch(n)
+    	{
+    		case 1:
+    			obj = city1;
+    		break;
+    		case 2:
+    			obj = city2;
+    		break;
+    		case 3:
+    			obj = city3;
+    		break;
+    		case 4:
+    			obj = city4;
+    		break;
+    	}
+	    jQuery('.area-text').change(function(){
+	        var that = this;
+	        var curLevel = parseInt(jQuery(this).siblings('button').data('level'))||1;
+	        //jQuery(this).siblings('input[type=hidden]').val(obj[jQuery(this).val()]);
+	        curLevel = curLevel+1;
+	        console.log(curLevel);
+	        //强制清空下级所有数据
+	        for(var le=curLevel;le<=4;le++){
+	            pickerArea[le].setData([]);
+	            //清空text和hidden值
+	            jQuery('#area_text'+le).val('');
+	            jQuery('#area_text'+le).siblings('input[type=hidden]').val('');
+	        }
+	        //清空end
+
+	        //获取下一级地区数据
+	        var button = jQuery('#area_text'+curLevel).siblings('button');
+	        // button.attr('disabled' ,'disabled');
+
+	        var area_id = jQuery(this).siblings('input[type=hidden]').val();
+	        console.log(area_id);
+	        button.attr('data-select','');
+	        //开始到后台获取数据
+	        var val_obj = {};
+			val_obj["areaid"] = area_id;
+			val_obj["timestamp"] = new Date().getTime();
+			val_obj["method"] = config.apimethod.areachildlist;
+			val_obj["version"] = config.apiversion;
+			console.log(val_obj); 
+			var sign = GetSign(val_obj);
+			console.log(sign);
+			var param = {
+		        queryData: {
+		          'method': config.apimethod.areachildlist,
+		          'sign':sign,
+		          'areaid':area_id,
+		          'timestamp':val_obj["timestamp"]
+		        },
+		        method: 'POST'
+		    }
+			$.dataRequest(param, function(rs1) {
+		        if(rs1.rsp=="succ")
+    			{
+    				console.log(JSON.stringify(rs1.data));
+    				jQuery("#showarea_id"+curLevel).data("select",rs1.data);
+    				for(var i = 0;i<rs1.data.length;i++)
+		        	{
+		        		if(curLevel==2)
+		        		{
+		        			city2[rs1.data[i].text] = rs1.data[i].value;
+		        			pickerArea[2].setData(rs1.data);
+		        		}else if(curLevel==3)
+		        		{
+		        			city3[rs1.data[i].text] = rs1.data[i].value;
+		        			pickerArea[3].setData(rs1.data);
+		        		}else
+		        		{
+		        			city4[rs1.data[i].text] = rs1.data[i].value;
+		        			pickerArea[4].setData(rs1.data);
+		        		}
+		        	}
+		        	console.log(JSON.stringify(city2));
+    				setdq2(curLevel);
+    				if(curLevel<4)
+    					changedq(curLevel);
+    			}
+		    });
+	    });
+    }
+	
+    function setdq(){
+    	jQuery('.btn-select-area').each(function(){
+    		var llevel = jQuery(this).data('level');
+    		this.addEventListener('tap', function(event) {
+    			var level = parseInt(jQuery(this).data('level'))||1;
+    			if(level != 1){
+	                //查看上一级是否已经选择，没有选择上级不能拿选择当前地区
+	                var prevLevel = level - 1;
+	                var _tmpval = jQuery('#area_text'+prevLevel).val();
+	                if(!_tmpval){
+	                    mui.toast('请先选择上级地区');
+	                    return;
+	                }
+	           }
+    			var forInput = jQuery(this).siblings('input[type=text]');
+		        var forVal = jQuery(this).siblings('input[type=hidden]');
+		        var oldVal = forInput.val();
+		        if(forVal.val()){
+		            pickerArea[llevel].pickers[0].setSelectedValue(forVal.val(), 2000);
+		        } 
+    			pickerArea[llevel].show(function(items) {
+	                forInput && forInput.val(items[0]['text']);
+	                forVal && forVal.val(items[0]['value']);
+	                if(oldVal!=items[0]['text'])forInput.change();
+	            });
+    		});
+    	});
+    }
+    function setdq2(curLevel){
+    	jQuery('.btn-select-area').each(function(){
+    		var llevel = jQuery(this).data('level');
+    		if(parseInt(llevel)>=parseInt(curLevel))
+    		{
+    			this.addEventListener('tap', function(event) {
+	    			var level = parseInt(jQuery(this).data('level'))||1;
+	    			if(level != 1){
+		                //查看上一级是否已经选择，没有选择上级不能拿选择当前地区
+		                var prevLevel = level - 1;
+		                var _tmpval = jQuery('#area_text'+prevLevel).val();
+		                if(!_tmpval){
+		                    mui.toast('请先选择上级地区');
+		                    return;
+		                }
+		            }
+	    			var forInput = jQuery(this).siblings('input[type=text]');
+			        var forVal = jQuery(this).siblings('input[type=hidden]');
+			        var oldVal = forInput.val();
+			        if(forVal.val()){
+			            pickerArea[llevel].pickers[0].setSelectedValue(forVal.val(), 2000);
+			        } 
+	    			pickerArea[llevel].show(function(items) {
+		                forInput && forInput.val(items[0]['text']);
+		                forVal && forVal.val(items[0]['value']);
+
+		                if(oldVal!=items[0]['text'])forInput.change();
+		            });
+	    		});
+    		}
+    	});
+    }
+    
+    var maxcount = 1;
+	//上传图片
+	$('.action-camera').on('tap', function() {
+		var img_own = this;
+		//getImage();
+		jQuery('.mui-popover').css('display','none');
+        jQuery('.mui-popover').removeClass('mui-active');
+        jQuery('.mui-backdrop').css('display','none');
+        // debugger;
+        var id = jQuery(this).siblings().attr('class');
+        var input = jQuery(this).parents('.mui-popover').siblings('.mui-after-content').find('#'+id).parents('.image-box').find('input[type=hidden]');
+        var grayDiv = jQuery(this).parents('.mui-popover').siblings('.mui-after-content').find('#'+id).parents('.image-box').find('.gray-div-img');
+        var cmr = plus.camera.getCamera();
+		
+		cmr.captureImage(function(p) {
+			plus.io.resolveLocalFileSystemURL(p, function(entry) {
+				var name = entry.toLocalURL().substr(entry.toLocalURL().lastIndexOf('/') + 1)
+				appendFile(img_own, id, input, grayDiv, entry.toLocalURL(), name);
+			}, function(e) {
+				console.log("读取拍照文件错误：" + e.message);
+			});
+		}, function(e) {
+			console.log("失败：" + e.message);
+		}, {
+			filename: "_doc/camera/",
+			index: 1
+		});
+	});
+	$('.action-camera1').on('tap', function() {
+		var img_own = this;
+		//getImage();
+		jQuery('.mui-popover').css('display','none');
+        jQuery('.mui-popover').removeClass('mui-active');
+        jQuery('.mui-backdrop').css('display','none');
+        // debugger;
+        var id = jQuery(this).siblings().attr('class');
+        var input = jQuery(this).parents('.mui-popover').siblings('.mui-after-content').find('#'+id).parents('.image-box').find('input[type=hidden]');
+        var grayDiv = jQuery(this).parents('.mui-popover').siblings('.mui-after-content').find('#'+id).parents('.image-box').find('.gray-div-img');
+        var value = jQuery('#houseAppPic').val();
+        var cmr = plus.camera.getCamera();
+		
+		cmr.captureImage(function(p) {
+			plus.io.resolveLocalFileSystemURL(p, function(entry) {
+				var name = entry.toLocalURL().substr(entry.toLocalURL().lastIndexOf('/') + 1)
+				appendFile1(value, img_own, id, input, grayDiv, entry.toLocalURL(), name);
+			}, function(e) {
+				console.log("读取拍照文件错误：" + e.message);
+			});
+		}, function(e) {
+			console.log("失败：" + e.message);
+		}, {
+			filename: "_doc/camera/",
+			index: 1
+		});
+	});
+	$('.action-gallery').on('tap', function() {
+		//galleryImgsMaximum(maxcount);
+		var img_own = this;
+		//getImage();
+		jQuery('.mui-popover').css('display','none');
+        jQuery('.mui-popover').removeClass('mui-active');
+        jQuery('.mui-backdrop').css('display','none');
+        // debugger;
+        var id = jQuery(this).siblings().attr('class');
+        var input = jQuery(this).parents('.mui-popover').siblings('.mui-after-content').find('#'+id).parents('.image-box').find('input[type=hidden]');
+        var grayDiv = jQuery(this).parents('.mui-popover').siblings('.mui-after-content').find('#'+id).parents('.image-box').find('.gray-div-img');
+        // 从相册中选择图片
+		plus.gallery.pick(function(e) {
+			var imgstr = "";
+/*				imgCount = jQuery(this).find('.rate-img-list').find('img').length + e.files.length;
+				if(imgCount >= 1) {
+					jQuery(this).find('.rate-img-box').hide();
+				} else {
+					jQuery(this).find('.rate-img-box').show();
+				}*/
+			var name = '';
+			for(var i in e.files) {
+				name = e.files[i].substr(e.files[i].lastIndexOf('/') + 1);
+				//appendFile(e.files[i], name);
+				appendFile(img_own, id, input, grayDiv, e.files[i], name);
+			}
+		}, function(e) {
+			//          log( "取消选择图片" );
+		}, {
+			filter: "image",
+			multiple: true,
+			maximum: maxcount,
+			system: false,
+			onmaxed: function() {
+				plus.nativeUI.alert('最多只能选择' + maxcount + '张图片');
+			}
+		});
+	});
+	$('.action-gallery1').on('tap', function() {
+		//galleryImgsMaximum(maxcount);
+		var img_own = this;
+		//getImage();
+		jQuery('.mui-popover').css('display','none');
+        jQuery('.mui-popover').removeClass('mui-active');
+        jQuery('.mui-backdrop').css('display','none');
+        // debugger;
+        var id = jQuery(this).siblings().attr('class');
+        var input = jQuery(this).parents('.mui-popover').siblings('.mui-after-content').find('#'+id).parents('.image-box').find('input[type=hidden]');
+        var grayDiv = jQuery(this).parents('.mui-popover').siblings('.mui-after-content').find('#'+id).parents('.image-box').find('.gray-div-img');
+        var value = jQuery('#houseAppPic').val();
+        // 从相册中选择图片
+		plus.gallery.pick(function(e) {
+			var imgstr = "";
+/*				imgCount = jQuery(this).find('.rate-img-list').find('img').length + e.files.length;
+				if(imgCount >= 1) {
+					jQuery(this).find('.rate-img-box').hide();
+				} else {
+					jQuery(this).find('.rate-img-box').show();
+				}*/
+			var name = '';
+			for(var i in e.files) {
+				name = e.files[i].substr(e.files[i].lastIndexOf('/') + 1);
+				//appendFile(e.files[i], name);
+				appendFile1(value, img_own, id, input, grayDiv, e.files[i], name);
+			}
+		}, function(e) {
+			//          log( "取消选择图片" );
+		}, {
+			filter: "image",
+			multiple: true,
+			maximum: maxcount,
+			system: false,
+			onmaxed: function() {
+				plus.nativeUI.alert('最多只能选择' + maxcount + '张图片');
+			}
+		});
+	});
+
+	//从相册中选择图片
+	function galleryImgsMaximum(maxcount) {
+		// 从相册中选择图片
+		plus.gallery.pick(function(e) {
+			var imgstr = "";
+			imgCount = that.find('.rate-img-list').find('img').length + e.files.length;
+			if(imgCount >= 1) {
+				that.find('.rate-img-box').hide();
+			} else {
+				that.find('.rate-img-box').show();
+			}
+			var name = '';
+			for(var i in e.files) {
+				name = e.files[i].substr(e.files[i].lastIndexOf('/') + 1);
+				appendFile(e.files[i], name);
+			}
+		}, function(e) {
+			//          log( "取消选择图片" );
+		}, {
+			filter: "image",
+			multiple: true,
+			maximum: maxcount,
+			system: false,
+			onmaxed: function() {
+				plus.nativeUI.alert('最多只能选择' + maxcount + '张图片');
+			}
+		});
+	}
+	// 添加文件
+	function appendFile(imgown, newid, inputnew, grayDiv, path, imgname) {
+		var img = new Image();
+		img.src = path; // 传过来的图片路径在这里用。
+		var img_id = '';
+		img.onload = function() {
+			var el = this;
+			//生成比例 
+			var w = el.width,
+				h = el.height;
+			if(w > h) {
+				var scale = w / h;
+				w = 1280 || w;
+				h = w / scale;
+			} else {
+				var scale = h / w;
+				h = 1280 || h;
+				w = h / scale;
+			}
+			//生成canvas
+			var canvas = document.createElement('canvas');
+			var ctx = canvas.getContext('2d');
+			if(w > h) {
+				$(canvas).attr({
+					width: w,
+					height: h
+				});
+				ctx.drawImage(el, 0, 0, w, h);
+			} else {
+				$(canvas).attr({
+					width: h,
+					height: w
+				});
+				ctx.drawImage(el, 0, 0, h, w);
+			}
+
+			var base64 = canvas.toDataURL('image/jpeg', 1 || 0.8); //1最清晰，越低越模糊。
+			upload(imgown, newid, inputnew, grayDiv, path, base64, imgname);
+		}
+	}
+	// 添加文件
+	function appendFile1(houseAppPic,imgown, newid, inputnew, grayDiv, path, imgname) {
+		var img = new Image();
+		img.src = path; // 传过来的图片路径在这里用。
+		var img_id = '';
+		img.onload = function() {
+			var el = this;
+			//生成比例 
+			var w = el.width,
+				h = el.height;
+			if(w > h) {
+				var scale = w / h;
+				w = 1280 || w;
+				h = w / scale;
+			} else {
+				var scale = h / w;
+				h = 1280 || h;
+				w = h / scale;
+			}
+			//生成canvas
+			var canvas = document.createElement('canvas');
+			var ctx = canvas.getContext('2d');
+			if(w > h) {
+				$(canvas).attr({
+					width: w,
+					height: h
+				});
+				ctx.drawImage(el, 0, 0, w, h);
+			} else {
+				$(canvas).attr({
+					width: h,
+					height: w
+				});
+				ctx.drawImage(el, 0, 0, h, w);
+			}
+
+			var base64 = canvas.toDataURL('image/jpeg', 1 || 0.8); //1最清晰，越低越模糊。
+			upload1(houseAppPic, imgown, newid, inputnew, grayDiv, path, base64, imgname);
+		}
+	}
+	// 上传文件
+	function upload(imgown, newid, inputnew, grayDiv, localPath, base64, imagename) {
+		var waiting = plus.nativeUI.showWaiting();
+		console.log(localPath);
+		console.log(base64);
+		console.log(imagename);
+		grayDiv.show();
+		//jQuery(imgown).parents('.mui-popover').siblings('.mui-after-content').find('#'+id).parents('.image-box').find('img').attr('src',url);
+        jQuery(imgown).parents('.mui-popover').siblings('.mui-after-content').find('#'+newid).parents('.image-box').find('.image-show-box').show();
+        
+        var obj_img_up = {};
+        obj_img_up["from"] = "APP";
+        obj_img_up["keyCode"] = "";
+        obj_img_up["key"] = "APPLYBUILD";
+        obj_img_up["imageFiles"] = base64;
+        obj_img_up["method"] = config.apimethod.imageupload;
+		obj_img_up["version"] = config.apiversion;
+        var sign = GetSign(obj_img_up);
+        var param = {
+	        queryData: {
+	          'method': config.apimethod.imageupload,
+	          'sign':sign,
+	          'from':"APP",
+	          'keyCode':'',
+	          'key':"APPLYBUILD",
+	          'imageFiles':base64
+	        },
+	        method: 'POST'
+	    }
+        $.dataRequest(param, function(rs) {
+	        if(rs.rsp=="succ")
+	        {
+	        	if(rs.data.success=="true"){
+	        		console.log(rs.data.bpicShow);
+	        		console.log(rs.data.bpic);
+	        		jQuery(imgown).parents('.mui-popover').siblings('.mui-after-content').find('#'+newid).parents('.image-box').find('img').attr('src',rs.data.bpicShow);
+                    inputnew.val(rs.data.bpic);
+                    grayDiv.hide();
+                    waiting.close(); 
+	        	}else
+	        	{
+	        		plus.nativeUI.toast("上传失败：" + rs.data.msg);
+					return;
+	        	}
+	        }else
+	        {
+	        	plus.nativeUI.toast("上传失败：" + rs.data);
+				return;
+	        }
+	    });
+	}
+	// 上传文件
+	function upload1(houseAppPic, imgown, newid, inputnew, grayDiv, localPath, base64, imagename) {
+		var waiting = plus.nativeUI.showWaiting();
+		console.log(localPath);
+		console.log(base64);
+		console.log(imagename);
+		grayDiv.show();
+		//jQuery(imgown).parents('.mui-popover').siblings('.mui-after-content').find('#'+id).parents('.image-box').find('img').attr('src',url);
+        jQuery(imgown).parents('.mui-popover').siblings('.mui-after-content').find('#'+newid).parents('.image-box').find('.image-show-box').show();
+        
+        var obj_img_up = {};
+        obj_img_up["from"] = "APP";
+        obj_img_up["keyCode"] = "";
+        obj_img_up["key"] = "APPLYBUILD";
+        obj_img_up["imageFiles"] = base64;
+        obj_img_up["method"] = config.apimethod.imageupload;
+		obj_img_up["version"] = config.apiversion;
+        var sign = GetSign(obj_img_up);
+        var param = {
+	        queryData: {
+	          'method': config.apimethod.imageupload,
+	          'sign':sign,
+	          'from':"APP",
+	          'keyCode':'',
+	          'key':"APPLYBUILD",
+	          'imageFiles':base64
+	        },
+	        method: 'POST'
+	    }
+        $.dataRequest(param, function(rs) {
+	        if(rs.rsp=="succ")
+	        {
+	        	if(rs.data.success=="true"){
+	        		/*if (jQuery('#houseAppPic').val()=='') {
+			            jQuery(imgown).parents('.image-box').find('img').remove();
+			        } */
+			        jQuery('#houseAppPic').before("<img src="+rs.data.bpicShow+">");
+	        		jQuery(imgown).parents('.mui-popover').siblings('.mui-after-content').find('#'+newid).parents('.image-box').find('.image-show-box').show();
+                    houseAppPic = jQuery('#houseAppPic').val() + rs.data.bpic + ',';
+                    inputnew.val(houseAppPic);
+                    grayDiv.hide();
+                    var num = jQuery('#houseAppPic').siblings('img').length;
+			        console.log(num);
+			        if(num>=6) jQuery(imgown).parents('.mui-popover').siblings('.mui-after-content').find('#'+newid).attr('disabled','disabled');
+                    waiting.close(); 
+	        	}else
+	        	{
+	        		plus.nativeUI.toast("上传失败：" + rs.data.msg);
+					return;
+	        	}
+	        }else
+	        {
+	        	plus.nativeUI.toast("上传失败：" + rs.data);
+				return;
+	        }
+	    });
+	}
+
+    //删掉当前图片
+    jQuery('.mui-img-remove').click(function(){
+        var that = this;
+        //隐藏div
+        jQuery(that).parents('.image-show-box').hide();
+        //删掉图片展示，
+        jQuery(that).siblings('img').attr('src','');
+        //清空input，hidden,file
+        // jQuery(that).siblings('input').val('');
+        jQuery(that).parents('.image-box').find('input').val('');
+    });
+    jQuery('.mui-img-remove-house').click(function(){
+        var that = this;
+        //隐藏div
+        jQuery(that).parents('.image-show-box').hide();
+        //删掉图片展示，
+        jQuery(that).siblings('img').remove();
+        //清空input，hidden,file
+        jQuery(that).parents('.image-box').find('input').val('');
+        var num = jQuery(that).siblings('img').length;
+        if(num<6) jQuery(that).parents('.mui-popover').siblings('.mui-after-content').find('#'+id).removeAttr('disabled');
+    });
+    
+    var focusout_stop = function(e){}
+    var mask = mui.createMask(function(){
+        if(jQuery('#footNewCailiao').css('display') == 'block'){
+            return false;
+        }
+    });//callback为用户点击蒙版时自动执行的回调；
+    //修改的时候默认给输入框显示值
+    
+    //初始化单页的区域滚动
+    mui('.mui-scroll-wrapper').scroll();
+
+    //首页
+    mui(document.body).on('tap','.mui-action-home',function(){
+        clicked('_www/view/hyzx/hyzx.html');
+    });
+    mui(document.body).on('tap','.fanganList-go',function(){
+        document.location.href = jQuery('.fanganList-go').attr('href');
+    });
+    // mui('.mui-scroll-wrapper').scroll();
+
+    //提交按钮事件：需要验证基本信息
+    var rulesRequired = ['roofName','rCnt','seePeo','area_text1','area_text2','area_text3','area_text4','address'];
+    jQuery('.btn_submit').click(function(){
+        var that = this;
+        var submitValue = jQuery(this).text();
+        jQuery('#status').val(submitValue);
+        var waiting = plus.nativeUI.showWaiting();
+
+        //装机容量为空自动代入
+        var cnt = jQuery('#rCnt').val();
+        var jsCnt = jQuery('#jsCnt').val();
+        if(cnt=='') {
+            cnt = jsCnt;
+            jQuery('#rCnt').val(jsCnt);
+        }
+        //验证是否填写
+        var _rule_res = '';
+        for (var i = 0; i < rulesRequired.length; i++) {
+            var _val = jQuery('#'+rulesRequired[i]).val();
+            if(!_val){
+                _rule_res = jQuery('#'+rulesRequired[i]).attr('placeholder');
+                break;
+            }
+        }
+
+        if(_rule_res){
+            mui.alert(_rule_res+'必填');
+            waiting.close();
+            return;
+        }
+		
+        //计算装机容量不一致时提示
+        if(parseFloat(cnt,4)!=parseFloat(jsCnt,4)){
+            var btnArray = ['否','是'];
+            mui.confirm('装机容量与计算不一致，是否保存？', '提示', btnArray, function(e) {
+                if (e.index == 1) {
+                	var obj_str = "";
+                    //提交
+                    //jQuery('#form_fangan').submit();
+                    var saveType = submitValue=="保存"?"SUCC":"TEMP";
+                    var obj_add = {};
+                    obj_add["sid"] = sid;
+                    obj_add["saveType"] = submitValue=="保存"?"SUCC":"TEMP";
+                    obj_add["cid"] = cid;
+                    obj_add["id"] = "";
+                    obj_add["fanganDate"] = jQuery("#fanganDate").val();
+                    obj_add["compName"] = jQuery("#compName").val();
+                    obj_add["roofId"] = jQuery("#roofId").val();
+                    obj_add["kind"] = jQuery("#kind").val();
+                    obj_add["cnt"] = jQuery("#rCnt").val();
+                    obj_add["seePeo"] = jQuery("#seePeo").val();
+                    obj_add["areaId1"] = jQuery("#area_id1").val();
+                    obj_add["areaId2"] = jQuery("#area_id2").val();
+                    obj_add["areaId3"] = jQuery("#area_id3").val();
+                    obj_add["areaId4"] = jQuery("#area_id4").val();
+                    obj_add["address"] = jQuery("#address").val();
+                    var PowerPic = "";
+		        	if(jQuery("#PowerPic").val()!="[object Object]")
+		        	{
+		        		PowerPic = jQuery("#PowerPic").val();
+		        	}
+		        	obj_add["PowerPic"] = PowerPic;
+		        	var crePic = "";
+		        	if(jQuery("#crePic").val()!="[object Object]")
+		        	{
+		        		crePic = jQuery("#crePic").val();
+		        	}
+		        	obj_add["crePic"] = crePic;
+		        	var daikCardPic = "";
+		        	if(jQuery("#daikCardPic").val()!="[object Object]")
+		        	{
+		        		daikCardPic = jQuery("#daikCardPic").val();
+		        	}
+		        	obj_add["daikCardPic"] = daikCardPic;
+		        	var ensureCardPic = "";
+		        	if(jQuery("#ensureCardPic").val()!="[object Object]")
+		        	{
+		        		ensureCardPic = jQuery("#ensureCardPic").val();
+		        	}
+		        	obj_add["ensureCardPic"] = ensureCardPic;
+		        	var incomeCardPic = "";
+		        	if(jQuery("#incomeCardPic").val()!="[object Object]")
+		        	{
+		        		incomeCardPic = jQuery("#incomeCardPic").val();
+		        	}
+		        	obj_add["incomeCardPic"] = incomeCardPic;
+		        	var mateIncomeCardPic = "";
+		        	if(jQuery("#mateIncomeCardPic").val()!="[object Object]")
+		        	{
+		        		mateIncomeCardPic = jQuery("#mateIncomeCardPic").val();
+		        	}
+		        	obj_add["mateIncomeCardPic"] = mateIncomeCardPic;
+		        	var creditPic = "";
+		        	if(jQuery("#creditPic").val()!="[object Object]")
+		        	{
+		        		creditPic = jQuery("#creditPic").val();
+		        	}
+		        	obj_add["creditPic"] = creditPic;
+		        	var mateCreditPic = "";
+		        	if(jQuery("#mateCreditPic").val()!="[object Object]")
+		        	{
+		        		mateCreditPic = jQuery("#mateCreditPic").val();
+		        	}
+		        	obj_add["mateCreditPic"] = mateCreditPic;
+		        	var cadPic = "";
+		        	if(jQuery("#picturePic").val()!="[object Object]")
+		        	{
+		        		cadPic = jQuery("#picturePic").val();
+		        	}
+		        	obj_add["cadPic"] = cadPic;
+		        	obj_add["memo"] = jQuery("#rmemo").val();
+		        	var son_arr = [];
+		        	jQuery('.mui-card-content-inner').each(function(){
+		        		var obj = {};
+		        		obj["sonid"] = jQuery(this).find('input[name="sonId[]"]').val();
+		        		obj["clId"] = jQuery(this).find('input[name="cailiaoId[]"]').val();
+		        		obj["brand"] = jQuery(this).find('select[name="brand[]"]').find("option:selected").val();
+		        		obj["cnt"] = jQuery(this).find('input[name="cnt[]"]').val();
+		        		obj["memo"] = jQuery(this).find('input[name="memo[]"]').val();
+		        		var new_array = ksort(obj,"");
+		        		for(var k in new_array)
+						{
+							obj_str += k.toString()+new_array[k].toString();
+						}
+		        		son_arr.push(obj);
+		        	});
+		        	obj_add["SonList"] = obj_str;
+		        	obj_add["method"] = config.apimethod.kcszxmsave;
+					obj_add["version"] = config.apiversion;
+		        	var sign = GetSign(obj_add);
+		        	var param_add = {
+				        queryData: {
+				          'method': config.apimethod.kcszxmsave,
+				          'sign':sign,
+				          'saveType':saveType,
+				          'sid':sid,
+						  'cid':cid,
+						  'id':"",
+						  'fanganDate':jQuery("#fanganDate").val(),
+						  'compName':jQuery("#compName").val(),
+						  'roofId':jQuery("#roofId").val(),
+						  'kind':jQuery("#kind").val(),
+						  'cnt':jQuery("#rCnt").val(),
+						  'areaId1':jQuery("#area_id1").val(),
+						  'areaId2':jQuery("#area_id2").val(),
+						  'areaId3':jQuery("#area_id3").val(),
+						  'areaId4':jQuery("#area_id4").val(),
+						  'address':jQuery("#address").val(),
+						  'PowerPic':PowerPic,
+						  'crePic':crePic,
+						  'creditPic':creditPic,
+						  'daikCardPic':daikCardPic,
+						  'ensureCardPic':ensureCardPic,
+						  'incomeCardPic':incomeCardPic,
+						  'mateIncomeCardPic':mateIncomeCardPic,
+						  'mateCreditPic':mateCreditPic,
+						  'cadPic':cadPic,
+						  'memo':jQuery("#rmemo").val(),
+						  'SonList':obj_str
+				        },
+				        method: 'POST'
+				    }
+		        	$.dataRequest(param_add, function(rs) {
+		        		waiting.close(); 
+				        if(rs.rsp=="succ")
+				        {
+				        	if(rs.data.status=="succ"){
+				        		plus.nativeUI.toast("保存成功");
+				        		clicked('_www/view/hyzx/hyzx.html');
+								//return;
+				        	}else
+				        	{
+				        		plus.nativeUI.toast("保存失败：" + rs.data.msg);
+								return;
+				        	}
+				        }else
+				        {
+				        	plus.nativeUI.toast("保存失败：" + rs.data);
+							return;
+				        }
+		        	})
+                }
+            });
+        }else{
+        	var obj_str = "";
+            //提交
+            //jQuery('#form_fangan').submit();
+            var saveType = submitValue=="保存"?"SUCC":"TEMP";
+            var obj_add = {};
+            obj_add["sid"] = sid;
+            obj_add["saveType"] = submitValue=="保存"?"SUCC":"TEMP";
+            obj_add["cid"] = cid;
+            obj_add["id"] = "";
+            obj_add["fanganDate"] = jQuery("#fanganDate").val();
+            obj_add["compName"] = jQuery("#compName").val();
+            obj_add["roofId"] = jQuery("#roofId").val();
+            obj_add["kind"] = jQuery("#kind").val();
+            obj_add["cnt"] = jQuery("#rCnt").val();
+            obj_add["seePeo"] = jQuery("#seePeo").val();
+            obj_add["areaId1"] = jQuery("#area_id1").val();
+            obj_add["areaId2"] = jQuery("#area_id2").val();
+            obj_add["areaId3"] = jQuery("#area_id3").val();
+            obj_add["areaId4"] = jQuery("#area_id4").val();
+            obj_add["address"] = jQuery("#address").val();
+            var PowerPic = "";
+        	if(jQuery("#PowerPic").val()!="[object Object]")
+        	{
+        		PowerPic = jQuery("#PowerPic").val();
+        	}
+        	obj_add["PowerPic"] = PowerPic;
+        	var crePic = "";
+        	if(jQuery("#crePic").val()!="[object Object]")
+        	{
+        		crePic = jQuery("#crePic").val();
+        	}
+        	obj_add["crePic"] = crePic;
+        	var daikCardPic = "";
+        	if(jQuery("#daikCardPic").val()!="[object Object]")
+        	{
+        		daikCardPic = jQuery("#daikCardPic").val();
+        	}
+        	obj_add["daikCardPic"] = daikCardPic;
+        	var ensureCardPic = "";
+        	if(jQuery("#ensureCardPic").val()!="[object Object]")
+        	{
+        		ensureCardPic = jQuery("#ensureCardPic").val();
+        	}
+        	obj_add["ensureCardPic"] = ensureCardPic;
+        	var incomeCardPic = "";
+        	if(jQuery("#incomeCardPic").val()!="[object Object]")
+        	{
+        		incomeCardPic = jQuery("#incomeCardPic").val();
+        	}
+        	obj_add["incomeCardPic"] = incomeCardPic;
+        	var mateIncomeCardPic = "";
+        	if(jQuery("#mateIncomeCardPic").val()!="[object Object]")
+        	{
+        		mateIncomeCardPic = jQuery("#mateIncomeCardPic").val();
+        	}
+        	obj_add["mateIncomeCardPic"] = mateIncomeCardPic;
+        	var creditPic = "";
+        	if(jQuery("#creditPic").val()!="[object Object]")
+        	{
+        		creditPic = jQuery("#creditPic").val();
+        	}
+        	obj_add["creditPic"] = creditPic;
+        	var mateCreditPic = "";
+        	if(jQuery("#mateCreditPic").val()!="[object Object]")
+        	{
+        		mateCreditPic = jQuery("#mateCreditPic").val();
+        	}
+        	obj_add["mateCreditPic"] = mateCreditPic;
+        	var cadPic = "";
+        	if(jQuery("#picturePic").val()!="[object Object]")
+        	{
+        		cadPic = jQuery("#picturePic").val();
+        	}
+        	obj_add["cadPic"] = cadPic;
+        	obj_add["memo"] = jQuery("#rmemo").val();
+        	var son_arr = [];
+        	jQuery('.mui-card-content-inner').each(function(){
+        		var obj = {};
+        		obj["sonid"] = jQuery(this).find('input[name="sonId[]"]').val();
+        		obj["clId"] = jQuery(this).find('input[name="cailiaoId[]"]').val();
+        		obj["brand"] = jQuery(this).find('select[name="brand[]"]').find("option:selected").val();
+        		obj["cnt"] = jQuery(this).find('input[name="cnt[]"]').val();
+        		obj["memo"] = jQuery(this).find('input[name="memo[]"]').val();
+        		var new_array = ksort(obj,"");
+        		for(var k in new_array)
+				{
+					obj_str += k.toString()+new_array[k].toString();
+				}
+        		son_arr.push(obj);
+        	});
+        	obj_add["SonList"] = obj_str;
+    		obj_add["method"] = config.apimethod.kcszxmsave;
+			obj_add["version"] = config.apiversion;
+        	console.log(JSON.stringify(obj_add));
+        	var sign = GetSign(obj_add);
+        	var param_add = {
+		        queryData: {
+		          'method': config.apimethod.kcszxmsave,
+		          'sign':sign,
+		          'saveType':saveType,
+		          'sid':sid,
+				  'cid':cid,
+				  'id':"",
+				  'fanganDate':jQuery("#fanganDate").val(),
+				  'compName':jQuery("#compName").val(),
+				  'roofId':jQuery("#roofId").val(),
+				  'kind':jQuery("#kind").val(),
+				  'cnt':jQuery("#rCnt").val(),
+				  'areaId1':jQuery("#area_id1").val(),
+				  'areaId2':jQuery("#area_id2").val(),
+				  'areaId3':jQuery("#area_id3").val(),
+				  'areaId4':jQuery("#area_id4").val(),
+				  'address':jQuery("#address").val(),
+				  'PowerPic':PowerPic,
+				  'crePic':crePic,
+				  'creditPic':creditPic,
+				  'daikCardPic':daikCardPic,
+				  'ensureCardPic':ensureCardPic,
+				  'incomeCardPic':incomeCardPic,
+				  'mateIncomeCardPic':mateIncomeCardPic,
+				  'mateCreditPic':mateCreditPic,
+				  'cadPic':cadPic,
+				  'memo':jQuery("#rmemo").val(),
+				  'SonList':obj_str
+		        },
+		        method: 'POST'
+		    }
+        	console.log(JSON.stringify(param_add));
+        	$.dataRequest(param_add, function(rs) {
+        		waiting.close(); 
+		        if(rs.rsp=="succ")
+		        {
+		        	if(rs.data.status=="succ"){
+		        		plus.nativeUI.toast("保存成功");
+		        		clicked('_www/view/hyzx/hyzx.html');
+						//return;
+		        	}else
+		        	{
+		        		plus.nativeUI.toast("保存失败：" + rs.data.msg);
+						return;
+		        	}
+		        }else
+		        {
+		        	plus.nativeUI.toast("保存失败：" + rs.data);
+					return;
+		        }
+        	})
+        }
+    });
+
+    //列表层的高度
+    var bodyHeight = jQuery(window).height();
+    var _height = bodyHeight - 44;
+    var header = document.querySelector('header.mui-bar');
+    var list = document.getElementById('list');
+    var done = document.getElementById('done');
+    //calc hieght
+    list.style.height = (document.body.offsetHeight - header.offsetHeight) + 'px';
+    //create
+    window.indexedList = new mui.IndexedList(list);
+
+
+    jQuery('#footNewCailiao').css({'height':bodyHeight+'px'});
+    jQuery('.mui-indexed-list').css({'height':_height+'px'});
+
+    jQuery('#add_list_new').click(function(){
+        if(jQuery('.mui-indexed-list-bar').css('height') == '0px'){
+            jQuery('.mui-indexed-list-bar').css({'height':(_height-35)+'px'});
+            jQuery('.mui-indexed-list-inner').css({'height':(_height-35)+'px'});
+        }
+        mask.show();//显示遮罩
+
+        //重新给选中的赋值，没选中的则取消选中,保证html和选中状态同步
+        jQuery('.footNewCailiao-checkbox:checked').click();
+        jQuery('input[name="cailiaoId[]"]').each(function(){
+            var checkedId = jQuery(this).val()||0;
+            // debugger;
+            if(checkedId){
+                var that = jQuery('#cailiao_checkbox_'+checkedId);
+
+                that.click();
+            }
+        });
+
+        jQuery('#footNewCailiao').show();
+    });
+    // jQuery('#add_list_new').click();
+
+    jQuery('#footNewCailiao').on('click','.mui-action-nocheck',function(){
+        jQuery('#footNewCailiao').hide();
+        mask.close();//关闭遮罩
+    });
+
+    //滚动事件
+    var top_Add_New = jQuery('#add_list_new').offset().top;
+    jQuery(document).scroll(function(){
+        var _curTop = jQuery(document).scrollTop();
+        if(_curTop > (top_Add_New-44)){
+            jQuery('#add_list_new').addClass('top-add-btn');
+        }else{
+            jQuery('#add_list_new').removeClass('top-add-btn');
+        }
+    });
+
+
+    //done event
+    done.addEventListener('tap', function() {
+        var checkboxArray = [].slice.call(list.querySelectorAll('input[type="checkbox"]'));
+        var checkedValues = [];
+        var kind_cailiao_num = 0;
+        var kind_cailiao_num2 = 0;
+        checkboxArray.forEach(function(box) {
+            if (box.checked) {
+            	var _jsonVal = window.JSON.parse( box.value );
+                var _ttmp = jQuery('input[name="cailiaoId[]"][value="'+_jsonVal['id']+'"]');
+                if(!_ttmp.length){
+                	kind_cailiao_num++;
+                }
+            }
+        },false);
+
+        checkboxArray.forEach(function(box) {
+            if (box.checked) {
+                var _jsonVal = window.JSON.parse( box.value );
+                var _ttmp = jQuery('input[name="cailiaoId[]"][value="'+_jsonVal['id']+'"]');
+                var _html = '';
+                var _selectHtml = '';
+                if(!_ttmp.length){
+                    //开始到后台获取数据
+                    var obj_xx = {};
+					obj_xx['sid'] = sid;
+					obj_xx['cid'] = _jsonVal['id'];
+					obj_xx["method"] = config.apimethod.cailiaobrands;
+					obj_xx["version"] = config.apiversion;
+					var sign = GetSign(obj_xx);
+					var param_xx = {
+				        queryData: {
+				          'method': config.apimethod.cailiaobrands,
+				          'sign':sign,
+				          'sid':sid,
+				          'cid':_jsonVal['id']
+				        },
+				        method: 'POST'
+				    }
+					$.dataRequest(param_xx, function(rs) {
+						for(var i=0;i<rs.data.length;i++){
+                            var checkedTmp = '';
+                            if(i==0){
+                                checkedTmp = 'selected';
+                            }
+                            _selectHtml+="<option "+checkedTmp+ " value='"+rs.data[i].id+"'>"+rs.data[i].brand+"</option>";
+                        }
+						
+	                    _jsonVal['showBrand'] = _selectHtml;
+	                    _jsonVal['showText'] = _jsonVal['kind']+"-"+_jsonVal['proName']+_jsonVal['guige'];
+	                    _html = substitute(jQuery('#cailiao_list_template').html(), _jsonVal);
+	                    
+                		checkedValues.push(_html);
+                		kind_cailiao_num2++;
+                		if(kind_cailiao_num == kind_cailiao_num2)
+                		{
+                			selectinkind(checkedValues,mask);
+                		}
+					})
+                }
+            }
+        });
+        function selectinkind(checkedValues,mask)
+        {
+        	if (checkedValues.length > 0) {
+	            jQuery('#footNewCailiao').hide();
+	            //添加数据到列表中
+	            jQuery('.mui-card-cailiao-list').append(checkedValues.join(''));
+				jQuery('.mui-card-cailiao-list').find('br').remove();
+				jQuery('.mui-card-cailiao-list').append("<br /><br /><br />");
+	            mask.close();//关闭遮罩
+	        } else {
+	            mui.alert('你没选择任何材料');
+	        }
+        }
+        
+    }, false);
+    mui('.mui-indexed-list-inner').on('change', 'input', function() {
+        var count = list.querySelectorAll('input[type="checkbox"]:checked').length;
+        var value = count ? "添加(" + count + ")" : "添加";
+        done.innerHTML = value;
+        if (count) {
+            if (done.classList.contains("mui-disabled")) {
+                done.classList.remove("mui-disabled");
+            }
+        } else {
+            if (!done.classList.contains("mui-disabled")) {
+                done.classList.add("mui-disabled");
+            }
+        }
+    });
+
+    mui('.mui-card-cailiao-list').on('tap', '.mui-action-remove-son', function() {
+        var that = this;
+        var res = mui.confirm('删除后不可逆转','确认删除?',['不删','删'],function(e){
+            if (e.index == 1) {
+                mask.show();//打开遮罩
+                var sonId = jQuery(that).siblings('input[name="sonId[]"]').val() || 0;
+                if(sonId){
+                    jQuery.post(urlSonRemove,{'id':sonId},function(json){
+                        if(json.success){
+                            jQuery(that).parents('.mui-card-list-e7').remove();
+                            mask.close();//关闭遮罩
+                            mui.toast('已删除');
+                        }
+                    },'json');
+                }else{
+                    jQuery(that).parents('.mui-card-list-e7').remove();
+                    mask.close();//关闭遮罩
+                    mui.toast('已删除');
+                }
+            } else {
+                return;
+            }
+        });
+    });
+
+    //计算装机容量
+    jQuery('.mui-card-cailiao-list').on('change', '[name="cnt[]"]', function() {
+        // alert(1);
+        var zhuangji = 0;
+        var sum = 0;
+        jQuery('.mui-card-cailiao-list').children(this).each(function() {
+            var unitRongliang=parseFloat(jQuery(this).find('[name="unitRongliang[]"]').val())||0;
+            var cnt = parseFloat(jQuery(this).find('[name="cnt[]"]').val()||0);
+            if(unitRongliang > 0){
+                zhuangji = unitRongliang * cnt /1000;
+                sum = parseFloat(sum) + zhuangji;
+            }
+        });
+        jQuery('#rCnt').val(sum.toFixed(3));
+        jQuery('#jsCnt').val(sum.toFixed(3));
+    });
+
+
+function substitute(str,o,regexp){
+    return  str.replace(regexp || /\\?\{([^{}]+)\}/g, function (match, name) {
+        return (o[name] === undefined) ? '' : o[name];
+    });
+}
+
+</script>
+</html>

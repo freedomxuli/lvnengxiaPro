@@ -1,0 +1,577 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Jado绿能侠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="../../css/mui.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/mui.picker.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/mui.poppicker.css" />
+    
+    <style type="text/css">
+        .mui-pagination .p_bar a{
+            line-height: 1.428571429;
+            position: relative;
+            float: left;
+            margin-left: -1px;
+            padding: 6px 12px;
+            text-decoration: none;
+            color: #007aff;
+            border: 1px solid #ddd;
+            background-color: #fff;
+        }
+        .mui-pagination .p_bar a:first-child{
+            border-top-left-radius: 6px;
+            border-bottom-left-radius: 6px;
+            background-clip: padding-box;
+        }
+        .mui-pagination .p_bar a:last-child{
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+            background-clip: padding-box;
+        }
+        .mui-pagination .p_bar a.p_curpage{
+            color: #fff;
+            border-color: #007aff;
+            background-color: #007aff;
+        }
+        .cell-view-3{float: left;width: 25%;}
+        .cell-view-4{float: left;width: 33.33%;}
+        .cell-view-6{float: left;width: 50%;}
+        .cell-view-8{float:left;width: 66.66%;}
+        .cell-view-12{float:left;width: 100%;}
+        span.title{color: gray;width: 46px;display: inline-block;}
+        span.green{color: green;}
+        span.gray{color: gray;}
+        span.orange{color: orange;}
+        .content-view{padding-left: 18px;}
+        .mui-radius{border-radius: 100px ;padding: 3px 10px;}
+        .mui-content>.mui-card:first-child{margin-top: 1px;}
+        .mui-card{margin:0px;margin-top: 1px; border-radius: 0px;}
+        .cell-detial{
+            position: absolute;right: 3px;top: 30px;font-size: 1em;color:#007aff;
+        }
+        .mui-card-content-inner{padding: 8px 10px;}
+        .detial-cell{padding: 8px;border-top: 1px solid #efefef;display: none;}
+        .mui-input-row{height: auto !important;}
+        .mui-input-btn-label{width: 100%;}
+        .mui-input-row input[readonly]{background: #efefef;}
+        .mui-input-row label{width: 40%;}
+        .mui-input-row input[type='text'],textarea{width: 60% !important;}
+        .mui-input-btn-label input[type='text']{width: 45% !important;float: left !important;}
+        .mui-input-btn-label button{width: 15% !important;padding: 8px !important;margin:0px !important;}
+        .search-container{display: none;margin-bottom: 15px;}
+        .mui-button-row-search button{width: 49%;}
+    </style>
+    
+</head>
+<body>
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-icon mui-icon-home mui-action-home"></a>
+        <h1 class="mui-title">客户项目查询</h1>
+        <a class="mui-pull-right mui-action-search">
+            <i class="mui-icon mui-icon-search"></i>
+        </a>
+    </header>
+    <div class="mui-content">
+        <div class="mui-card search-container">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <form name="FormSearch" id='FormSearch' method="post" action="" class="mui-input-group">
+                        <div class="mui-input-row">
+                            <label>客户名称</label>
+                            <input type="text" name="key" id="key" value="" placeholder="客户名称">
+                        </div>
+                        <div class="mui-input-row mui-input-btn-label">
+                            <label>负责人</label>
+                            <input type="text" name="fuzerenText" placeholder="负责人" id="fuzerenText" value="" readonly>
+                            <button id='showfuzerenText' data-select='' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
+                            <input class="select-hide" type="hidden" id="fuzerenId" name="fuzerenId" value="">
+                        </div>
+                        <div class="mui-input-row mui-input-btn-label">
+                            <label>等级</label>
+                            <input type="text" name="levelText" placeholder="等级" id="levelText" value="" readonly>
+                            <button id='showLevelText' data-select='' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
+                            <input class="select-hide" type="hidden" id="level" name="level" value="">
+                        </div>
+                        <div class="mui-input-row mui-input-btn-label">
+                            <label>客户类型</label>
+                            <input type="text" name="clientTypeText" placeholder="客户类型" id="clientTypeText" value="" readonly>
+                            <button id='showclientTypeText' data-select='' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
+                            <input class="select-hide" type="hidden" id="clientType" name="clientType" value="">
+                        </div>
+                        <div class="mui-button-row mui-button-row-search">
+                            <button type="button" class="mui-btn mui-btn-default mui-icon mui-icon-undo btn-clear-search">清空</button>
+                            <button type="submit" class="mui-btn mui-btn-primary mui-icon mui-icon-search">搜索</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="pullrefresh" class="mui-content mui-scroll-wrapper content-div mui-card mui-card-list-eqinfo">
+			<div class="mui-scroll mui-card-content">
+				<ul class="mui-table-view" id="content-card-list">
+				<!--数据列表-->
+				</ul>
+        	</div>
+
+		</div>
+    </div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/zepto.js"></script>
+<script src="../../js/mui.picker.js"></script>
+<script src="../../js/mui.picker.min.js"></script>
+<script src="../../js/mui.poppicker.js"></script>
+<script src="../../js/mui.enterfocus.js"></script>
+<script src="../../js/template.min.js"></script>
+<script src="../../config.js"></script>
+<script src="../../js/app.js"></script>
+<script src="../../js/sign.js"></script>
+<script src="../../js/md5.js"></script>
+<script src="../../js/jquery.1.9.1.js"></script>
+<script type="text/javascript">
+    var jQuery = jQuery.noConflict();
+</script> 
+<script type="text/html" id="cardlist">
+	<%
+		for(var i = 0;i<data.List.length;i++)
+		{
+		%>
+		<li>
+			<div class="mui-card">
+	            <div class="mui-card-content">
+	                <div class="mui-card-content-inner">
+	                    <div class="cell-view-12">
+	                    <span class="title">客户</span><b><%=data.List[i].compName%></b></div>
+	                    <div class="cell-view-6">
+	                    <span class="title">负责人</span><%=data.List[i].fuzeren%></div>
+	                    <div class="cell-view-6">
+	                    <span class="title">勘察人</span><%=data.List[i].kancharen%></div>
+	                    <div class="cell-view-6">
+	                    <span class="title">日期</span><%=data.List[i].clientDate%></div>
+	                    <div class="cell-view-6">
+	                    <span class="title">状态</span><%=data.List[i].proStatus=="active"?"正常":"暂停"%></div>
+	
+	                    <div class="cell-view-12">
+	                        <span class="title">等级</span>
+	                        <span class="green"><%=data.List[i].level%></span>
+	                    </div>
+	                    <div class="cell-view-12">
+	                    <span class="title">地区</span><%=data.List[i].address%></div>
+	                    <div class="cell-detial">
+	                        <i class="mui-icon mui-icon-arrowdown action-detial<%=data.currentPage%>"></i>
+	                    </div>
+	                    <div class="cell-view-12 detial-cell">
+	                        <div class="cell-view-6">
+	                            <span class="gray">申请容量</span>.<%=data.List[i].ApplyCapacity%>
+	                        </div>
+	                        <div class="cell-view-6">
+	                            <span class="gray">客户类型</span>.<span class="orange"><%=data.List[i].clientType%></span>
+	                        </div>
+	                                                <div class="cell-view-12">
+	                            <span class="gray">开户行</span>.<%=data.List[i].bankName%>
+	                        </div>
+	                        <div class="cell-view-12">
+	                            <span class="gray">银行帐号</span>.<%=data.List[i].bankId%>
+	                        </div>
+	                        <div class="cell-view-12">
+	                            <span class="gray">瓦片类型</span>.<%=data.List[i].roofKind%>
+	                        </div>
+	                                                <div class="cell-view-12">
+	                            <span class="gray">屋顶朝南面积</span>.<%=data.List[i].acreage%>
+	                        </div>
+	                        <div class="cell-view-12">
+	                        	<%if(data.remove)
+	                        		{	if(data.List[i].proStatus=="active")
+	                        			{
+		                        			%>
+			                        			<span style="color:blue;" class="edit-client<%=data.currentPage%> edit-remove" data-cid="<%=data.List[i].id%>">
+					                                <span class="mui-icon mui-icon-trash"></span>删除
+					                            </span>
+					                            &nbsp;&nbsp;&nbsp;&nbsp;
+		                        			<%
+	                        			}else
+	                        			{
+	                        				%>
+	                        					<span>
+					                                <span class="mui-icon mui-icon-trash"></span>删除
+					                            </span>
+					                            &nbsp;&nbsp;&nbsp;&nbsp;
+	                        				<%
+	                        			}
+	                        		}
+	                        	%>
+	                        	<%if(data.edit)
+	                        		{
+	                        			if(data.List[i].proStatus=="active")
+	                        			{
+		                        			%>
+			                        			<span style="color:blue;" class="edit-client<%=data.currentPage%> edit-edit" data-cid="<%=data.List[i].id%>" data-clienttype="<%=data.List[i].clientType%>">
+					                                <span class="mui-icon mui-icon-compose"></span>修改
+					                            </span>
+					                            &nbsp;&nbsp;&nbsp;&nbsp;
+		                        			<%
+	                        			}else
+	                        			{
+	                        				%>
+	                        					<span>
+					                                <span class="mui-icon mui-icon-compose"></span>修改
+					                            </span>
+					                            &nbsp;&nbsp;&nbsp;&nbsp;
+	                        				<%
+	                        			}
+	                        		}
+	                        	%>
+	                        	<%if(data.setClientLevel)
+	                        		{
+	                        			%>
+		                        			<span style="color:blue;" class="edit-client<%=data.currentPage%> edit-setClientLevel" data-cid="<%=data.List[i].id%>">
+				                                <span class="mui-icon mui-icon-settings"></span>调整等级
+				                            </span>
+				                            &nbsp;&nbsp;&nbsp;&nbsp;
+	                        			<%
+	                        		}
+	                        	%>
+	                        	<%if(data.setClientLevel)
+	                        		{
+	                        			%>
+		                        			<span style="color:blue;" class="edit-client<%=data.currentPage%> edit-process" data-cid="<%=data.List[i].id%>">
+				                                <span class="mui-icon mui-icon-navigate"></span>项目进度
+				                            </span>
+	                        			<%
+	                        		}
+	                        	%>
+	                        </div>
+	                        <%
+	                        	if(data.List[i].Pics)
+	                        	{
+	                        		%>
+		                        		<div id="slider" class="mui-slider" data-slidershowtimer="161">
+				                            <div class="mui-slider-group mui-slider-loop">
+				                            	<%
+				                            		for(var j = 0;j<data.List[i].Pics.length;j++)
+				                            		{
+				                            			%>
+					                            			<div class="mui-slider-item mui-slider-item-duplicate">
+							                                    <a href="#">
+							                                        <img src="<%=data.List[i].Pics[j].imageUrl%>">
+							                                        <p class="mui-slider-title"><%=data.List[i].Pics[j].title%></p>
+							                                    </a>
+							                                </div>
+				                            			<%
+				                            		}
+				                            	%>
+				                                
+				                            </div>
+				                            <div class="mui-slider-indicator mui-text-right">
+				                            	<%
+				                            		for(var j = 0;j<data.List[i].Pics.length;j++)
+				                            		{
+				                            			if(j==0)
+				                            			{
+				                            				%>
+				                            				<div class="mui-indicator mui-active"></div>
+				                            				<%
+				                            			}else
+				                            			{
+				                            				%>
+				                            				<div class="mui-indicator "></div>
+				                            				<%
+				                            			}
+				                            		}
+				                            	%>
+				                            </div>
+				                        </div>
+	                        		<%
+	                        	}
+	                        %>
+	                    </div>
+	                </div>
+	            </div>
+		    </div>
+	    </li>
+		<%
+		}
+	%>
+</script>
+<script>
+	var count = 1;
+	var pageNum = 25;
+	var sid = localStorage.getItem("sid");
+	var remove = false;
+	var edit = false;
+	var setClientLevel = false;
+	var process = false;
+    mui.init({
+    	pullRefresh: {
+			container: '#pullrefresh',
+			up: {
+				contentrefresh: '正在加载...',
+				callback: pullupRefresh
+			}
+		}
+    });
+    loadRegType();
+    function loadRegType(){
+    	var obj_reg = {};
+    	obj_reg["sid"] = sid;
+    	obj_reg["method"] = config.apimethod.khxminit;
+    	obj_reg["version"] = config.apiversion;
+    	var sign_reg = GetSign(obj_reg);
+    	var param_reg = {
+	        queryData: {
+	          'method': config.apimethod.khxminit,
+	          'sign':sign_reg,
+	          'sid':sid
+	        },
+	        method: 'POST'
+	    }
+    	$.dataRequest(param_reg, function(rs) {
+    		if(rs.rsp=="succ")
+			{
+				console.log(JSON.stringify(rs));
+				jQuery('#showfuzerenText').data('select',rs.data.fuzerenArr);
+				jQuery('#showLevelText').data('select',rs.data.level);
+				jQuery('#showclientTypeText').data('select',rs.data.clientType);
+				remove = JSON.parse(rs.data.Auth).remove;
+				edit = JSON.parse(rs.data.Auth).edit;
+				setClientLevel = JSON.parse(rs.data.Auth).setClientLevel;
+				process = JSON.parse(rs.data.Auth).process;
+				
+				//选择类型
+			    jQuery('.btn-select').each(function(){
+			        var picker = new mui.PopPicker();
+			        var json = jQuery(this).data('select');
+			        picker.setData(json);
+			        var forInput = jQuery(this).siblings('input[type=text]');
+			        var forVal = jQuery(this).siblings('input[type=hidden]');
+			        if(forVal.val()){
+			            picker.pickers[0].setSelectedValue(forVal.val(), 2000);
+			        }
+			        this.addEventListener('tap', function(event) {
+			            picker.show(function(items) {
+			                forInput && forInput.val(items[0]['text']);
+			                forVal && forVal.val(items[0]['value']);
+			            });
+			        }, false);
+			    });
+    
+			    //默认显示框里的值
+			    jQuery('.select-hide[value!=""]').each(function(){
+			        var textInput=jQuery(this).siblings('input[type=text]');
+			        var _data = jQuery(this).siblings('button').data('select');
+			        var curVal = jQuery(this).val();
+			        if(!textInput.value){
+			            for(var k in _data){
+			                if(_data[k]['value'] == curVal){
+			                    textInput.val(_data[k]['text']);
+			                }
+			            }
+			        }
+			    });
+			}
+    	})
+    }
+    //首页
+    mui(document.body).on('tap','.mui-action-home',function(){
+        clicked('_www/view/hyzx/hyzx.html');
+    });
+    mui(document.body).on('tap','.mui-action-search',function(){
+        jQuery('.search-container').slideToggle();
+    });
+    
+    /**
+	 * 上拉加载具体业务实现
+	 */
+	function pullupRefresh() {
+		loadData('','','','');
+	}
+	
+	function timestampToTime(timestamp) {
+        var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+        Y = date.getFullYear() + '-';
+        M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+        D = date.getDate() + ' ';
+        h = date.getHours() + ':';
+        m = date.getMinutes() + ':';
+        s = date.getSeconds();
+        return Y+M+D+h+m+s;
+    }
+
+    //默认显示框里的值
+    jQuery('.select-hide[value!=""]').each(function(){
+        var textInput=jQuery(this).siblings('input[type=text]');
+        var _data = jQuery(this).siblings('button').data('select');
+        var curVal = jQuery(this).val();
+        if(!textInput.value){
+            for(var k in _data){
+                if(_data[k]['value'] == curVal){
+                    textInput.val(_data[k]['text']);
+                }
+            }
+        }
+    });
+    
+    function loadData(key,fuzerenId,levelId,type){
+		var now_time = new Date().getTime();
+		var obj_point = {};
+		obj_point["sid"] = sid;
+		obj_point["page"] = count;
+		obj_point["pageNum"] = pageNum;
+		obj_point["key"] = key;
+		obj_point["fuzerenId"] = fuzerenId;
+		obj_point["type"] = type;
+		obj_point["levelId"] = levelId;
+		obj_point["method"] = config.apimethod.khcxlist;
+        obj_point["version"] = config.apiversion;
+		var sign = GetSign(obj_point);
+		var param = {
+	        queryData: {
+	          'method': config.apimethod.khcxlist,
+	          'sign':sign,
+	          'sid':sid,
+	          'page':count,
+	          'pageNum':pageNum,
+	          'key':key,
+	          'fuzerenId':fuzerenId,
+	          'type':type,
+	          'levelId':levelId
+	        },
+	        method: 'POST'
+	   }
+		$.dataRequest(param, function(rs) {
+			console.log(JSON.stringify(rs));
+			if(rs.rsp=="succ")
+			{
+				if(rs.data.List)
+				{
+					++count;
+					setTimeout(function() {
+						console.log(remove); 
+						rs.data["remove"] = remove;
+						rs.data["edit"] = edit;
+						rs.data["setClientLevel"] = setClientLevel;
+						rs.data["process"] = process;
+						console.log(JSON.stringify(rs));
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh((count > rs.data.pageCount)); //参数为true代表没有更多数据了。
+						var list = template("cardlist",rs);
+						jQuery('#content-card-list').append(list);
+						console.log(JSON.stringify(rs));
+					    //显示详细
+					    jQuery('.action-detial'+rs.data.currentPage).click(function(){
+					        jQuery(this).parent().siblings('.detial-cell').slideToggle();
+					    })
+					    mui(".mui-slider").slider();
+					    
+					    mui(document.body).on('tap','.edit-client'+rs.data.currentPage,function(){
+					        var that = this;
+					        if(jQuery(that).hasClass('edit-remove')){
+					            var res = mui.confirm('删除后不可逆转','确认删除?',['不删','删'],function(e){
+					                if (e.index == 1) {
+					                	var cid = jQuery(that).data("cid");
+					                    var obj_remove = {};
+					                    obj_remove["sid"] = sid;
+					                    obj_remove["cid"] = cid;
+					                    obj_remove["method"] = config.apimethod.khxmsc;
+					                    obj_remove["version"] = config.apiversion;
+					                    var sign_remove = GetSign(obj_remove);
+					                    var param_remove = {
+									        queryData: {
+									          'method': config.apimethod.khxmsc,
+									          'sign':sign_remove,
+									          'sid':sid,
+									          'cid':cid
+									        },
+									        method: 'POST'
+									    }
+					                    $.dataRequest(param_remove, function(rs1) {
+					                    	console.log(JSON.stringify(rs1));
+					                    	if(rs1.rsp=="succ")
+											{
+												jQuery('#content-card-list').html('');
+												count = 1;
+												loadData('','','','');
+												plus.nativeUI.toast("删除成功！");
+											}
+					                    })
+					                } else {
+					                    return;
+					                }
+					            });
+					        }else{
+					        	if(jQuery(that).hasClass('edit-edit'))
+					        	{
+					        		if(jQuery(this).data("clienttype")=="私宅")
+					        		{
+					        			clicked("_www/view/khxm/jmxmedit.html",{
+							            	cid:jQuery(this).data("cid")
+							            });
+					        		}else{
+					        			clicked("_www/view/khxm/qyxmedit.html",{
+							            	cid:jQuery(this).data("cid")
+							            });
+					        		}
+					        		
+					        	}else if(jQuery(that).hasClass('edit-setClientLevel'))
+					        	{
+					        		clicked("_www/view/khxm/tzkhdj.html",{
+						            	cid:jQuery(this).data("cid")
+						            });
+					        	}else if(jQuery(that).hasClass('edit-process'))
+					        	{
+					        		clicked("_www/view/khxm/jdzl.html",{
+						            	cid:jQuery(this).data("cid")
+						            });
+					        	}
+					        }
+					    });
+					    
+					}, 1500);
+				}else
+				{
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh((count > 0));
+				}
+			}else
+			{
+				plus.nativeUI.toast("获取失败：" + rs.res);
+				return;
+			}
+		});
+	}
+
+    //清空搜索
+    jQuery('.btn-clear-search').click(function(){
+    	jQuery('#content-card-list').html('');
+    	jQuery('#FormSearch').find('input').val('');
+    	count = 1;
+    	loadData('','','','');
+        //jQuery('#FormSearch').find('input').val('');
+        //jQuery('#FormSearch').submit();
+    });
+    
+    jQuery('.mui-icon-search').click(function(){
+    	jQuery('#content-card-list').html('');
+    	count = 1;
+    	loadData(jQuery('#key').val(),jQuery('#fuzerenId').val(),jQuery('#level').val(),jQuery('#clientType').val());
+        //jQuery('#FormSearch').find('input').val('');
+        //jQuery('#FormSearch').submit();
+    });
+
+	if (mui.os.plus) {
+		mui.plusReady(function() {
+			setTimeout(function() {
+				mui('#pullrefresh').pullRefresh().pullupLoading();
+			}, 1000);
+
+		});
+	} else {
+		mui.ready(function() {
+			mui('#pullrefresh').pullRefresh().pullupLoading();
+		});
+	}
+</script>
+</html>

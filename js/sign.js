@@ -1,6 +1,7 @@
 function GetSign (params){
 	var private_key = "eqinfolg2j6ew5rbyg58tofjvw479rqfkv3b4v51cyhe7";
 	var param = assemble(params);
+	console.log(param);
 /*	console.log(param);
 	console.log("数组加密："+md5(param));
 	console.log("数组加密大写："+md5(param).toUpperCase());

@@ -1,0 +1,2042 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Jado绿能侠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="../../css/mui.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/mui.picker.min.css" />
+    <link rel="stylesheet" type="text/css" href="../..//css/mui.poppicker.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/icons-extra.css" />
+    
+     <style type="text/css">
+        .mui-plus header.mui-bar{
+            display: block;
+        }
+        .mui-plus .mui-bar-nav~.mui-content{
+            margin-top: 0px;
+        }
+
+        /*hm开头的表示仅为 Hello MUI示例定义*/
+        .hm-description{
+            margin: .5em 0;
+        }
+
+        .hm-description>li {
+            font-size: 14px;
+            color: #8f8f94;
+        }
+        .mui-plus .plus{
+            display: inline;
+        }
+        #btn_submit{z-index: 100;}
+        .mui-btn {
+            font-size: 16px;
+            padding: 8px;
+            margin: 3px;
+        }
+        .ui-alert {
+            text-align: center;
+            padding: 20px 10px;
+            font-size: 16px;
+        }
+        * {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+        }
+        .plus{
+            display: none;
+        }
+
+        p {
+            text-indent: 22px;
+        }
+        span.mui-icon {
+            font-size: 14px;
+            color: #007aff;
+            margin-left: -15px;
+            padding-right: 10px;
+        }
+        .mui-popover {
+            height: 100px;
+        }
+        #topPopover {
+            position: fixed;
+            top: 16px;
+            left: 3px;
+        }
+        #topPopover .mui-popover-arrow {
+            left: 3px;
+        }
+
+        footer{position: fixed;bottom: 0px;left: 0px;width: 100%;height: 40px;z-index: 99;}
+        footer button{height: 40px;border-radius: 0px !important;padding:0px;line-height: 0.8 !important;margin: 0px !important;}
+        .mui-input-row{height: auto !important;}
+        .mui-input-btn-label{width: 100%;}
+        .mui-input-row label{width: 40%;}
+        .mui-input-row input[type='text'],textarea{width: 60% !important;}
+        .mui-input-btn-label input[type='text']{width: 45% !important;float: left !important;}
+        .mui-input-btn-label button{width: 15% !important;padding: 8px !important;margin:0px !important;}
+        .up-image{
+            width: 73px;
+            height: 74px;
+            _width: 73px;
+            _height: 74px;
+            position: relative;
+            z-index: 9;
+            opacity: 0;
+        }
+        .up-image-btn{
+            background: url('../../img/fbpl/photo.jpg')  no-repeat; 
+            background-position: -2px -4px;
+            position: absolute;
+            border: 1px solid #d1d1d1;
+            display: inline-block;
+            color: #fff;
+            width: 70px;
+            height: 70px;
+            _width: 70px;
+            _height: 70px;
+            text-align: center;
+            top: 2px;
+            left: 0px;
+        }
+        .image-box{width: 60%;float: left;position: relative;}
+        .image-row{height:auto!important; height:70px; min-height:70px;}
+        .image-show-box{float: right;height:auto!important; height:70px; min-height:70px;max-width:100px;position: relative;border:0px solid #d1d1d1;display: none;}
+        .image-show-box img{max-height: 70px;max-width:150px; }
+        .image-show-box .gray-div-img{width: 100%;height: 70px;opacity: 0.7;background: #222;position: absolute;top: 0px;left: 0px;text-align: center;padding-top: 40%;color: #fff;display: none;z-index: 5;}
+        .image-show-box i{
+            position: absolute;
+            left: -20px;
+            top: 4px;
+            font-size: 0.7em;
+            background: #F69753;
+            color: #fff;
+            z-index: 3;
+            max-height: 70px;
+            white-space: normal;
+            height: 70px;
+            width: 20px;
+            text-align: center;
+            vertical-align: middle;
+            padding-top: 20px;
+            font-style:normal;
+            line-height: 17px
+        }
+        .box-check-group{float: left;width: 60%;line-height: 40px;}
+        .box-check-group input[type='radio']{padding: 10px;position: relative;width: 20px;height: 20px;border:1px solid #a1a1a1; border-radius: 50%;background: #efefef;margin-left: 20px;}
+        .box-check-group input[type='radio']:checked:after{
+            content: ' ';
+            width: 12px;
+            height: 12px;
+            border-radius: 50px;
+            margin-top:-6px;
+            margin-left:-6px;
+            position: absolute;
+            top: 50%;
+            background: #007aff;
+            color: #007aff;
+            box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);
+            text-shadow: 0px;
+            left: 50%;
+        }
+        .block-dis{display: block;}
+        .mui-input-btn-label button {border-radius: 0px  !important;margin-top: 1px !important;}
+        .display-none{display: none}
+        .mui-input-row button i,img{margin-top:4px}
+        .up-image-android,.up-image-house{
+            width: 100%;
+            height: 28px;
+            _width: 100%;
+            _height: 28px;
+            position: absolute;
+            z-index: 9;
+            opacity: 0;
+            margin-top: 6px;
+            left:90px;
+        }
+        .image-btn-box{position: relative;display: inline-block;width: 100%;}
+        .up-image-btn-1{color: red;}
+        .mui-popover.mui-popover-action.mui-popover-bottom{margin-bottom: 50px;}
+    </style>
+    
+</head>
+<body>
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-icon mui-icon-home mui-action-home"></a>
+        <h1 class="mui-title">居民项目录入</h1>
+        <a class="mui-pull-right clientIndex-go">
+            <i class="mui-icon mui-icon-bars"></i>
+        </a>
+    </header>
+    <div class="mui-content mui-after-content">
+        <form class="mui-input-group" id="form_client">
+        <!-- 申请日期 -->
+        <div class="mui-input-date mui-input-row mui-input-btn-label">
+            <label>登记日期</label>
+            <input type="text" name="clientDate" placeholder="登记日期" id="clientDate" value="" readonly>
+            <button id='clientDateBtn' data-options='{"type":"date"}' class="btn mui-btn mui-btn-block btn-date"><i class="mui-icon-extra mui-icon-extra-calendar"></i></button>
+        </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>客户名称</label>
+            <input type="text" name="compName" placeholder="客户名称" id="compName" value="">
+            <input type="hidden" name="id" value="">
+            <button id='showSearchTel' class="mui-btn mui-btn-block btn" type='button'><i class="mui-icon mui-icon-person"></i></button>
+            <input type="hidden" name="userId" id='userId' value="">
+        </div>
+        <div class="mui-input-row">
+            <label>客户类型</label>
+            <input type="text" name="clientType" placeholder="客户类型" id="clientType" value="私宅" readonly>
+        </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>客户等级</label>
+            <input type="text" name="levelText" placeholder="客户等级" id="levelText" value="" readonly>
+            <button id='showLevel' data-select='' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
+            <input class="select-hide" type="hidden" id="level" name="level" value="">
+        </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>省</label>
+            <input type="text" name="area_text1" placeholder="省" id="area_text1" value="" readonly class="area-text">
+            <button id='showarea_id1'  data-level=1 data-select='' class="mui-btn mui-btn-block btn-select-area" type='button'><i class="mui-icon mui-icon-more"></i></button>
+            <input class="select-hide" type="hidden" id="area_id1" name="area_id1" value="10808">
+        </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>市</label>
+            <input type="text" name="area_text2" placeholder="市" id="area_text2" value="" readonly class="area-text">
+            <button id='showarea_id2' data-select='' class="mui-btn mui-btn-block btn-select-area" data-level=2 type='button'><i class="mui-icon mui-icon-more"></i></button>
+            <input class="select-hide" type="hidden" id="area_id2" name="area_id2" value="">
+        </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>区</label>
+            <input type="text" name="area_text3" placeholder="区" id="area_text3" value="" readonly class="area-text">
+            <button id='showarea_id3'  data-level=3 data-select='' class="mui-btn mui-btn-block btn-select-area" type='button'><i class="mui-icon mui-icon-more"></i></button>
+            <input class="select-hide" type="hidden" id="area_id3" name="area_id3" value="">
+        </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>镇</label>
+            <input type="text" name="area_text4" placeholder="镇" id="area_text4" value="" readonly>
+            <button id='showarea_id4'  data-level=4 data-select='[]' class="mui-btn mui-btn-block btn-select-area" type='button'><i class="mui-icon mui-icon-more"></i></button>
+            <input class="select-hide" type="hidden" id="area_id4" name="area_id4" value="">
+        </div>
+        <div class="mui-input-row">
+            <label>详细地址</label>
+            <input type="text" name="address" placeholder="详细地址" id="address" value="">
+        </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>付款模式</label>
+            <input type="text" name="isDaikText" placeholder="付款模式" id="isDaikText" value="全款" readonly>
+            <button id='showIsDaik' data-select='' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
+            <input class="select-hide" type="hidden" id="isDaik" name="isDaik" value="">
+        </div>
+        <div class="mui-input-row mui-input-btn-label display display-none">
+            <label>贷款年限</label>
+            <input type="text" name="daikyearText" placeholder="贷款年限" id="daikyearText" value="0年" readonly>
+            <button id='showDaikyear' data-select='' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
+            <input class="select-hide" type="hidden" id="daikyear" name="daikyear" value="">
+        </div>
+        <div class="mui-input-row display display-none">
+            <label>借款人</label>
+            <input type="text" name="borrowName" placeholder="借款人" id="borrowName" value="">
+        </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>负责人</label>
+            <input type="text" name="fuzerenText" placeholder="负责人" id="fuzerenText" value="" readonly>
+            <button id='showfuzerenText' data-select='' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
+            <input class="select-hide" type="hidden" id="fuzerenId" name="fuzerenId" value="">
+        </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>勘察人</label>
+            <input type="text" name="kancharenText" placeholder="勘察人" id="kancharenText" value="" readonly>
+            <button id='showkancharenText' data-select='' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
+            <input class="select-hide" type="hidden" id="kancharenId" name="kancharenId" value="">
+        </div>
+        <div class="mui-input-row image-row">
+            <label>房屋远景</label>
+            <div class="image-box">
+                <a href="#sheet_0"><input type="file" accept="image/*;capture=camera" name="longShotFile" id="longShotFile" class='up-image'></a>
+                <i class="up-image-btn"></i>
+                <div class="image-show-box block-dis">
+                    <div class="gray-div-img">上传中...</div>
+                    <i class="mui-img-remove">删除</i>
+                    <img src="">
+                    <input type="hidden" name="longShotPic" id="longShotPic" value="">
+                </div>
+            </div>
+        </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>屋顶瓦片类型</label>
+            <input type="text" name="kind" placeholder="屋顶瓦片类型" id="kind" value="">
+            <button id='showkind' data-select='' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
+        </div>
+        <div class="mui-input-row">
+            <label>屋顶朝南面积(m²)</label>
+            <input type="text" name="acreage" placeholder="屋顶朝南面积" id="acreage" value="">
+        </div>
+        <div class="mui-input-row image-row">
+            <label>房产证证号页</label>
+            <div class="image-box">
+                <a href="#sheet_1"><input type="file" accept="image/*;capture=camera" name="proCardFile" id="proCardFile" class='up-image'></a>
+                <i class="up-image-btn"></i>
+                <div class="image-show-box block-dis">
+                    <div class="gray-div-img">上传中...</div>
+                    <i class="mui-img-remove">删除</i>
+                    <img src="">
+                    <input type="hidden" name="proCardPic" id="proCardPic" value="">
+                </div>
+            </div>
+        </div>
+        <div class="mui-input-row image-row">
+            <label>房产证内容页</label>
+            <div class="image-box">
+                <a href="#sheet_2"><input type="file" accept="image/*;capture=camera" name="proContFile" id="proContFile" class='up-image'></a>
+                <i class="up-image-btn"></i>
+                <div class="image-show-box block-dis">
+                    <div class="gray-div-img">上传中...</div>
+                    <i class="mui-img-remove">删除</i>
+                    <img src="">
+                    <input type="hidden" name="proContPic" id="proContPic" value="">
+                </div>
+            </div>
+        </div>
+        <div class="mui-input-row image-row">
+            <label>客户房屋使用证明</label>
+            <div class="image-box">
+                <a href="#sheet_12"><input type="file" accept="image/*;capture=camera" name="useCardFile" id="useCardFile" class='up-image'></a>
+                <i class="up-image-btn"></i>
+                <div class="image-show-box block-dis">
+                    <div class="gray-div-img">上传中...</div>
+                    <i class="mui-img-remove">删除</i>
+                    <img src="">
+                    <input type="hidden" name="useCardPic" id="useCardPic" value="">
+                </div>
+            </div>
+        </div>
+        <div class="mui-input-row image-row">
+            <label>房屋租赁协议</label>
+            <div class="image-box">
+                <a href="#sheet_13"><input type="file" accept="image/*;capture=camera" name="hireCardFile" id="hireCardFile" class='up-image'></a>
+                <i class="up-image-btn"></i>
+                <div class="image-show-box block-dis">
+                    <div class="gray-div-img">上传中...</div>
+                    <i class="mui-img-remove">删除</i>
+                    <img src="">
+                    <input type="hidden" name="hireCardPic" id="hireCardPic" value="">
+                </div>
+            </div>
+        </div>
+        <div class="mui-input-row image-row">
+            <label>土地证</label>
+            <div class="image-box">
+                <a href="#sheet_3"><input type="file" accept="image/*;capture=camera" name="landCardFile" id="landCardFile" class='up-image'></a>
+                <i class="up-image-btn"></i>
+                <div class="image-show-box block-dis">
+                    <div class="gray-div-img">上传中...</div>
+                    <i class="mui-img-remove">删除</i>
+                    <img src="">
+                    <input type="hidden" name="landCardPic" id="landCardPic" value="">
+                </div>
+            </div>
+        </div>
+        <div class="mui-input-row image-row">
+            <label>户主身份证正面照</label>
+            <div class="image-box">
+                <a href="#sheet_4"><input type="file" accept="image/*;capture=camera" name="IDFrontFile" id="IDFrontFile" class='up-image'></a>
+                <i class="up-image-btn"></i>
+                <div class="image-show-box block-dis">
+                    <div class="gray-div-img">上传中...</div>
+                    <i class=" mui-img-remove">删除</i>
+                    <img src="">
+                    <input type="hidden" name="IDFrontPic" id="IDFrontPic" value="">
+                </div>
+            </div>
+        </div>
+        <div class="mui-input-row image-row">
+            <label>户主身份证反面照</label>
+            <div class="image-box">
+                <a href="#sheet_5"><input type="file" accept="image/*;capture=camera" name="IDBackFile" id="IDBackFile" class='up-image'></a>
+                <i class="up-image-btn"></i>
+                <div class="image-show-box block-dis">
+                    <div class="gray-div-img">上传中...</div>
+                    <i class="mui-img-remove">删除</i>
+                    <img src="">
+                    <input type="hidden" name="IDBackPic" id="IDBackPic" value="">
+                </div>
+            </div>
+        </div>
+        <div class="mui-input-row image-row display display-none">
+            <label>配偶身份证正面照</label>
+            <div class="image-box">
+                <a href="#sheet_6"><input type="file" accept="image/*;capture=camera" name="mateIDFrontFile" id="mateIDFrontFile" class='up-image'></a>
+                <i class="up-image-btn"></i>
+                <div class="image-show-box block-dis">
+                    <div class="gray-div-img">上传中...</div>
+                    <i class="mui-img-remove">删除</i>
+                    <img src="">
+                    <input type="hidden" name="mateIDFrontPic" id="mateIDFrontPic" value="">
+                </div>
+            </div>
+        </div>
+        <div class="mui-input-row image-row display display-none">
+            <label>配偶身份证反面照</label>
+            <div class="image-box">
+                <a href="#sheet_7"><input type="file" accept="image/*;capture=camera" name="mateIDBackFile" id="mateIDBackFile" class='up-image'></a>
+                <i class="up-image-btn"></i>
+                <div class="image-show-box block-dis">
+                    <div class="gray-div-img">上传中...</div>
+                    <i class="mui-img-remove">删除</i>
+                    <img src="">
+                    <input type="hidden" name="mateIDBackPic" id="mateIDBackPic" value="">
+                </div>
+            </div>
+        </div>
+        <div class="mui-input-row image-row">
+            <label>户口簿整本(最多6张)</label>
+            <div class="image-box">
+                <a href="#sheet_8"><input type="file" accept="image/*;capture=camera" name="houseAppFile" id="houseAppFile" class='up-image'></a>
+                <i class="up-image-btn"></i>
+                <div class="image-show-box block-dis">
+                    <div class="gray-div-img">上传中...</div>
+                    <i class="mui-img-remove-house">删除</i>
+                    <input type="hidden" name="houseAppPic" id="houseAppPic" value="">
+                </div>
+            </div>
+        </div>
+        <div class="mui-input-row image-row">
+            <label>银行卡</label>
+            <div class="image-box">
+                <a href="#sheet_9"><input type="file" accept="image/*;capture=camera" name="bankCardFile" id="bankCardFile" class='up-image'></a>
+                <i class="up-image-btn"></i>
+                <div class="image-show-box block-dis">
+                    <div class="gray-div-img">上传中...</div>
+                    <i class="mui-img-remove">删除</i>
+                    <img src="">
+                    <input type="hidden" name="bankCardPic" id="bankCardPic" value="">
+                </div>
+            </div>
+        </div>
+        <div class="mui-input-row image-row">
+            <label>申请单确认</label>
+            <div class="image-box">
+                <a href="#sheet_14"><input type="file" accept="image/*;capture=camera" name="ReCardFile" id="ReCardFile" class='up-image'></a>
+                <i class="up-image-btn"></i>
+                <div class="image-show-box block-dis">
+                    <div class="gray-div-img">上传中...</div>
+                    <i class="mui-img-remove">删除</i>
+                    <img src="">
+                    <input type="hidden" name="ReCardPic" id="ReCardPic" value="">
+                </div>
+            </div>
+        </div>
+        <div class="mui-input-row image-row display display-none">
+            <label>结婚证</label>
+            <div class="image-box">
+                <a href="#sheet_10"><input type="file" accept="image/*;capture=camera" name="marryCardFile" id="marryCardFile" class='up-image'></a>
+                <i class="up-image-btn"></i>
+                <div class="image-show-box block-dis">
+                    <div class="gray-div-img">上传中...</div>
+                    <i class="mui-img-remove">删除</i>
+                    <img src="">
+                    <input type="hidden" name="marryCardPic" id="marryCardPic" value="">
+                </div>
+            </div>
+        </div>
+        <div class="mui-input-row image-row display display-none">
+            <label>单身证明</label>
+            <div class="image-box">
+                <a href="#sheet_11"><input type="file" accept="image/*;capture=camera" name="singleCardFile" id="singleCardFile" class='up-image'></a>
+                <i class="up-image-btn"></i>
+                <div class="image-show-box block-dis">
+                    <div class="gray-div-img">上传中...</div>
+                    <i class="mui-img-remove">删除</i>
+                    <img src="">
+                    <input type="hidden" name="singleCardPic" id="singleCardPic" value="">
+                </div>
+            </div>
+        </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>开户行</label>
+            <input type="text" name="bankName" placeholder="开户行" id="bankName" value="">
+            <button id='showbankName' data-select='' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
+        </div>
+        <div class="mui-input-row">
+            <label>银行账号</label>
+            <input type="text" name="bankId" placeholder="银行账号" id="bankId" value="">
+        </div>
+        <div class="mui-input-row">
+            <label>户表名</label>
+            <input type="text" name="huBiaoName" placeholder="户表名" id="huBiaoName" value="">
+        </div>
+        <div class="mui-input-row">
+            <label>户表号</label>
+            <input type="text" name="hubiaoCard" placeholder="户表号" id="hubiaoCard" value="">
+        </div>
+        <div class="mui-input-row">
+            <label>是否需要增容</label>
+            <div class="box-check-group">
+                <input type="radio" name='isIncrease' value="0" checked>否
+                <input type="radio" name='isIncrease' value="1" >是
+            </div>
+        </div>
+        <div class="mui-input-row" style="height: auto;">
+            <label>增容情况</label>
+            <textarea class="form-control" placeholder="增容情况" rows="2" name="increaseMemo" id="increaseMemo"></textarea>
+        </div>
+        <div class="mui-input-row" style="height: auto;">
+            <label>申请容量(KWp)</label>
+            <input type="text" name="ApplyCapacity" placeholder="申请容量" id="ApplyCapacity" value="">
+        </div>
+        <div class="mui-input-row">
+            <label>上述材料是否递交</label>
+            <div class="box-check-group">
+                <input type="radio" name='isHand' value="0" checked>否
+                <input type="radio" name='isHand' value="1" >是
+            </div>
+        </div>
+        <div class="mui-input-row">
+            <label>跟进供电局人员</label>
+            <input type="text" name="powerStaff" placeholder="跟进供电局人员" id="powerStaff" value="">
+        </div>
+        <div class="mui-input-row">
+            <label>跟进人电话</label>
+            <input type="text" name="followTel" placeholder="跟进人员电话" id="followTel" value="">
+        </div>
+        <div class="mui-input-row">
+            <label>联系人</label>
+            <input type="text" name="people" placeholder="联系人" id="people" value="">
+        </div>
+        <div class="mui-input-row">
+            <label>联系电话</label>
+            <input type="text" name="phone" placeholder="联系电话" id="phone" value="">
+            <input type="hidden" name="contactId" id="contactId" value="">
+        </div>
+        <div class="mui-input-row" style="height: auto;">
+            <label>备注</label>
+            <textarea class="form-control" placeholder="备注" rows="2" name="memo" id="memo"></textarea>
+        </div>
+        </form>
+        <div class="" style="height: 50px;"></div>
+    </div>
+    <div id="sheet_0" class="mui-popover mui-popover-action mui-popover-bottom"  style="display: none;">
+        <ul class="mui-table-view">
+			<li class="mui-table-view-cell">
+                <div class="paizhao image-btn-box">
+                    <input type="file" capture="camera" accept="image/*" name="longShotFile" value="" class="up-image-android action-camera">
+                    <span class="longShotFile"></span>
+                    <span class="up-image-btn-1">拍照</span>
+                </div>
+            </li>
+			<li class="mui-table-view-cell">
+                <div class="select-file image-btn-box">
+                    <input type="file" capture="camera" accept="image/*;capture=camera" name="longShotFile" value="" class="up-image-android action-gallery">
+                    <span class="longShotFile"></span>
+                    <span class="up-image-btn-2">相册</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="#sheet_0" class=""><b>取消</b></a>
+            </li>
+        </ul>
+    </div>
+        <div id="sheet_1" class="mui-popover mui-popover-action mui-popover-bottom"  style="display: none;">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <div class="paizhao image-btn-box">
+                    <input type="file" capture="camera" accept="image/*" name="proCardFile" value="" class="up-image-android action-camera">
+                    <span class="proCardFile"></span>
+                    <span class="up-image-btn-1">拍照</span>
+                </div>
+            </li>
+            <li class="mui-table-view-cell">
+                <div class="select-file image-btn-box">
+                    <input type="file" capture="camera" accept="image/*;capture=camera" name="proCardFile" value="" class="up-image-android action-gallery">
+                    <span class="proCardFile"></span>
+                    <span class="up-image-btn-2">相册</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="#sheet_1" class=""><b>取消</b></a>
+            </li>
+        </ul>
+    </div>
+        <div id="sheet_2" class="mui-popover mui-popover-action mui-popover-bottom"  style="display: none;">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <div class="paizhao image-btn-box">
+                    <input type="file" capture="camera" accept="image/*" name="proContFile" value="" class="up-image-android action-camera">
+                    <span class="proContFile"></span>
+                    <span class="up-image-btn-1">拍照</span>
+                </div>
+            </li>
+            <li class="mui-table-view-cell">
+                <div class="select-file image-btn-box">
+                    <input type="file" capture="camera" accept="image/*;capture=camera" name="proContFile" value="" class="up-image-android action-gallery">
+                    <span class="proContFile"></span>
+                    <span class="up-image-btn-2">相册</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="#sheet_2" class=""><b>取消</b></a>
+            </li>
+        </ul>
+    </div>
+        <div id="sheet_3" class="mui-popover mui-popover-action mui-popover-bottom"  style="display: none;">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <div class="paizhao image-btn-box">
+                    <input type="file" capture="camera" accept="image/*" name="landCardFile" value="" class="up-image-android action-camera">
+                    <span class="landCardFile"></span>
+                    <span class="up-image-btn-1">拍照</span>
+                </div>
+            </li>
+            <li class="mui-table-view-cell">
+                <div class="select-file image-btn-box">
+                    <input type="file" capture="camera" accept="image/*;capture=camera" name="landCardFile" value="" class="up-image-android action-gallery">
+                    <span class="landCardFile"></span>
+                    <span class="up-image-btn-2">相册</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="#sheet_3" class=""><b>取消</b></a>
+            </li>
+        </ul>
+    </div>
+        <div id="sheet_4" class="mui-popover mui-popover-action mui-popover-bottom"  style="display: none;">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <div class="paizhao image-btn-box">
+                    <input type="file" capture="camera" accept="image/*" name="IDFrontFile" value="" class="up-image-android action-camera">
+                    <span class="IDFrontFile"></span>
+                    <span class="up-image-btn-1">拍照</span>
+                </div>
+            </li>
+            <li class="mui-table-view-cell">
+                <div class="select-file image-btn-box">
+                    <input type="file" capture="camera" accept="image/*;capture=camera" name="IDFrontFile" value="" class="up-image-android action-gallery">
+                    <span class="IDFrontFile"></span>
+                    <span class="up-image-btn-2">相册</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="#sheet_4" class=""><b>取消</b></a>
+            </li>
+        </ul>
+    </div>
+        <div id="sheet_5" class="mui-popover mui-popover-action mui-popover-bottom"  style="display: none;">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <div class="paizhao image-btn-box">
+                    <input type="file" capture="camera" accept="image/*" name="IDBackFile" value="" class="up-image-android action-camera">
+                    <span class="IDBackFile"></span>
+                    <span class="up-image-btn-1">拍照</span>
+                </div>
+            </li>
+            <li class="mui-table-view-cell">
+                <div class="select-file image-btn-box">
+                    <input type="file" capture="camera" accept="image/*;capture=camera" name="IDBackFile" value="" class="up-image-android action-gallery">
+                    <span class="IDBackFile"></span>
+                    <span class="up-image-btn-2">相册</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="#sheet_5" class=""><b>取消</b></a>
+            </li>
+        </ul>
+    </div>
+        <div id="sheet_6" class="mui-popover mui-popover-action mui-popover-bottom"  style="display: none;">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <div class="paizhao image-btn-box">
+                    <input type="file" capture="camera" accept="image/*" name="mateIDFrontFile" value="" class="up-image-android action-camera">
+                    <span class="mateIDFrontFile"></span>
+                    <span class="up-image-btn-1">拍照</span>
+                </div>
+            </li>
+            <li class="mui-table-view-cell">
+                <div class="select-file image-btn-box">
+                    <input type="file" capture="camera" accept="image/*;capture=camera" name="mateIDFrontFile" value="" class="up-image-android action-gallery">
+                    <span class="mateIDFrontFile"></span>
+                    <span class="up-image-btn-2">相册</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="#sheet_6" class=""><b>取消</b></a>
+            </li>
+        </ul>
+    </div>
+        <div id="sheet_7" class="mui-popover mui-popover-action mui-popover-bottom"  style="display: none;">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <div class="paizhao image-btn-box">
+                    <input type="file" capture="camera" accept="image/*" name="mateIDBackFile" value="" class="up-image-android action-camera">
+                    <span class="mateIDBackFile"></span>
+                    <span class="up-image-btn-1">拍照</span>
+                </div>
+            </li>
+            <li class="mui-table-view-cell">
+                <div class="select-file image-btn-box">
+                    <input type="file" capture="camera" accept="image/*;capture=camera" name="mateIDBackFile" value="" class="up-image-android action-gallery">
+                    <span class="mateIDBackFile"></span>
+                    <span class="up-image-btn-2">相册</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="#sheet_7" class=""><b>取消</b></a>
+            </li>
+        </ul>
+    </div>
+        <div id="sheet_8" class="mui-popover mui-popover-action mui-popover-bottom"  style="display: none;">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <div class="paizhao image-btn-box">
+                    <input type="file" capture="camera" accept="image/*" name="houseAppFile" value="" class="up-image-house action-camera1">
+                    <span class="houseAppFile"></span>
+                    <span class="up-image-btn-1">拍照</span>
+                </div>
+            </li>
+            <li class="mui-table-view-cell">
+                <div class="select-file image-btn-box">
+                    <input type="file" capture="camera" accept="image/*;capture=camera" name="houseAppFile" value="" class="up-image-house action-gallery1">
+                    <span class="houseAppFile"></span>
+                    <span class="up-image-btn-2">相册</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="#sheet_8" class=""><b>取消</b></a>
+            </li>
+        </ul>
+    </div>
+        <div id="sheet_9" class="mui-popover mui-popover-action mui-popover-bottom"  style="display: none;">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <div class="paizhao image-btn-box">
+                    <input type="file" capture="camera" accept="image/*" name="bankCardFile" value="" class="up-image-android action-camera">
+                    <span class="bankCardFile"></span>
+                    <span class="up-image-btn-1">拍照</span>
+                </div>
+            </li>
+            <li class="mui-table-view-cell">
+                <div class="select-file image-btn-box">
+                    <input type="file" capture="camera" accept="image/*;capture=camera" name="bankCardFile" value="" class="up-image-android action-gallery">
+                    <span class="bankCardFile"></span>
+                    <span class="up-image-btn-2">相册</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="#sheet_9" class=""><b>取消</b></a>
+            </li>
+        </ul>
+    </div>
+        <div id="sheet_10" class="mui-popover mui-popover-action mui-popover-bottom"  style="display: none;">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <div class="paizhao image-btn-box">
+                    <input type="file" capture="camera" accept="image/*" name="marryCardFile" value="" class="up-image-android action-camera">
+                    <span class="marryCardFile"></span>
+                    <span class="up-image-btn-1">拍照</span>
+                </div>
+            </li>
+            <li class="mui-table-view-cell">
+                <div class="select-file image-btn-box">
+                    <input type="file" capture="camera" accept="image/*;capture=camera" name="marryCardFile" value="" class="up-image-android action-gallery">
+                    <span class="marryCardFile"></span>
+                    <span class="up-image-btn-2">相册</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="#sheet_10" class=""><b>取消</b></a>
+            </li>
+        </ul>
+    </div>
+        <div id="sheet_11" class="mui-popover mui-popover-action mui-popover-bottom"  style="display: none;">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <div class="paizhao image-btn-box">
+                    <input type="file" capture="camera" accept="image/*" name="singleCardFile" value="" class="up-image-android action-camera">
+                    <span class="singleCardFile"></span>
+                    <span class="up-image-btn-1">拍照</span>
+                </div>
+            </li>
+            <li class="mui-table-view-cell">
+                <div class="select-file image-btn-box">
+                    <input type="file" capture="camera" accept="image/*;capture=camera" name="singleCardFile" value="" class="up-image-android action-gallery">
+                    <span class="singleCardFile"></span>
+                    <span class="up-image-btn-2">相册</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="#sheet_11" class=""><b>取消</b></a>
+            </li>
+        </ul>
+    </div>
+            <div id="sheet_12" class="mui-popover mui-popover-action mui-popover-bottom"  style="display: none;">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <div class="paizhao image-btn-box">
+                    <input type="file" capture="camera" accept="image/*" name="useCardFile" value="" class="up-image-android action-camera">
+                    <span class="useCardFile"></span>
+                    <span class="up-image-btn-1">拍照</span>
+                </div>
+            </li>
+            <li class="mui-table-view-cell">
+                <div class="select-file image-btn-box">
+                    <input type="file" capture="camera" accept="image/*;capture=camera" name="useCardFile" value="" class="up-image-android action-gallery">
+                    <span class="useCardFile"></span>
+                    <span class="up-image-btn-2">相册</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="#sheet_12" class=""><b>取消</b></a>
+            </li>
+        </ul>
+    </div>
+                <div id="sheet_13" class="mui-popover mui-popover-action mui-popover-bottom"  style="display: none;">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <div class="paizhao image-btn-box">
+                    <input type="file" capture="camera" accept="image/*" name="hireCardFile" value="" class="up-image-android action-camera">
+                    <span class="hireCardFile"></span>
+                    <span class="up-image-btn-1">拍照</span>
+                </div>
+            </li>
+            <li class="mui-table-view-cell">
+                <div class="select-file image-btn-box">
+                    <input type="file" capture="camera" accept="image/*;capture=camera" name="hireCardFile" value="" class="up-image-android action-gallery">
+                    <span class="hireCardFile"></span>
+                    <span class="up-image-btn-2">相册</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="#sheet_13" class=""><b>取消</b></a>
+            </li>
+        </ul>
+    </div>
+    <div id="sheet_14" class="mui-popover mui-popover-action mui-popover-bottom"  style="display: none;">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <div class="paizhao image-btn-box">
+                    <input type="file" capture="camera" accept="image/*" name="ReCardFile" value="" class="up-image-android action-camera">
+                    <span class="ReCardFile"></span>
+                    <span class="up-image-btn-1">拍照</span>
+                </div>
+            </li>
+            <li class="mui-table-view-cell">
+                <div class="select-file image-btn-box">
+                    <input type="file" capture="camera" accept="image/*;capture=camera" name="ReCardFile" value="" class="up-image-android action-gallery">
+                    <span class="ReCardFile"></span>
+                    <span class="up-image-btn-2">相册</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="#sheet_14" class=""><b>取消</b></a>
+            </li>
+        </ul>
+    </div>
+
+    <footer>
+        <button type="button" id="btn_submit" class="mui-btn mui-btn-block mui-btn-primary" >确定并保存</button>
+    </footer>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/zepto.js"></script>
+<script src="../../js/mui.picker.js"></script>
+<script src="../../js/mui.picker.min.js"></script>
+<script src="../../js/mui.poppicker.js"></script>
+<script src="../../js/mui.enterfocus.js"></script>
+<script src="../../js/template.min.js"></script>
+<script src="../../config.js"></script>
+<script src="../../js/app.js"></script>
+<script src="../../js/sign.js"></script>
+<script src="../../js/md5.js"></script>
+<script src="../../js/jquery.1.9.1.js"></script>
+<script type="text/javascript">
+    var jQuery = jQuery.noConflict();
+</script> 
+<script>
+	var acreage = '0.1636363636363636363636';
+	var sid = localStorage.getItem("sid");
+	var pickerArea = [];
+	var city1={};
+	var city2={};
+	var city3={};
+	var city4={};
+	var id = "";
+	jQuery('.btn-select-area').each(function(){
+		var llevel = jQuery(this).data('level');
+	    pickerArea[llevel] = new mui.PopPicker();
+	});
+
+    mui.init();
+    
+    mui.plusReady(function(){
+    	id = plus.webview.currentWebview().cid;
+    	var obj_xx = {};
+		obj_xx['sid'] = sid;
+		obj_xx['pid'] = id;
+		obj_xx["method"] = config.apimethod.jmxminit;
+		obj_xx["version"] = config.apiversion;
+		var sign = GetSign(obj_xx);
+		var param_xx = {
+	        queryData: {
+	          'method': config.apimethod.jmxminit,
+	          'sign':sign,
+	          'sid':sid,
+	          'pid':id
+	        },
+	        method: 'POST'
+	    }
+		$.dataRequest(param_xx, function(rs) {
+			console.log(JSON.stringify(rs));
+			if(rs.rsp=="succ")
+		    {
+		    	jQuery("#clientDate").val(rs.data.clientDate);
+		    	jQuery("#compName").val(rs.data.compName);
+		    	jQuery("#showLevel").data("select",rs.data.Options.levelArr);
+		    	jQuery("#level").val(rs.data.levelId);
+		    	for(var i = 0;i<rs.data.Options.levelArr.length;i++)
+		    	{
+		    		if(rs.data.Options.levelArr[i].value == rs.data.levelId)
+		    		{
+		    			jQuery("#levelText").val(rs.data.Options.levelArr[i].text);
+		    		}
+		    	}
+		    	jQuery("#address").val(rs.data.address);
+		    	jQuery("#ApplyCapacity").val(rs.data.applyCapacity);
+		    	jQuery("#showIsDaik").data("select",rs.data.Options.isDaik);
+		    	jQuery("#isDaik").val(rs.data.isDaik);
+		    	jQuery("#showDaikyear").data("select",rs.data.Options.daikyear);
+		    	jQuery("#daikyearText").val(rs.data.daikyear+"年");
+		    	jQuery("#daikyear").val(rs.data.daikyear);
+		    	jQuery("#borrowName").val(rs.data.borrowName);
+		    	jQuery("#showfuzerenText").data("select",rs.data.Options.fuzerenArr);
+		    	jQuery("#fuzerenId").val(rs.data.fuzerenId);
+		    	for(var i = 0;i<rs.data.Options.fuzerenArr.length;i++)
+		    	{
+		    		if(rs.data.Options.fuzerenArr[i].value == rs.data.fuzerenId)
+		    		{
+		    			jQuery("#fuzerenText").val(rs.data.Options.fuzerenArr[i].text);
+		    		}
+		    	}
+		    	jQuery("#showkancharenText").data("select",rs.data.Options.kancharenArr);
+		    	jQuery("#kancharenId").val(rs.data.kancharenId);
+		    	for(var i = 0;i<rs.data.Options.kancharenArr.length;i++)
+		    	{
+		    		if(rs.data.Options.kancharenArr[i].value == rs.data.kancharenId)
+		    		{
+		    			jQuery("#kancharenText").val(rs.data.Options.kancharenArr[i].text);
+		    		}
+		    	}
+		    	jQuery("#showkind").data("select",rs.data.Options.tiletype);
+		    	jQuery("#kind").val(rs.data.tiletype);
+		    	jQuery("#acreage").val(rs.data.acreage);
+		    	jQuery("#showbankName").data("select",rs.data.Options.bankName);
+		    	jQuery("#bankName").val(rs.data.bankName);
+		    	jQuery("#bankId").val(rs.data.bankId);
+		    	jQuery("#huBiaoName").val(rs.data.huBiaoName);
+		    	jQuery("#hubiaoCard").val(rs.data.hubiaoCard);
+		    	jQuery("#increaseMemo").val(rs.data.increaseMemo);
+		    	jQuery("#powerStaff").val(rs.data.powerStaff);
+		    	jQuery("#followTel").val(rs.data.followTel);
+		    	jQuery("#people").val(rs.data.linkPeople);
+		    	jQuery("#phone").val(rs.data.linkTel);
+		    	jQuery("#memo").val(rs.data.memo);
+		    	
+		    	jQuery("#proCardPic").val(rs.data.proCardPic.bpic);
+	        	jQuery("#proCardPic").siblings("img").attr("src",rs.data.proCardPic.showPic);
+	        	jQuery("#proContPic").val(rs.data.proContPic.bpic);
+	        	jQuery("#proContPic").siblings("img").attr("src",rs.data.proContPic.showPic);
+	        	jQuery("#landCardPic").val(rs.data.landCardPic.bpic);
+	        	jQuery("#landCardPic").siblings("img").attr("src",rs.data.landCardPic.showPic);
+	        	
+	        	jQuery("#IDFrontPic").val(rs.data.IDFrontPic.bpic);
+	        	jQuery("#IDFrontPic").siblings("img").attr("src",rs.data.IDFrontPic.showPic);
+	        	jQuery("#IDBackPic").val(rs.data.IDBackPic.bpic);
+	        	jQuery("#IDBackPic").siblings("img").attr("src",rs.data.IDBackPic.showPic);
+	        	jQuery("#bankCardPic").val(rs.data.bankCardPic.bpic);
+	        	jQuery("#bankCardPic").siblings("img").attr("src",rs.data.bankCardPic.showPic);
+	        	jQuery("#houseAppPic").val(rs.data.houseAppPic.bpic);
+	        	if(rs.data.isIncrease==0)
+	        		$("input[name='isIncrease']:eq(0)").attr("checked",'checked');
+	        	else
+	        		$("input[name='isIncrease']:eq(1)").attr("checked",'checked');
+	        	if(rs.data.isHand==0)
+	        		$("input[name='isHand']:eq(0)").attr("checked",'checked');
+	        	else
+	        		$("input[name='isHand']:eq(1)").attr("checked",'checked');
+	        	if(rs.data.houseAppPic.bpic)
+	        	{
+	        		for(var i = 0;i<rs.data.houseAppPic.showPic.split(',').length;i++)
+	        		{
+	        			jQuery("#houseAppPic").before("<img src="+rs.data.houseAppPic.showPic.split(',')[i]+">");
+	        			//jQuery("#houseAppPic").siblings("img").attr("src",rs.data.houseAppPic.showPic);
+	        		}
+	        	}
+	        	jQuery("#longShotPic").val(rs.data.longShotPic.bpic);
+	        	jQuery("#longShotPic").siblings("img").attr("src",rs.data.longShotPic.showPic);
+	        	jQuery("#mateIDFrontPic").val(rs.data.mateIDFrontPic.bpic);
+	        	jQuery("#mateIDFrontPic").siblings("img").attr("src",rs.data.mateIDFrontPic.showPic);
+	        	jQuery("#mateIDBackPic").val(rs.data.mateIDBackPic.bpic);
+	        	jQuery("#mateIDBackPic").siblings("img").attr("src",rs.data.mateIDBackPic.showPic);
+	        	if(rs.data.marryCardPic)
+	        	{
+	        		jQuery("#marryCardPic").val(rs.data.marryCardPic.bpic);
+	        		jQuery("#marryCardPic").siblings("img").attr("src",rs.data.marryCardPic.showPic);
+	        	}
+	        	if(rs.data.singleCardPic)
+	        	{
+	        		jQuery("#singleCardPic").val(rs.data.singleCardPic.bpic);
+	        		jQuery("#singleCardPic").siblings("img").attr("src",rs.data.singleCardPic.showPic);
+	        	}
+		    	jQuery("#useCardPic").val(rs.data.useCardPic.bpic);
+	        	jQuery("#useCardPic").siblings("img").attr("src",rs.data.useCardPic.showPic);
+	        	jQuery("#hireCardPic").val(rs.data.hireCardPic.bpic);
+	        	jQuery("#hireCardPic").siblings("img").attr("src",rs.data.hireCardPic.showPic);
+	        	jQuery("#ReCardPic").val(rs.data.ReCardPic.bpic);
+	        	jQuery("#ReCardPic").siblings("img").attr("src",rs.data.ReCardPic.showPic);
+	        	jQuery("#area_id1").val(rs.data.Areas.selected[0]);
+		    	jQuery("#area_id2").val(rs.data.Areas.selected[1]);
+		    	jQuery("#area_id3").val(rs.data.Areas.selected[2]);
+		    	jQuery("#area_id4").val(rs.data.Areas.selected[3]);
+		    	var val_area = {};
+			    val_area["mid"] = "";
+			    val_area["timestamp"] = new Date().getTime();
+			    val_area["method"] = config.apimethod.arealist;
+				val_area["version"] = config.apiversion;
+			    var sign_area = GetSign(val_area);
+			    var param_area = {
+			        queryData: {
+			          'method': config.apimethod.arealist, 
+			          'sign':sign_area,
+			          'mid':"",
+			          'timestamp':val_area["timestamp"]
+			        },
+			        method: 'POST'
+			    }
+			    $.dataRequest(param_area, function(rs1) {
+			        if(rs1.rsp=="succ")
+			        {
+			        	console.log(JSON.stringify(rs1.data.Area[0]));
+			        	jQuery("#showarea_id1").data("select",rs1.data.Area[0]);
+			        	pickerArea[1].setData(rs1.data.Area[0]);
+			        	for(var i = 0;i<rs1.data.Area[0].length;i++)
+			        	{
+			        		city1[rs1.data.Area[0][i].text] = rs1.data.Area[0][i].value;
+			        		if(rs1.data.Area[0][i].value==rs.data.Areas.selected[0])
+			        			jQuery('#area_text1').val(rs1.data.Area[0][i].text);
+			        	}
+			        	pickerArea[2].setData(rs.data.Areas.Area[1]);
+			        	for(var i = 0;i<rs.data.Areas.Area[1].length;i++)
+			        	{
+			        		city2[rs.data.Areas.Area[1][i].text] = rs.data.Areas.Area[1][i].value;
+			        		if(rs.data.Areas.Area[1][i].value==rs.data.Areas.selected[1])
+			        			jQuery('#area_text2').val(rs.data.Areas.Area[1][i].text);
+			        	}
+			        	pickerArea[3].setData(rs.data.Areas.Area[2]);
+			        	for(var i = 0;i<rs.data.Areas.Area[2].length;i++)
+			        	{
+			        		city3[rs.data.Areas.Area[2][i].text] = rs.data.Areas.Area[2][i].value;
+			        		if(rs.data.Areas.Area[2][i].value==rs.data.Areas.selected[2])
+			        			jQuery('#area_text3').val(rs.data.Areas.Area[2][i].text);
+			        	}
+			        	pickerArea[4].setData(rs.data.Areas.Area[3]);
+			        	for(var i = 0;i<rs.data.Areas.Area[3].length;i++)
+			        	{
+			        		city4[rs.data.Areas.Area[3][i].text] = rs.data.Areas.Area[3][i].value;
+			        		if(rs.data.Areas.Area[3][i].value==rs.data.Areas.selected[3])
+			        			jQuery('#area_text4').val(rs.data.Areas.Area[3][i].text);
+			        	}
+			        	setdq();
+			        	changedq(1);
+			        	
+					    //公式计算申请容量
+					    jQuery('#acreage').change(function(){
+					        var zhuangji = parseFloat(jQuery(this).val()||0)*acreage;
+					        zhuangji = zhuangji.toFixed(4);
+					        jQuery('#ApplyCapacity').val(zhuangji);
+					    });
+					
+					    //日期选择
+					    var btns = mui('.btn-date');
+					    btns.each(function(i, btn) {
+					        btn.addEventListener('tap', function() {
+					            var optionsJson = this.getAttribute('data-options') || '{}';
+					            var options = JSON.parse(optionsJson);
+					            var id = this.getAttribute('id');
+					            var that = this;
+					            /*
+					             * 首次显示时实例化组件
+					             * 示例为了简洁，将 options 放在了按钮的 dom 上
+					             * 也可以直接通过代码声明 optinos 用于实例化 DtPicker
+					             */
+					            var picker = new mui.DtPicker(options);
+					            picker.show(function(rs) {
+					                jQuery(that).parents('.mui-input-date').find('input').val(rs.text);
+					                picker.dispose();
+					            });
+					        }, false);
+					    });
+					
+					    //选择类型
+					    jQuery('.btn-select').each(function(){
+					        var picker = new mui.PopPicker();
+					        var json = jQuery(this).data('select');
+					        picker.setData(json);
+					        var forInput = jQuery(this).siblings('input[type=text]');
+					        var forVal = jQuery(this).siblings('input[type=hidden]');
+					        if(forVal.val()){
+					            picker.pickers[0].setSelectedValue(forVal.val(), 2000);
+					        }
+					        this.addEventListener('tap', function(event) {
+					            picker.show(function(items) {
+					                forInput && forInput.val(items[0]['text']);
+					                forVal && forVal.val(items[0]['value']);
+					                forVal.change();
+					            });
+					        }, false);
+					    });
+					
+					    //显示贷款类型信息
+					    jQuery('#isDaik').change(function(){
+					        var that = this;
+					        var type = jQuery(that).val();
+					        var dis = jQuery(that).parents('.mui-content').find('.display');
+					        if(type==0) {
+					            dis.addClass("display-none");
+					        }else{
+					            dis.removeClass("display-none");
+					        }
+					    });
+					    
+			        }else
+			        {
+			        	plus.nativeUI.toast("获取失败：" + rs1.data);
+						return;
+			        }
+			    });
+		    }
+		})
+    })
+    
+    function changedq(n){
+    	//改变取值后，对下一级进行更新选项
+    	var obj = {};
+    	switch(n)
+    	{
+    		case 1:
+    			obj = city1;
+    		break;
+    		case 2:
+    			obj = city2;
+    		break;
+    		case 3:
+    			obj = city3;
+    		break;
+    		case 4:
+    			obj = city4;
+    		break;
+    	}
+	    jQuery('.area-text').change(function(){
+	        var that = this;
+	        var curLevel = parseInt(jQuery(this).siblings('button').data('level'))||1;
+	        //jQuery(this).siblings('input[type=hidden]').val(obj[jQuery(this).val()]);
+	        curLevel = curLevel+1;
+	        console.log(curLevel);
+	        //强制清空下级所有数据
+	        for(var le=curLevel;le<=4;le++){
+	            pickerArea[le].setData([]);
+	            //清空text和hidden值
+	            jQuery('#area_text'+le).val('');
+	            jQuery('#area_text'+le).siblings('input[type=hidden]').val('');
+	        }
+	        //清空end
+
+	        //获取下一级地区数据
+	        var button = jQuery('#area_text'+curLevel).siblings('button');
+	        // button.attr('disabled' ,'disabled');
+
+	        var area_id = jQuery(this).siblings('input[type=hidden]').val();
+	        console.log(area_id);
+	        button.attr('data-select','');
+	        //开始到后台获取数据
+	        var val_obj = {};
+			val_obj["areaid"] = area_id;
+			val_obj["timestamp"] = new Date().getTime();
+			val_obj["method"] = config.apimethod.areachildlist;
+			val_obj["version"] = config.apiversion;
+			console.log(val_obj); 
+			var sign = GetSign(val_obj);
+			console.log(sign);
+			var param = {
+		        queryData: {
+		          'method': config.apimethod.areachildlist,
+		          'sign':sign,
+		          'areaid':area_id,
+		          'timestamp':val_obj["timestamp"]
+		        },
+		        method: 'POST'
+		    }
+			$.dataRequest(param, function(rs1) {
+		        if(rs1.rsp=="succ")
+    			{
+    				console.log(JSON.stringify(rs1.data));
+    				jQuery("#showarea_id"+curLevel).data("select",rs1.data);
+    				for(var i = 0;i<rs1.data.length;i++)
+		        	{
+		        		if(curLevel==2)
+		        		{
+		        			city2[rs1.data[i].text] = rs1.data[i].value;
+		        			pickerArea[2].setData(rs1.data);
+		        		}else if(curLevel==3)
+		        		{
+		        			city3[rs1.data[i].text] = rs1.data[i].value;
+		        			pickerArea[3].setData(rs1.data);
+		        		}else
+		        		{
+		        			city4[rs1.data[i].text] = rs1.data[i].value;
+		        			pickerArea[4].setData(rs1.data);
+		        		}
+		        	}
+		        	console.log(JSON.stringify(city2));
+    				setdq2(curLevel);
+    				if(curLevel<4)
+    					changedq(curLevel);
+    			}
+		    });
+	    });
+    }
+	
+    function setdq(){
+    	jQuery('.btn-select-area').each(function(){
+    		var llevel = jQuery(this).data('level');
+    		this.addEventListener('tap', function(event) {
+    			var level = parseInt(jQuery(this).data('level'))||1;
+    			if(level != 1){
+	                //查看上一级是否已经选择，没有选择上级不能拿选择当前地区
+	                var prevLevel = level - 1;
+	                var _tmpval = jQuery('#area_text'+prevLevel).val();
+	                if(!_tmpval){
+	                    mui.toast('请先选择上级地区');
+	                    return;
+	                }
+	           }
+    			var forInput = jQuery(this).siblings('input[type=text]');
+		        var forVal = jQuery(this).siblings('input[type=hidden]');
+		        var oldVal = forInput.val();
+		        if(forVal.val()){
+		            pickerArea[llevel].pickers[0].setSelectedValue(forVal.val(), 2000);
+		        } 
+    			pickerArea[llevel].show(function(items) {
+	                forInput && forInput.val(items[0]['text']);
+	                forVal && forVal.val(items[0]['value']);
+	                if(oldVal!=items[0]['text'])forInput.change();
+	            });
+    		});
+    	});
+    }
+    function setdq2(curLevel){
+    	jQuery('.btn-select-area').each(function(){
+    		var llevel = jQuery(this).data('level');
+    		if(parseInt(llevel)>=parseInt(curLevel))
+    		{
+    			this.addEventListener('tap', function(event) {
+	    			var level = parseInt(jQuery(this).data('level'))||1;
+	    			if(level != 1){
+		                //查看上一级是否已经选择，没有选择上级不能拿选择当前地区
+		                var prevLevel = level - 1;
+		                var _tmpval = jQuery('#area_text'+prevLevel).val();
+		                if(!_tmpval){
+		                    mui.toast('请先选择上级地区');
+		                    return;
+		                }
+		            }
+	    			var forInput = jQuery(this).siblings('input[type=text]');
+			        var forVal = jQuery(this).siblings('input[type=hidden]');
+			        var oldVal = forInput.val();
+			        if(forVal.val()){
+			            pickerArea[llevel].pickers[0].setSelectedValue(forVal.val(), 2000);
+			        } 
+	    			pickerArea[llevel].show(function(items) {
+		                forInput && forInput.val(items[0]['text']);
+		                forVal && forVal.val(items[0]['value']);
+
+		                if(oldVal!=items[0]['text'])forInput.change();
+		            });
+	    		});
+    		}
+    	});
+    }
+
+    //修改的时候默认给输入框显示值
+    jQuery('.select-hide[value!=""]').each(function(){
+        var textInput=jQuery(this).siblings('input[type=text]');
+        var _data = jQuery(this).siblings('button').data('select');
+        var curVal = jQuery(this).val();
+        if(!textInput.value){
+            for(var k in _data){
+                if(_data[k]['value'] == curVal){
+                    textInput.val(_data[k]['text']);
+                }
+            }
+        }
+    });
+
+    //首页
+    mui(document.body).on('tap','.mui-action-home',function(){
+        clicked('_www/view/hyzx/hyzx.html');
+    });
+    mui(document.body).on('tap','.clientIndex-go',function(){
+        clicked('_www/view/hyzx/hyzx.html');
+    });
+    // mui('.mui-scroll-wrapper').scroll();
+
+    //by zcc 2018-05-14 15:52:59
+    jQuery('#showSearchTel').click(function(){
+    mui.prompt(
+        '请输入关联手机号',
+        '',
+        null,
+        ''
+        ,function(e){
+            if(e.index == 1){
+                if (e.value == '') {
+                    mui.toast("关联手机号未填")
+                }else{
+                	var obj_tel = {};
+                	obj_tel["sid"] = sid;
+                	obj_tel["tel"] = e.value;
+                	obj_tel["method"] = config.apimethod.jmxmtel;
+					obj_tel["version"] = config.apiversion;
+					var sign = GetSign(obj_tel);
+					var param_tel = {
+						queryData: {
+				          'method': config.apimethod.jmxmtel,
+				          'sign':sign,
+				          'sid':sid,
+				          'tel':e.value
+				        },
+				        method: 'POST'
+					}
+					$.dataRequest(param_tel, function(rs) {
+						if(rs.rsp == "succ")
+						{
+                            jQuery('#compName').val(rs.data.showName);
+                            jQuery('#userId').val(rs.data.mid);
+                            jQuery('#address').val(rs.data.address);
+                            jQuery('#fuzerenId').val(rs.data.fuzerenId);
+                            jQuery("#area_id1").val(rs.data.Areas.selected[0]);
+				        	jQuery("#area_id2").val(rs.data.Areas.selected[1]);
+				        	jQuery("#area_id3").val(rs.data.Areas.selected[2]);
+				        	jQuery("#area_id4").val(rs.data.Areas.selected[3]);
+				        	if(rs.data.Areas.selected[0])
+				        	{
+				        		for(var i = 0;i < rs.data.Areas.Area[0].length;i++)
+				        		{
+				        			if(rs.data.Areas.Area[0][i].value == rs.data.Areas.selected[0])
+				        			{
+				        				jQuery("#area_text1").val(rs.data.Areas.Area[0][i].text);
+				        			}
+				        		}
+				        	}
+				        	if(rs.data.Areas.selected[1])
+				        	{
+				        		for(var i = 0;i < rs.data.Areas.Area[1].length;i++)
+				        		{
+				        			if(rs.data.Areas.Area[1][i].value == rs.data.Areas.selected[1])
+				        			{
+				        				jQuery("#area_text2").val(rs.data.Areas.Area[1][i].text);
+				        			}
+				        		}
+				        	}
+				        	if(rs.data.Areas.selected[2])
+				        	{
+				        		for(var i = 0;i < rs.data.Areas.Area[2].length;i++)
+				        		{
+				        			if(rs.data.Areas.Area[2][i].value == rs.data.Areas.selected[2])
+				        			{
+				        				jQuery("#area_text3").val(rs.data.Areas.Area[2][i].text);
+				        			}
+				        		}
+				        	}
+				        	if(rs.data.Areas.selected[3])
+				        	{
+				        		for(var i = 0;i < rs.data.Areas.Area[3].length;i++)
+				        		{
+				        			if(rs.data.Areas.Area[3][i].value == rs.data.Areas.selected[3])
+				        			{
+				        				jQuery("#area_text4").val(rs.data.Areas.Area[3][i].text);
+				        			}
+				        		}
+				        	}
+						}
+					})
+                   
+                }
+            }
+        })
+    });
+    
+    var maxcount = 1;
+		//上传图片
+		$('.action-camera').on('tap', function() {
+			var img_own = this;
+			//getImage();
+			jQuery('.mui-popover').css('display','none');
+	        jQuery('.mui-popover').removeClass('mui-active');
+	        jQuery('.mui-backdrop').css('display','none');
+	        // debugger;
+	        var id = jQuery(this).siblings().attr('class');
+	        var input = jQuery(this).parents('.mui-popover').siblings('.mui-after-content').find('#'+id).parents('.image-box').find('input[type=hidden]');
+	        var grayDiv = jQuery(this).parents('.mui-popover').siblings('.mui-after-content').find('#'+id).parents('.image-box').find('.gray-div-img');
+	        var cmr = plus.camera.getCamera();
+			
+			cmr.captureImage(function(p) {
+				plus.io.resolveLocalFileSystemURL(p, function(entry) {
+					var name = entry.toLocalURL().substr(entry.toLocalURL().lastIndexOf('/') + 1)
+					appendFile(img_own, id, input, grayDiv, entry.toLocalURL(), name);
+				}, function(e) {
+					console.log("读取拍照文件错误：" + e.message);
+				});
+			}, function(e) {
+				console.log("失败：" + e.message);
+			}, {
+				filename: "_doc/camera/",
+				index: 1
+			});
+		});
+		$('.action-camera1').on('tap', function() {
+			var img_own = this;
+			//getImage();
+			jQuery('.mui-popover').css('display','none');
+	        jQuery('.mui-popover').removeClass('mui-active');
+	        jQuery('.mui-backdrop').css('display','none');
+	        // debugger;
+	        var id = jQuery(this).siblings().attr('class');
+	        var input = jQuery(this).parents('.mui-popover').siblings('.mui-after-content').find('#'+id).parents('.image-box').find('input[type=hidden]');
+	        var grayDiv = jQuery(this).parents('.mui-popover').siblings('.mui-after-content').find('#'+id).parents('.image-box').find('.gray-div-img');
+	        var value = jQuery('#houseAppPic').val();
+	        var cmr = plus.camera.getCamera();
+			
+			cmr.captureImage(function(p) {
+				plus.io.resolveLocalFileSystemURL(p, function(entry) {
+					var name = entry.toLocalURL().substr(entry.toLocalURL().lastIndexOf('/') + 1)
+					appendFile1(value, img_own, id, input, grayDiv, entry.toLocalURL(), name);
+				}, function(e) {
+					console.log("读取拍照文件错误：" + e.message);
+				});
+			}, function(e) {
+				console.log("失败：" + e.message);
+			}, {
+				filename: "_doc/camera/",
+				index: 1
+			});
+		});
+		$('.action-gallery').on('tap', function() {
+			//galleryImgsMaximum(maxcount);
+			var img_own = this;
+			//getImage();
+			jQuery('.mui-popover').css('display','none');
+	        jQuery('.mui-popover').removeClass('mui-active');
+	        jQuery('.mui-backdrop').css('display','none');
+	        // debugger;
+	        var id = jQuery(this).siblings().attr('class');
+	        var input = jQuery(this).parents('.mui-popover').siblings('.mui-after-content').find('#'+id).parents('.image-box').find('input[type=hidden]');
+	        var grayDiv = jQuery(this).parents('.mui-popover').siblings('.mui-after-content').find('#'+id).parents('.image-box').find('.gray-div-img');
+	        // 从相册中选择图片
+			plus.gallery.pick(function(e) {
+				var imgstr = "";
+/*				imgCount = jQuery(this).find('.rate-img-list').find('img').length + e.files.length;
+				if(imgCount >= 1) {
+					jQuery(this).find('.rate-img-box').hide();
+				} else {
+					jQuery(this).find('.rate-img-box').show();
+				}*/
+				var name = '';
+				for(var i in e.files) {
+					name = e.files[i].substr(e.files[i].lastIndexOf('/') + 1);
+					//appendFile(e.files[i], name);
+					appendFile(img_own, id, input, grayDiv, e.files[i], name);
+				}
+			}, function(e) {
+				//          log( "取消选择图片" );
+			}, {
+				filter: "image",
+				multiple: true,
+				maximum: maxcount,
+				system: false,
+				onmaxed: function() {
+					plus.nativeUI.alert('最多只能选择' + maxcount + '张图片');
+				}
+			});
+		});
+		$('.action-gallery1').on('tap', function() {
+			//galleryImgsMaximum(maxcount);
+			var img_own = this;
+			//getImage();
+			jQuery('.mui-popover').css('display','none');
+	        jQuery('.mui-popover').removeClass('mui-active');
+	        jQuery('.mui-backdrop').css('display','none');
+	        // debugger;
+	        var id = jQuery(this).siblings().attr('class');
+	        var input = jQuery(this).parents('.mui-popover').siblings('.mui-after-content').find('#'+id).parents('.image-box').find('input[type=hidden]');
+	        var grayDiv = jQuery(this).parents('.mui-popover').siblings('.mui-after-content').find('#'+id).parents('.image-box').find('.gray-div-img');
+	        var value = jQuery('#houseAppPic').val();
+	        // 从相册中选择图片
+			plus.gallery.pick(function(e) {
+				var imgstr = "";
+/*				imgCount = jQuery(this).find('.rate-img-list').find('img').length + e.files.length;
+				if(imgCount >= 1) {
+					jQuery(this).find('.rate-img-box').hide();
+				} else {
+					jQuery(this).find('.rate-img-box').show();
+				}*/
+				var name = '';
+				for(var i in e.files) {
+					name = e.files[i].substr(e.files[i].lastIndexOf('/') + 1);
+					//appendFile(e.files[i], name);
+					appendFile1(value, img_own, id, input, grayDiv, e.files[i], name);
+				}
+			}, function(e) {
+				//          log( "取消选择图片" );
+			}, {
+				filter: "image",
+				multiple: true,
+				maximum: maxcount,
+				system: false,
+				onmaxed: function() {
+					plus.nativeUI.alert('最多只能选择' + maxcount + '张图片');
+				}
+			});
+		});
+	
+		//从相册中选择图片
+		function galleryImgsMaximum(maxcount) {
+			// 从相册中选择图片
+			plus.gallery.pick(function(e) {
+				var imgstr = "";
+				imgCount = that.find('.rate-img-list').find('img').length + e.files.length;
+				if(imgCount >= 1) {
+					that.find('.rate-img-box').hide();
+				} else {
+					that.find('.rate-img-box').show();
+				}
+				var name = '';
+				for(var i in e.files) {
+					name = e.files[i].substr(e.files[i].lastIndexOf('/') + 1);
+					appendFile(e.files[i], name);
+				}
+			}, function(e) {
+				//          log( "取消选择图片" );
+			}, {
+				filter: "image",
+				multiple: true,
+				maximum: maxcount,
+				system: false,
+				onmaxed: function() {
+					plus.nativeUI.alert('最多只能选择' + maxcount + '张图片');
+				}
+			});
+		}
+		// 添加文件
+		function appendFile(imgown, newid, inputnew, grayDiv, path, imgname) {
+			var img = new Image();
+			img.src = path; // 传过来的图片路径在这里用。
+			var img_id = '';
+			img.onload = function() {
+				var el = this;
+				//生成比例 
+				var w = el.width,
+					h = el.height;
+				if(w > h) {
+					var scale = w / h;
+					w = 1280 || w;
+					h = w / scale;
+				} else {
+					var scale = h / w;
+					h = 1280 || h;
+					w = h / scale;
+				}
+				//生成canvas
+				var canvas = document.createElement('canvas');
+				var ctx = canvas.getContext('2d');
+				if(w > h) {
+					$(canvas).attr({
+						width: w,
+						height: h
+					});
+					ctx.drawImage(el, 0, 0, w, h);
+				} else {
+					$(canvas).attr({
+						width: h,
+						height: w
+					});
+					ctx.drawImage(el, 0, 0, h, w);
+				}
+	
+				var base64 = canvas.toDataURL('image/jpeg', 1 || 0.8); //1最清晰，越低越模糊。
+				upload(imgown, newid, inputnew, grayDiv, path, base64, imgname);
+			}
+		}
+		// 添加文件
+		function appendFile1(houseAppPic,imgown, newid, inputnew, grayDiv, path, imgname) {
+			var img = new Image();
+			img.src = path; // 传过来的图片路径在这里用。
+			var img_id = '';
+			img.onload = function() {
+				var el = this;
+				//生成比例 
+				var w = el.width,
+					h = el.height;
+				if(w > h) {
+					var scale = w / h;
+					w = 1280 || w;
+					h = w / scale;
+				} else {
+					var scale = h / w;
+					h = 1280 || h;
+					w = h / scale;
+				}
+				//生成canvas
+				var canvas = document.createElement('canvas');
+				var ctx = canvas.getContext('2d');
+				if(w > h) {
+					$(canvas).attr({
+						width: w,
+						height: h
+					});
+					ctx.drawImage(el, 0, 0, w, h);
+				} else {
+					$(canvas).attr({
+						width: h,
+						height: w
+					});
+					ctx.drawImage(el, 0, 0, h, w);
+				}
+	
+				var base64 = canvas.toDataURL('image/jpeg', 1 || 0.8); //1最清晰，越低越模糊。
+				upload1(houseAppPic, imgown, newid, inputnew, grayDiv, path, base64, imgname);
+			}
+		}
+		// 上传文件
+		function upload(imgown, newid, inputnew, grayDiv, localPath, base64, imagename) {
+			var waiting = plus.nativeUI.showWaiting();
+			console.log(localPath);
+			console.log(base64);
+			console.log(imagename);
+			grayDiv.show();
+			//jQuery(imgown).parents('.mui-popover').siblings('.mui-after-content').find('#'+id).parents('.image-box').find('img').attr('src',url);
+	        jQuery(imgown).parents('.mui-popover').siblings('.mui-after-content').find('#'+newid).parents('.image-box').find('.image-show-box').show();
+	        
+	        var obj_img_up = {};
+	        obj_img_up["from"] = "APP";
+	        obj_img_up["keyCode"] = "";
+	        obj_img_up["key"] = "APPLYBUILD";
+	        obj_img_up["imageFiles"] = base64;
+	        obj_img_up["method"] = config.apimethod.imageupload;
+			obj_img_up["version"] = config.apiversion;
+	        var sign = GetSign(obj_img_up);
+	        var param = {
+		        queryData: {
+		          'method': config.apimethod.imageupload,
+		          'sign':sign,
+		          'from':"APP",
+		          'keyCode':'',
+		          'key':"APPLYBUILD",
+		          'imageFiles':base64
+		        },
+		        method: 'POST'
+		    }
+	        $.dataRequest(param, function(rs) {
+		        if(rs.rsp=="succ")
+		        {
+		        	if(rs.data.success=="true"){
+		        		console.log(rs.data.bpicShow);
+		        		console.log(rs.data.bpic);
+		        		jQuery(imgown).parents('.mui-popover').siblings('.mui-after-content').find('#'+newid).parents('.image-box').find('img').attr('src',rs.data.bpicShow);
+	                    inputnew.val(rs.data.bpic);
+	                    grayDiv.hide();
+	                    waiting.close(); 
+		        	}else
+		        	{
+		        		plus.nativeUI.toast("上传失败：" + rs.data.msg);
+						return;
+		        	}
+		        }else
+		        {
+		        	plus.nativeUI.toast("上传失败：" + rs.data);
+					return;
+		        }
+		    });
+		}
+		// 上传文件
+		function upload1(houseAppPic, imgown, newid, inputnew, grayDiv, localPath, base64, imagename) {
+			var waiting = plus.nativeUI.showWaiting();
+			console.log(localPath);
+			console.log(base64);
+			console.log(imagename);
+			grayDiv.show();
+			//jQuery(imgown).parents('.mui-popover').siblings('.mui-after-content').find('#'+id).parents('.image-box').find('img').attr('src',url);
+	        jQuery(imgown).parents('.mui-popover').siblings('.mui-after-content').find('#'+newid).parents('.image-box').find('.image-show-box').show();
+	        
+	        var obj_img_up = {};
+	        obj_img_up["from"] = "APP";
+	        obj_img_up["keyCode"] = "";
+	        obj_img_up["key"] = "APPLYBUILD";
+	        obj_img_up["imageFiles"] = base64;
+	        obj_img_up["method"] = config.apimethod.imageupload;
+			obj_img_up["version"] = config.apiversion;
+	        var sign = GetSign(obj_img_up);
+	        var param = {
+		        queryData: {
+		          'method': config.apimethod.imageupload,
+		          'sign':sign,
+		          'from':"APP",
+		          'keyCode':'',
+		          'key':"APPLYBUILD",
+		          'imageFiles':base64
+		        },
+		        method: 'POST'
+		    }
+	        $.dataRequest(param, function(rs) {
+		        if(rs.rsp=="succ")
+		        {
+		        	if(rs.data.success=="true"){
+		        		/*if (jQuery('#houseAppPic').val()=='') {
+				            jQuery(imgown).parents('.image-box').find('img').remove();
+				        } */
+				        jQuery('#houseAppPic').before("<img src="+rs.data.bpicShow+">");
+		        		jQuery(imgown).parents('.mui-popover').siblings('.mui-after-content').find('#'+newid).parents('.image-box').find('.image-show-box').show();
+	                    houseAppPic = jQuery('#houseAppPic').val() + rs.data.bpic + ',';
+	                    inputnew.val(houseAppPic);
+	                    grayDiv.hide();
+	                    var num = jQuery('#houseAppPic').siblings('img').length;
+				        console.log(num);
+				        if(num>=6) jQuery(imgown).parents('.mui-popover').siblings('.mui-after-content').find('#'+newid).attr('disabled','disabled');
+	                    waiting.close(); 
+		        	}else
+		        	{
+		        		plus.nativeUI.toast("上传失败：" + rs.data.msg);
+						return;
+		        	}
+		        }else
+		        {
+		        	plus.nativeUI.toast("上传失败：" + rs.data);
+					return;
+		        }
+		    });
+		}
+	
+	    //删掉当前图片
+	    jQuery('.mui-img-remove').click(function(){
+	        var that = this;
+	        //隐藏div
+	        jQuery(that).parents('.image-show-box').hide();
+	        //删掉图片展示，
+	        jQuery(that).siblings('img').attr('src','');
+	        //清空input，hidden,file
+	        // jQuery(that).siblings('input').val('');
+	        jQuery(that).parents('.image-box').find('input').val('');
+	    });
+	    jQuery('.mui-img-remove-house').click(function(){
+	        var that = this;
+	        //隐藏div
+	        jQuery(that).parents('.image-show-box').hide();
+	        //删掉图片展示，
+	        jQuery(that).siblings('img').remove();
+	        //清空input，hidden,file
+	        jQuery(that).parents('.image-box').find('input').val('');
+	        var num = jQuery(that).siblings('img').length;
+	        if(num<6) jQuery(that).parents('.mui-popover').siblings('.mui-after-content').find('#'+id).removeAttr('disabled');
+	    });
+
+    //提交按钮事件：需要验证基本信息
+    var rulesRequired = ['compName','levelText','area_text1','area_text2','area_text3','area_text4','address','fuzerenText','ApplyCapacity'];
+    jQuery('#btn_submit').click(function(){
+	    	var waiting = plus.nativeUI.showWaiting();
+	        var that = this;
+	
+	        //验证是否填写
+	        var _rule_res = '';
+	        jQuery(rulesRequired).each(function(){
+	            var _val = jQuery('#'+this).val();
+	            if(!_val){
+	                _rule_res = jQuery('#'+this).attr('placeholder');
+	                return false;
+	            }
+	        });
+	
+	        if(_rule_res){
+	            mui.alert(_rule_res+'必填');
+	            waiting.close();
+	            return;
+	        }
+
+	        var clientType = jQuery("#clientType").val();
+        	var compName = jQuery("#compName").val();
+        	var tiletype = jQuery("#kind").val();
+        	var acreage = jQuery("#acreage").val();
+        	var clientDate = jQuery("#clientDate").val();
+        	var isDaik = jQuery("#isDaik").val();
+        	var daikyear = jQuery("#daikyear").val();
+        	var borrowName = jQuery("#borrowName").val();
+        	var address = jQuery("#address").val();
+        	var memo = jQuery("#memo").val();
+        	var hubiaoCard = jQuery("#hubiaoCard").val();
+        	var bankId = jQuery("#bankId").val();
+        	var bankName = jQuery("#bankName").val();
+        	var huBiaoName = jQuery("#huBiaoName").val();
+        	var proCardPic = "";
+        	if(jQuery("#proCardPic").val()!="[object Object]")
+        	{
+        		proCardPic = jQuery("#proCardPic").val();
+        	}
+        	var proContPic = "";
+        	if(jQuery("#proContPic").val()!="[object Object]")
+        	{
+        		proContPic = jQuery("#proContPic").val();
+        	}
+        	var landCardPic = "";
+        	if(jQuery("#landCardPic").val()!="[object Object]")
+        	{
+        		landCardPic = jQuery("#landCardPic").val();
+        	}
+        	var IDFrontPic = "";
+        	if(jQuery("#IDFrontPic").val()!="[object Object]")
+        	{
+        		IDFrontPic = jQuery("#IDFrontPic").val();
+        	}
+        	var IDBackPic = "";
+        	if(jQuery("#IDBackPic").val()!="[object Object]")
+        	{
+        		IDBackPic = jQuery("#IDBackPic").val();
+        	}
+        	var bankCardPic = "";
+        	if(jQuery("#bankCardPic").val()!="[object Object]")
+        	{
+        		bankCardPic = jQuery("#bankCardPic").val();
+        	}
+        	var houseAppPic = "";
+        	if(jQuery("#houseAppPic").val()!="[object Object]")
+        	{
+        		houseAppPic = jQuery("#houseAppPic").val();
+        	}
+        	var longShotPic = "";
+        	if(jQuery("#longShotPic").val()!="[object Object]")
+        	{
+        		longShotPic = jQuery("#longShotPic").val();
+        	}
+        	var mateIDFrontPic = "";
+        	if(jQuery("#mateIDFrontPic").val()!="[object Object]")
+        	{
+        		mateIDFrontPic = jQuery("#mateIDFrontPic").val();
+        	}
+        	var mateIDBackPic = "";
+        	if(jQuery("#mateIDBackPic").val()!="[object Object]")
+        	{
+        		mateIDBackPic = jQuery("#mateIDBackPic").val();
+        	}
+        	var marryCardPic = "";
+        	if(jQuery("#marryCardPic").val()!="[object Object]")
+        	{
+        		marryCardPic = jQuery("#marryCardPic").val();
+        	}
+        	var singleCardPic = "";
+        	if(jQuery("#singleCardPic").val()!="[object Object]")
+        	{
+        		singleCardPic = jQuery("#singleCardPic").val();
+        	}
+        	var useCardPic = "";
+        	if(jQuery("#useCardPic").val()!="[object Object]")
+        	{
+        		useCardPic = jQuery("#useCardPic").val();
+        	}
+        	var hireCardPic = "";
+        	if(jQuery("#hireCardPic").val()!="[object Object]")
+        	{
+        		hireCardPic = jQuery("#hireCardPic").val();
+        	}
+        	var ReCardPic = "";
+        	if(jQuery("#ReCardPic").val()!="[object Object]")
+        	{
+        		ReCardPic = jQuery("#ReCardPic").val();
+        	}
+        	var levelId = jQuery("#level").val();
+        	var isIncrease = jQuery("input[name='isIncrease']:checked").val();
+        	var increaseMemo = jQuery("#increaseMemo").val();
+        	var isHand = jQuery("input[name='isHand']:checked").val();
+        	var powerStaff = jQuery("#powerStaff").val();
+        	var followTel = jQuery("#followTel").val();
+        	var linkPeople = jQuery("#people").val();
+        	var linkTel = jQuery("#phone").val();
+        	var fuzerenId = jQuery("#fuzerenId").val();
+        	var kancharenId = jQuery("#kancharenId").val();
+        	var mid = jQuery("#userId").val();
+        	var rongliang = jQuery("#ApplyCapacity").val();
+        	var areaid1 = jQuery("#area_id1").val();
+        	var areaid2 = jQuery("#area_id2").val();
+        	var areaid3 = jQuery("#area_id3").val();
+        	var areaid4 = jQuery("#area_id4").val();
+        	
+        	var obj_add = {};
+        	obj_add["sid"] = sid;
+        	obj_add["id"] = id;
+			obj_add["clientType"] = clientType;
+			obj_add["compName"] = compName;
+			obj_add["tiletype"] = tiletype;
+			obj_add["acreage"] = acreage;
+			obj_add["clientDate"] = clientDate;
+			obj_add["isDaik"] = isDaik;
+			obj_add["daikyear"] = daikyear;
+			obj_add["borrowName"] = borrowName;
+			obj_add["address"] = address;
+			obj_add["memo"] = memo;
+			obj_add["hubiaoCard"] = hubiaoCard;
+			obj_add["bankId"] = bankId;
+			obj_add["bankName"] = bankName;
+			obj_add["huBiaoName"] = huBiaoName;
+			obj_add["proCardPic"] = proCardPic;
+			obj_add["proContPic"] = proContPic;
+			obj_add["landCardPic"] = landCardPic;
+			obj_add["IDFrontPic"] = IDFrontPic;
+			obj_add["IDBackPic"] = IDBackPic;
+			obj_add["bankCardPic"] = bankCardPic;
+			obj_add["houseAppPic"] = houseAppPic;
+			obj_add["longShotPic"] = longShotPic;
+			obj_add["mateIDFrontPic"] = mateIDFrontPic;
+			obj_add["mateIDBackPic"] = mateIDBackPic;
+			obj_add["marryCardPic"] = marryCardPic;
+			obj_add["singleCardPic"] = singleCardPic;
+			obj_add["useCardPic"] = useCardPic;
+			obj_add["hireCardPic"] = hireCardPic;
+			obj_add["ReCardPic"] = ReCardPic;
+			obj_add["rongliang"] = rongliang;
+			obj_add["areaid1"] = areaid1;
+			obj_add["areaid2"] = areaid2;
+			obj_add["areaid3"] = areaid3;
+			obj_add["areaid4"] = areaid4;
+			obj_add["levelId"] = levelId;
+			obj_add["isIncrease"] = isIncrease;
+			obj_add["increaseMemo"] = increaseMemo;
+			obj_add["isHand"] = isHand;
+			obj_add["powerStaff"] = powerStaff;
+			obj_add["followTel"] = followTel;
+			obj_add["linkPeople"] = linkPeople;
+			obj_add["linkTel"] = linkTel;
+			obj_add["fuzerenId"] = fuzerenId;
+			obj_add["kancharenId"] = kancharenId;
+			obj_add["mid"] = mid;
+			obj_add["method"] = config.apimethod.perjzsave;
+			obj_add["version"] = config.apiversion;
+			console.log(JSON.stringify(obj_add));
+			var sign = GetSign(obj_add);
+			var param_add = {
+		        queryData: {
+		          'method': config.apimethod.perjzsave,
+		          'sign':sign,
+		          'sid':sid,
+				  'id':id,
+				  'clientType':clientType,
+				  'compName':compName,
+				  'tiletype':tiletype,
+				  'acreage':acreage,
+				  'clientDate':clientDate,
+				  'isDaik':isDaik,
+				  'daikyear':daikyear,
+				  'borrowName':borrowName,
+				  'address':address,
+				  'memo':memo,
+				  'hubiaoCard':hubiaoCard,
+				  'bankId':bankId,
+				  'bankName':bankName,
+				  'huBiaoName':huBiaoName,
+				  'proCardPic':proCardPic,
+				  'proContPic':proContPic,
+				  'landCardPic':landCardPic,
+				  'IDFrontPic':IDFrontPic,
+				  'IDBackPic':IDBackPic,
+				  'bankCardPic':bankCardPic,
+				  'houseAppPic':houseAppPic,
+				  'longShotPic':longShotPic,
+				  'mateIDFrontPic':mateIDFrontPic,
+				  'mateIDBackPic':mateIDBackPic,
+				  'marryCardPic':marryCardPic,
+				  'singleCardPic':singleCardPic,
+				  'useCardPic':useCardPic,
+				  'hireCardPic':hireCardPic,
+				  'ReCardPic':ReCardPic,
+				  'isIncrease':isIncrease,
+				  'increaseMemo':increaseMemo,
+				  'isHand':isHand,
+				  'powerStaff':powerStaff,
+				  'levelId':levelId,
+				  'followTel':followTel,
+				  'linkPeople':linkPeople,
+				  'linkTel':linkTel,
+				  'fuzerenId':fuzerenId,
+				  'kancharenId':kancharenId,
+				  'mid':mid,
+				  'rongliang':rongliang,
+				  'areaid1':areaid1,
+				  'areaid2':areaid2,
+				  'areaid3':areaid3,
+				  'areaid4':areaid4
+		        },
+		        method: 'POST'
+		    }
+			console.log(JSON.stringify(param_add));
+	        $.dataRequest(param_add, function(rs) {
+		        console.log(JSON.stringify(rs));
+		        waiting.close(); 
+		        if(rs.rsp=="succ")
+		        {
+		        	if(rs.data.status=="succ"){
+		        		plus.nativeUI.toast("保存成功");
+		        		clicked('_www/view/hyzx/hyzx.html');
+						//return;
+		        	}else
+		        	{
+		        		plus.nativeUI.toast("保存失败：" + rs.data.msg);
+						return;
+		        	}
+		        }else
+		        {
+		        	plus.nativeUI.toast("保存失败：" + rs.data);
+					return;
+		        }
+		    });
+	    });
+
+</script>
+</html>
