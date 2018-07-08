@@ -169,6 +169,8 @@ var config = {
         yhsqxmsc:'project.apply.remove',//会员申请项目删除
         yhsqxmsh:'project.apply.shenhe',//会员申请项目审核
         dkcinit:'kancha.renwu.list.init',//待勘察设计初始化
+        kcinit:'kancha.list.init',//勘察设计初始化
+        kckhlb:'kancha.list.get',//勘察设计列表
         jmxminit:'build.edit.personal.initData.get',//居民项目申请初始数据
         jmxmtel:'build.search.member.by.tel',//录入项目查找会员相关信息
         qyxmsqinit:'build.edit.qy.initData.get',//企业项目申请初始数据
@@ -182,5 +184,11 @@ var config = {
         cailiaolist:'cailiao.list.get',//获取材料档案列表
         cailiaobrands:'cailiao.brands.get',//获取材料档案对应品牌
         kcszxmsave:'kancha.personal.edit.save',//勘察私宅项目保存
+        kcqyinit:'kancha.qy.edit.init',//勘察企业项目初始化数据
+        kcqyxmsave:'kancha.qy.edit.save',//勘察企业项目保存
+        wytj:'recommend.add.init',//我要推荐企业信息
+        wytjsave:'recommend.add.save',//我要推荐企业信息保存
+        tjqylist:'recommend.list.get',//推荐企业列表
+        tjqydetail:'recommend.info.detail',//推荐企业详细信息
     }
 }

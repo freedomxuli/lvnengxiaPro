@@ -1,7 +1,7 @@
 /**
  * IndexedList
- * 绫讳技鑱旂郴浜哄簲鐢ㄤ腑鐨勮仈绯讳汉鍒楄〃锛屽彲浠ユ寜棣栧瓧姣嶅垎缁�
- * 鍙充晶鐨勫瓧姣嶅畾浣嶅伐鍏锋潯锛屽彲浠ュ揩閫熷畾浣嶅垪琛ㄤ綅缃�
+ * 类似联系人应用中的联系人列表，可以按首字母分组
+ * 右侧的字母定位工具条，可以快速定位列表位置
  * varstion 1.0.0
  * by Houfeng
  * Houfeng@DCloud.io
@@ -15,14 +15,14 @@
 
 	var IndexedList = $.IndexedList = $.Class.extend({
 		/**
-		 * 閫氳繃 element 鍜� options 鏋勯€� IndexedList 瀹炰緥
+		 * 通过 element 和 options 构造 IndexedList 实例
 		 **/
 		init: function(holder, options) {
 			var self = this;
 			self.options = options || {};
 			self.box = holder;
 			if (!self.box) {
-				throw "瀹炰緥 IndexedList 鏃堕渶瑕佹寚瀹� element";
+				throw "实例 IndexedList 时需要指定 element";
 			}
 			self.createDom();
 			self.findElements();
@@ -32,7 +32,7 @@
 		createDom: function() {
 			var self = this;
 			self.el = self.el || {};
-			//styleForSearch 鐢ㄤ簬鎼滅储锛屾鏂瑰紡鑳藉湪鏁版嵁杈冨鏃惰幏鍙栧緢濂界殑鎬ц兘
+			//styleForSearch 用于搜索，此方式能在数据较多时获取很好的性能
 			self.el.styleForSearch = document.createElement('style');
 			(document.head || document.body).appendChild(self.el.styleForSearch);
 		},
@@ -98,16 +98,16 @@
 					pointElement = null;
 				}
 			};
-			self.el.bar.addEventListener($.EVENT_MOVE, function(event) {
+			self.el.bar.addEventListener('touchmove', function(event) {
 				findStart(event);
 			}, false);
-			self.el.bar.addEventListener($.EVENT_START, function(event) {
+			self.el.bar.addEventListener('touchstart', function(event) {
 				findStart(event);
 			}, false);
-			document.body.addEventListener($.EVENT_END, function(event) {
+			document.body.addEventListener('touchend', function(event) {
 				findEnd(event);
 			}, false);
-			document.body.addEventListener($.EVENT_CANCEL, function(event) {
+			document.body.addEventListener('touchcancel', function(event) {
 				findEnd(event);
 			}, false);
 		},
@@ -174,9 +174,9 @@
 		}
 	});
 
-	//mui(selector).indexedList 鏂瑰紡
+	//mui(selector).indexedList 方式
 	$.fn.indexedList = function(options) {
-		//閬嶅巻閫夋嫨鐨勫厓绱�
+		//遍历选择的元素
 		this.each(function(i, element) {
 			if (element.indexedList) return;
 			element.indexedList = new IndexedList(element, options);

@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Jado绿能侠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link href="../../css/mui.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="../../css/mui.picker.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/mui.poppicker.css" />
+	
+    <style type="text/css">
+        .mui-pagination .p_bar a{
+            line-height: 1.428571429;
+            position: relative;
+            float: left;
+            margin-left: -1px;
+            padding: 6px 12px;
+            text-decoration: none;
+            color: #007aff;
+            border: 1px solid #ddd;
+            background-color: #fff;
+        }
+        .mui-pagination .p_bar a:first-child{
+            border-top-left-radius: 6px;
+            border-bottom-left-radius: 6px;
+            background-clip: padding-box;
+        }
+        .mui-pagination .p_bar a:last-child{
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+            background-clip: padding-box;
+        }
+        .mui-pagination .p_bar a.p_curpage{
+            color: #fff;
+            border-color: #007aff;
+            background-color: #007aff;
+        }
+        .cell-view-3{float: left;width: 25%;}
+        .cell-view-4{float: left;width: 33.33%;}
+        .cell-view-6{float: left;width: 50%;}
+        .cell-view-8{float:left;width: 66.66%;}
+        .cell-view-12{float:left;width: 100%;}
+        span.title{color: black;width: 90px;display: inline-block;}
+        span.green{color: green;}
+        span.gray{color: gray;}
+        span.orange{color: orange;}
+        .content-view{padding-left: 18px;}
+        .mui-radius{border-radius: 100px ;padding: 3px 10px;}
+        .mui-content>.mui-card:first-child{margin-top: 1px;}
+        .mui-card{margin:0px;margin-top: 1px; border-radius: 0px;}
+        .cell-detial{
+            position: absolute;right: 3px;top: 30px;font-size: 1em;color:#007aff;
+        }
+        .mui-card-content-inner{padding: 8px 10px;}
+        .detial-cell{padding: 8px;border-top: 1px solid #efefef;display: none;}
+        .mui-input-row{height: auto !important;}
+        .mui-input-btn-label{width: 100%;}
+        .mui-input-row input[readonly]{background: #efefef;}
+        .mui-input-row label{width: 40%;}
+        .mui-input-row input[type='text'],textarea{width: 60% !important;}
+        .mui-input-btn-label input[type='text']{width: 45% !important;float: left !important;}
+        .mui-input-btn-label button{width: 15% !important;padding: 8px !important;margin:0px !important;}
+        .search-container{display: none;margin-bottom: 15px;}
+        .mui-button-row-search button{width: 49%;}
+        .mui-null-tip{font-size: 14px;color: #9a9a9a;text-align: center;width: 100%;margin-top: 50px;}
+        .title-max.mui-btn-success{color:#fff;background:#2BB673;padding-left:2px;border-radius:7px}
+        .mui-card-list-eqinfo{background:#efefef;}
+        .mui-card-content{position: relative;}
+        .nearsite-message{
+            display: inline-block;
+            clear:both;
+            margin: 10px;
+            width:348px;
+            word-wrap: break-word;
+            word-break: normal;
+        }
+        .nearsite-message .avatar{
+            float: left;
+        }
+        .nearsite-message .avatar img{
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+        .nearsite-message .content{
+            float: left;
+            background: #fff;
+            padding: 10px;
+            border-radius:7px;
+            max-width: 84%;
+            position: relative;
+            min-height: 20px;
+            font-size:15px;
+            color:black;
+            line-height: 1em;
+        }
+        .nearsite-message .content img{
+            width: 100%;
+        }
+        .nearsite-message .triangle{
+            height:0px;
+            width:0px;
+            border-width:8px;
+            border-style:solid;
+            position: absolute;
+            top:8px;
+            border-color:transparent #fff transparent transparent;
+            left:-16px;
+            z-index:3;
+        }
+        .vertbar{
+            height: 100px;
+            margin: -40px 25px -10px;
+            border-left: 1px solid #a2a2a2;
+        }
+        .longer{margin: -70px 25px -10px;}
+        .mui-icon-arrowright{font-size:17px;}
+    </style>
+    
+</head>
+<body>
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-icon mui-icon-home mui-action-home"></a>
+        <h1 class="mui-title">详细信息</h1>
+    </header>
+    <div class="mui-content">
+                
+    </div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/zepto.js"></script>
+<script src="../../js/mui.picker.js"></script>
+<script src="../../js/mui.picker.min.js"></script>
+<script src="../../js/mui.poppicker.js"></script>
+<script src="../../js/mui.enterfocus.js"></script>
+<script src="../../js/template.min.js"></script>
+<script src="../../config.js"></script>
+<script src="../../js/app.js"></script>
+<script src="../../js/sign.js"></script>
+<script src="../../js/md5.js"></script>
+<script src="../../js/mui.indexedlist.js"></script>
+<script src="../../js/jquery.1.9.1.js"></script>
+<script type="text/javascript">
+    var jQuery = jQuery.noConflict();
+</script> 
+<script type="text/html" id="cardlist">
+	<div class="mui-card mui-card-list mui-card">
+        <div class="mui-card">
+	        <div class="mui-card-content">
+	            <div class="mui-card-content-inner">
+	                <div class="cell-view-12">
+	                    <span class="title">企业名称</span>
+	                    <%=data.compName%>
+	                </div>
+	                <div class="cell-view-12">
+	                    <span class="title">联系人</span>
+	                    <%=data.contact%>
+	                </div>
+	                <div class="cell-view-12">
+	                    <span class="title">职务</span>
+	                    <span class=""><%=data.position%></span>
+	                </div>
+	                <div class="cell-view-12">
+	                    <span class="title">联系电话</span>
+	                    <%=data.tel%>
+	                </div>
+	                <div class="cell-view-12">
+	                    <span class="title">地址</span>
+	                    <%=data.address%>
+	                </div>
+	                <div class="cell-view-12">
+	                    <span class="title">屋顶结构</span>
+	                    <%=data.roofName%>
+	                </div>
+	                <div class="cell-view-12">
+	                    <span class="title">屋顶朝向</span>
+	                    <span class=""><%=data.toward%></span>
+	                </div>
+	                <div class="cell-view-12">
+	                    <span class="title">屋顶面积</span>
+	                    <span class=""><%=data.acreage%></span>
+	                </div>
+	                
+	                <div class="cell-view-12">
+	                    <span class="title">是否有房产证</span>
+	                    <%=data.isProCard%>
+	                </div>
+	                
+	                <div class="cell-view-12">
+	                    <span class="title">是否有土地证</span>
+	                    <%=data.isLandCard%>
+	                </div>
+	                <div class="cell-view-12">
+	                    <span class="title">变压器</span>
+	                    <%=data.numberTai%>台&nbsp;&nbsp;<%=data.rongliang%>kw
+	                </div>
+	                <div class="cell-view-12">
+	                    <span class="title-max mui-btn-success">项目进度</span>
+	                    <span class="mui-icon mui-icon-arrowdown action-detial"></span>
+	                </div>
+	
+	<!--                     <div class="cell-detial">
+	                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+	                    </div> -->
+	                <div class="cell-view-12 detial-cell" style="background: #F5F5F7;">
+	                    <div class="cell-view-6">
+	
+	                        <div class="cell-view-12">
+	                            <div class="mui-card-content-inner">
+	                            	<%
+	                            		for(var i = 0;i<data.Progress.length;i++)
+	                            		{
+	                            			%>
+	                            				<div class='nearsite-message'>
+					                                <div class='avatar'>
+					                                     <%if(data.Progress[i].finish=="true"){%>
+									                     	<img src="../../img/sqxxcx/site2.png"/>
+									                     <%}else{%>
+									                     	<img src="../../img/sqxxcx/site.png"/> 
+									                     <%}%>
+					                                </div>
+					                                <div class='content'>
+					                                    <div class='triangle'></div>
+					                                    <span><%=data.Progress[i].text%></span>&nbsp;&nbsp;
+					                                    <span><%=data.Progress[i].time%></span><br>
+					                                    <span></span>
+					                                </div>
+				                                </div>
+				                                <div class="vertbar"></div>
+											<%
+	                            		}
+	                            	%>
+
+<!--	                                <div class='nearsite-message'>
+		                                <div class='avatar'>
+		                                    <img src="../../img/sqxxcx/site.png"/> 
+	                                        </div>
+	                                    <div class='content'>
+		                                    <div class='triangle'></div>
+		                                    <span>待确认</span>&nbsp;&nbsp;
+		                                    <span></span><br>
+		                                    <span></span>
+		                                </div>
+	                                </div>-->
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+    </div>
+</script>
+<script>
+
+    mui.init();
+    var sid = localStorage.getItem("sid");
+    mui.plusReady(function(){
+    	var id = plus.webview.currentWebview().cid;
+    	var obj_point = {};
+		obj_point["sid"] = sid;
+		obj_point["id"] = id;
+		obj_point["method"] = config.apimethod.tjqydetail;
+        obj_point["version"] = config.apiversion;
+		var sign = GetSign(obj_point);
+		var param = {
+	        queryData: {
+	          'method': config.apimethod.tjqydetail,
+	          'sign':sign,
+	          'sid':sid,
+	          'id':id
+	        },
+	        method: 'POST'
+	    }
+		$.dataRequest(param, function(rs) {
+			if(rs.rsp=="succ")
+			{
+				var list = template("cardlist",rs);
+				jQuery('.mui-content').html(list);
+
+			    //显示详细
+			    jQuery('.action-detial').click(function(){
+			        jQuery(this).parent().siblings('.detial-cell').slideToggle();
+			    })
+			}
+		})
+    })
+    
+    //首页
+    mui(document.body).on('tap','.mui-action-home',function(){
+        clicked('_www/view/hyzx/hyzx.html');
+    });
+</script>
+</html>

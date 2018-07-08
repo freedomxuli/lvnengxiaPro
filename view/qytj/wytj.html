@@ -1,0 +1,719 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Jado绿能侠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link href="../../css/mui.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="../../css/mui.picker.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/mui.poppicker.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/icons-extra.css" />
+    
+    <style type="text/css">
+        /*.mui-plus header.mui-bar{
+            display: none;
+        }*/
+        .mui-plus .mui-bar-nav~.mui-content{
+            padding: 0;
+        }
+
+        /*hm开头的表示仅为 Hello MUI示例定义*/
+        .hm-description{
+            margin: .5em 0;
+        }
+
+        .hm-description>li {
+            font-size: 14px;
+            color: #8f8f94;
+        }
+        .mui-plus .plus{
+            display: inline;
+        }
+        #btn_submit{z-index: 100;}
+        html,
+        body,
+        .mui-content {
+            height: 0px;
+            margin-top: 20px;
+            background-color: #efeff4;
+        }
+        h5.mui-content-padded {
+            margin-left: 3px;
+            margin-top: 20px !important;
+        }
+        h5.mui-content-padded:first-child {
+            margin-top: 12px !important;
+        }
+        .mui-btn {
+            font-size: 16px;
+            padding: 8px;
+            margin: 3px;
+        }
+        .ui-alert {
+            text-align: center;
+            padding: 20px 10px;
+            font-size: 16px;
+        }
+        * {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+        }
+        .plus{
+            display: none;
+        }
+
+        p {
+            text-indent: 22px;
+        }
+        span.mui-icon {
+            font-size: 14px;
+            color: #007aff;
+            margin-left: -15px;
+            padding-right: 10px;
+        }
+        .mui-popover {
+            height: 100px;
+        }
+        .mui-content {
+            /*padding: 10px;*/
+        }
+        #topPopover {
+            position: fixed;
+            top: 16px;
+            left: 3px;
+        }
+        #topPopover .mui-popover-arrow {
+            left: 3px;
+        }
+
+        footer{position: fixed;bottom: 0px;left: 0px;width: 100%;height: 40px;z-index: 99;}
+        footer button{height: 40px;border-radius: 0px !important;padding:0px;line-height: 0.8 !important;margin: 0px !important;}
+    .mui-input-row{height: auto !important;}
+    .mui-input-btn-label{width: 100%;}
+    .mui-input-row input[readonly]{background: #efefef;}
+    .mui-input-row label{width: 40%;}
+    .mui-input-row input[type='text'],textarea{width: 60% !important;}
+    .mui-input-row input[type='tel'],textarea{width: 60% !important;}
+    .mui-input-btn-label input[type='text']{width: 45% !important;float: left !important;}
+    .mui-input-btn-label button{width: 15% !important;padding: 8px !important;margin:0px !important;}
+    .up-image,.up-image-house{
+        width: 73px;
+        height: 74px;
+        _width: 73px;
+        _height: 74px;
+        position: relative;
+        z-index: 9;
+        opacity: 0;
+    }
+    .up-image-btn{background: url('Resource/Image/photo.jpg')  no-repeat;
+        position: absolute;
+        border: 1px solid #d1d1d1;
+        display: inline-block;
+        color: #fff;
+        width: 73px;
+        height: 74px;
+        _width: 73px;
+        _height: 74px;
+        text-align: center;
+        top: 0px;
+        left: 0px;
+    }
+    .image-box{width: 60%;float: left;position: relative;}
+    .image-row{height:auto!important; height:84px; min-height:84px;}
+    .image-show-box{float: right;height:auto!important; height:84px; min-height:84px;max-width:100px;position: relative;border:1px solid #d1d1d1;display: none;}
+    .image-show-box img{max-height: 84px;max-width:100px; }
+    .image-show-box .gray-div-img{width: 100%;height: 84px;opacity: 0.7;background: #222;position: absolute;top: 0px;left: 0px;text-align: center;padding-top: 40%;color: #fff;display: none;z-index: 4;}
+    .image-show-box i{position: absolute;left: 0px;top: 0px;font-size: 2em;background: #efefef;border-radius: 50%;color: red;z-index: 3;}
+    .box-check-group{float: left;width: 60%;line-height: 40px;}
+    .box-check-group input[type='radio']{padding: 10px;position: relative;width: 20px;height: 20px;border:1px solid #a1a1a1; border-radius: 50%;background: #efefef;margin-left: 20px;}
+    .box-check-group input[type='radio']:checked:after{
+        content: ' ';
+        width: 12px;
+        height: 12px;
+        border-radius: 50px;
+        margin-top:-6px;
+        margin-left:-6px;
+        position: absolute;
+        top: 50%;
+        background: #007aff;
+        color: #007aff;
+        box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);
+        text-shadow: 0px;
+        left: 50%;
+    }
+    }
+    textarea {
+        line-height: 21px;
+        border: 1px solid rgba(0,0,0,.2) !important;
+        /*padding: 8px;*/
+    }
+    .block-dis{display: block;}
+    .mui-input-btn-label button .mui-icon{font-size: 24px !important;}
+    .mui-input-btn-label button {border-radius: 0px  !important;margin-top: -1px !important;}
+    .display-none{display: none}
+    </style>
+    
+</head>
+<body>
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-icon mui-icon-home mui-action-home"></a>
+        <h1 class="mui-title">我要推荐</h1>
+        <i class="mui-icon mui-icon-bars mui-pull-right clientIndex-go"></i>
+    </header>
+    <div class="mui-content">
+        <div class="mui-input-group" id="form_client">
+<!--         <div class="mui-input-row hidden">
+            <label>登记日期</label> -->
+            <input type="hidden" name="recommendTime" placeholder="登记日期" id="recommendTime" value="" readonly="readonly"> 
+        <!-- </div>  -->
+        <div class="mui-input-row">
+            <label>企业名称</label>
+            <input type="text" name="compName" placeholder="企业名称" id="compName" value="">
+            <input type="hidden" name="id" value="">
+        </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>省</label>
+            <input type="text" name="area_text1" placeholder="省" id="area_text1" value="" readonly class="area-text">
+            <button id='showarea_id1'  data-level=1 data-select='' class="mui-btn mui-btn-block btn-select-area" type='button'><i class="mui-icon mui-icon-more"></i></button>
+            <input class="select-hide" type="hidden" id="area_id1" name="area_id1" value="">
+        </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>市</label>
+            <input type="text" name="area_text2" placeholder="市" id="area_text2" value="" readonly class="area-text">
+            <button id='showarea_id2' data-select='' class="mui-btn mui-btn-block btn-select-area" data-level=2 type='button'><i class="mui-icon mui-icon-more"></i></button>
+            <input class="select-hide" type="hidden" id="area_id2" name="area_id2" value="">
+        </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>区</label>
+            <input type="text" name="area_text3" placeholder="区" id="area_text3" value="" readonly class="area-text">
+            <button id='showarea_id3'  data-level=3 data-select='' class="mui-btn mui-btn-block btn-select-area" type='button'><i class="mui-icon mui-icon-more"></i></button>
+            <input class="select-hide" type="hidden" id="area_id3" name="area_id3" value="">
+        </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>镇</label>
+            <input type="text" name="area_text4" placeholder="镇" id="area_text4" value="" readonly>
+            <button id='showarea_id4'  data-level=4 data-select='[]' class="mui-btn mui-btn-block btn-select-area" type='button'><i class="mui-icon mui-icon-more"></i></button>
+            <input class="select-hide" type="hidden" id="area_id4" name="area_id4" value="">
+        </div>
+        <div class="mui-input-row">
+            <label>详细地址</label>
+            <input type="text" name="address" placeholder="详细地址" id="address" value="">
+        </div>
+        <div class="mui-input-row">
+            <label>联系人</label>
+            <input type="text" name="contact" placeholder="联系人" id="contact" value="">
+        </div>
+        <div class="mui-input-row">
+            <label>职务</label>
+            <input type="text" name="position" placeholder="职务" id="position" value="">
+        </div>
+        <div class="mui-input-row">
+            <label>手机号</label>
+            <input type="tel" name="tel" placeholder="手机号" id="tel" value="">
+        </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>屋顶结构</label>
+            <input type="text" name="roofName" placeholder="屋顶结构" id="roofName" value="" readonly>
+            <button id='showRoofName' data-select='' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
+            <input class="select-hide" type="hidden" id="roofId" name="roofId" value="">
+        </div>
+        <div class="mui-input-row mui-input-btn-label">
+            <label>屋顶朝向</label>
+            <input type="text" name="toward" placeholder="屋顶朝向" id="toward" value="">
+            <button id='showkind' data-select='' class="mui-btn mui-btn-block btn-select" type='button'><i class="mui-icon mui-icon-more"></i></button>
+        </div>
+        <div class="mui-input-row">
+            <label>屋顶面积m²</label>
+            <input type="text" name="acreage" placeholder="屋顶面积" id="acreage" value="">
+        </div>
+        <div class="mui-input-row">
+            <label>是否有房产证</label>
+            <div class="box-check-group">
+                <input type="radio" name='isProCard' value="0" checked>否
+                <input type="radio" name='isProCard' value="1" >是
+            </div>
+        </div>
+        <div class="mui-input-row">
+            <label>是否有土地证</label>
+            <div class="box-check-group">
+                <input type="radio" name='isLandCard' value="0" checked>否
+                <input type="radio" name='isLandCard' value="1" >是
+            </div>
+        </div>
+        <div class="mui-input-row" style="height: auto;">
+            <label>变压器台数</label>
+            <input type="text"  placeholder="台数" name="numberTai" id="numberTai" value="">
+        </div>
+        <div class="mui-input-row mui-input-btn-label" style="height: auto;">
+            <label>变压器容量kw</label>
+            <input type="text"  placeholder="总容量kw" name="rongliang" id="rongliang" value="">
+<!--             <button class="mui-btn mui-btn-block" type='button' readonly disabled="disabled"><i class="mui-icon">kw</i></button>
+ -->        </div>
+        </div>
+        <div class="" style="height: 50px;"></div>
+    </div>
+
+    <footer>
+        <button type="button" id="btn_submit" class="mui-btn mui-btn-block mui-btn-primary">立即推荐</button>
+    </footer>
+
+    <!--右上角弹出菜单-->
+    <div id="topPopover" class="mui-popover">
+        <div class="mui-popover-arrow"></div>
+        <div class="mui-scroll-wrapper">
+            <div class="mui-scroll">
+                <ul class="mui-table-view">
+                    <li class="mui-table-view-cell">
+                        <a class="mui-action-home"><i class="mui-icon mui-icon-home"></i>首页</a>
+                    </li>
+                    <li class="mui-table-view-cell">
+                    <a class="clientIndex-go" href="http://test.lvnengxia.cn/index.php?controller=Recommend_App_BusinessView&action=Index"><i class="mui-icon mui-icon-person"></i>推荐查询</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/zepto.js"></script>
+<script src="../../js/mui.picker.js"></script>
+<script src="../../js/mui.picker.min.js"></script>
+<script src="../../js/mui.poppicker.js"></script>
+<script src="../../js/mui.enterfocus.js"></script>
+<script src="../../js/template.min.js"></script>
+<script src="../../config.js"></script>
+<script src="../../js/app.js"></script>
+<script src="../../js/sign.js"></script>
+<script src="../../js/md5.js"></script>
+<script src="../../js/mui.indexedlist.js"></script>
+<script src="../../js/jquery.1.9.1.js"></script>
+<script type="text/javascript">
+    var jQuery = jQuery.noConflict();
+</script> 
+<script>
+	var acreage = '';
+	var sid = localStorage.getItem("sid");
+	var pickerArea = [];
+	var city1={};
+	var city2={};
+	var city3={};
+	var city4={};
+	jQuery('.btn-select-area').each(function(){
+		var llevel = jQuery(this).data('level');
+	    pickerArea[llevel] = new mui.PopPicker();
+	});
+	
+    mui.init();
+    mui.plusReady(function(){
+    	var obj_xx = {};
+		obj_xx['sid'] = sid;
+		obj_xx["method"] = config.apimethod.wytj;
+		obj_xx["version"] = config.apiversion;
+		var sign = GetSign(obj_xx);
+		var param_xx = {
+	        queryData: {
+	          'method': config.apimethod.wytj,
+	          'sign':sign,
+	          'sid':sid
+	        },
+	        method: 'POST'
+	    }
+		$.dataRequest(param_xx, function(rs) {
+			if(rs.rsp=="succ")
+		    {
+		    	console.log(JSON.stringify(rs));
+		    	jQuery("#recommendTime").val(new Date().Format("yyyy-MM-dd"));
+		    	jQuery("#showRoofName").data("select",rs.data.Options.roofName);
+		    	jQuery("#showkind").data("select",rs.data.Options.toward);
+		    	jQuery("#area_id1").val(rs.data.Areas.selected[0]);
+		    	jQuery("#area_id2").val(rs.data.Areas.selected[1]);
+		    	jQuery("#area_id3").val(rs.data.Areas.selected[2]);
+		    	jQuery("#area_id4").val(rs.data.Areas.selected[3]);
+
+		    	jQuery('.select-hide[value!=""]').each(function(){
+			        var textInput=jQuery(this).siblings('input[type=text]');
+			        var _data = jQuery(this).siblings('button').data('select');
+			        var curVal = jQuery(this).val();
+			        if(!textInput.value){
+			            for(var k in _data){
+			                if(_data[k]['value'] == curVal){
+			                    textInput.val(_data[k]['text']);
+			                }
+			            }
+			        }
+			    });
+    
+			    //日期选择
+			    var btns = mui('.btn-date');
+			    btns.each(function(i, btn) {
+			        btn.addEventListener('tap', function() {
+			            var optionsJson = this.getAttribute('data-options') || '{}';
+			            var options = JSON.parse(optionsJson);
+			            var id = this.getAttribute('id');
+			            var that = this;
+			            /*
+			             * 首次显示时实例化组件
+			             * 示例为了简洁，将 options 放在了按钮的 dom 上
+			             * 也可以直接通过代码声明 optinos 用于实例化 DtPicker
+			             */
+			            var picker = new mui.DtPicker(options);
+			            picker.show(function(rs) {
+			                jQuery(that).parents('.mui-input-date').find('input').val(rs.text);
+			                picker.dispose();
+			            });
+			        }, false);
+			    });
+			
+			    //选择类型
+			    jQuery('.btn-select').each(function(){
+			        var picker = new mui.PopPicker();
+			        var json = jQuery(this).data('select');
+			        picker.setData(json);
+			        var forInput = jQuery(this).siblings('input[type=text]');
+			        var forVal = jQuery(this).siblings('input[type=hidden]');
+			        if(forVal.val()){
+			            picker.pickers[0].setSelectedValue(forVal.val(), 2000);
+			        }
+			        this.addEventListener('tap', function(event) {
+			            picker.show(function(items) {
+			                forInput && forInput.val(items[0]['text']);
+			                forVal && forVal.val(items[0]['value']);
+			            });
+			        }, false);
+			    });
+		    	
+		    	var val_area = {};
+			    val_area["mid"] = "";
+			    val_area["timestamp"] = new Date().getTime();
+			    val_area["method"] = config.apimethod.arealist;
+				val_area["version"] = config.apiversion;
+			    var sign_area = GetSign(val_area);
+			    var param_area = {
+			        queryData: {
+			          'method': config.apimethod.arealist, 
+			          'sign':sign_area,
+			          'mid':"",
+			          'timestamp':val_area["timestamp"]
+			        },
+			        method: 'POST'
+			    }
+			    $.dataRequest(param_area, function(rs1) {
+			        if(rs1.rsp=="succ")
+			        {
+			        	console.log(JSON.stringify(rs1.data.Area[0]));
+			        	jQuery("#showarea_id1").data("select",rs1.data.Area[0]);
+			        	pickerArea[1].setData(rs1.data.Area[0]);
+			        	for(var i = 0;i<rs1.data.Area[0].length;i++)
+			        	{
+			        		city1[rs1.data.Area[0][i].text] = rs1.data.Area[0][i].value;
+			        		if(rs1.data.Area[0][i].value==rs.data.Areas.selected[0])
+			        			jQuery('#area_text1').val(rs1.data.Area[0][i].text);
+			        	}
+			        	pickerArea[2].setData(rs.data.Areas.Area[1]);
+			        	for(var i = 0;i<rs.data.Areas.Area[1].length;i++)
+			        	{
+			        		city2[rs.data.Areas.Area[1][i].text] = rs.data.Areas.Area[1][i].value;
+			        		if(rs.data.Areas.Area[1][i].value==rs.data.Areas.selected[1])
+			        			jQuery('#area_text2').val(rs.data.Areas.Area[1][i].text);
+			        	}
+			        	pickerArea[3].setData(rs.data.Areas.Area[2]);
+			        	for(var i = 0;i<rs.data.Areas.Area[2].length;i++)
+			        	{
+			        		city3[rs.data.Areas.Area[2][i].text] = rs.data.Areas.Area[2][i].value;
+			        		if(rs.data.Areas.Area[2][i].value==rs.data.Areas.selected[2])
+			        			jQuery('#area_text3').val(rs.data.Areas.Area[2][i].text);
+			        	}
+			        	pickerArea[4].setData(rs.data.Areas.Area[3]);
+			        	for(var i = 0;i<rs.data.Areas.Area[3].length;i++)
+			        	{
+			        		city4[rs.data.Areas.Area[3][i].text] = rs.data.Areas.Area[3][i].value;
+			        		if(rs.data.Areas.Area[3][i].value==rs.data.Areas.selected[3])
+			        			jQuery('#area_text4').val(rs.data.Areas.Area[3][i].text);
+			        	}
+			        	setdq();
+			        	changedq(1);
+			        }else
+			        {
+			        	plus.nativeUI.toast("获取失败：" + rs1.data);
+						return;
+			        }
+			    });
+		    }
+		})
+    })
+    
+    Date.prototype.Format = function (fmt) { //author: meizz 
+	    var o = {
+	        "M+": this.getMonth() + 1, //月份 
+	        "d+": this.getDate(), //日 
+	        "h+": this.getHours(), //小时 
+	        "m+": this.getMinutes(), //分 
+	        "s+": this.getSeconds(), //秒 
+	        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+	        "S": this.getMilliseconds() //毫秒 
+	    };
+	    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+	    for (var k in o)
+	    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+	    return fmt;
+	}
+    
+    function changedq(n){
+    	//改变取值后，对下一级进行更新选项
+    	var obj = {};
+    	switch(n)
+    	{
+    		case 1:
+    			obj = city1;
+    		break;
+    		case 2:
+    			obj = city2;
+    		break;
+    		case 3:
+    			obj = city3;
+    		break;
+    		case 4:
+    			obj = city4;
+    		break;
+    	}
+	    jQuery('.area-text').change(function(){
+	        var that = this;
+	        var curLevel = parseInt(jQuery(this).siblings('button').data('level'))||1;
+	        //jQuery(this).siblings('input[type=hidden]').val(obj[jQuery(this).val()]);
+	        curLevel = curLevel+1;
+	        console.log(curLevel);
+	        //强制清空下级所有数据
+	        for(var le=curLevel;le<=4;le++){
+	            pickerArea[le].setData([]);
+	            //清空text和hidden值
+	            jQuery('#area_text'+le).val('');
+	            jQuery('#area_text'+le).siblings('input[type=hidden]').val('');
+	        }
+	        //清空end
+
+	        //获取下一级地区数据
+	        var button = jQuery('#area_text'+curLevel).siblings('button');
+	        // button.attr('disabled' ,'disabled');
+
+	        var area_id = jQuery(this).siblings('input[type=hidden]').val();
+	        console.log(area_id);
+	        button.attr('data-select','');
+	        //开始到后台获取数据
+	        var val_obj = {};
+			val_obj["areaid"] = area_id;
+			val_obj["timestamp"] = new Date().getTime();
+			val_obj["method"] = config.apimethod.areachildlist;
+			val_obj["version"] = config.apiversion;
+			console.log(val_obj); 
+			var sign = GetSign(val_obj);
+			console.log(sign);
+			var param = {
+		        queryData: {
+		          'method': config.apimethod.areachildlist,
+		          'sign':sign,
+		          'areaid':area_id,
+		          'timestamp':val_obj["timestamp"]
+		        },
+		        method: 'POST'
+		    }
+			$.dataRequest(param, function(rs1) {
+		        if(rs1.rsp=="succ")
+    			{
+    				console.log(JSON.stringify(rs1.data));
+    				jQuery("#showarea_id"+curLevel).data("select",rs1.data);
+    				for(var i = 0;i<rs1.data.length;i++)
+		        	{
+		        		if(curLevel==2)
+		        		{
+		        			city2[rs1.data[i].text] = rs1.data[i].value;
+		        			pickerArea[2].setData(rs1.data);
+		        		}else if(curLevel==3)
+		        		{
+		        			city3[rs1.data[i].text] = rs1.data[i].value;
+		        			pickerArea[3].setData(rs1.data);
+		        		}else
+		        		{
+		        			city4[rs1.data[i].text] = rs1.data[i].value;
+		        			pickerArea[4].setData(rs1.data);
+		        		}
+		        	}
+		        	console.log(JSON.stringify(city2));
+    				setdq2(curLevel);
+    				if(curLevel<4)
+    					changedq(curLevel);
+    			}
+		    });
+	    });
+    }
+	
+    function setdq(){
+    	jQuery('.btn-select-area').each(function(){
+    		var llevel = jQuery(this).data('level');
+    		this.addEventListener('tap', function(event) {
+    			var level = parseInt(jQuery(this).data('level'))||1;
+    			if(level != 1){
+	                //查看上一级是否已经选择，没有选择上级不能拿选择当前地区
+	                var prevLevel = level - 1;
+	                var _tmpval = jQuery('#area_text'+prevLevel).val();
+	                if(!_tmpval){
+	                    mui.toast('请先选择上级地区');
+	                    return;
+	                }
+	           }
+    			var forInput = jQuery(this).siblings('input[type=text]');
+		        var forVal = jQuery(this).siblings('input[type=hidden]');
+		        var oldVal = forInput.val();
+		        if(forVal.val()){
+		            pickerArea[llevel].pickers[0].setSelectedValue(forVal.val(), 2000);
+		        } 
+    			pickerArea[llevel].show(function(items) {
+	                forInput && forInput.val(items[0]['text']);
+	                forVal && forVal.val(items[0]['value']);
+	                if(oldVal!=items[0]['text'])forInput.change();
+	            });
+    		});
+    	});
+    }
+    function setdq2(curLevel){
+    	jQuery('.btn-select-area').each(function(){
+    		var llevel = jQuery(this).data('level');
+    		if(parseInt(llevel)>=parseInt(curLevel))
+    		{
+    			this.addEventListener('tap', function(event) {
+	    			var level = parseInt(jQuery(this).data('level'))||1;
+	    			if(level != 1){
+		                //查看上一级是否已经选择，没有选择上级不能拿选择当前地区
+		                var prevLevel = level - 1;
+		                var _tmpval = jQuery('#area_text'+prevLevel).val();
+		                if(!_tmpval){
+		                    mui.toast('请先选择上级地区');
+		                    return;
+		                }
+		            }
+	    			var forInput = jQuery(this).siblings('input[type=text]');
+			        var forVal = jQuery(this).siblings('input[type=hidden]');
+			        var oldVal = forInput.val();
+			        if(forVal.val()){
+			            pickerArea[llevel].pickers[0].setSelectedValue(forVal.val(), 2000);
+			        } 
+	    			pickerArea[llevel].show(function(items) {
+		                forInput && forInput.val(items[0]['text']);
+		                forVal && forVal.val(items[0]['value']);
+
+		                if(oldVal!=items[0]['text'])forInput.change();
+		            });
+	    		});
+    		}
+    	});
+    }
+
+    //首页
+    mui(document.body).on('tap','.mui-action-home',function(){
+        clicked('_www/view/hyzx/hyzx.html');
+    });
+    mui(document.body).on('tap','.clientIndex-go',function(){
+        clicked('_www/view/qytj/tjlb.html');
+    });
+
+    //公式计算申请容量
+    jQuery('#acreage').change(function(){
+        var zhuangji = parseFloat(jQuery(this).val()||0)*acreage;
+        zhuangji = zhuangji.toFixed(4);
+        jQuery('#ApplyCapacity').val(zhuangji);
+    });
+
+    //提交按钮事件：需要验证基本信息
+    var rulesRequired = ['compName','area_text1','area_text2','area_text3','area_text4','address','contact','position','tel','roofName','toward','acreage','numberTai','rongliang'];
+    jQuery('#btn_submit').click(function(){
+        var that = this;
+        var waiting = plus.nativeUI.showWaiting();
+        //验证是否填写
+        var _rule_res = '';
+        jQuery(rulesRequired).each(function(){
+            var _val = jQuery('#'+this).val();
+            if(!_val){
+                _rule_res = jQuery('#'+this).attr('placeholder');
+                return false;
+            }
+        });
+
+        if(_rule_res){
+            mui.alert(_rule_res+'必填');
+            waiting.close();
+            return;
+        }
+        
+        var obj_add = {};
+        obj_add["sid"] = sid;
+        obj_add["compName"] = jQuery("#compName").val();
+        obj_add["areaId1"] = jQuery("#area_id1").val();
+        obj_add["areaId2"] = jQuery("#area_id2").val();
+        obj_add["areaId3"] = jQuery("#area_id3").val();
+        obj_add["areaId4"] = jQuery("#area_id4").val();
+        obj_add["address"] = jQuery("#address").val();
+        obj_add["contact"] = jQuery("#contact").val();
+        obj_add["position"] = jQuery("#position").val();
+        obj_add["tel"] = jQuery("#tel").val();
+        obj_add["roofId"] = jQuery("#roofId").val();
+        obj_add["toward"] = jQuery("#toward").val();
+        obj_add["acreage"] = jQuery("#acreage").val();
+        obj_add["isProCard"] = jQuery("input[name='isProCard']:checked").val();
+        obj_add["isLandCard"] = jQuery("input[name='isLandCard']:checked").val();
+        obj_add["numberTai"] = jQuery("#numberTai").val();
+        obj_add["rongliang"] = jQuery("#rongliang").val();
+        obj_add["method"] = config.apimethod.wytjsave;
+		obj_add["version"] = config.apiversion;
+        console.log(JSON.stringify(obj_add));
+        var sign = GetSign(obj_add);
+        var param_add = {
+	        queryData: {
+	          'method': config.apimethod.wytjsave,
+	          'sign':sign,
+	          'sid':sid,
+	          'compName':jQuery("#compName").val(),
+			  'areaId1':jQuery("#area_id1").val(),
+			  'areaId2':jQuery("#area_id2").val(),
+			  'areaId3':jQuery("#area_id3").val(),
+			  'areaId4':jQuery("#area_id4").val(),
+			  'address':jQuery("#address").val(),
+			  'contact':jQuery("#contact").val(),
+			  'position':jQuery("#position").val(),
+			  'tel':jQuery("#tel").val(),
+			  'roofId':jQuery("#roofId").val(),
+			  'toward':jQuery("#toward").val(),
+			  'acreage':jQuery("#acreage").val(),
+			  'isProCard':jQuery("input[name='isProCard']:checked").val(),
+			  'isLandCard':jQuery("input[name='isLandCard']:checked").val(),
+			  'numberTai':jQuery("#numberTai").val(),
+			  'rongliang':jQuery("#rongliang").val()
+	        },
+	        method: 'POST'
+	    }
+        $.dataRequest(param_add, function(rs) {
+    		console.log(JSON.stringify(rs));
+    		waiting.close(); 
+	        if(rs.rsp=="succ")
+	        {
+	        	if(rs.data.success=="true"){
+	        		plus.nativeUI.toast("保存成功");
+	        		clicked('_www/view/hyzx/hyzx.html');
+					//return;
+	        	}else
+	        	{
+	        		plus.nativeUI.toast("保存失败：" + rs.data.msg);
+					return;
+	        	}
+	        }else
+	        {
+	        	plus.nativeUI.toast("保存失败：" + rs.data);
+				return;
+	        }
+    	})
+    });
+
+
+</script>
+</html>

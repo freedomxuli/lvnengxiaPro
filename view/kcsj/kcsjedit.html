@@ -983,10 +983,12 @@
     mui.init();
     mui.plusReady(function(){
     	cid = plus.webview.currentWebview().cid;
+    	id = plus.webview.currentWebview().kid;
+    	console.log(id);
     	var obj_xx = {};
 		obj_xx['sid'] = sid;
 		obj_xx['cid'] = cid;
-		obj_xx['kid'] = "";
+		obj_xx['kid'] = id;
 		obj_xx["method"] = config.apimethod.kcszinit;
 		obj_xx["version"] = config.apiversion;
 		var sign = GetSign(obj_xx);
@@ -996,7 +998,7 @@
 	          'sign':sign,
 	          'sid':sid,
 	          'cid':cid,
-	          'kid':""
+	          'kid':id
 	        },
 	        method: 'POST'
 	    }
@@ -1007,16 +1009,31 @@
 		    	jQuery("#clientDate").val(rs.data.fanganDate);
 		    	jQuery("#compName").val(rs.data.compName);
 		    	jQuery("#showkindType").data("select",rs.data.Options.kindArr);
-		    	jQuery("#kind").val(rs.data.kind);
+		    	//jQuery("#kind").val(rs.data.kind);
 		    	jQuery("#showRoofName").data("select",rs.data.Options.roofName);
 		    	jQuery("#roofId").val(rs.data.roofId);
 		    	jQuery("#showSeePeo").data("select",rs.data.Options.kanchaArr);
 		    	jQuery("#seePeo").val(rs.data.seePeo);
+		    	jQuery("#rmemo").val(rs.data.memo);
 		    	for(var i = 0;i<rs.data.Options.kanchaArr.length;i++)
 		    	{
 		    		if(rs.data.Options.kanchaArr[i].value == rs.data.seePeo)
 		    		{
 		    			jQuery("#seePeoText").val(rs.data.Options.kanchaArr[i].text);
+		    		}
+		    	}
+		    	for(var i = 0;i<rs.data.Options.roofName.length;i++)
+		    	{
+		    		if(rs.data.Options.roofName[i].value == rs.data.roofId)
+		    		{
+		    			jQuery("#roofName").val(rs.data.Options.roofName[i].text);
+		    		}
+		    	}
+		    	for(var i = 0;i<rs.data.Options.kindArr.length;i++)
+		    	{
+		    		if(rs.data.Options.kindArr[i].value == rs.data.kind)
+		    		{
+		    			jQuery("#kind").val(rs.data.Options.kindArr[i].text);
 		    		}
 		    	}
 		    	jQuery("#ApplyCapacity").val(rs.data.sqrongliang);
@@ -1776,7 +1793,7 @@
                     obj_add["sid"] = sid;
                     obj_add["saveType"] = submitValue=="保存"?"SUCC":"TEMP";
                     obj_add["cid"] = cid;
-                    obj_add["id"] = "";
+                    obj_add["id"] = id;
                     obj_add["fanganDate"] = jQuery("#fanganDate").val();
                     obj_add["compName"] = jQuery("#compName").val();
                     obj_add["roofId"] = jQuery("#roofId").val();
@@ -1872,7 +1889,7 @@
 				          'saveType':saveType,
 				          'sid':sid,
 						  'cid':cid,
-						  'id':"",
+						  'id':id,
 						  'fanganDate':jQuery("#fanganDate").val(),
 						  'compName':jQuery("#compName").val(),
 						  'roofId':jQuery("#roofId").val(),
@@ -1930,7 +1947,7 @@
             obj_add["sid"] = sid;
             obj_add["saveType"] = submitValue=="保存"?"SUCC":"TEMP";
             obj_add["cid"] = cid;
-            obj_add["id"] = "";
+            obj_add["id"] = id;
             obj_add["fanganDate"] = jQuery("#fanganDate").val();
             obj_add["compName"] = jQuery("#compName").val();
             obj_add["roofId"] = jQuery("#roofId").val();
@@ -2025,7 +2042,7 @@
 		          'saveType':saveType,
 		          'sid':sid,
 				  'cid':cid,
-				  'id':"",
+				  'id':id,
 				  'fanganDate':jQuery("#fanganDate").val(),
 				  'compName':jQuery("#compName").val(),
 				  'roofId':jQuery("#roofId").val(),

@@ -154,7 +154,9 @@
 					"view/khxm/jmxmlr.html",
 					"view/khxm/qyxmlr.html",
 					"view/khxm/khxmcx.html",
-					"view/kcsj/dkckhlb.html"
+					"view/kcsj/dkckhlb.html",
+					"view/kcsj/kcsjlb.html",
+					"view/qytj/wytj.html"
 				],
 				"priority": 0
 			},
@@ -214,7 +216,26 @@
 			"view/kcsj/dkckhlb.html": {
 				"resources": [],
 				"refer": [
-					"view/kcsj/kcsjadd.html"
+					"view/kcsj/kcsjadd.html",
+					"view/kcsj/kcsjaddqy.html",
+					"view/hyzx/hyzx.html"
+				],
+				"priority": 0
+			},
+			"view/kcsj/kcsjlb.html": {
+				"resources": [],
+				"refer": [
+					"view/kcsj/kcsjaddqy.html",
+					"view/kcsj/kcsjadd.html",
+					"view/kcsj/kcsjeditqy.html",
+					"view/kcsj/kcsjedit.html"
+				],
+				"priority": 0
+			},
+			"view/qytj/wytj.html": {
+				"resources": [],
+				"refer": [
+					"view/hyzx/hyzx.html"
 				],
 				"priority": 0
 			}

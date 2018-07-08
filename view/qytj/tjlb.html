@@ -1,0 +1,363 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Jado绿能侠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link href="../../css/mui.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="../../css/mui.picker.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/mui.poppicker.css" />
+    
+    <style type="text/css">
+        .mui-pagination .p_bar a{
+            line-height: 1.428571429;
+            position: relative;
+            float: left;
+            margin-left: -1px;
+            padding: 6px 12px;
+            text-decoration: none;
+            color: #007aff;
+            border: 1px solid #ddd;
+            background-color: #fff;
+        }
+        .mui-pagination .p_bar a:first-child{
+            border-top-left-radius: 6px;
+            border-bottom-left-radius: 6px;
+            background-clip: padding-box;
+        }
+        .mui-pagination .p_bar a:last-child{
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+            background-clip: padding-box;
+        }
+        .mui-pagination .p_bar a.p_curpage{
+            color: #fff;
+            border-color: #007aff;
+            background-color: #007aff;
+        }
+        .cell-view-3{float: left;width: 25%;}
+        .cell-view-4{float: left;width: 33.33%;}
+        .cell-view-6{float: left;width: 50%;}
+        .cell-view-8{float:left;width: 66.66%;}
+        .cell-view-12{float:left;width: 100%;}
+        span.title{color: gray;width: 60px;display: inline-block;}
+        span.green{color: green;}
+        span.gray{color: gray;}
+        span.orange{color: orange;}
+        .content-view{padding-left: 18px;}
+        .mui-radius{border-radius: 100px ;padding: 3px 10px;}
+        .mui-content>.mui-card:first-child{margin-top: 1px;}
+        .mui-card{margin:0px;margin-top: 1px; border-radius: 0px;}
+        .cell-detial{
+            position: absolute;right: 3px;top: 30px;font-size: 1em;color:#007aff;
+        }
+        .mui-card-content-inner{padding: 8px 10px;}
+        .detial-cell{padding: 8px;border-top: 1px solid #efefef;display: none;}
+        .mui-input-row{height: auto !important;}
+        .mui-input-btn-label{width: 100%;}
+        .mui-input-row input[readonly]{background: #efefef;}
+        .mui-input-row label{width: 40%;}
+        .mui-input-row input[type='text'],textarea{width: 60% !important;}
+        .mui-input-btn-label input[type='text']{width: 45% !important;float: left !important;}
+        .mui-input-btn-label button{width: 15% !important;padding: 8px !important;margin:0px !important;}
+        .search-container{display: none;margin-bottom: 15px;}
+        .mui-button-row-search button{width: 49%;}
+    </style>
+    
+</head>
+<body>
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-icon mui-icon-home mui-action-home"></a>
+        <h1 class="mui-title">企业推荐查询</h1>
+        <a class="mui-pull-right mui-action-search">
+            <i class="mui-icon mui-icon-search"></i>
+        </a>
+    </header>
+    <div class="mui-content">
+        <div class="mui-card search-container">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <form name="FormSearch" id='FormSearch' method="post" action="" class="mui-input-group">
+                        <div class="mui-input-row">
+                            <label>企业名称</label>
+                            <input type="text" name="compName" id="compName" value="" placeholder="企业名称">
+                        </div>
+                        <div class="mui-input-row">
+                            <label>联系人</label>
+                            <input type="text" name="people" id="people" value="" placeholder="联系人">
+                        </div>
+                        <div class="mui-button-row mui-button-row-search">
+                            <button type="button" class="mui-btn mui-btn-default mui-icon mui-icon-undo btn-clear-search">清空</button>
+                            <button type="submit" class="mui-btn mui-btn-primary mui-icon mui-icon-search">搜索</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="pullrefresh" class="mui-content mui-scroll-wrapper content-div mui-card mui-card-list-eqinfo">
+			<div class="mui-scroll mui-card-content">
+				<ul class="mui-table-view" id="content-card-list">
+				<!--数据列表-->
+				</ul>
+        	</div>
+		</div>
+        
+    </div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/zepto.js"></script>
+<script src="../../js/mui.picker.js"></script>
+<script src="../../js/mui.picker.min.js"></script>
+<script src="../../js/mui.poppicker.js"></script>
+<script src="../../js/mui.enterfocus.js"></script>
+<script src="../../js/template.min.js"></script>
+<script src="../../config.js"></script>
+<script src="../../js/app.js"></script>
+<script src="../../js/sign.js"></script>
+<script src="../../js/md5.js"></script>
+<script src="../../js/mui.indexedlist.js"></script>
+<script src="../../js/jquery.1.9.1.js"></script>
+<script type="text/javascript">
+    var jQuery = jQuery.noConflict();
+</script> 
+<script type="text/html" id="cardlist">
+	<%
+		for(var i = 0;i<data.List.length;i++)
+		{
+		%>
+		<li>
+			<div class="mui-card">
+	            <div class="mui-card-content">
+	                <div class="mui-card-content-inner">
+	                    <div class="cell-view-12">
+	                        <span class="title">公司名称</span>
+	                        <b style="color: #007aff;"><%=data.List[i].compName%></b>
+	                    </div>
+	                    <div class="cell-view-12">
+	                        <span class="title">手机号</span>
+	                        <b style="color: #007aff;"><%=data.List[i].tel%></b>
+	                    </div>
+	                    <div class="cell-view-6">
+	                        <span class="title">联系人</span>
+	                        <%=data.List[i].contact%>
+	                    </div>
+	                    <div class="cell-view-6">
+	                        <span class="title">职务</span>
+	                        <span class="orange"><%=data.List[i].position%></span>
+	                    </div>
+	                    <div class="cell-view-6">
+	                        <span class="title">推荐时间</span>
+	                        
+	                    </div>
+	                    <div class="cell-view-6">
+	                        <span class="title">屋顶面积</span>
+	                        <span class="green"><%=data.List[i].acreage%></span>
+	                    </div>
+	                    <div class="cell-view-6">
+	                        <span class="title">推荐人</span>
+	                        
+	                    </div>
+	                    <div class="cell-view-6">
+	                        <span class="title">进度</span>
+	                        
+	                    </div>
+	                    <div class="cell-view-12">
+	                        <span class="title">地区</span>
+	                        <%=data.List[i].address%>
+	                    </div>
+	                    
+	                    <div class="cell-detial">
+	                        <i class="mui-icon mui-icon-arrowdown action-detial<%=data.currentPage%>"></i>
+	                    </div>
+	                    <div class="cell-view-12 detial-cell">
+	                        <div class="cell-view-6">
+	                            <div class="cell-view-12">
+	                            	<span style="color:blue;" class="mui-icon mui-icon-compose edit-kancha<%=data.currentPage%>" data-id="<%=data.List[i].id%>"></span><span style="color:blue;" class="edit-kancha<%=data.currentPage%>" data-id="<%=data.List[i].id%>">查看详细</span>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </li>
+		<%
+		}
+	%>
+</script>
+<script>
+	
+    var count = 1;
+	var pageNum = 25;
+	var sid = localStorage.getItem("sid");
+    mui.init({
+    	pullRefresh: {
+			container: '#pullrefresh',
+			up: {
+				contentrefresh: '正在加载...',
+				callback: pullupRefresh
+			}
+		}
+    });
+    
+    /**
+	 * 上拉加载具体业务实现
+	 */
+	function pullupRefresh() {
+		loadData('','');
+	}
+	
+	function timestampToTime(timestamp) {
+        var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+        Y = date.getFullYear() + '-';
+        M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+        D = date.getDate() + ' ';
+        h = date.getHours() + ':';
+        m = date.getMinutes() + ':';
+        s = date.getSeconds();
+        return Y+M+D+h+m+s;
+   }
+    
+    function loadData(compName,people){
+		var now_time = new Date().getTime();
+		var obj_point = {};
+		obj_point["sid"] = sid;
+		obj_point["page"] = count;
+		obj_point["pageNum"] = pageNum;
+		obj_point["compName"] = compName;
+		obj_point["contact"] = people;
+		obj_point["isShenhe"] = "ALL";
+		obj_point["method"] = config.apimethod.tjqylist;
+        obj_point["version"] = config.apiversion;
+		var sign = GetSign(obj_point);
+		var param = {
+	        queryData: {
+	          'method': config.apimethod.tjqylist,
+	          'sign':sign,
+	          'sid':sid,
+	          'page':count,
+	          'pageNum':pageNum,
+	          'compName':compName,
+	          'contact':people,
+	          'isShenhe':"ALL"
+	        },
+	        method: 'POST'
+	   }
+		$.dataRequest(param, function(rs) {
+			console.log(JSON.stringify(rs));
+			if(rs.rsp=="succ")
+			{
+				if(rs.data.List)
+				{
+					++count;
+					setTimeout(function() {
+						console.log(JSON.stringify(rs));
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh((count > rs.data.pageCount)); //参数为true代表没有更多数据了。
+						var list = template("cardlist",rs);
+						jQuery('#content-card-list').append(list);
+					    //显示详细
+					    jQuery('.action-detial'+rs.data.currentPage).click(function(){
+					        jQuery(this).parent().siblings('.detial-cell').slideToggle();
+					    })
+					    mui(".mui-slider").slider();
+					    
+					    mui(document.body).on('tap','.edit-kancha'+rs.data.currentPage,function(){
+					        var that = this;
+					        clicked("_www/view/qytj/tjdetail.html",{
+				            	cid:jQuery(this).data("id")
+				            });
+					    });
+					    
+					}, 1500);
+				}else
+				{
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh((count > 0));
+				}
+			}else
+			{
+				plus.nativeUI.toast("获取失败：" + rs.res);
+				return;
+			}
+		});
+	}
+    
+    //首页
+    mui(document.body).on('tap','.mui-action-home',function(){
+        clicked('_www/view/hyzx/hyzx.html');
+    });
+    mui(document.body).on('tap','.mui-action-search',function(){
+        jQuery('.search-container').slideToggle();
+    });
+
+    mui(document.body).on('tap','.edit-client',function(){
+        var that = this;
+        if(jQuery(that).hasClass('edit-remove')){
+            var res = mui.confirm('删除后不可逆转','确认删除?',['不删','删'],function(e){
+                if (e.index == 1) {
+                    document.location.href = jQuery(that).attr('href');
+                } else {
+                    return;
+                }
+            });
+        }else{
+            document.location.href = jQuery(that).attr('href');
+        }
+    });
+
+    //默认显示框里的值
+    jQuery('.select-hide[value!=""]').each(function(){
+        var textInput=jQuery(this).siblings('input[type=text]');
+        var _data = jQuery(this).siblings('button').data('select');
+        var curVal = jQuery(this).val();
+        if(!textInput.value){
+            for(var k in _data){
+                if(_data[k]['value'] == curVal){
+                    textInput.val(_data[k]['text']);
+                }
+            }
+        }
+    });
+
+    //选择类型
+    jQuery('.btn-select').each(function(){
+        var picker = new mui.PopPicker();
+        var json = jQuery(this).data('select');
+        picker.setData(json);
+        var forInput = jQuery(this).siblings('input[type=text]');
+        var forVal = jQuery(this).siblings('input[type=hidden]');
+        if(forVal.val()){
+            picker.pickers[0].setSelectedValue(forVal.val(), 2000);
+        }
+        this.addEventListener('tap', function(event) {
+            picker.show(function(items) {
+                forInput && forInput.val(items[0]['text']);
+                forVal && forVal.val(items[0]['value']);
+            });
+        }, false);
+    });
+    
+    if (mui.os.plus) {
+		mui.plusReady(function() {
+			setTimeout(function() {
+				mui('#pullrefresh').pullRefresh().pullupLoading();
+			}, 1000);
+
+		});
+	} else {
+		mui.ready(function() {
+			mui('#pullrefresh').pullRefresh().pullupLoading();
+		});
+	}
+
+    //清空搜索
+    jQuery('.btn-clear-search').click(function(){
+        jQuery('#FormSearch').find('input').val('');
+        jQuery('#FormSearch').submit();
+        count = 1;
+    	loadData('','');
+    });
+
+</script>
+</html>
