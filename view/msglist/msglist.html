@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Jado绿能侠</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" type="text/css" href="Resource/Script/mui/css/mui.min.css?v=1505271138" />
+    <link rel="stylesheet" type="text/css" href="Resource/Script/mui/css/mui.picker.css?v=1505271138" />
+    <link rel="stylesheet" type="text/css" href="Resource/Script/mui/css/mui.picker.min.css?v=1505271138" />
+    <link rel="stylesheet" type="text/css" href="Resource/Script/mui//css/mui.poppicker.css?v=1505271138" />
+    
+    <style type="text/css">
+        .mui-pagination .p_bar a{
+            line-height: 1.428571429;
+            position: relative;
+            float: left;
+            margin-left: -1px;
+            padding: 6px 12px;
+            text-decoration: none;
+            color: #007aff;
+            border: 1px solid #ddd;
+            background-color: #fff;
+        }
+        .mui-pagination .p_bar a:first-child{
+            border-top-left-radius: 6px;
+            border-bottom-left-radius: 6px;
+            background-clip: padding-box;
+        }
+        .mui-pagination .p_bar a:last-child{
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+            background-clip: padding-box;
+        }
+        .mui-pagination .p_bar a.p_curpage{
+            color: #fff;
+            border-color: #007aff;
+            background-color: #007aff;
+        }
+        .cell-view-3{float: left;width: 25%;}
+        .cell-view-4{float: left;width: 33.33%;}
+        .cell-view-6{float: left;width: 50%;}
+        .cell-view-8{float:left;width: 66.66%;}
+        .cell-view-12{float:left;width: 100%;}
+        span.title{color: gray;width: 46px;display: inline-block;}
+        span.green{color: green;}
+        span.gray{color: gray;}
+        span.orange{color: orange;}
+        .content-view{padding-left: 18px;}
+        .mui-radius{border-radius: 100px ;padding: 3px 10px;}
+        .mui-content>.mui-card:first-child{margin-top: 1px;}
+        .mui-card{margin:0px;margin-top: 1px; border-radius: 0px;}
+        .cell-detial{
+            position: absolute;right: 3px;top: 30px;font-size: 1em;color:#007aff;
+        }
+        .mui-card-content-inner{padding: 8px 10px;}
+        .detial-cell{padding: 8px;border-top: 1px solid #efefef;display: none;}
+        .mui-input-row{height: auto !important;}
+        .mui-input-btn-label{width: 100%;}
+        .mui-input-row input[readonly]{background: #efefef;}
+        .mui-input-row label{width: 40%;}
+        .mui-input-row input[type='text'],textarea{width: 60% !important;}
+        .mui-input-btn-label input[type='text']{width: 45% !important;float: left !important;}
+        .mui-input-btn-label button{width: 15% !important;padding: 8px !important;margin:0px !important;}
+        .search-container{display: none;margin-bottom: 15px;}
+        .mui-button-row-search button{width: 49%;}
+    </style>
+    
+</head>
+<body>
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-icon mui-icon-home mui-action-home"></a>
+        <h1 class="mui-title">消息提醒列表</h1>
+        <a class="mui-pull-right mui-action-search">
+            <i class="mui-icon mui-icon-search"></i>
+        </a>
+    </header>
+    <div class="mui-content">
+        <div class="mui-card search-container">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <form name="FormSearch" id='FormSearch' method="post" action="" class="mui-input-group">
+                        <div class="mui-input-row">
+                            <label>标题</label>
+                            <input type="text" name="key" value="" placeholder="标题">
+                        </div>
+                        <div class="mui-input-row">
+                            <label>发送人</label>
+                            <input type="text" name="sender" value="" placeholder="发送人">
+                        </div>
+                        <div class="mui-button-row mui-button-row-search">
+                            <button type="button" class="mui-btn mui-btn-default mui-icon mui-icon-undo btn-clear-search">清空</button>
+                            <button type="submit" class="mui-btn mui-btn-primary mui-icon mui-icon-search">搜索</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">标题</span><b>代理注册提醒</b></div>
+                    <div class="cell-view-12">
+                    <span class="title">发送人</span>管理员</div>
+                    <div class="cell-view-12">
+                    <span class="title">日期</span>2018-06-30 09:30:22</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=MailApp&action=Remove&id=4660" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=MailApp&action=View&id=4660"  class="edit-client">
+                                <span class="mui-icon mui-icon-compose"></span>查看内容
+                            </a>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">标题</span><b>代理注册提醒<font color='red'>(未查看)</font></b></div>
+                    <div class="cell-view-12">
+                    <span class="title">发送人</span>管理员</div>
+                    <div class="cell-view-12">
+                    <span class="title">日期</span>2018-06-30 09:00:22</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=MailApp&action=Remove&id=4648" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=MailApp&action=View&id=4648"  class="edit-client">
+                                <span class="mui-icon mui-icon-compose"></span>查看内容
+                            </a>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">标题</span><b>代理注册提醒<font color='red'>(未查看)</font></b></div>
+                    <div class="cell-view-12">
+                    <span class="title">发送人</span>管理员</div>
+                    <div class="cell-view-12">
+                    <span class="title">日期</span>2018-06-30 08:50:52</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=MailApp&action=Remove&id=4636" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=MailApp&action=View&id=4636"  class="edit-client">
+                                <span class="mui-icon mui-icon-compose"></span>查看内容
+                            </a>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">标题</span><b>代理注册提醒<font color='red'>(未查看)</font></b></div>
+                    <div class="cell-view-12">
+                    <span class="title">发送人</span>管理员</div>
+                    <div class="cell-view-12">
+                    <span class="title">日期</span>2018-06-29 22:00:22</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=MailApp&action=Remove&id=4624" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=MailApp&action=View&id=4624"  class="edit-client">
+                                <span class="mui-icon mui-icon-compose"></span>查看内容
+                            </a>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-card">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <div class="cell-view-12">
+                    <span class="title">标题</span><b>代理注册提醒<font color='red'>(未查看)</font></b></div>
+                    <div class="cell-view-12">
+                    <span class="title">发送人</span>管理员</div>
+                    <div class="cell-view-12">
+                    <span class="title">日期</span>2018-06-29 21:30:22</div>
+                    <div class="cell-detial">
+                        <i class="mui-icon mui-icon-arrowdown action-detial"></i>
+                    </div>
+
+                    <div class="cell-view-12 detial-cell">
+                        <div class="cell-view-12">
+                            <a href="http://test.lvnengxia.cn/index.php?controller=MailApp&action=Remove&id=4612" class="edit-client edit-remove">
+                                <span class="mui-icon mui-icon-trash"></span>删除
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://test.lvnengxia.cn/index.php?controller=MailApp&action=View&id=4612"  class="edit-client">
+                                <span class="mui-icon mui-icon-compose"></span>查看内容
+                            </a>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+                <div class="mui-content-padded">
+            <div class="mui-pagination">
+            <div class="p_bar"><a class="p_curpage">1</a></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script language="javascript" type="text/javascript" src="Resource/Script/jquery.1.9.1.js?v=1505271128"></script>
+<script type="text/javascript">
+    var jQuery = jQuery.noConflict();
+</script>
+<script language="javascript" type="text/javascript" src="Resource/Script/mui/js/mui.min.js?v=1523935283"></script>
+<script language="javascript" type="text/javascript" src="Resource/Script/mui/js/mui.picker.js?v=1505271139"></script>
+<script language="javascript" type="text/javascript" src="Resource/Script/mui/js/mui.picker.min.js?v=1505271139"></script>
+<script language="javascript" type="text/javascript" src="Resource/Script/mui/js/mui.poppicker.js?v=1505271139"></script>
+<script>
+
+(function($, doc) {
+    mui.init();
+    //首页
+    mui(document.body).on('tap','.mui-action-home',function(){
+        document.location.href = 'index.php';
+    });
+    mui(document.body).on('tap','.mui-action-search',function(){
+        jQuery('.search-container').slideToggle();
+    });
+
+    mui('.mui-content-padded').on('tap','.p_num,.p_redirect',function(){
+        document.location.href = jQuery(this).attr('href');
+    });
+    mui(document.body).on('tap','.edit-client',function(){
+        var that = this;
+        if(jQuery(that).hasClass('edit-remove')){
+            var res = mui.confirm('删除后不可逆转','确认删除?',['不删','删'],function(e){
+                if (e.index == 1) {
+                    document.location.href = jQuery(that).attr('href');
+                } else {
+                    return;
+                }
+            });
+        }else{
+            document.location.href = jQuery(that).attr('href');
+        }
+    });
+    //显示详细
+    jQuery('.action-detial').click(function(){
+        jQuery(this).parent().siblings('.detial-cell').slideToggle();
+    })
+
+    //默认显示框里的值
+    jQuery('.select-hide[value!=""]').each(function(){
+        var textInput=jQuery(this).siblings('input[type=text]');
+        var _data = jQuery(this).siblings('button').data('select');
+        var curVal = jQuery(this).val();
+        if(!textInput.value){
+            for(var k in _data){
+                if(_data[k]['value'] == curVal){
+                    textInput.val(_data[k]['text']);
+                }
+            }
+        }
+    });
+
+    //选择类型
+    jQuery('.btn-select').each(function(){
+        var picker = new mui.PopPicker();
+        var json = jQuery(this).data('select');
+        picker.setData(json);
+        var forInput = jQuery(this).siblings('input[type=text]');
+        var forVal = jQuery(this).siblings('input[type=hidden]');
+        if(forVal.val()){
+            picker.pickers[0].setSelectedValue(forVal.val(), 2000);
+        }
+        this.addEventListener('tap', function(event) {
+            picker.show(function(items) {
+                forInput && forInput.val(items[0]['text']);
+                forVal && forVal.val(items[0]['value']);
+            });
+        }, false);
+    });
+
+    //清空搜索
+    jQuery('.btn-clear-search').click(function(){
+        jQuery('#FormSearch').find('input').val('');
+        jQuery('#FormSearch').submit();
+    });
+})(mui, document);
+
+
+</script>
+</html>

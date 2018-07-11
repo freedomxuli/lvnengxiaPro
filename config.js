@@ -140,6 +140,7 @@ var config = {
         setaccount: 'member.setAccount', //设置用户名
         complaintscreate: 'member.complaints.create', //投诉商家
         userforgotresetpwd: 'user.forgot.resetpassword', //忘记密码重置密码
+        userpwdupdate:'user.password.update',//确认密码
         favoriteall: 'member.favorite.all', //获取用户的所有收藏
         express: 'logistics.list.get', //获取快递公司
         logisticsback: 'logistics.send', //回寄物流信息提交
@@ -190,5 +191,6 @@ var config = {
         wytjsave:'recommend.add.save',//我要推荐企业信息保存
         tjqylist:'recommend.list.get',//推荐企业列表
         tjqydetail:'recommend.info.detail',//推荐企业详细信息
+        getpermoney:'user.info.money.logs',//获取个人金额日志
     }
 }

@@ -156,7 +156,8 @@
 					"view/khxm/khxmcx.html",
 					"view/kcsj/dkckhlb.html",
 					"view/kcsj/kcsjlb.html",
-					"view/qytj/wytj.html"
+					"view/qytj/wytj.html",
+					"view/grzx/grzx.html"
 				],
 				"priority": 0
 			},

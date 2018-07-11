@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Jado绿能侠</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link href="../../css/mui.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        <header class="mui-bar mui-bar-nav">
+            <a class="mui-action-home mui-icon mui-icon-home"></a>
+            <h1 class="mui-title">个人中心</h1>
+        </header>
+        <div class="mui-content">
+            <div class="mui-card">
+                <ul class="mui-table-view">
+                    <li class="mui-table-view-cell mui-collapse mui-active">
+                        <a class="mui-navigate-right" href="#">个人信息</a>
+                        <div class="mui-collapse-content">
+                            <label>用户名：<span id="yhm"></span></label>
+                        </div>
+                        <div class="mui-collapse-content">
+                            <label>姓  名：<span id="xm"></span></label>
+                        </div>
+                        <div class="mui-collapse-content">
+                            <label>推荐的企业数量：</label>
+                            <span class="link"><span class="mui-table-view-cell" id="tjqysl"></span></span>
+                        </div>
+                        <div class="mui-collapse-content">
+                            <label>已通过审核数量：</label>
+                            <span class="link"><span class="mui-table-view-cell" id="ytgshsl"></span></span>
+                        </div>
+                        <div class="mui-collapse-content">
+                            <label>推荐的代理数量：</label>
+                            <span class="link"><span class="mui-table-view-cell" id="tjdlsl"></span></span>
+                        </div>
+                        <div class="mui-collapse-content">
+                            <label>账户的可用金额：</label>
+                            <span class="link"><span class="mui-table-view-cell" id="zhkyje"></span></span>
+                        </div>
+                    </li>
+                    <li class="mui-table-view-cell mui-collapse">
+                        <a class="mui-navigate-right" href="#">修改密码</a>
+                        <div class="mui-collapse-content">
+                            <div class="mui-input-group">
+                                <div class="mui-input-row">
+                                    <label>新密码</label>
+                                    <input type="password" class="mui-input-clear" placeholder="输入新密码" id="passwd" name="passwd">
+                                </div>
+                                <div class="mui-input-row">
+                                    <label>确认新密码</label>
+                                    <input type="password" class="mui-input-clear" placeholder="确认新密码" id="repasswd" name="repasswd">
+                                </div>
+                                <div class="mui-button-row">
+                                    <button class="mui-btn mui-btn-primary xgmmqr" type="submit">确认</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="mui-content-padded">
+            <button id="login" class="mui-btn mui-btn-block mui-btn-primary logout" style="line-height: 15px;">退出登录</button>
+        </div>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/zepto.js"></script>
+	    <script src="../../js/mui.zoom.js"></script>
+	    <script src="../../js/template.min.js"></script>
+	    <script src="../../config.js"></script>
+	    <script src="../../js/app.js"></script>
+	    <script src="../../js/sign.js"></script>
+		<script src="../../js/md5.js"></script>
+		<script src="../../js/jquery.1.9.1.js"></script>
+		<script type="text/javascript">
+		    var jQuery = jQuery.noConflict();
+		</script>
+        <script>
+            
+            mui.init({
+                swipeBack:true //启用右滑关闭功能
+            });
+            
+            var sid = localStorage.getItem("sid");
+            
+            mui.plusReady(function() {
+            	loadData();
+            	function loadData(){
+            		var obj = {};
+	            	obj["sid"] = sid;
+	            	obj["type"] = "Detail";
+	            	obj["method"] = config.apimethod.userinfo;
+	        		obj["version"] = config.apiversion;
+	        		var sign = GetSign(obj);
+	        		var param = {
+				        queryData: {
+				          'method': config.apimethod.userinfo,
+				          'sign':sign,
+				          'sid':sid,
+				          'type':"Detail"
+				        },
+				        method: 'POST'
+				    }
+	        		$.dataRequest(param, function(rs) {
+		        		//console.log(JSON.stringify(rs));
+		        		jQuery('#yhm').html(rs.data.userName);
+		        		jQuery('#xm').html(rs.data.realName);
+		        		jQuery('#ytgshsl').html(rs.data.reCntSh);
+		        		jQuery('#tjqysl').html(rs.data.reCnt);
+		        		jQuery('#zhkyje').html(rs.data.money);
+		        	})
+            	}
+            })
+            
+            mui(document.body).on('tap','.mui-action-home',function(){
+                clicked('_www/view/hyzx/hyzx.html');
+            });
+            
+            mui(document.body).on('tap','.xgmmqr',function(){
+            	var waiting = plus.nativeUI.showWaiting();
+                if(!jQuery("#passwd").val())
+                {
+                	mui.alert('新密码必填！');
+                	waiting.close();
+                	return;
+                }
+                if(!jQuery("#repasswd").val())
+                {
+                	mui.alert('确认新密码必填！');
+                	waiting.close();
+                	return;
+                }
+                var obj_pwd = {};
+                obj_pwd["sid"] = sid;
+                obj_pwd["password"] = jQuery("#repasswd").val();
+                obj_pwd["method"] = config.apimethod.userpwdupdate;
+        		obj_pwd["version"] = config.apiversion;
+        		var sign = GetSign(obj_pwd);
+		    	var param = {
+			        queryData: {
+			          'method': config.apimethod.userpwdupdate,
+			          'sign':sign,
+			          'sid':sid,
+			          'password':jQuery("#repasswd").val()
+			        },
+			        method: 'POST'
+			    }
+        		$.dataRequest(param, function(rs) {
+	        		waiting.close();
+			        if(rs.rsp=="succ")
+			        {
+			        	if(rs.data.success=="true"){
+			        		plus.nativeUI.toast("修改成功");
+			        		loadData();
+							return;
+			        	}else
+			        	{
+			        		plus.nativeUI.toast("修改失败：" + rs.data.msg);
+							return;
+			        	}
+			        }else
+			        {
+			        	plus.nativeUI.toast("修改失败：" + rs.data);
+						return;
+			        }
+	        	})
+            });
+            
+            mui(document.body).on('tap','.logout',function(){
+                var obj_sid = {};
+				obj_sid["sid"] = sid;
+				obj_sid["method"] = config.apimethod.logout;
+				obj_sid["version"] = config.apiversion;
+				var sign = GetSign(obj_sid);
+				var param = {
+			        queryData: {
+			          'method': config.apimethod.logout,
+			          'sign':sign,
+			          'sid':sid
+			        },
+			        method: 'POST'
+			    }
+				$.dataRequest(param, function(rs) {
+					console.log(JSON.stringify(rs));
+					if(rs.rsp=="succ")
+	        		{
+	        			if(rs.data.status="true")
+	        			{
+	        			  	  localStorage.removeItem("sid");
+	        				  var wa = plus.nativeUI.showWaiting();
+				              var parent = plus.webview.currentWebview().opener();
+				              parent.reload(true);
+				              app.setState({});
+				              parent.addEventListener('loaded', function() {
+				                wa.close();
+				                plus.runtime.quit();
+				                setTimeout(function(){
+				                  plus.webview.currentWebview().close();
+				                },300)
+				              });
+	        			}
+	        		}
+				})
+            });
+            
+            mui(document.body).on('tap','.link',function(){
+                //document.location.href = jQuery(this).attr('href');
+                
+            });
+            
+            mui(document.body).on('tap','.tjqysl',function(){
+                clicked('_www/view/qytj/tjlb.html');
+            });
+            
+            mui(document.body).on('tap','.zhkyje',function(){
+                clicked('_www/view/hyzx/zhkyje.html');
+            });
+        </script>
+    </body>
+
+</html>
